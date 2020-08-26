@@ -1,0 +1,15 @@
+wsdl_definition:
+    path: definition/{name}.wsdl
+    controller: PhpLab\Sandbox\Wsdl\Symfony\Api\Controllers\HelloServiceController::definition
+    requirements:
+        name: '.+'
+
+wsdl_run:
+    path: handle/{name}
+    controller: PhpLab\Sandbox\Wsdl\Symfony\Api\Controllers\HelloServiceController::handle
+    requirements:
+        name: '.+'
+
+wsdl_test:
+    path: test
+    controller: PhpLab\Sandbox\Wsdl\Symfony\Api\Controllers\HelloServiceController::test

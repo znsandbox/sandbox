@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="urn:arnleadservicewsdl"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        targetNamespace="urn:testServicewsdl">
+
+    <types>
+        <xsd:schema targetNamespace="urn:testService">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+        </xsd:schema>
+    </types>
+
+    <message name="testService-helloRequest">
+        <part name="name" type="xsd:string"/>
+    </message>
+
+    <message name="testService-helloResponse">
+        <part name="return" type="soap-enc:Array"/>
+    </message>
+
+    <portType name="testServicePortType-hello">
+        <operation name="hello">
+            <documentation>Hello World</documentation>
+            <input message="tns:testService-helloRequest"/>
+            <output message="tns:testService-helloResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="testServiceBinding-hello" type="tns:testServicePortType-hello">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="hello">
+
+            <input>
+                <soap:body use="encoded" namespace="urn:testService"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:testService"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <message name="testService-method1Request">
+        <part name="name" type="xsd:string"/>
+    </message>
+
+    <message name="testService-method1Response">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <portType name="testServicePortType-method1">
+        <operation name="method1">
+            <documentation>method1 World</documentation>
+            <input message="tns:testService-method1Request"/>
+            <output message="tns:testService-method1Response"/>
+        </operation>
+    </portType>
+
+    <binding name="testServiceBinding-method1" type="tns:testServicePortType-method1">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="method1">
+
+            <input>
+                <soap:body use="encoded" namespace="urn:testService"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:testService"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="testService">
+        <port name="testServicePort" binding="tns:testServiceBinding-hello">
+            <soap:address location="http://symfony.tpl/wsdl/handle/hello"/>
+        </port>
+        <port name="testServicePort" binding="tns:testServiceBinding-method1">
+            <soap:address location="http://symfony.tpl/wsdl/handle/hello"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,19 @@
+{
+  "title": "Проект",
+  "list_title": "Список проектов",
+  "not_has_list_title": "Список не прикрепленных проектов",
+  "has_list_title": "Список прикрепленных проектов",
+  "create_title": "Создать проект",
+  "update_title": "Редактировать проект",
+  "attributes": {
+    "name": "Имя проекта",
+    "title" : "Название проекта",
+    "url" : "Ссылка на REST API"
+  },
+  "messages": {
+    "delete_confirm": "Удалить проект?",
+    "created_success": "Проект создан!",
+    "deleted_success": "Проект удален!",
+    "updated_success": "Проект обновлен!"
+  }
+}

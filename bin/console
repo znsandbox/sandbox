@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use PhpLab\Core\Libs\Env\DotEnvHelper;
+use Illuminate\Container\Container;
+
+require __DIR__ . '/../../../autoload.php';
+DotEnvHelper::init();
+require __DIR__ . '/bootstrap.php';
+
+$container = Container::getInstance();
+$application = $container->get(Application::class);
+//dd($application);
+$application->run();

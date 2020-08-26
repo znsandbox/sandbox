@@ -1,0 +1,18 @@
+{
+  "name": "znsandbox/sandbox",
+  "type": "extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yamshikov Vitaliy",
+      "email": "theyamshikov@yandex.ru"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "PhpLab\\Sandbox\\": "src",
+      "PhpLab\\Sandbox\\Tests\\": "tests"
+    }
+  }
+}
