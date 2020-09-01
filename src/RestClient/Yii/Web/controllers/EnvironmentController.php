@@ -3,7 +3,7 @@
 namespace PhpLab\Sandbox\RestClient\Yii\Web\controllers;
 
 use kartik\alert\Alert;
-use Packages\User\Domain\Interfaces\Services\IdentityServiceInterface;
+use PhpBundle\User\Domain\Interfaces\Services\IdentityServiceInterface;
 use PhpLab\Core\Domain\Exceptions\UnprocessibleEntityException;
 use PhpLab\Core\Domain\Helpers\EntityHelper;
 use PhpLab\Core\Libs\I18Next\Facades\I18Next;

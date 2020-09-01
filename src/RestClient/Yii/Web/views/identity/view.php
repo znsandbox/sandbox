@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 /**
  * @var \yii\web\View $this
- * @var \Packages\User\Domain\Entities\IdentityEntity $identityEntity
+ * @var \PhpBundle\User\Domain\Entities\IdentityEntity $identityEntity
  * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $projectCollection
  * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $hasProjectCollection
  */

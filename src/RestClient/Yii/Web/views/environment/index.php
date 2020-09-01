@@ -5,8 +5,8 @@ use yii\helpers\Url;
 
 /**
  * @var \yii\web\View $this
- * @var \Packages\User\Domain\Entities\EnvironmentEntity[] | \Illuminate\Support\Collection $environmentCollection
- * @var \Packages\User\Domain\Entities\ProjectEntity $projectEntity
+ * @var \PhpBundle\User\Domain\Entities\EnvironmentEntity[] | \Illuminate\Support\Collection $environmentCollection
+ * @var \PhpBundle\User\Domain\Entities\ProjectEntity $projectEntity
  */
 
 $this->title = I18Next::t('restclient', 'environment.list_title');
