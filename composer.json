@@ -12,7 +12,9 @@
   "autoload": {
     "psr-4": {
       "PhpLab\\Sandbox\\": "src",
-      "PhpLab\\Sandbox\\Tests\\": "tests"
+      "PhpLab\\Sandbox\\Tests\\": "tests",
+      "ZnSandbox\\Sandbox\\": "src",
+      "ZnSandbox\\Sandbox\\Tests\\": "tests"
     }
   }
 }
