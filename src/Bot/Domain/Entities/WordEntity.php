@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\Bot\Domain\Entities;
+namespace ZnSandbox\Sandbox\Bot\Domain\Entities;
 
 class WordEntity
 {

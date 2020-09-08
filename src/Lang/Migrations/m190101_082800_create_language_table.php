@@ -3,8 +3,8 @@
 namespace Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
-use PhpLab\Eloquent\Migration\Base\BaseCreateTableMigration;
-use PhpLab\Eloquent\Migration\Enums\ForeignActionEnum;
+use ZnCore\Db\Migration\Base\BaseCreateTableMigration;
+use ZnCore\Db\Migration\Enums\ForeignActionEnum;
 
 class m190101_082800_create_language_table extends BaseCreateTableMigration
 {

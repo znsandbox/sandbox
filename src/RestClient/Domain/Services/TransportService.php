@@ -1,18 +1,18 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Services;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
-use PhpLab\Core\Domain\Base\BaseService;
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\AuthorizationServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\TransportServiceInterface;
-use PhpLab\Sandbox\RestClient\Yii\Web\helpers\AdapterHelper;
-use PhpLab\Sandbox\RestClient\Yii\Web\models\RequestForm;
-use PhpLab\Rest\Contract\Authorization\BearerAuthorization;
-use PhpLab\Rest\Contract\Client\RestClient;
+use ZnCore\Base\Domain\Base\BaseService;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\AuthorizationServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\TransportServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\helpers\AdapterHelper;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\models\RequestForm;
+use ZnLib\Rest\Contract\Authorization\BearerAuthorization;
+use ZnLib\Rest\Contract\Client\RestClient;
 use Psr\Http\Message\ResponseInterface;
 
 class TransportService extends BaseService implements TransportServiceInterface

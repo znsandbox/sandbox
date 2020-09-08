@@ -1,15 +1,15 @@
 <?php
 
-use PhpLab\Core\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
 
 /**
  * @var \yii\web\View $this
- * @var \PhpBundle\User\Domain\Entities\EnvironmentEntity $environmentEntity
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $projectCollection
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $hasProjectCollection
+ * @var \ZnBundle\User\Domain\Entities\EnvironmentEntity $environmentEntity
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $projectCollection
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $hasProjectCollection
  */
 
 $this->title = $environmentEntity->getTitle();

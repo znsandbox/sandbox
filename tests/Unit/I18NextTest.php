@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Tests\Unit;
+namespace ZnSandbox\Sandbox\Tests\Unit;
 
-use PhpLab\Core\Libs\I18Next\Services\TranslationService;
+use ZnCore\Base\Libs\I18Next\Services\TranslationService;
 use PHPUnit\Framework\TestCase;
 
 final class I18NextTest extends TestCase

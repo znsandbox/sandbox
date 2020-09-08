@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\models;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\models;
 
 use yii\base\Model;
 use yii\validators\Validator;

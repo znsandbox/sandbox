@@ -1,12 +1,12 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\Widgets;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\Widgets;
 
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\AuthorizationServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\AuthorizationServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use Yii;
 use yii\base\Widget;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
 
 class FormWidget extends Widget
 {

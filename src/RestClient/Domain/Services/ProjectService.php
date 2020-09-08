@@ -1,19 +1,19 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Services;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
 use common\enums\rbac\PermissionEnum;
-use PhpLab\Core\Domain\Entities\Query\Where;
-use PhpLab\Core\Domain\Enums\OperatorEnum;
-use PhpLab\Core\Domain\Helpers\EntityHelper;
-use PhpLab\Core\Domain\Libs\Query;
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\AccessRepositoryInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\BookmarkRepositoryInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\ProjectRepositoryInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
-use PhpLab\Core\Domain\Base\BaseCrudService;
+use ZnCore\Base\Domain\Entities\Query\Where;
+use ZnCore\Base\Domain\Enums\OperatorEnum;
+use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Domain\Libs\Query;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\AccessRepositoryInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\BookmarkRepositoryInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\ProjectRepositoryInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnCore\Base\Domain\Base\BaseCrudService;
 use Yii;
 use yii\web\NotFoundHttpException;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\controllers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\controllers;
 
-use PhpLab\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
-use PhpLab\Sandbox\RestClient\Domain\Helpers\Postman\PostmanHelper;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Helpers\Postman\PostmanHelper;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use Yii;
 use yii\base\Module;
 use yii2bundle\navigation\domain\widgets\Alert;
@@ -20,7 +20,7 @@ use yii2rails\extension\web\helpers\Behavior;
 class CollectionController extends BaseController
 {
     /**
-     * @var \PhpLab\Sandbox\RestClient\Yii\Web\Module
+     * @var \ZnSandbox\Sandbox\RestClient\Yii\Web\Module
      */
     public $module;
 

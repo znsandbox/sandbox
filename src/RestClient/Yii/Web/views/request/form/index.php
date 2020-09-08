@@ -2,22 +2,22 @@
 
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use PhpLab\Sandbox\RestClient\Yii\Web\models\RequestForm;
-use PhpLab\Sandbox\RestClient\Yii\Web\helpers\Authorization;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\models\RequestForm;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\helpers\Authorization;
 
 /**
  * @var \yii\web\View $this
  * @var RequestForm $model
  * @var ActiveForm $form
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
  * @var \Illuminate\Support\Collection $environmentCollection
  */
 
 //$baseUrl = $projectEntity->getUrl() . '/';
 $model->addEmptyRows();
 
-$urlArray = \PhpLab\Core\Domain\Helpers\EntityHelper::getColumn($environmentCollection, 'url');
-$titleArray = \PhpLab\Core\Domain\Helpers\EntityHelper::getColumn($environmentCollection, 'title');
+$urlArray = \ZnCore\Base\Domain\Helpers\EntityHelper::getColumn($environmentCollection, 'url');
+$titleArray = \ZnCore\Base\Domain\Helpers\EntityHelper::getColumn($environmentCollection, 'title');
 //$urlOptoins = array_combine($urlArray, $urlArray);
 $urlOptoins = array_combine($urlArray, $titleArray);
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Bot\Domain;
+namespace ZnSandbox\Sandbox\Bot\Domain;
 
-use PhpLab\Core\Domain\Interfaces\DomainInterface;
+use ZnCore\Base\Domain\Interfaces\DomainInterface;
 
 class Domain implements DomainInterface
 {

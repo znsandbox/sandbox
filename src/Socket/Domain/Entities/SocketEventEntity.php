@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Socket\Domain\Entities;
+namespace ZnSandbox\Sandbox\Socket\Domain\Entities;
 
-use PhpLab\Sandbox\Socket\Domain\Enums\SocketEventStatusEnum;
+use ZnSandbox\Sandbox\Socket\Domain\Enums\SocketEventStatusEnum;
 
 class SocketEventEntity {
 

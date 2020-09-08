@@ -1,9 +1,9 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\helpers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\helpers;
 
 use Illuminate\Support\Collection;
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
 use yii2rails\extension\yii\helpers\ArrayHelper;
 
 class CollectionHelper

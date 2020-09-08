@@ -1,14 +1,14 @@
 <?php
 
-use PhpLab\Core\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
 
 /**
  * @var \yii\web\View $this
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\EnvironmentEntity[] | \Illuminate\Support\Collection $environmentCollection
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\EnvironmentEntity[] | \Illuminate\Support\Collection $environmentCollection
  */
 
 $this->title = $projectEntity->getTitle();

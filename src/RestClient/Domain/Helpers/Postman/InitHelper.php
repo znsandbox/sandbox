@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Helpers\Postman;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Helpers\Postman;
 
 use Yii;
 use yii2rails\extension\web\enums\HttpMethodEnum;

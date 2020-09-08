@@ -1,13 +1,13 @@
 <?php
 
-use PhpLab\Core\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
 
 /**
  * @var \yii\web\View $this
- * @var \PhpLab\Sandbox\RestClient\Yii\Web\models\ProjectForm $model
+ * @var \ZnSandbox\Sandbox\RestClient\Yii\Web\models\ProjectForm $model
  */
 
 ?>

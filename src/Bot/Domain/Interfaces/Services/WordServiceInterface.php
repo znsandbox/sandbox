@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Bot\Domain\Interfaces\Services;
+namespace ZnSandbox\Sandbox\Bot\Domain\Interfaces\Services;
 
-use PhpLab\Core\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnCore\Base\Domain\Interfaces\Service\CrudServiceInterface;
 
 interface WordServiceInterface extends CrudServiceInterface
 {

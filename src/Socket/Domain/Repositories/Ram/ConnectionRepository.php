@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Socket\Domain\Repositories\Ram;
+namespace ZnSandbox\Sandbox\Socket\Domain\Repositories\Ram;
 
-use PhpLab\Core\Exceptions\NotFoundException;
+use ZnCore\Base\Exceptions\NotFoundException;
 use Workerman\Connection\ConnectionInterface;
 
 class ConnectionRepository {

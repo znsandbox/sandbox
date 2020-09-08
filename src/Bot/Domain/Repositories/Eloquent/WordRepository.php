@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpLab\Sandbox\Bot\Domain\Repositories\Eloquent;
+namespace ZnSandbox\Sandbox\Bot\Domain\Repositories\Eloquent;
 
-use PhpLab\Eloquent\Db\Base\BaseEloquentCrudRepository;
-use PhpLab\Sandbox\Bot\Domain\Entities\WordEntity;
-use PhpLab\Sandbox\Bot\Domain\Interfaces\Repositories\WordRepositoryInterface;
+use ZnCore\Db\Db\Base\BaseEloquentCrudRepository;
+use ZnSandbox\Sandbox\Bot\Domain\Entities\WordEntity;
+use ZnSandbox\Sandbox\Bot\Domain\Interfaces\Repositories\WordRepositoryInterface;
 
 class WordRepository extends BaseEloquentCrudRepository implements WordRepositoryInterface
 {

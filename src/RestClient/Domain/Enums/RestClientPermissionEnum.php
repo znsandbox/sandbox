@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Enums;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Enums;
 
-use PhpLab\Core\Domain\Base\BaseEnum;
+use ZnCore\Base\Domain\Base\BaseEnum;
 
 class RestClientPermissionEnum extends BaseEnum
 {

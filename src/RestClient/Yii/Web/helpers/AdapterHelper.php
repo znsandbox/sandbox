@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\helpers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\helpers;
 
-use PhpLab\Core\Domain\Helpers\EntityHelper;
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
 use yii2bundle\rest\domain\entities\RequestEntity;
-use PhpLab\Sandbox\RestClient\Yii\Web\models\RequestForm;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\models\RequestForm;
 use GuzzleHttp\Psr7\Response;
 
 class AdapterHelper

@@ -1,12 +1,12 @@
 <?php
 
-namespace PhpLab\Sandbox\Tests\rest\Article;
+namespace ZnSandbox\Sandbox\Tests\rest\Article;
 
-use PhpLab\Core\Enums\Http\HttpMethodEnum;
-use PhpLab\Core\Enums\Http\HttpStatusCodeEnum;
-use PhpLab\Test\Base\BaseRestApiTest;
-use PhpLab\Test\Helpers\RestHelper;
-use PhpLab\Rest\Helpers\RestResponseHelper;
+use ZnCore\Base\Enums\Http\HttpMethodEnum;
+use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
+use ZnTool\Test\Base\BaseRestApiTest;
+use ZnTool\Test\Helpers\RestHelper;
+use ZnLib\Rest\Helpers\RestResponseHelper;
 
 class PostControllerTest extends BaseRestApiTest
 {

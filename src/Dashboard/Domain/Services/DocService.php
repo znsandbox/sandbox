@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\Dashboard\Domain\Services;
+namespace ZnSandbox\Sandbox\Dashboard\Domain\Services;
 
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Core\Helpers\StringHelper;
-use PhpLab\Core\Legacy\Yii\Helpers\FileHelper;
-use PhpLab\Sandbox\Dashboard\Domain\Interfaces\Services\DocServiceInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Base\Helpers\StringHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnSandbox\Sandbox\Dashboard\Domain\Interfaces\Services\DocServiceInterface;
 
 class DocService implements DocServiceInterface
 {

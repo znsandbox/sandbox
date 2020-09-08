@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\Wsdl\Symfony;
+namespace ZnSandbox\Sandbox\Wsdl\Symfony;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

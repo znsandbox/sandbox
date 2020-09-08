@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Enums;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Enums;
 
 class StatusEnum
 {

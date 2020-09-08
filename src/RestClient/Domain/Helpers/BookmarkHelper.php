@@ -1,13 +1,13 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Helpers;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Helpers;
 
-use PhpBundle\Crypt\Domain\Enums\HashAlgoEnum;
-use PhpBundle\Crypt\Domain\Helpers\SafeBase64Helper;
-use PhpLab\Eloquent\Db\Helpers\Manager;
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
-use PhpLab\Sandbox\RestClient\Domain\Repositories\Eloquent\BookmarkRepository;
-use PhpLab\Sandbox\RestClient\Domain\Services\BookmarkService;
+use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
+use ZnCrypt\Base\Domain\Helpers\SafeBase64Helper;
+use ZnCore\Db\Db\Helpers\Manager;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Repositories\Eloquent\BookmarkRepository;
+use ZnSandbox\Sandbox\RestClient\Domain\Services\BookmarkService;
 
 class BookmarkHelper
 {

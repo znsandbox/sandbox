@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Services;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\EnvironmentRepositoryInterface;
-use PhpLab\Core\Domain\Base\BaseCrudService;
-use PhpLab\Core\Domain\Libs\Query;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\EnvironmentRepositoryInterface;
+use ZnCore\Base\Domain\Base\BaseCrudService;
+use ZnCore\Base\Domain\Libs\Query;
 
 class EnvironmentService extends BaseCrudService implements EnvironmentServiceInterface
 {

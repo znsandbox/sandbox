@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Entities;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Entities;
 
-use PhpLab\Core\Domain\Interfaces\Entity\EntityIdInterface;
-use PhpLab\Core\Domain\Interfaces\Entity\ValidateEntityInterface;
-use PhpLab\Core\Enums\StatusEnum;
+use ZnCore\Base\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Base\Domain\Interfaces\Entity\ValidateEntityInterface;
+use ZnCore\Base\Enums\StatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ProjectEntity implements EntityIdInterface, ValidateEntityInterface

@@ -3,7 +3,7 @@
 namespace Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
-use PhpLab\Eloquent\Migration\Base\BaseCreateTableMigration;
+use ZnCore\Db\Migration\Base\BaseCreateTableMigration;
 
 class m_2020_02_19_181256_create_project_table extends BaseCreateTableMigration
 {

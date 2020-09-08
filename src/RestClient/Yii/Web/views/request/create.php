@@ -3,8 +3,8 @@
 /**
  * @var \yii\web\View $this
  * @var string $frame
- * @var \PhpLab\Sandbox\RestClient\Yii\Web\models\RequestForm $model
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
+ * @var \ZnSandbox\Sandbox\RestClient\Yii\Web\models\RequestForm $model
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
  * @var \Psr\Http\Message\ResponseInterface $response
  */
 
@@ -20,7 +20,7 @@ if ($model->method) {
     <div class="row">
         <div class="col-lg-8">
             <div class="rest-request-form">
-                <?= \PhpLab\Sandbox\RestClient\Yii\Web\Widgets\FormWidget::widget([
+                <?= \ZnSandbox\Sandbox\RestClient\Yii\Web\Widgets\FormWidget::widget([
                     'projectId' => $projectEntity->getId(),
                     'model' => $model,
                 ]) ?>
@@ -38,7 +38,7 @@ if ($model->method) {
 
         </div>
         <div class="col-lg-4">
-            <?= \PhpLab\Sandbox\RestClient\Yii\Web\Widgets\CollectionWidget::widget([
+            <?= \ZnSandbox\Sandbox\RestClient\Yii\Web\Widgets\CollectionWidget::widget([
                 'projectId' => $projectEntity->getId(),
                 'tag' => $tag,
             ]) ?>

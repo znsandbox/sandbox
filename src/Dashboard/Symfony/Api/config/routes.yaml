@@ -1,8 +1,8 @@
 
 api_root:
     path: '/'
-    controller: PhpLab\Sandbox\Dashboard\Symfony\Api\Controllers\DocController::index
+    controller: ZnSandbox\Sandbox\Dashboard\Symfony\Api\Controllers\DocController::index
 
 api_version:
     path: 'v{version}'
-    controller: PhpLab\Sandbox\Dashboard\Symfony\Api\Controllers\DocController::show
+    controller: ZnSandbox\Sandbox\Dashboard\Symfony\Api\Controllers\DocController::show

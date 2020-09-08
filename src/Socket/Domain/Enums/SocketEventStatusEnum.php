@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\Socket\Domain\Enums;
+namespace ZnSandbox\Sandbox\Socket\Domain\Enums;
 
 class SocketEventStatusEnum {
 

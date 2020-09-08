@@ -1,9 +1,9 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web;
 
 use Yii;
-use PhpLab\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
 use yii\filters\AccessControl;
 
 class Module extends \yii\base\Module
@@ -12,9 +12,9 @@ class Module extends \yii\base\Module
     public $defaultRoute = 'request';
 
     public $formatters = [
-        'application/json' => 'PhpLab\Sandbox\RestClient\Yii\Web\formatters\JsonFormatter',
-        'application/xml' => 'PhpLab\Sandbox\RestClient\Yii\Web\formatters\XmlFormatter',
-        'text/html' => 'PhpLab\Sandbox\RestClient\Yii\Web\formatters\HtmlFormatter',
+        'application/json' => 'ZnSandbox\Sandbox\RestClient\Yii\Web\formatters\JsonFormatter',
+        'application/xml' => 'ZnSandbox\Sandbox\RestClient\Yii\Web\formatters\XmlFormatter',
+        'text/html' => 'ZnSandbox\Sandbox\RestClient\Yii\Web\formatters\HtmlFormatter',
     ];
 
     public function behaviors()

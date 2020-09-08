@@ -1,9 +1,9 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Api\controllers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Api\controllers;
 
-use PhpLab\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use yii\base\Module;
 use RocketLab\Bundle\Rest\Base\BaseCrudController;
 

@@ -1,9 +1,9 @@
 <?php
 
-use PhpLab\Eloquent\Db\Helpers\Manager;
+use ZnCore\Db\Db\Helpers\Manager;
 use Illuminate\Container\Container;
 use Symfony\Component\Console\Application;
-use PhpLab\Core\Console\Helpers\CommandHelper;
+use ZnCore\Base\Console\Helpers\CommandHelper;
 
 /**
  * @var Application $application
@@ -22,14 +22,14 @@ $eloquentConfigFile = $_ENV['ELOQUENT_CONFIG_FILE'];
 $capsule = new Manager(null, $eloquentConfigFile);
 
 CommandHelper::registerFromNamespaceList([
-    'PhpLab\Sandbox\Bot\Symfony\Commands',
-    'PhpLab\Sandbox\Socket\Symfony\Commands',
+    'ZnSandbox\Sandbox\Bot\Symfony\Commands',
+    'ZnSandbox\Sandbox\Socket\Symfony\Commands',
 ], $container);
 
 /*
 // --- Bot ---
 
-use PhpLab\Sandbox\Bot\Symfony\Commands\BotCommand;
+use ZnSandbox\Sandbox\Bot\Symfony\Commands\BotCommand;
 
 $command = new BotCommand;
 $application->add($command);
@@ -38,10 +38,10 @@ $application->add($command);
 
 // --- Queue ---
 
-use PhpBundle\Queue\Symfony\Commands\RunCommand;
+use ZnBundle\Queue\Symfony\Commands\RunCommand;
 use Symfony\Component\DependencyInjection\Container;
-use PhpBundle\Queue\Domain\Services\JobService;
-use PhpBundle\Queue\Domain\Repositories\Eloquent\JobRepository;
+use ZnBundle\Queue\Domain\Services\JobService;
+use ZnBundle\Queue\Domain\Repositories\Eloquent\JobRepository;
 
 $container = new Container;
 $jobRepository = new JobRepository($capsule);

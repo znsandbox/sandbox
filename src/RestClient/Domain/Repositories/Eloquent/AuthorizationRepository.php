@@ -1,12 +1,12 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Repositories\Eloquent;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
-use PhpLab\Core\Domain\Libs\Query;
-use PhpLab\Eloquent\Db\Base\BaseEloquentCrudRepository;
-use PhpLab\Sandbox\RestClient\Domain\Entities\AuthorizationEntity;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\AuthorizationRepositoryInterface;
+use ZnCore\Base\Domain\Libs\Query;
+use ZnCore\Db\Db\Base\BaseEloquentCrudRepository;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\AuthorizationEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\AuthorizationRepositoryInterface;
 
 class AuthorizationRepository extends BaseEloquentCrudRepository implements AuthorizationRepositoryInterface
 {

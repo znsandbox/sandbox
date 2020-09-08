@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories;
 
 use Illuminate\Support\Collection;
-use PhpLab\Core\Domain\Interfaces\Repository\CrudRepositoryInterface;
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnCore\Base\Domain\Interfaces\Repository\CrudRepositoryInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
 
 interface BookmarkRepositoryInterface extends CrudRepositoryInterface
 {

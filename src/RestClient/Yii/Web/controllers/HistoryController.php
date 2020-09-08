@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\controllers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\controllers;
 
-use PhpLab\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use yii\base\Module;
 use yii2bundle\navigation\domain\widgets\Alert;
 

@@ -2,14 +2,14 @@
 <?php
 
 use Symfony\Component\Console\Application;
-use PhpLab\Core\Libs\Env\DotEnvHelper;
+use ZnCore\Base\Libs\Env\DotEnvHelper;
 use Illuminate\Container\Container;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Workerman\Connection\ConnectionInterface;
 use Workerman\Worker;
-use PhpLab\Sandbox\Socket\Domain\Libs\SocketDaemon;
+use ZnLib\Socket\Domain\Libs\SocketDaemon;
 
 require __DIR__ . '/../../../autoload.php';
 DotEnvHelper::init();

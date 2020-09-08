@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\formatters;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\formatters;
 
 /**
  * Class HtmlFormatter

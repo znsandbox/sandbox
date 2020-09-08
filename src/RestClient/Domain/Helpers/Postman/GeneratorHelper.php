@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Helpers\Postman;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Helpers\Postman;
 
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
 use yii2rails\extension\common\helpers\StringHelper;
 use yii2rails\extension\web\enums\HttpMethodEnum;
 use yii2bundle\rest\domain\entities\RequestEntity;

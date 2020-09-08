@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\controllers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\controllers;
 
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use Yii;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;

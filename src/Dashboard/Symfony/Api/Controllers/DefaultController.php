@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\Dashboard\Symfony\Api\Controllers;
+namespace ZnSandbox\Sandbox\Dashboard\Symfony\Api\Controllers;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

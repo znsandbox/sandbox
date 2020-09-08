@@ -1,12 +1,12 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\Widgets;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\Widgets;
 
-use PhpLab\Core\Enums\Http\HttpHeaderEnum;
-use PhpLab\Sandbox\RestClient\Yii\Web\formatters\RawFormatter;
-use PhpLab\Sandbox\RestClient\Yii\Web\HighlightAsset;
-use PhpLab\Test\Helpers\RestHelper;
-use PhpLab\Rest\Helpers\RestResponseHelper;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\formatters\RawFormatter;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\HighlightAsset;
+use ZnTool\Test\Helpers\RestHelper;
+use ZnLib\Rest\Helpers\RestResponseHelper;
 use yii\base\Widget;
 use yii\helpers\Html;
 

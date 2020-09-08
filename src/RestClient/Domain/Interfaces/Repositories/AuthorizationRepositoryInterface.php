@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories;
 
-use PhpLab\Core\Domain\Interfaces\Repository\CrudRepositoryInterface;
+use ZnCore\Base\Domain\Interfaces\Repository\CrudRepositoryInterface;
 
 interface AuthorizationRepositoryInterface extends CrudRepositoryInterface
 {

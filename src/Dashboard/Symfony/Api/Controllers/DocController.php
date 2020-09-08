@@ -1,9 +1,9 @@
 <?php
 
-namespace PhpLab\Sandbox\Dashboard\Symfony\Api\Controllers;
+namespace ZnSandbox\Sandbox\Dashboard\Symfony\Api\Controllers;
 
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\Dashboard\Domain\Interfaces\Services\DocServiceInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\Dashboard\Domain\Interfaces\Services\DocServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

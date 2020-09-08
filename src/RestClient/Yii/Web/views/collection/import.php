@@ -3,7 +3,7 @@ use yii\helpers\Html;
 
 /**
  * @var \yii\web\View $this
- * @var \PhpLab\Sandbox\RestClient\Yii\Web\models\ImportForm $model
+ * @var \ZnSandbox\Sandbox\RestClient\Yii\Web\models\ImportForm $model
  */
 
 $this->title = 'Import Collection';

@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Entities;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Entities;
 
-use PhpLab\Core\Domain\Interfaces\Entity\EntityIdInterface;
-use PhpLab\Core\Domain\Interfaces\Entity\ValidateEntityInterface;
-use PhpLab\Core\Enums\Http\HttpMethodEnum;
-use PhpLab\Sandbox\RestClient\Domain\Helpers\BookmarkHelper;
+use ZnCore\Base\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Base\Domain\Interfaces\Entity\ValidateEntityInterface;
+use ZnCore\Base\Enums\Http\HttpMethodEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Helpers\BookmarkHelper;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class BookmarkEntity implements ValidateEntityInterface, EntityIdInterface

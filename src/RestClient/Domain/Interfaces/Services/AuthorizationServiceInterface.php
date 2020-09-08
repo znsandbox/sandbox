@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Interfaces\Services;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services;
 
 use Illuminate\Support\Collection;
-use PhpLab\Core\Domain\Interfaces\Service\CrudServiceInterface;
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\RestClient\Domain\Entities\AuthorizationEntity;
+use ZnCore\Base\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\AuthorizationEntity;
 
 interface AuthorizationServiceInterface extends CrudServiceInterface
 {

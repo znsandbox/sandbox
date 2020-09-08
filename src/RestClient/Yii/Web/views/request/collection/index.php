@@ -1,15 +1,15 @@
 <?php
 
-use PhpLab\Core\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Domain\Helpers\EntityHelper;
 use yii\helpers\Html;
-use PhpLab\Sandbox\RestClient\Domain\Helpers\Postman\PostmanHelper;
-use PhpLab\Sandbox\RestClient\Yii\Web\helpers\CollectionHelper;
+use ZnSandbox\Sandbox\RestClient\Domain\Helpers\Postman\PostmanHelper;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\helpers\CollectionHelper;
 
 /**
  * @var \yii\web\View $this
  * @var string $activeTag
  * @var array $items
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity $projectEntity
  */
 
 ?>

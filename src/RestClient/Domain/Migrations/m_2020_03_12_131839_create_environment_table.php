@@ -3,8 +3,8 @@
 namespace Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
-use PhpLab\Eloquent\Migration\Base\BaseCreateTableMigration;
-use PhpLab\Eloquent\Migration\Enums\ForeignActionEnum;
+use ZnCore\Db\Migration\Base\BaseCreateTableMigration;
+use ZnCore\Db\Migration\Enums\ForeignActionEnum;
 
 if ( ! class_exists(m_2020_03_12_131839_create_environment_table::class)) {
 

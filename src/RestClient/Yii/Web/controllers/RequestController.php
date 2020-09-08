@@ -1,22 +1,22 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\controllers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\controllers;
 
-use PhpLab\Core\Enums\Http\HttpHeaderEnum;
-use PhpLab\Core\Helpers\UploadHelper;
-use PhpLab\Core\Libs\I18Next\Interfaces\Services\TranslationServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
-use PhpLab\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\TransportServiceInterface;
-use PhpLab\Sandbox\RestClient\Yii\Web\helpers\AdapterHelper;
-use PhpLab\Sandbox\RestClient\Yii\Web\models\RequestForm;
-use PhpLab\Test\Helpers\RestHelper;
-use PhpLab\Rest\Helpers\RestResponseHelper;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
+use ZnCore\Base\Helpers\UploadHelper;
+use ZnCore\Base\Libs\I18Next\Interfaces\Services\TranslationServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\TransportServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\helpers\AdapterHelper;
+use ZnSandbox\Sandbox\RestClient\Yii\Web\models\RequestForm;
+use ZnTool\Test\Helpers\RestHelper;
+use ZnLib\Rest\Helpers\RestResponseHelper;
 use Yii;
 use yii\base\Module;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
 
 /**
  * Class RequestController
@@ -26,7 +26,7 @@ use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInter
 class RequestController extends BaseController
 {
     /**
-     * @var \PhpLab\Sandbox\RestClient\Yii\Web\Module
+     * @var \ZnSandbox\Sandbox\RestClient\Yii\Web\Module
      */
     public $module;
     /**

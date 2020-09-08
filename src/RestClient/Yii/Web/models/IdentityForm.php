@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web\models;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web\models;
 
-use PhpLab\Core\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\base\Model;
 
 class IdentityForm extends Model

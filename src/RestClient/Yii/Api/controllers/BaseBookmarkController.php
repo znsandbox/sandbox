@@ -1,12 +1,12 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Api\controllers;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Api\controllers;
 
-use PhpLab\Core\Domain\Helpers\QueryHelper;
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
+use ZnCore\Base\Domain\Helpers\QueryHelper;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use yii\base\Module;
 use RocketLab\Bundle\Rest\Base\BaseCrudController;
@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 
 /**
  * Class BaseBookmarkController
- * @package PhpLab\Sandbox\RestClient\Yii\Api\controllers
+ * @package ZnSandbox\Sandbox\RestClient\Yii\Api\controllers
  *
  * @property-read BookmarkServiceInterface $service
  */

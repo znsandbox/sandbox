@@ -1,17 +1,17 @@
 <?php
 
-namespace PhpLab\Sandbox\Bot\Symfony\Api\Controllers;
+namespace ZnSandbox\Sandbox\Bot\Symfony\Api\Controllers;
 
-use PhpLab\Core\Domain\Exceptions\UnprocessibleEntityException;
-use PhpLab\Rest\Base\BaseCrudApiController;
-use PhpLab\Rest\Libs\Serializer\JsonRestSerializer;
-use PhpBundle\Messenger\Domain\Interfaces\ChatServiceInterface;
-use PhpLab\Core\Enums\Http\HttpHeaderEnum;
+use ZnCore\Base\Domain\Exceptions\UnprocessibleEntityException;
+use ZnLib\Rest\Base\BaseCrudApiController;
+use ZnLib\Rest\Libs\Serializer\JsonRestSerializer;
+use ZnBundle\Messenger\Domain\Interfaces\ChatServiceInterface;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use PhpBundle\Messenger\Domain\Libs\WordClassificator;
+use ZnBundle\Messenger\Domain\Libs\WordClassificator;
 use Phpml\Classification\KNearestNeighbors;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -72,22 +72,22 @@ class ChatController
     {
         $content = file_get_contents('C:\Users\Admin\Desktop\answer_databse\answer_databse\answer_databse.txt');
         $content = str_replace("\r\n", PHP_EOL, $content);
-        $lineArray = \PhpLab\Core\Helpers\StringHelper::textToLines($content);
+        $lineArray = \ZnCore\Base\Helpers\StringHelper::textToLines($content);
         $rrrrr = [];
 
         foreach ($lineArray as &$line) {
             $line111 = explode('\\', $line);
             if(isset($line111[1])) {
-                $request = \PhpLab\Sandbox\Bot\Domain\Helpers\MlHelper::prepareWord($line111[0]);
+                $request = \ZnSandbox\Sandbox\Bot\Domain\Helpers\MlHelper::prepareWord($line111[0]);
                 $rrrrr[$request][] = $line111[1];
             }
         }
         return array_slice($rrrrr, 0, 200);
         dd(array_slice($rrrrr, 0, 200));
 
-        $rrr = \PhpLab\Core\Legacy\Yii\Helpers\ArrayHelper::getColumn($lineArray, 'request');
+        $rrr = \ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper::getColumn($lineArray, 'request');
         foreach ($rrr as &$line) {
-            $line = \PhpLab\Sandbox\Bot\Domain\Helpers\MlHelper::prepareWord($line);
+            $line = \ZnSandbox\Sandbox\Bot\Domain\Helpers\MlHelper::prepareWord($line);
         }
         $rrr = array_unique($rrr);
 

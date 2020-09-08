@@ -1,15 +1,15 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Services;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
 use Illuminate\Support\Collection;
-use PhpLab\Core\Domain\Helpers\EntityHelper;
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
-use PhpLab\Sandbox\RestClient\Domain\Enums\StatusEnum;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\BookmarkRepositoryInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
-use PhpLab\Core\Domain\Base\BaseCrudService;
+use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\StatusEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\BookmarkRepositoryInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
+use ZnCore\Base\Domain\Base\BaseCrudService;
 
 class BookmarkService extends BaseCrudService implements BookmarkServiceInterface
 {

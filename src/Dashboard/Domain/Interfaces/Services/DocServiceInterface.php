@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Dashboard\Domain\Interfaces\Services;
+namespace ZnSandbox\Sandbox\Dashboard\Domain\Interfaces\Services;
 
-use PhpLab\Core\Exceptions\NotFoundException;
+use ZnCore\Base\Exceptions\NotFoundException;
 
 interface DocServiceInterface
 {

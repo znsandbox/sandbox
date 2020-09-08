@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Services;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\AccessRepositoryInterface;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Services\AccessServiceInterface;
-use PhpLab\Core\Domain\Base\BaseCrudService;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\AccessRepositoryInterface;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\AccessServiceInterface;
+use ZnCore\Base\Domain\Base\BaseCrudService;
 
 class AccessService extends BaseCrudService implements AccessServiceInterface
 {

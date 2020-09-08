@@ -1,11 +1,11 @@
 <?php
 
-use PhpLab\Core\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\helpers\Url;
 
 /**
  * @var \yii\web\View $this
- * @var \PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $projectCollection
+ * @var \ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity[] | \Illuminate\Support\Collection $projectCollection
  */
 
 $this->title = I18Next::t('restclient', 'project.list_title');

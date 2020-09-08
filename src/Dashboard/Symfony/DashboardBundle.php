@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\Dashboard\Symfony;
+namespace ZnSandbox\Sandbox\Dashboard\Symfony;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

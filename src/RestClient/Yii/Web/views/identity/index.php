@@ -1,11 +1,11 @@
 <?php
 
-use PhpLab\Core\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\helpers\Url;
 
 /**
  * @var \yii\web\View $this
- * @var \PhpBundle\User\Domain\Entities\IdentityEntity[] | \Illuminate\Support\Collection $identityCollection
+ * @var \ZnBundle\User\Domain\Entities\IdentityEntity[] | \Illuminate\Support\Collection $identityCollection
  */
 
 $this->title = I18Next::t('restclient', 'identity.list_title');

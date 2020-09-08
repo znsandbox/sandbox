@@ -1,9 +1,9 @@
 <?php
 
-namespace PhpLab\Sandbox\Tests\rest\Messenger;
+namespace ZnSandbox\Sandbox\Tests\rest\Messenger;
 
-use PhpLab\Core\Enums\Http\HttpStatusCodeEnum;
-use PhpLab\Test\Base\BaseRestApiTest;
+use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
+use ZnTool\Test\Base\BaseRestApiTest;
 
 class ChatControllerTest extends BaseRestApiTest
 {

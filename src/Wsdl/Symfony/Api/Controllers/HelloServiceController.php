@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Wsdl\Symfony\Api\Controllers;
+namespace ZnSandbox\Sandbox\Wsdl\Symfony\Api\Controllers;
 
-use PhpLab\Core\Enums\Http\HttpHeaderEnum;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use PHP2WSDL\PHPClass2WSDL;

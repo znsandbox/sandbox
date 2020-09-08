@@ -1,12 +1,12 @@
 <?php
 
-use PhpLab\Core\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\helpers\Url;
 
 /**
  * @var \yii\web\View $this
- * @var \PhpBundle\User\Domain\Entities\EnvironmentEntity[] | \Illuminate\Support\Collection $environmentCollection
- * @var \PhpBundle\User\Domain\Entities\ProjectEntity $projectEntity
+ * @var \ZnBundle\User\Domain\Entities\EnvironmentEntity[] | \Illuminate\Support\Collection $environmentCollection
+ * @var \ZnBundle\User\Domain\Entities\ProjectEntity $projectEntity
  */
 
 $this->title = I18Next::t('restclient', 'environment.list_title');

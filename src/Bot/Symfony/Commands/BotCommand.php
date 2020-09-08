@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpLab\Sandbox\Bot\Symfony\Commands;
+namespace ZnSandbox\Sandbox\Bot\Symfony\Commands;
 
-use PhpBundle\Messenger\Domain\Libs\WordClassificator;
+use ZnBundle\Messenger\Domain\Libs\WordClassificator;
 use Phpml\Classification\KNearestNeighbors;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

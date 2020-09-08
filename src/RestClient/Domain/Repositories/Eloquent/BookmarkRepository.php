@@ -1,13 +1,13 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Repositories\Eloquent;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
-use PhpLab\Core\Domain\Libs\Query;
-use PhpLab\Eloquent\Db\Base\BaseEloquentCrudRepository;
-use PhpLab\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
-use PhpLab\Sandbox\RestClient\Domain\Enums\StatusEnum;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\BookmarkRepositoryInterface;
+use ZnCore\Base\Domain\Libs\Query;
+use ZnCore\Db\Db\Base\BaseEloquentCrudRepository;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Enums\StatusEnum;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\BookmarkRepositoryInterface;
 
 class BookmarkRepository extends BaseEloquentCrudRepository implements BookmarkRepositoryInterface
 {

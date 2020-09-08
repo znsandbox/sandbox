@@ -1,19 +1,19 @@
 <?php
 
-namespace PhpLab\Sandbox\Tests\rest\Proto;
+namespace ZnSandbox\Sandbox\Tests\rest\Proto;
 
 use Illuminate\Support\Collection;
-use PhpBundle\Crypt\Domain\Libs\Encoders\AesEncoder;
-use PhpBundle\Crypt\Domain\Libs\Encoders\Base64Encoder;
-use PhpBundle\Crypt\Domain\Libs\Encoders\CollectionEncoder;
-use PhpBundle\Crypt\Domain\Libs\Encoders\EncoderInterface;
-use PhpBundle\Crypt\Domain\Libs\Encoders\GzEncoder;
-use PhpBundle\Crypt\Domain\Libs\Encoders\JsonEncoder;
-use PhpLab\Core\Enums\Http\HttpStatusCodeEnum;
-use PhpLab\Rest\Helpers\RestResponseHelper;
-use PhpBundle\CryptTunnel\Domain\Transports\ProtoHttpTransport;
-use PhpBundle\CryptTunnel\Domain\Libs\ProtoClient;
-use PhpLab\Test\Base\BaseRestApiTest;
+use ZnCrypt\Base\Domain\Libs\Encoders\AesEncoder;
+use ZnCrypt\Base\Domain\Libs\Encoders\Base64Encoder;
+use ZnCrypt\Base\Domain\Libs\Encoders\CollectionEncoder;
+use ZnCrypt\Base\Domain\Libs\Encoders\EncoderInterface;
+use ZnCrypt\Base\Domain\Libs\Encoders\GzEncoder;
+use ZnCrypt\Base\Domain\Libs\Encoders\JsonEncoder;
+use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
+use ZnLib\Rest\Helpers\RestResponseHelper;
+use ZnCrypt\BaseTunnel\Domain\Transports\ProtoHttpTransport;
+use ZnCrypt\BaseTunnel\Domain\Libs\ProtoClient;
+use ZnTool\Test\Base\BaseRestApiTest;
 
 class ProtoTest extends BaseRestApiTest
 {

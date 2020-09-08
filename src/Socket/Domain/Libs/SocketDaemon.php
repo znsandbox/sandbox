@@ -1,15 +1,15 @@
 <?php
 
-namespace PhpLab\Sandbox\Socket\Domain\Libs;
+namespace ZnSandbox\Sandbox\Socket\Domain\Libs;
 
-use PhpLab\Core\Domain\Helpers\EntityHelper;
-use PhpLab\Core\Exceptions\NotFoundException;
-use PhpLab\Sandbox\Socket\Domain\Entities\SocketEventEntity;
-use PhpLab\Sandbox\Socket\Domain\Enums\SocketEventEnum;
-use PhpLab\Sandbox\Socket\Domain\Enums\SocketEventStatusEnum;
-use PhpLab\Sandbox\Socket\Domain\Repositories\Ram\ConnectionRepository;
+use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnSandbox\Sandbox\Socket\Domain\Entities\SocketEventEntity;
+use ZnSandbox\Sandbox\Socket\Domain\Enums\SocketEventEnum;
+use ZnSandbox\Sandbox\Socket\Domain\Enums\SocketEventStatusEnum;
+use ZnSandbox\Sandbox\Socket\Domain\Repositories\Ram\ConnectionRepository;
 use Symfony\Component\Console\Application;
-use PhpLab\Core\Libs\Env\DotEnvHelper;
+use ZnCore\Base\Libs\Env\DotEnvHelper;
 use Illuminate\Container\Container;
 
 use Symfony\Component\Console\Input\InputInterface;

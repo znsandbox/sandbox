@@ -5,7 +5,7 @@ use Symfony\Component\Console\Application;
 
 require __DIR__ . '/../../../autoload.php';
 $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = 'test';
-\PhpLab\Core\Libs\Env\DotEnvHelper::init();
+\ZnCore\Base\Libs\Env\DotEnvHelper::init();
 
 // создаем консольное приложение
 $application = new Application;

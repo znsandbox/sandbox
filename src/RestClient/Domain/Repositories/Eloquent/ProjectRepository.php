@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Domain\Repositories\Eloquent;
+namespace ZnSandbox\Sandbox\RestClient\Domain\Repositories\Eloquent;
 
-use PhpLab\Core\Domain\Libs\Query;
-use PhpLab\Eloquent\Db\Base\BaseEloquentCrudRepository;
-use PhpLab\Sandbox\RestClient\Domain\Entities\ProjectEntity;
-use PhpLab\Sandbox\RestClient\Domain\Interfaces\Repositories\ProjectRepositoryInterface;
+use ZnCore\Base\Domain\Libs\Query;
+use ZnCore\Db\Db\Base\BaseEloquentCrudRepository;
+use ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity;
+use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\ProjectRepositoryInterface;
 
 class ProjectRepository extends BaseEloquentCrudRepository implements ProjectRepositoryInterface
 {

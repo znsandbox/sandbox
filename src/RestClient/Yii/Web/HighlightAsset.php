@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpLab\Sandbox\RestClient\Yii\Web;
+namespace ZnSandbox\Sandbox\RestClient\Yii\Web;
 
 use yii\web\AssetBundle;
 
