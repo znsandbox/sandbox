@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+use yii2rails\app\domain\helpers\generator\Generator;
+use yii2rails\extension\console\helpers\input\Select;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+
+@include_once('App.php');
+App::init('console');
+
+$config = require_once(__DIR__ . '/data/config.php');
+$domainAlias = Select::display('Select domain', array_keys($config));
+$domainAlias = ArrayHelper::first($domainAlias);
+$aliasConfig = $config[$domainAlias];
+Generator::generateApplication($aliasConfig['sourceDir'], $aliasConfig['forCopy']);
+\yii2rails\extension\console\helpers\Alert::success('Template success generated!');

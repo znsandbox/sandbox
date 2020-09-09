@@ -1,0 +1,18 @@
+{
+	"id": 6,
+	"country_id": 4,
+	"region_id": 5,
+	"name": "Балларат",
+	"country": {
+		"id": 4,
+		"name": "Австралия",
+		"currency": null
+	},
+	"region": {
+		"id": 5,
+		"country_id": 4,
+		"name": "Виктория",
+		"country": null,
+		"cities": null
+	}
+}

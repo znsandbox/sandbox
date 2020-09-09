@@ -1,0 +1,19 @@
+[
+	{
+		"id": 1894,
+		"name": "Казахстан",
+		"currency": {
+			"id": 1,
+			"country_id": 1894,
+			"code": "KZT",
+			"name": "Казахский тенге",
+			"description": null,
+			"country": null
+		}
+	},
+	{
+		"id": 63,
+		"name": "Австрия",
+		"currency": null
+	}
+]

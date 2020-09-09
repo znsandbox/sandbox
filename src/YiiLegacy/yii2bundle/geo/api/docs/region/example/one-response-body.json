@@ -1,0 +1,44 @@
+{
+	"id": 1994,
+	"country_id": 1894,
+	"name": "Карагандинская обл.",
+	"country": {
+		"id": 1894,
+		"name": "Казахстан",
+		"currency": null
+	},
+	"cities": [
+		{
+			"id": 1996,
+			"country_id": 1894,
+			"region_id": 1994,
+			"name": "Актас",
+			"country": null,
+			"region": null
+		},
+		{
+			"id": 2000,
+			"country_id": 1894,
+			"region_id": 1994,
+			"name": "Караганда",
+			"country": null,
+			"region": null
+		},
+		{
+			"id": 2001,
+			"country_id": 1894,
+			"region_id": 1994,
+			"name": "Каркаралинск",
+			"country": null,
+			"region": null
+		},
+		{
+			"id": 2005,
+			"country_id": 1894,
+			"region_id": 1994,
+			"name": "Темиртау",
+			"country": null,
+			"region": null
+		}
+	]
+}

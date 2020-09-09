@@ -1,0 +1,35 @@
+[
+	{
+		"id": 5,
+		"country_id": 4,
+		"name": "Виктория",
+		"country": {
+			"id": 4,
+			"name": "Австралия",
+			"currency": null
+		},
+		"cities": null
+	},
+	{
+		"id": 16,
+		"country_id": 4,
+		"name": "Западная Австралия",
+		"country": {
+			"id": 4,
+			"name": "Австралия",
+			"currency": null
+		},
+		"cities": null
+	},
+	{
+		"id": 23,
+		"country_id": 4,
+		"name": "Кинсленд",
+		"country": {
+			"id": 4,
+			"name": "Австралия",
+			"currency": null
+		},
+		"cities": null
+	}
+]

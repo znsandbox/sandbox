@@ -1,0 +1,41 @@
+description: "Города"
+get:
+    description: Возвращает список городов
+    is: !include /../../../vendor/zndoc/rest-api/src/is/all.raml
+    responses:
+        200:
+            body:
+                application/json:
+                    example: !include example/all-response-body.json
+post:
+    securedBy: [bearerAuth]
+    description: "Создать город"
+    is: !include /../../../vendor/zndoc/rest-api/src/is/create.raml
+    body:
+        application/json:
+            example: !include example/create-request-body.json
+
+/{id}:
+    uriParameters:
+        id:
+            description: "ID города"
+            type: integer
+    get:
+        description: "Возвращает город"
+        is: !include /../../../vendor/zndoc/rest-api/src/is/one.raml
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: !include example/one-response-body.json
+    put:
+        securedBy: [bearerAuth]
+        description: "Изменить город"
+        is: !include /../../../vendor/zndoc/rest-api/src/is/update.raml
+        body:
+            application/json:
+                example: !include example/update-request-body.json
+    delete:
+        securedBy: [bearerAuth]
+        description: "Удалить город"
+        is: !include /../../../vendor/zndoc/rest-api/src/is/delete.raml

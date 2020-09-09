@@ -9,12 +9,20 @@
     }
   ],
   "minimum-stability": "dev",
+  "require": {
+    "symfony/serializer": "4.*|5.*"
+  },
   "autoload": {
     "psr-4": {
-      "PhpLab\\Sandbox\\": "src",
-      "PhpLab\\Sandbox\\Tests\\": "tests",
       "ZnSandbox\\Sandbox\\": "src",
-      "ZnSandbox\\Sandbox\\Tests\\": "tests"
+      "ZnSandbox\\Telegram\\": "src/Telegram",
+      "ZnSandbox\\Web\\": "src/Web",
+
+      "yii2rails\\": "src\\YiiLegacy\\yii2rails",
+      "yii2bundle\\": "src\\YiiLegacy\\yii2bundle",
+      "yii2tool\\": "src\\YiiLegacy\\yii2tool",
+      "yubundle\\": "src\\YiiLegacy\\yubundle",
+      "RocketLab\\": "src\\YiiLegacy\\rocket-php-lab"
     }
   }
 }

@@ -1,0 +1,41 @@
+description: "Регионы"
+get:
+    description: Возвращает список регионов
+    is: !include /../../../vendor/zndoc/rest-api/src/is/all.raml
+    responses:
+        200:
+            body:
+                application/json:
+                    example: !include example/all-response-body.json
+post:
+    securedBy: [bearerAuth]
+    description: "Создать регион"
+    is: !include /../../../vendor/zndoc/rest-api/src/is/create.raml
+    body:
+        application/json:
+            example: !include example/create-request-body.json
+
+/{id}:
+    uriParameters:
+        id:
+            description: "ID региона"
+            type: integer
+    get:
+        description: "Возвращает регион"
+        is: !include /../../../vendor/zndoc/rest-api/src/is/one.raml
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: !include example/one-response-body.json
+    put:
+        securedBy: [bearerAuth]
+        description: "Изменить регион"
+        is: !include /../../../vendor/zndoc/rest-api/src/is/update.raml
+        body:
+            application/json:
+                example: !include example/update-request-body.json
+    delete:
+        securedBy: [bearerAuth]
+        description: "Удалить регион"
+        is: !include /../../../vendor/zndoc/rest-api/src/is/delete.raml
