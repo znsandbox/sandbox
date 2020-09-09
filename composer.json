@@ -17,6 +17,7 @@
       "ZnSandbox\\Sandbox\\": "src",
       "ZnSandbox\\Telegram\\": "src/Telegram",
       "ZnSandbox\\Web\\": "src/Web",
+      "ZnSandbox\\Bundle\\": "src/Bundle",
 
       "yii2rails\\": "src\\YiiLegacy\\yii2rails",
       "yii2bundle\\": "src\\YiiLegacy\\yii2bundle",
