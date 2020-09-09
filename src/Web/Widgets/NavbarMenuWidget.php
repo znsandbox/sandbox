@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Web\Widgets;
 
-class NavbarMenuWidget extends \ZnSandbox\Web\Widgets\MenuWidget
+class NavbarMenuWidget extends MenuWidget
 {
 
     public $itemOptions = [
