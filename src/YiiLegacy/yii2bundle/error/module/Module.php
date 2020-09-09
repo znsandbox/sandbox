@@ -9,5 +9,5 @@ use yii\base\Module as YiiModule;
  */
 class Module extends YiiModule
 {
-	static $langDir = '@vendor/znsandbox/yii2-legacy/src/yii2bundle/error/domain/messages';
+	static $langDir = '@vendor/znsandbox/sandbox/src/YiiLegacy/yii2bundle/error/domain/messages';
 }

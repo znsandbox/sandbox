@@ -20,7 +20,7 @@ class Env extends BaseRegistry {
 
 	public static function getDefinition($projectDir) {
 		$projectDirs = ArrayHelper::toArray($projectDir);
-		$projectDirs[] = 'vendor/znsandbox/yii2-legacy/src/yii2rails/app/application';
+		$projectDirs[] = 'vendor/znsandbox/sandbox/src/YiiLegacy/yii2rails/app/application';
 		$paths = [];
 		foreach($projectDirs as $dir) {
 			$paths[] = self::initItem($dir);

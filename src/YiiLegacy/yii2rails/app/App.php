@@ -87,7 +87,7 @@ class App
 	public static function initPhpApplication($appName = 'default', $config = null) {
 	    self::init($appName);
         if(empty($config)) {
-            $config = include(__DIR__ . '/../../../../../znsandbox/yii2-legacy/src/yii2rails/app/php/config/main.php');
+            $config = include(__DIR__ . '/../../../../../../znsandbox/sandbox/src/YiiLegacy/yii2rails/app/php/config/main.php');
         }
         Yii::$app = self::getYiiApplication($config);
         Yii::$app->init();

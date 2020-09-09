@@ -27,7 +27,7 @@ class Rails
 
     private static function loadDomainConfig()
     {
-        include __DIR__ . '/../../../../../../../znsandbox/yii2-legacy/src/yii2rails/app/domain/helpers/Func.php';
+        include __DIR__ . '/../../../../../../../../znsandbox/sandbox/src/YiiLegacy/yii2rails/app/domain/helpers/Func.php';
         include __DIR__ . '/App.php';
         $domainConfig = LoadHelper::loadScript('common/config/domains.php');
         foreach ($domainConfig as $domainId => &$definition) {

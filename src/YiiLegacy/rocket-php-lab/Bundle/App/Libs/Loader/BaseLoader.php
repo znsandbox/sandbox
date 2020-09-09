@@ -41,7 +41,7 @@ abstract class BaseLoader
 
     public function loadYii()
     {
-        include __DIR__ . '/../../../../../../../../yiisoft/yii2/Yii.php';
+        include __DIR__ . '/../../../../../../../../../yiisoft/yii2/Yii.php';
     }
     private function generateAppId(string $appName): string
     {

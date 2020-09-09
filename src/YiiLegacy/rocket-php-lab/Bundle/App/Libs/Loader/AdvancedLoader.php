@@ -7,8 +7,8 @@ class AdvancedLoader extends BaseLoader
 
     public function bootstrapApp(string $appName)
     {
-        include __DIR__ . '/../../../../../../../../../common/config/bootstrap.php';
-        include __DIR__ . '/../../../../../../../../../' . $appName . '/config/bootstrap.php';
+        include __DIR__ . '/../../../../../../../../../../common/config/bootstrap.php';
+        include __DIR__ . '/../../../../../../../../../../' . $appName . '/config/bootstrap.php';
     }
 
     public function mainConfigFiles(string $appName): array
