@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Domain\Exceptions\UnprocessibleEntityException;
-use ZnCore\Base\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
+use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
 

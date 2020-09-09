@@ -3,8 +3,8 @@
 namespace ZnSandbox\Telegram\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use ZnCore\Base\Domain\Interfaces\Entity\ValidateEntityInterface;
-use ZnCore\Base\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Domain\Interfaces\Entity\ValidateEntityInterface;
+use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 
 class UserTelegramEntity implements ValidateEntityInterface, EntityIdInterface
 {

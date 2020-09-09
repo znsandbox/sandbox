@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Socket\Domain\Libs;
 
-use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnSandbox\Sandbox\Socket\Domain\Entities\SocketEventEntity;
 use ZnSandbox\Sandbox\Socket\Domain\Enums\SocketEventEnum;

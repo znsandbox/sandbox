@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\EnvironmentRepositoryInterface;
-use ZnCore\Base\Domain\Base\BaseCrudService;
-use ZnCore\Base\Domain\Libs\Query;
+use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Libs\Query;
 
 class EnvironmentService extends BaseCrudService implements EnvironmentServiceInterface
 {

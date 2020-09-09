@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\RestClient\Yii\Api\controllers;
 
-use ZnCore\Base\Domain\Helpers\QueryHelper;
+use ZnCore\Domain\Helpers\QueryHelper;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;

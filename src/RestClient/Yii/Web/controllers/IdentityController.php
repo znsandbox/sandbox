@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\RestClient\Yii\Web\controllers;
 
 use kartik\alert\Alert;
 use ZnBundle\User\Domain\Interfaces\Services\IdentityServiceInterface;
-use ZnCore\Base\Domain\Exceptions\UnprocessibleEntityException;
-use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\AccessServiceInterface;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;

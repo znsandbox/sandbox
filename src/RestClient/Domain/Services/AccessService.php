@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\AccessRepositoryInterface;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\AccessServiceInterface;
-use ZnCore\Base\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Base\BaseCrudService;
 
 class AccessService extends BaseCrudService implements AccessServiceInterface
 {

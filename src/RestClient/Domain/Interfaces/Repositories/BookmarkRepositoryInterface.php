@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Domain\Interfaces\Repository\CrudRepositoryInterface;
+use ZnCore\Domain\Interfaces\Repository\CrudRepositoryInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
 

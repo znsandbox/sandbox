@@ -2,8 +2,8 @@
 
 namespace RocketLab\Bundle\Rest;
 
-use ZnCore\Base\Domain\Entities\DataProviderEntity;
-use ZnCore\Base\Domain\Libs\DataProvider;
+use ZnCore\Domain\Entities\DataProviderEntity;
+use ZnCore\Domain\Libs\DataProvider;
 use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Yii;

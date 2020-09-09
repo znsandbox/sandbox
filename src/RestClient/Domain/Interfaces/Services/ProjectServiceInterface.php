@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services;
 
-use ZnCore\Base\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity;
 

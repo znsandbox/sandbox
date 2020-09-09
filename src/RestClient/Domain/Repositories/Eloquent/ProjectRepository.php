@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\RestClient\Domain\Repositories\Eloquent;
 
-use ZnCore\Base\Domain\Libs\Query;
+use ZnCore\Domain\Libs\Query;
 use ZnCore\Db\Db\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\RestClient\Domain\Entities\ProjectEntity;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\ProjectRepositoryInterface;

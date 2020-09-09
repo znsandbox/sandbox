@@ -3,13 +3,13 @@
 namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnSandbox\Sandbox\RestClient\Domain\Entities\BookmarkEntity;
 use ZnSandbox\Sandbox\RestClient\Domain\Enums\StatusEnum;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\BookmarkRepositoryInterface;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
-use ZnCore\Base\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Base\BaseCrudService;
 
 class BookmarkService extends BaseCrudService implements BookmarkServiceInterface
 {

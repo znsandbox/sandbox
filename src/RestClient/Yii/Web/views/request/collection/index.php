@@ -1,6 +1,6 @@
 <?php
 
-use ZnCore\Base\Domain\Helpers\EntityHelper;
+use ZnCore\Domain\Helpers\EntityHelper;
 use yii\helpers\Html;
 use ZnSandbox\Sandbox\RestClient\Domain\Helpers\Postman\PostmanHelper;
 use ZnSandbox\Sandbox\RestClient\Yii\Web\helpers\CollectionHelper;

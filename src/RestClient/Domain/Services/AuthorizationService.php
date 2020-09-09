@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\RestClient\Domain\Services;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Base\BaseCrudService;
 use ZnSandbox\Sandbox\RestClient\Domain\Entities\AuthorizationEntity;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\AuthorizationRepositoryInterface;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\AuthorizationServiceInterface;

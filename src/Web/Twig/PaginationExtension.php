@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Web\Twig;
 
-use ZnCore\Base\Domain\Entities\DataProviderEntity;
+use ZnCore\Domain\Entities\DataProviderEntity;
 use ZnSandbox\Web\Widgets\PaginationWidget;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Extension\AbstractExtension;

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Web\Widgets;
 
-use ZnCore\Base\Domain\Entities\DataProviderEntity;
+use ZnCore\Domain\Entities\DataProviderEntity;
 use ZnSandbox\Web\Base\BaseWidget;
 use Symfony\Component\HttpFoundation\Request;
 

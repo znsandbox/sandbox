@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\RestClient\Domain\Entities;
 
-use ZnCore\Base\Domain\Interfaces\Entity\EntityIdInterface;
-use ZnCore\Base\Domain\Interfaces\Entity\ValidateEntityInterface;
+use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Domain\Interfaces\Entity\ValidateEntityInterface;
 use ZnCore\Base\Enums\Http\HttpMethodEnum;
 use ZnSandbox\Sandbox\RestClient\Domain\Helpers\BookmarkHelper;
 use Symfony\Component\Validator\Constraints as Assert;

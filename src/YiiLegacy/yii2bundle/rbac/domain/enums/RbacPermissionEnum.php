@@ -2,7 +2,7 @@
 
 namespace yii2bundle\rbac\domain\enums;
 
-use ZnCore\Base\Domain\Base\BaseEnum;
+use ZnCore\Domain\Base\BaseEnum;
 
 class RbacPermissionEnum extends BaseEnum
 {

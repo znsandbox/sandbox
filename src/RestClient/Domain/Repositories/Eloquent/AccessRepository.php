@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\RestClient\Domain\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Domain\Libs\Query;
+use ZnCore\Domain\Libs\Query;
 use ZnCore\Db\Db\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\RestClient\Domain\Entities\AccessEntity;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Repositories\AccessRepositoryInterface;

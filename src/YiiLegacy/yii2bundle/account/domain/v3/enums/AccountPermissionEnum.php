@@ -2,7 +2,7 @@
 
 namespace yii2bundle\account\domain\v3\enums;
 
-use ZnCore\Base\Domain\Base\BaseEnum;
+use ZnCore\Domain\Base\BaseEnum;
 
 class AccountPermissionEnum extends BaseEnum
 {

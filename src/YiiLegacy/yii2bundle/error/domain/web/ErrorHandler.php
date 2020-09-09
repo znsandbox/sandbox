@@ -2,8 +2,8 @@
 
 namespace yii2bundle\error\domain\web;
 
-use ZnCore\Base\Domain\Entities\ValidateErrorEntity;
-use ZnCore\Base\Domain\Exceptions\UnprocessibleEntityException;
+use ZnCore\Domain\Entities\ValidateErrorEntity;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use yii2rails\extension\scenario\collections\ScenarioCollection;

@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Bot\Domain\Services;
 
 use ZnSandbox\Sandbox\Bot\Domain\Interfaces\Services\WordServiceInterface;
-use ZnCore\Base\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Base\BaseCrudService;
 
 class WordService extends BaseCrudService implements WordServiceInterface
 {

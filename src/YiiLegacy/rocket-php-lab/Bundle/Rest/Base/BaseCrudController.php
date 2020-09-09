@@ -2,8 +2,8 @@
 
 namespace RocketLab\Bundle\Rest\Base;
 
-use ZnCore\Base\Domain\Helpers\QueryHelper;
-use ZnCore\Base\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnCore\Domain\Helpers\QueryHelper;
+use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
 use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use Yii;
