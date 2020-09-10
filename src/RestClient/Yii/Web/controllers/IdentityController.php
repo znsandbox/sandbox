@@ -15,7 +15,7 @@ use yii\base\Module;
 use yii2bundle\account\domain\v3\enums\AccountPermissionEnum;
 use yii2rails\domain\base\Model;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use RocketLab\Bundle\Web\Helpers\ErrorHelper;
+use ZnSandbox\Sandbox\Web\Yii2\Helpers\ErrorHelper;
 
 class IdentityController extends BaseController
 {

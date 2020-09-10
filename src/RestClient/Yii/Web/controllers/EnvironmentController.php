@@ -17,7 +17,7 @@ use yii2bundle\account\domain\v3\enums\AccountPermissionEnum;
 use yii2rails\domain\base\Model;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\EnvironmentServiceInterface;
-use RocketLab\Bundle\Web\Helpers\ErrorHelper;
+use ZnSandbox\Sandbox\Web\Yii2\Helpers\ErrorHelper;
 
 class EnvironmentController extends BaseController
 {

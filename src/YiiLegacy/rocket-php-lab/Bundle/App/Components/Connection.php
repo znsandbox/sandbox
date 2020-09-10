@@ -4,6 +4,7 @@ namespace RocketLab\Bundle\App\Components;
 
 use ZnCore\Base\Helpers\DbHelper;
 
+// todo: переместить в zncore\db
 class Connection extends \yii\db\Connection
 {
 

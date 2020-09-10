@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\RestClient\Domain\Enums\RestClientPermissionEnum;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInterface;
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use yii\base\Module;
-use RocketLab\Bundle\Rest\Base\BaseCrudController;
+use ZnLib\Rest\Yii2\Base\BaseCrudController;
 
 class HistoryController extends BaseBookmarkController
 {

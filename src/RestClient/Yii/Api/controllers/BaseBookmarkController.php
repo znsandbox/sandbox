@@ -9,7 +9,7 @@ use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\BookmarkServiceInter
 use ZnSandbox\Sandbox\RestClient\Domain\Interfaces\Services\ProjectServiceInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use yii\base\Module;
-use RocketLab\Bundle\Rest\Base\BaseCrudController;
+use ZnLib\Rest\Yii2\Base\BaseCrudController;
 use yii\web\NotFoundHttpException;
 
 /**

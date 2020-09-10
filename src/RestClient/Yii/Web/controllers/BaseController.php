@@ -9,7 +9,7 @@ use Yii;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
-abstract class BaseController extends \RocketLab\Bundle\Web\Base\BaseController
+abstract class BaseController extends \ZnSandbox\Sandbox\Web\Yii2\Base\BaseController
 {
     /** @var ProjectServiceInterface */
     protected $projectService;

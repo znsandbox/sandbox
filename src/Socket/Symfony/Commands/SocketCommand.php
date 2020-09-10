@@ -23,5 +23,4 @@ class SocketCommand extends Command
         };
         Worker::runAll();
     }
-
 }
