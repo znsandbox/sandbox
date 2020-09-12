@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2bundle\dashboard\web\controllers;
+namespace ZnSandbox\Sandbox\Dashboard\Yii2\Web\controllers;
 
 use yii\web\Controller;
 

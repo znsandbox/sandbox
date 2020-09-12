@@ -1,17 +1,17 @@
 <?php
 
-namespace yii2tool\deeMigrate;
+namespace ZnSandbox\Sandbox\Yii2\DeeMigrate;
 
-use yii\mongodb\console\controllers\MigrateController as BaseMigrateController;
+use yii\console\controllers\MigrateController as BaseMigrateController;
 
 /**
- * MongodbMigrateController. This controller required yiisoft/yii2-mongodb extension.
+ * MigrateController
  * Use at application config
  * 
  * ```
  * 'controlerMap' => [
- *     'mongodb-migrate' => [
- *         'class' => 'dee\console\MongodbMigrateController',
+ *     'migrate' => [
+ *         'class' => 'dee\console\MigrateController',
  *         'migrationLookup' => [
  *             '@yii/rbac/migrations',
  *             '@mdm/autonumber/migrations',
@@ -25,7 +25,7 @@ use yii\mongodb\console\controllers\MigrateController as BaseMigrateController;
  * // file config/params.php
  *
  * return [
- *     'dee.migration.mongopath' => [
+ *     'dee.migration.path' => [
  *         '@yii/rbac/migrations',
  *         '@mdm/autonumber/migrations',
  *         '@mdm/upload/migrations',
@@ -34,26 +34,27 @@ use yii\mongodb\console\controllers\MigrateController as BaseMigrateController;
  * ```
  * 
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
- * @since 1.2
+ * @since 1.0
  */
-class MongodbMigrateController extends BaseMigrateController
+class MigrateController extends BaseMigrateController
 {
+
     use MigrateTrait;
     /**
      * @var string
      */
-    public $baseMigrationClass = 'yii\mongodb\Migration';
+    public $baseMigrationClass = 'yii\console\Migration';
+    /**
+     * @var string 
+     */
+    public $extraFile = '@runtime/dee-migration/path.php';
+    /**
+     * @var string 
+     */
+    protected $lookupParamName = 'dee.migration.path';
     /**
      * @var string
      */
-    public $extraFile = '@runtime/dee-migration/mongo-path.php';
-    /**
-     * @var string
-     */
-    protected $lookupParamName = 'dee.migration.mongopath';
-    /**
-     * @var string
-     */
-    protected $nsParamName = 'dee.migration.mongons';
+    protected $nsParamName = 'dee.migration.ns';
 
 }

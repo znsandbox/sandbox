@@ -1,13 +1,13 @@
 <?php
 
-namespace yii2bundle\dashboard\web;
+namespace ZnSandbox\Sandbox\Dashboard\Yii2\Web;
 
 use yii2rails\domain\helpers\DomainHelper;
 
 /**
  * Class Module
  * 
- * @package yii2bundle\dashboard\web
+ * @package ZnSandbox\Sandbox\Dashboard\Yii2\Web
  */
 class Module extends \yii\base\Module {
 	

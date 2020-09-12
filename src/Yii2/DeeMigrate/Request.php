@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2tool\deeMigrate;
+namespace ZnSandbox\Sandbox\Yii2\DeeMigrate;
 use yii\caching\Cache;
 use yii\di\Instance;
 
