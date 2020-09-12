@@ -7,13 +7,12 @@ class BasicLoader extends BaseLoader
 
     public function bootstrapApp(string $appName)
     {
-        //include __DIR__ . '/config/bootstrap.php';
+        include __DIR__ . '/../../../../../../config/bootstrap.php';
     }
 
     public function mainConfigFiles(string $appName): array
     {
-        $isTestEnv = $this->env['APP_ENV'] == 'test';
-        if($isTestEnv) {
+        if($this->isTestEnv()) {
             $configFiles = [
                 "config/$appName.php",
                 "config/test.php",
@@ -33,5 +32,4 @@ class BasicLoader extends BaseLoader
             "config/params-local.php",
         ];
     }
-
 }

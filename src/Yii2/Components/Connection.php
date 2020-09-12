@@ -1,6 +1,6 @@
 <?php
 
-namespace RocketLab\Bundle\App\Components;
+namespace ZnSandbox\Sandbox\Yii2\Components;
 
 use ZnCore\Base\Helpers\DbHelper;
 

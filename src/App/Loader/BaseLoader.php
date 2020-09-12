@@ -11,7 +11,9 @@ abstract class BaseLoader
     protected $env;
 
     abstract public function bootstrapApp(string $appName);
+
     abstract public function mainConfigFiles(string $appName): array;
+
     abstract public function paramConfigFiles(string $appName): array;
 
     public function __construct(array $env)
@@ -23,11 +25,21 @@ abstract class BaseLoader
     {
         $configFiles = $this->mainConfigFiles($appName);
         $config = LoadHelper::loadConfigList($configFiles);
-        if(empty($config['params'])) {
+        if (empty($config['params'])) {
             $config['params'] = $this->loadParams($appName);
         }
         $config = $this->prepareConfig($appName, $config);
         return $config;
+    }
+
+    public function loadYii()
+    {
+        include __DIR__ . '/../../../../../yiisoft/yii2/Yii.php';
+    }
+
+    protected function isTestEnv(): bool
+    {
+        return $this->env['APP_ENV'] == 'test';
     }
 
     private function prepareConfig(string $appName, array $config): array
@@ -39,10 +51,6 @@ abstract class BaseLoader
         return $config;
     }
 
-    public function loadYii()
-    {
-        include __DIR__ . '/../../../../../yiisoft/yii2/Yii.php';
-    }
     private function generateAppId(string $appName): string
     {
         $appId = 'app-' . $appName . '-' . $this->env['APP_ENV'];
@@ -53,10 +61,9 @@ abstract class BaseLoader
     {
         $configFiles = $this->paramConfigFiles($appName);
         $config = [];
-        if($configFiles) {
+        if ($configFiles) {
             $config = LoadHelper::loadConfigList($configFiles);
         }
         return $config;
     }
-
 }

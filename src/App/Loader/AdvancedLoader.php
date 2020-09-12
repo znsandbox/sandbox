@@ -13,8 +13,7 @@ class AdvancedLoader extends BaseLoader
 
     public function mainConfigFiles(string $appName): array
     {
-        $isTestEnv = $this->env['APP_ENV'] == 'test';
-        if($isTestEnv) {
+        if($this->isTestEnv()) {
             $configFiles = [
                 "common/config/main.php",
                 "common/config/main-local.php",
