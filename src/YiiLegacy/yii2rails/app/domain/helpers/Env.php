@@ -4,7 +4,7 @@ namespace yii2rails\app\domain\helpers;
 
 use yii\helpers\ArrayHelper;
 use yii2rails\extension\registry\base\BaseRegistry;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class Env extends BaseRegistry {
 

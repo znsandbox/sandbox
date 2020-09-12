@@ -8,7 +8,7 @@ use yii2rails\extension\code\entities\ClassEntity;
 use yii2rails\extension\code\entities\DocBlockEntity;
 use yii2rails\extension\code\entities\InterfaceEntity;
 use yii2rails\extension\code\helpers\ClassHelper;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 
 abstract class BaseGenerator extends BaseScenario {
 

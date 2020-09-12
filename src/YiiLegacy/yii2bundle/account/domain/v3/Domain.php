@@ -6,7 +6,7 @@ use yii2rails\app\domain\helpers\EnvService;
 use yii2rails\extension\jwt\filters\token\JwtFilter;
 use yii2bundle\account\domain\v3\enums\AccountRoleEnum;
 use yii2rails\domain\enums\Driver;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 use yii2bundle\account\domain\v3\filters\login\LoginValidator;
 use yii2bundle\account\domain\v3\filters\token\DefaultFilter;
 use yii2bundle\account\domain\v3\interfaces\services\LoginInterface;

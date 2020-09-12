@@ -8,7 +8,7 @@ use yii2rails\extension\code\helpers\parser\TokenCollectionHelper;
 use yii2rails\extension\code\helpers\parser\TokenHelper;
 use yii2rails\extension\develop\helpers\Benchmark;
 use yii2rails\extension\store\StoreFile;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class CodeCacheHelper
 {

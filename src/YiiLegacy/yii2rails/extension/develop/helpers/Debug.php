@@ -3,12 +3,12 @@
 namespace yii2rails\extension\develop\helpers;
 
 use Yii;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 use yii2rails\extension\web\helpers\Page;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use yii\bootstrap\BootstrapAsset;
-use yii2rails\extension\yii\helpers\FileHelper;
-use yii2rails\extension\yii\helpers\Html;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\Html;
 use yii2rails\extension\store\Store;
 
 class Debug {

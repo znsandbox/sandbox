@@ -3,7 +3,7 @@
 namespace yii2rails\extension\common\helpers;
 
 use Yii;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 
 class ModuleHelper
 {

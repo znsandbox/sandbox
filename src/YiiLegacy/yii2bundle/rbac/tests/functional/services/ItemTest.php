@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 use yii\rbac\Item;
 use yii2rails\domain\enums\Driver;
 use yii2rails\domain\helpers\DomainHelper;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use yii2tool\test\helpers\DataHelper;
 use yii2tool\test\Test\Unit;
 

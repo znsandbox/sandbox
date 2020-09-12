@@ -2,7 +2,7 @@
 
 namespace yii2rails\extension\common\helpers;
 
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class DataHelper {
 	

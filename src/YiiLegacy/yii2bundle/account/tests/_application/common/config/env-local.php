@@ -19,7 +19,7 @@ $config = [
 		'profiles' => [
 			'auth' => [
 				'key' => 'W4PpvVwI82Rfl9fl2R9XeRqBI0VFBHP3',
-				'lifetime' => \yii2rails\extension\enum\enums\TimeEnum::SECOND_PER_YEAR,
+				'lifetime' => \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_YEAR,
 			],
 		],
 	],

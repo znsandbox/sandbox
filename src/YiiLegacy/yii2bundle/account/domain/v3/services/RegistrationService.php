@@ -17,7 +17,7 @@ use yii2rails\domain\helpers\ErrorCollection;
 use yii2rails\domain\helpers\Helper;
 use yii2rails\domain\services\base\BaseService;
 use yii2rails\extension\common\exceptions\CreatedHttpExceptionException;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 use yii2bundle\account\domain\v3\exceptions\ConfirmAlreadyExistsException;
 use yii2bundle\account\domain\v3\exceptions\ConfirmIncorrectCodeException;
 

@@ -15,7 +15,7 @@ use yii2bundle\account\domain\v3\forms\LoginForm;
 use yii2bundle\account\domain\v3\forms\restorePassword\UpdatePasswordForm;
 use yii2bundle\account\domain\v3\interfaces\services\RestorePasswordInterface;
 use yii2rails\domain\services\base\BaseService;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 
 /**
  * Class RestorePasswordService

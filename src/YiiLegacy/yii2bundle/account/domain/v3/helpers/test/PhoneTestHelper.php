@@ -8,8 +8,8 @@ use yii2bundle\rest\domain\entities\RequestEntity;
 use yii2bundle\rest\domain\entities\ResponseEntity;
 use yii2tool\test\helpers\RestTestHelper;
 use yii2rails\app\domain\helpers\EnvService;
-use yii2rails\extension\enum\enums\TimeEnum;
-use yii2rails\extension\web\enums\HttpMethodEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
+use ZnCore\Base\Enums\Http\HttpMethodEnum;
 
 class PhoneTestHelper
 {

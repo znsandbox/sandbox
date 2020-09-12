@@ -3,7 +3,7 @@
 namespace yii2rails\extension\code\helpers\parser;
 
 use yii2rails\extension\code\entities\TokenEntity;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class TokenHelper
 {

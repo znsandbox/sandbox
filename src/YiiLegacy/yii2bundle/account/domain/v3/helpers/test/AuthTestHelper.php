@@ -7,7 +7,7 @@ use yii\web\UnauthorizedHttpException;
 use yii2tool\test\helpers\RestTestHelper;
 use yii2tool\test\helpers\TestHelper;
 use yii2rails\app\domain\helpers\EnvService;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 use App;
 use yii\web\NotFoundHttpException;
 use yii2bundle\notify\domain\entities\SmsEntity;
@@ -18,8 +18,8 @@ use yii2bundle\rest\domain\entities\ResponseEntity;
 use yii2bundle\rest\domain\helpers\RestHelper;
 use yii2rails\app\domain\helpers\Config;
 use yii2rails\app\domain\helpers\Env;
-use yii2rails\extension\web\enums\HttpMethodEnum;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Enums\Http\HttpMethodEnum;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use yii2bundle\account\domain\v3\entities\LoginEntity;
 
 class AuthTestHelper

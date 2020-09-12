@@ -1,6 +1,6 @@
 <?php
 
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 $testDir = FileHelper::up(__DIR__, 3);
 

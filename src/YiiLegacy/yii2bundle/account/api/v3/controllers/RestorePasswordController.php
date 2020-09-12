@@ -10,7 +10,7 @@ use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
 use yii2rails\domain\helpers\Helper;
 use yii2rails\extension\common\exceptions\AlreadyExistsException;
 use yii2rails\extension\common\exceptions\CreatedHttpExceptionException;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 use yii2bundle\account\domain\v3\exceptions\ConfirmIncorrectCodeException;
 use yii2bundle\account\domain\v3\forms\restorePassword\UpdatePasswordForm;
 

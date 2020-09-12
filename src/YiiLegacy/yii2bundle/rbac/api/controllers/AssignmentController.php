@@ -4,7 +4,7 @@ namespace yii2bundle\rbac\api\controllers;
 
 use yii2bundle\rbac\domain\enums\RbacPermissionEnum;
 use yii2bundle\rest\domain\rest\ActiveControllerWithQuery as Controller;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 
 class AssignmentController extends Controller
 {

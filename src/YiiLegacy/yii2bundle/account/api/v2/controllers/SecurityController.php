@@ -3,7 +3,7 @@
 namespace yii2bundle\account\api\v2\controllers;
 
 use yii2bundle\rest\domain\rest\Controller;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 
 class SecurityController extends Controller
 {

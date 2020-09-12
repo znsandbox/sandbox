@@ -3,7 +3,7 @@
 namespace yii2bundle\account\domain\v3\services;
 
 use yii2rails\extension\web\helpers\ClientHelper;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use yii2bundle\account\domain\v3\interfaces\services\ActivityInterface;
 use yii2rails\domain\services\base\BaseActiveService;
 

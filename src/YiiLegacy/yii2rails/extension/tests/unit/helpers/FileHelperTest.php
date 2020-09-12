@@ -2,7 +2,7 @@
 namespace tests\unit\helpers;
 
 use yii2tool\test\Test\Unit;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class FileHelperTest extends Unit
 {

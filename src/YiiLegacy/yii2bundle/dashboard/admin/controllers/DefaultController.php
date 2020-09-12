@@ -4,7 +4,7 @@ namespace yii2bundle\dashboard\admin\controllers;
 
 use Yii;
 use yii\web\Controller;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class DefaultController extends Controller
 {

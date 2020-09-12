@@ -3,7 +3,7 @@
 namespace yii2bundle\lang\domain\helpers;
 
 use Yii;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class MapHelper {
 	

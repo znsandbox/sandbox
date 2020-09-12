@@ -10,7 +10,7 @@ use yii2rails\extension\code\entities\CodeEntity;
 use yii2rails\extension\code\entities\InterfaceEntity;
 use yii2rails\extension\code\render\ClassRender;
 use yii2rails\extension\code\render\InterfaceRender;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 
 /**
  * Class ClassHelper

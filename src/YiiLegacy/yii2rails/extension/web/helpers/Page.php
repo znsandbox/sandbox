@@ -4,8 +4,8 @@ namespace yii2rails\extension\web\helpers;
 
 use Yii;
 use yii\helpers\Url;
-use yii2rails\extension\yii\helpers\FileHelper;
-use yii2rails\extension\yii\helpers\Html;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\Html;
 
 class Page {
 	

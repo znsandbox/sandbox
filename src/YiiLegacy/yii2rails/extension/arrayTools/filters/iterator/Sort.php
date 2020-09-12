@@ -4,7 +4,7 @@ namespace yii2rails\extension\arrayTools\filters\iterator;
 
 use yii2rails\extension\scenario\base\BaseScenario;
 use yii2rails\domain\data\Query;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 
 class Sort extends BaseScenario {
 

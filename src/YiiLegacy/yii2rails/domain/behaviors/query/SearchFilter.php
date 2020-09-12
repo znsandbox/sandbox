@@ -12,7 +12,7 @@ use yii2rails\domain\repositories\BaseRepository;
 use yii2rails\domain\traits\behavior\CallbackTrait;
 use yii2rails\extension\common\enums\LogicOperatorEnum;
 use yii2rails\extension\common\helpers\StringHelper;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 
 class SearchFilter extends Behavior {
 

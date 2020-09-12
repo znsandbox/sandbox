@@ -5,7 +5,7 @@ namespace yii2bundle\account\module\helpers;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use Yii;
 use yii2rails\extension\menu\interfaces\MenuInterface;
-use yii2rails\extension\yii\helpers\Html;
+use ZnCore\Base\Legacy\Yii\Helpers\Html;
 use yii2bundle\account\domain\v3\helpers\LoginHelper;
 
 class Menu implements MenuInterface {

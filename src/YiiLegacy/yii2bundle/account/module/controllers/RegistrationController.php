@@ -3,7 +3,7 @@ namespace yii2bundle\account\module\controllers;
 
 use yii2rails\domain\base\Model;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 use yii2bundle\account\domain\v3\enums\AccountConfirmActionEnum;
 use yii2bundle\account\domain\v3\forms\RegistrationForm;
 use yii2bundle\account\domain\v3\services\RegistrationService;

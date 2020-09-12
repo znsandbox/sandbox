@@ -3,7 +3,7 @@
 /* @var $this yii\web\View
  * @var $entity yii2rails\domain\BaseEntity
  */
-use yii2rails\extension\yii\helpers\Html;
+use ZnCore\Base\Legacy\Yii\Helpers\Html;
 
 ?>
 

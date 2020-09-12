@@ -5,7 +5,7 @@ namespace yii2bundle\account\domain\v3\repositories\ar;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use Yii;
 use yii2rails\domain\repositories\BaseRepository;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 use yii2bundle\account\domain\v3\entities\LoginEntity;
 use yii2bundle\account\domain\v3\entities\SecurityEntity;
 use yii2bundle\account\domain\v3\helpers\LoginHelper;

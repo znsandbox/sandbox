@@ -5,7 +5,7 @@ namespace yii2bundle\error\domain\helpers;
 use Throwable;
 use Yii;
 use yii\helpers\Inflector;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class CodeHelper
 {

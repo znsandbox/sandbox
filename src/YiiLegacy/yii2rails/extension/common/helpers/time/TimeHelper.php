@@ -4,7 +4,7 @@ namespace yii2rails\extension\common\helpers\time;
 
 use yii2rails\app\domain\helpers\EnvService;
 use yii2rails\domain\strategies\join\JoinStrategy;
-use yii2rails\extension\web\enums\HttpHeaderEnum;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 
 class TimeHelper {
 	

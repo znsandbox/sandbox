@@ -5,7 +5,7 @@ namespace yii2bundle\rbac\domain\repositories\file;
 use Yii;
 use yii\web\UnprocessableEntityHttpException;
 use yii2rails\domain\repositories\BaseRepository;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use yii2bundle\rbac\domain\helpers\RuleHelper;
 
 class RuleRepository extends BaseRepository {

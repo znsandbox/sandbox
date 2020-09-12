@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii2rails\domain\events\DataEvent;
 use yii2rails\domain\services\base\BaseService;
-use yii2rails\extension\web\enums\HttpHeaderEnum;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 
 class ControllerHelper {
 

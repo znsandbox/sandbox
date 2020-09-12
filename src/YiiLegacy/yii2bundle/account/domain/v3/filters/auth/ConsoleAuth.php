@@ -10,7 +10,7 @@ use yii\web\UnauthorizedHttpException;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
 use yii2rails\extension\console\helpers\Error;
 use yii2rails\extension\console\helpers\input\Enter;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 use yii2bundle\account\domain\v3\entities\LoginEntity;
 use yii2bundle\account\domain\v3\forms\LoginForm;
 

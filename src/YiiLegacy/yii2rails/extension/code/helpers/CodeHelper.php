@@ -4,7 +4,7 @@ namespace yii2rails\extension\code\helpers;
 
 use yii2rails\extension\code\entities\CodeEntity;
 use yii2rails\extension\code\render\CodeRender;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use yii2rails\extension\store\Store;
 
 class CodeHelper

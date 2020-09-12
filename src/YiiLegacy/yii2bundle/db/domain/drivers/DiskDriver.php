@@ -5,7 +5,7 @@ namespace yii2bundle\db\domain\drivers;
 use Yii;
 use yii2bundle\db\domain\helpers\TableHelper;
 use yii2rails\extension\store\StoreFile;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use yii\helpers\Inflector;
 use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;

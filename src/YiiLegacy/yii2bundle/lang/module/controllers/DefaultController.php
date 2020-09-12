@@ -5,7 +5,7 @@ namespace yii2bundle\lang\module\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 
 class DefaultController extends Controller
 {

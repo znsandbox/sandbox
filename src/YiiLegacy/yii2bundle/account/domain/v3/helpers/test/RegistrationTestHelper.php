@@ -11,8 +11,8 @@ use yii2tool\test\helpers\RestTestHelper;
 use yii2tool\test\helpers\TestHelper;
 use yii2rails\app\domain\enums\YiiEnvEnum;
 use yii2rails\app\domain\helpers\EnvService;
-use yii2rails\extension\enum\enums\TimeEnum;
-use yii2rails\extension\web\enums\HttpMethodEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
+use ZnCore\Base\Enums\Http\HttpMethodEnum;
 
 class RegistrationTestHelper
 {

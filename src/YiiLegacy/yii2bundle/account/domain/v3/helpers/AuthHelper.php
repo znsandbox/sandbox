@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 use yii\web\Request;
 use yii2rails\extension\registry\helpers\Registry;
-use yii2rails\extension\web\enums\HttpHeaderEnum;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 use yii2bundle\account\domain\v3\dto\TokenDto;
 use yii2bundle\account\domain\v3\entities\LoginEntity;
 

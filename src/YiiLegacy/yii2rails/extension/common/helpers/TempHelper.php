@@ -4,7 +4,7 @@ namespace yii2rails\extension\common\helpers;
 
 use Yii;
 use yii\web\UploadedFile;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class TempHelper {
 	

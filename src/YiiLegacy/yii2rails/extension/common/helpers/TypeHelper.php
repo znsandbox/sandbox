@@ -10,7 +10,7 @@ use yii2rails\domain\data\EntityCollection;
 use yii2rails\domain\helpers\types\BaseType;
 use yii2rails\domain\interfaces\ValueObjectInterface;
 use yii2rails\domain\values\TimeValue;
-use yii2rails\extension\web\enums\HttpHeaderEnum;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 
 class TypeHelper {
 	

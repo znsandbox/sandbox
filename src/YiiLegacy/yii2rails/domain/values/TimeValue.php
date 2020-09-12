@@ -6,7 +6,7 @@ use DateTime;
 use DateTimeZone;
 use yii\base\InvalidArgumentException;
 use yii2rails\extension\common\helpers\time\TimeHelper;
-use yii2rails\extension\web\enums\HttpHeaderEnum;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 
 class TimeValue extends BaseValue {
 	

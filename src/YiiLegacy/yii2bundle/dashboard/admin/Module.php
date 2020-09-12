@@ -3,7 +3,7 @@
 namespace yii2bundle\dashboard\admin;
 use yii2bundle\applicationTemplate\common\enums\ApplicationPermissionEnum;
 use yii2rails\domain\helpers\DomainHelper;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 
 /**
  * Class Module

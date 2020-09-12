@@ -5,7 +5,7 @@ namespace yii2bundle\lang\domain\helpers;
 use Yii;
 use yii2rails\domain\helpers\DomainHelper;
 use yii2rails\extension\common\helpers\ModuleHelper;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use yii2bundle\lang\domain\enums\LanguageEnum;
 
 class BundleHelper {

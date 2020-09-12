@@ -2,7 +2,7 @@
 
 namespace yii2rails\extension\common\helpers\time;
 
-use yii2rails\extension\web\enums\HttpHeaderEnum;
+use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 
 class TimeCookieDriver implements TimeDriverInterface {
 	

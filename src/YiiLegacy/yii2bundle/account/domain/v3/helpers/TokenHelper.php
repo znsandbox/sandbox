@@ -7,7 +7,7 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\IdentityInterface;
 use yii2rails\extension\common\helpers\StringHelper;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use yii2bundle\account\domain\v3\dto\TokenDto;
 use yii2bundle\account\domain\v3\entities\LoginEntity;
 use yii2bundle\account\domain\v3\filters\token\BaseTokenFilter;

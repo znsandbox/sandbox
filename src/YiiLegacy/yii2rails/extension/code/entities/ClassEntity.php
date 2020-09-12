@@ -5,7 +5,7 @@ namespace yii2rails\extension\code\entities;
 use yii\helpers\Inflector;
 use yii2rails\domain\BaseEntity;
 use yii2rails\domain\helpers\Helper;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 /**
  * Class ClassEntity

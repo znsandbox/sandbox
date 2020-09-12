@@ -3,7 +3,7 @@
 namespace yii2rails\domain\web;
 
 use Yii;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 
 class ActiveController extends Controller {
 

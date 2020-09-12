@@ -4,7 +4,7 @@ namespace yii2bundle\lang\module\controllers;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\web\Controller;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 use yii2bundle\lang\domain\enums\LangPermissionEnum;
 
 class ManageController extends Controller

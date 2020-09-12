@@ -4,7 +4,7 @@ namespace yii2rails\extension\arrayTools\helpers;
 
 use Yii;
 use yii2rails\extension\arrayTools\base\BaseCollection;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 
 class Collection extends BaseCollection {
 	

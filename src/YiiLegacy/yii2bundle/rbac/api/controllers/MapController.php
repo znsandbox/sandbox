@@ -8,7 +8,7 @@ use yii2bundle\rbac\domain\entities\RoleEntity;
 use yii2bundle\rbac\domain\enums\RbacPermissionEnum;
 use yii2bundle\rest\domain\rest\Controller;
 use yii2rails\domain\data\Query;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 use yubundle\reference\domain\entities\ItemEntity;
 
 class MapController extends Controller

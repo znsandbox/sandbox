@@ -10,7 +10,7 @@ use yii2rails\extension\encrypt\entities\JwtEntity;
 use yii2rails\extension\encrypt\entities\JwtProfileEntity;
 use yii2rails\extension\encrypt\enums\EncryptAlgorithmEnum;
 use yii2rails\extension\encrypt\helpers\JwtHelper;
-use yii2rails\extension\enum\enums\TimeEnum;
+use ZnCore\Base\Enums\Measure\TimeEnum;
 use yii2tool\test\helpers\DataHelper;
 use yii2tool\test\Test\Unit;
 

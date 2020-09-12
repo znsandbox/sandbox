@@ -68,7 +68,7 @@ abstract class BaseActiveArRepository extends BaseArRepository implements CrudIn
 		} else {
 			$condition = $entity->toArray();
 			$uniqueFields = ArrayHelper::getValue($this->uniqueFields(), '0', []);
-			$condition = \yii2rails\extension\yii\helpers\ArrayHelper::extractByKeys($condition, $uniqueFields);
+			$condition = \ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper::extractByKeys($condition, $uniqueFields);
 		}
 		$model = $this->findOne($condition);
 		$this->massAssignment($model, $entity, self::SCENARIO_UPDATE);

@@ -3,7 +3,7 @@
 namespace yii2rails\extension\code\helpers\generator;
 
 use yii\helpers\Inflector;
-use yii2rails\extension\yii\helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 
 class ClassGeneratorHelper {
 	

@@ -6,7 +6,7 @@ use Yii;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
 use yii2rails\domain\helpers\Helper;
 use yii2rails\extension\store\StoreFile;
-use yii2rails\extension\web\helpers\Behavior;
+use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 use yii2rails\extension\web\helpers\ClientHelper;
 use yii2bundle\rest\domain\rest\Controller;
 use yubundle\account\console\forms\PseudoLoginForm;

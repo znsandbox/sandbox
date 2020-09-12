@@ -3,8 +3,8 @@
 namespace yii2rails\extension\code\helpers\generator;
 
 use Yii;
-use yii2rails\extension\yii\helpers\ArrayHelper;
-use yii2rails\extension\yii\helpers\FileHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
 class FileGeneratorHelper {
 	
