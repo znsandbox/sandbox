@@ -55,7 +55,7 @@ class Alert extends Widget
 		$this->generateHtml($collection);
 	}
 
-    public static function create($content, $type = \yii2bundle\navigation\domain\widgets\Alert::TYPE_SUCCESS, $delay = AlertEntity::DELAY_DEFAULT) {
+    public static function create($content, $type = Alert::TYPE_SUCCESS, $delay = 5000) {
         $entity = new \stdClass();
         if(is_array($content)) {
             $content = I18Next::t($content[0], $content[1]);
