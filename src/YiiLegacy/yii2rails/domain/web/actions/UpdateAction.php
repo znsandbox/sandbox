@@ -28,7 +28,7 @@ class UpdateAction extends Action {
                     $method = $this->serviceMethod;
                     $this->service->$method($id, $model->toArray());
                     //$this->service->$method($id, $entity->toArray($onlyAttributes));
-                    \App::$domain->navigation->alert->create(['main', 'update_success'], Alert::TYPE_SUCCESS);
+                    \ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'update_success'], Alert::TYPE_SUCCESS);
                     return $this->redirect(['/' . $this->baseUrl . 'view', 'id' => $id]);
                 } catch (UnprocessableEntityHttpException $e){
                     $model->addErrorsFromException($e);

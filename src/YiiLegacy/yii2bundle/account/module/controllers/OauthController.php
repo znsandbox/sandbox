@@ -44,11 +44,11 @@ class OauthController extends Controller {
 	
 	public function onLoginSuccess(BaseOAuth $client) {
 		\App::$domain->account->oauth->authByClient($client);
-		\App::$domain->navigation->alert->create(['account/auth', 'login_success'], Alert::TYPE_SUCCESS);
+		\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['account/auth', 'login_success'], Alert::TYPE_SUCCESS);
 	}
 	
 	public function onLoginCancel() {
-		\App::$domain->navigation->alert->create(['account/auth', 'login_access_error'], Alert::TYPE_DANGER);
+		\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['account/auth', 'login_access_error'], Alert::TYPE_DANGER);
 	}
 	
 }

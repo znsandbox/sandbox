@@ -2,7 +2,13 @@
 
 namespace ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets;
 
+use yii\base\BaseObject;
+use yii\base\Model;
 use yii\base\Widget;
+use yii2bundle\navigation\domain\entities\AlertEntity;
+use ZnCore\Base\Helpers\ClassHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 
 class Alert extends Widget
 {
@@ -37,7 +43,9 @@ class Alert extends Widget
     const TYPE_CUSTOM = 'alert-custom';
 
     public $collection = [];
-	
+
+    private static $all = [];
+
 	/**
 	 * Runs the widget
 	 */
@@ -46,11 +54,25 @@ class Alert extends Widget
 		$collection = $this->getCollection();
 		$this->generateHtml($collection);
 	}
+
+    public static function create($content, $type = \yii2bundle\navigation\domain\widgets\Alert::TYPE_SUCCESS, $delay = AlertEntity::DELAY_DEFAULT) {
+        $entity = new \stdClass();
+        if(is_array($content)) {
+            $content = I18Next::t($content[0], $content[1]);
+        }
+        ClassHelper::configure($entity, [
+            'type' => $type,
+            'content' => $content,
+            'delay' => $delay,
+        ]);
+	    self::$all[] = $entity;
+        \Yii::$app->session->setFlash('flash-alert', self::$all);
+    }
 	
 	private function getCollection() {
 		$collection = $this->collection;
 		if(empty($collection)) {
-			$collection = \App::$domain->navigation->alert->all();
+			$collection = \Yii::$app->session->getFlash('flash-alert');
 		}
 		if(empty($collection)) {
 			$collection = [];

@@ -41,7 +41,7 @@ class SecurityController extends Controller {
 			if($model->validate()) {
 				try {
 					\App::$domain->account->security->changeEmail($model->getAttributes());
-					\App::$domain->navigation->alert->create(['account/security', 'email_changed_success'], Alert::TYPE_SUCCESS);
+					\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['account/security', 'email_changed_success'], Alert::TYPE_SUCCESS);
 				} catch (UnprocessableEntityHttpException $e) {
 					$model->addErrorsFromException($e);
 				}
@@ -66,7 +66,7 @@ class SecurityController extends Controller {
 				$bodyPassword = $model->getAttributes(['password', 'new_password']);
 				try {
 					\App::$domain->account->security->changePassword($bodyPassword);
-					\App::$domain->navigation->alert->create(['account/security', 'password_changed_success'], Alert::TYPE_SUCCESS);
+					\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['account/security', 'password_changed_success'], Alert::TYPE_SUCCESS);
 				} catch (UnprocessableEntityHttpException $e) {
 					$model->addErrorsFromException($e);
 				}

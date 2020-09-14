@@ -22,7 +22,7 @@ class DeleteAction extends Action {
             $direction = $_SERVER['HTTP_REFERER'];
         }
 
-        \App::$domain->navigation->alert->create(['main', 'delete_success'], Alert::TYPE_SUCCESS);
+        \ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'delete_success'], Alert::TYPE_SUCCESS);
 		return $this->redirect($direction);
 	}
 }

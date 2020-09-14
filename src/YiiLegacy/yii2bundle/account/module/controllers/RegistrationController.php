@@ -56,14 +56,14 @@ class RegistrationController extends Controller
 		}
 		$isExists = \App::$domain->account->confirm->isHas($session['login'], AccountConfirmActionEnum::REGISTRATION);
 		if(!$isExists) {
-			\App::$domain->navigation->alert->create(['account/registration', 'temp_user_not_found'], Alert::TYPE_DANGER);
+			\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['account/registration', 'temp_user_not_found'], Alert::TYPE_DANGER);
 			return $this->redirect(['/user/registration']);
 		}
 		$model = new SetSecurityForm();
 		$callback = function($model) use ($session) {
 			\App::$domain->account->registration->createTpsAccount($session['login'], $session['activation_code'], $model->password, $model->email);
 			\App::$domain->account->auth->authenticationFromWeb($session['login'], $model->password, true);
-			\App::$domain->navigation->alert->create(['account/registration', 'registration_success'], Alert::TYPE_SUCCESS);
+			\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['account/registration', 'registration_success'], Alert::TYPE_SUCCESS);
 			return $this->goHome();
 		};
 		$this->validateForm($model,$callback);

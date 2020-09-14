@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 use yii2rails\extension\menu\helpers\MenuHelper;
 
 $this->title = I18Next::t('account', 'security.password');
-\App::$domain->navigation->breadcrumbs->create($this->title);
+//\App::$domain->navigation->breadcrumbs->create($this->title);
 
 ?>
 

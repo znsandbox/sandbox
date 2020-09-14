@@ -23,7 +23,7 @@ class CreateAction extends Action {
                 if (isset($this->redirect) && !empty($this->redirect)) {
                     $direction = rtrim($this->baseUrl, SL) . $this->redirect;
                 }
-				\App::$domain->navigation->alert->create(['main', 'create_success'], Alert::TYPE_SUCCESS);
+				\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'create_success'], Alert::TYPE_SUCCESS);
 				return $this->redirect($direction);
 			} catch (UnprocessableEntityHttpException $e){
 				$model->addErrorsFromException($e);

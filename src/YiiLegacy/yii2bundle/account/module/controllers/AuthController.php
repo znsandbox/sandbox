@@ -59,10 +59,10 @@ class AuthController extends Controller
 				\App::$domain->account->auth->authenticationFromWeb($form);
 				if(!$this->isBackendAccessAllowed()) {
 					\App::$domain->account->user->logout();
-					\App::$domain->navigation->alert->create(['account/auth', 'login_access_error'], Alert::TYPE_DANGER);
+					\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['user', 'auth.login_access_error'], Alert::TYPE_DANGER);
 					return $this->goHome();
 				}
-				\App::$domain->navigation->alert->create(['account/auth', 'login_success'], Alert::TYPE_SUCCESS);
+				\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['user', 'auth.login_success'], Alert::TYPE_SUCCESS);
 				return $this->goBack();
 			} catch(UnprocessableEntityHttpException $e) {
 				$form->addErrorsFromException($e);
@@ -80,7 +80,7 @@ class AuthController extends Controller
 	public function actionLogout($redirect = null)
 	{
 		\App::$domain->account->user->logout();
-		\App::$domain->navigation->alert->create(['account/auth', 'logout_success'], Alert::TYPE_SUCCESS);
+		\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['user', 'auth.logout_success'], Alert::TYPE_SUCCESS);
 		if($redirect) {
             return $this->redirect([SL . $redirect]);
         } else {

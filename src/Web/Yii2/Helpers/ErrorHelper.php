@@ -22,7 +22,7 @@ class ErrorHelper
             if (!empty($error['field'])) {
                 $model->addError($error['field'], $error['message']);
             } else {
-                \App::$domain->navigation->alert->create($error['message'], Alert::TYPE_WARNING);
+                \ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create($error['message'], Alert::TYPE_WARNING);
             }
         }
     }

@@ -29,8 +29,8 @@ class Module extends YiiModule
 		Yii::$app->view->title = I18Next::t('account', 'main.title');
 
 
-		\App::$domain->navigation->breadcrumbs->create(Yii::$app->view->title);
-		\App::$domain->navigation->breadcrumbs->create(I18Next::t($moduleId, "{$controllerId}.title"));
+		//\App::$domain->navigation->breadcrumbs->create(Yii::$app->view->title);
+		//\App::$domain->navigation->breadcrumbs->create(I18Next::t($moduleId, "{$controllerId}.title"));
 
 		return parent::beforeAction($action);
 	}

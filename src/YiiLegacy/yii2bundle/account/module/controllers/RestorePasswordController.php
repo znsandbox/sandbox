@@ -79,7 +79,7 @@ class RestorePasswordController extends Controller
 			$model->setAttributes($body, false);
 			try {
 				\App::$domain->account->restorePassword->confirm($model->login, $model->activation_code, $model->password);
-				\App::$domain->navigation->alert->create(['account/restore-password', 'new_password_saved_success'], Alert::TYPE_SUCCESS);
+				\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['account/restore-password', 'new_password_saved_success'], Alert::TYPE_SUCCESS);
 				return $this->redirect('/' . Yii::$app->user->loginUrl[0]);
 			} catch (UnprocessableEntityHttpException $e){
 				$model->addErrorsFromException($e);
