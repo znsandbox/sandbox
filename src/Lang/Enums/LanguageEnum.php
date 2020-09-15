@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Lang\Enums;
 
-use yii2rails\extension\enum\base\BaseEnum;
+//use yii2rails\extension\enum\base\BaseEnum;
 
-class LanguageEnum extends BaseEnum {
+class LanguageEnum /*extends BaseEnum*/ {
 	
 	const RU = 'ru-RU';
 	const EN = 'en-UK';
