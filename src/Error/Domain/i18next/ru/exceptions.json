@@ -1,0 +1,10 @@
+{
+	"title": "Ошибка",
+	"yii2rails\\init\\domain\\exceptions\\NotInitApplicationException": {
+		"name": "Приложение не инициализировано",
+		"message": "Инициализируйте приложение"
+	},
+	"yii2rails\\domain\\exceptions\\UnprocessableEntityHttpException": {
+		"name": "Переданы неверные данные"
+	}
+}

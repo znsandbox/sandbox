@@ -1,7 +1,0 @@
-class_name: FunctionalTester
-modules:
-    enabled:
-      - Filesystem
-      - Asserts
-      - Yii2:
-            part: [orm, fixtures, email]
