@@ -3,7 +3,7 @@
 namespace yii2rails\domain\web\actions;
 
 use yii2rails\domain\base\Action;
-use yii2bundle\navigation\domain\widgets\Alert;
+use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
 use Yii;
 
 class DeleteAction extends Action {

@@ -8,7 +8,7 @@ use yii2bundle\applicationTemplate\common\enums\ApplicationPermissionEnum;
 use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 use yii2bundle\account\domain\v3\forms\LoginForm;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use yii2bundle\navigation\domain\widgets\Alert;
+use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
 use yii2bundle\account\domain\v3\helpers\AuthHelper;
 use yii\web\Response;
 

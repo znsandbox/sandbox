@@ -10,7 +10,7 @@ use yii2bundle\account\domain\v3\services\RegistrationService;
 use yii2bundle\account\module\forms\SetSecurityForm;
 use Yii;
 use yii\web\Controller;
-use yii2bundle\navigation\domain\widgets\Alert;
+use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
 
 class RegistrationController extends Controller
 {

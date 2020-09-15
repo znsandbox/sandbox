@@ -3,7 +3,7 @@
 namespace yii2rails\domain\web\actions;
 
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use yii2bundle\navigation\domain\widgets\Alert;
+use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
 use Yii;
 use yii2rails\domain\base\Action;
 

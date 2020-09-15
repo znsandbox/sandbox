@@ -6,7 +6,7 @@ use yii\authclient\BaseOAuth;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ServerErrorHttpException;
-use yii2bundle\navigation\domain\widgets\Alert;
+use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
 
 class OauthController extends Controller {
 	

@@ -8,7 +8,7 @@ use yii2bundle\account\domain\v3\entities\SecurityEntity;
 use yii2bundle\account\module\forms\ChangePasswordForm;
 use Yii;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use yii2bundle\navigation\domain\widgets\Alert;
+use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
 use yii2bundle\account\domain\v3\forms\ChangeEmailForm;
 use yii2bundle\account\module\helpers\SecurityMenu;
 
