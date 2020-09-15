@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Html\Yii2\Widgets\entityActions\actions;
 use yii\helpers\Url;
 use ZnSandbox\Sandbox\Html\Yii2\Widgets\helpers\WidgetHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Html;
-use yii2bundle\lang\domain\helpers\LangHelper;
+use ZnSandbox\Sandbox\Lang\Yii2\Helpers\LangHelper;
 
 class BaseAction {
 	
