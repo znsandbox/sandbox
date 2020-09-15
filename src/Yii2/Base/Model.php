@@ -19,7 +19,7 @@ class Model extends YiiModel
         }
     }
 
-	public function addErrorsFromException(UnprocessableEntityHttpException $e) {
+	/*public function addErrorsFromException(UnprocessableEntityHttpException $e) {
 		$errors = $e->getErrors();
 		if($errors instanceof YiiModel) {
 			$errors = $errors->getErrors();
@@ -37,5 +37,5 @@ class Model extends YiiModel
 		} else {
 			$this->addError($error['field'], $error['message']);
 		}
-	}
+	}*/
 }
