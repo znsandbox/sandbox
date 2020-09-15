@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2rails\domain\base;
+namespace ZnSandbox\Sandbox\Yii2\Base;
 
 use yii\base\Model as YiiModel;
 use yii\helpers\ArrayHelper;

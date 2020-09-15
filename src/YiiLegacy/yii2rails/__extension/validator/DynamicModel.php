@@ -4,7 +4,7 @@ namespace yii2rails\extension\validator;
 
 use Yii;
 use yii\web\NotFoundHttpException;
-use yii2rails\domain\base\Model;
+use ZnSandbox\Sandbox\Yii2\Base\Model;
 use yii\helpers\ArrayHelper;
 
 class DynamicModel extends Model
