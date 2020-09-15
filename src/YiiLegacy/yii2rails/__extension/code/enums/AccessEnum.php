@@ -2,7 +2,7 @@
 
 namespace yii2rails\extension\code\enums;
 
-use yii2rails\extension\enum\base\BaseEnum;
+use ZnCore\Domain\Base\BaseEnum;
 
 class AccessEnum extends BaseEnum {
 	

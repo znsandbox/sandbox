@@ -2,7 +2,7 @@
 
 namespace yii2rails\domain\enums;
 
-use yii2rails\extension\enum\base\BaseEnum;
+use ZnCore\Domain\Base\BaseEnum;
 
 class JoinEnum extends BaseEnum {
 

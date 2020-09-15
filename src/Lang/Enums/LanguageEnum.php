@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Lang\Enums;
 
-//use yii2rails\extension\enum\base\BaseEnum;
+//use ZnCore\Domain\Base\BaseEnum;
 
 class LanguageEnum /*extends BaseEnum*/ {
 	

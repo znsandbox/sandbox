@@ -2,7 +2,7 @@
 
 namespace yii2rails\extension\web\enums;
 
-use yii2rails\extension\enum\base\BaseEnum;
+use ZnCore\Domain\Base\BaseEnum;
 
 class HtmlEnum extends BaseEnum {
 	

@@ -3,7 +3,7 @@
 namespace yii2rails\domain\enums;
 
 use yii2rails\app\domain\helpers\EnvService;
-use yii2rails\extension\enum\base\BaseEnum;
+use ZnCore\Domain\Base\BaseEnum;
 
 class Driver extends BaseEnum {
 	

@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 class EnumGeneratorHelper {
 	
 	private static $defaultConfig = [
-		'use' => ['yii2rails\extension\enum\base\BaseEnum'],
+		'use' => ['ZnCore\Domain\Base\BaseEnum'],
 		'afterClassName' => 'extends BaseEnum',
 	];
 	
