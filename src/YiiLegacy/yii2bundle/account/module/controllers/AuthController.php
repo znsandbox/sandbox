@@ -5,6 +5,8 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii2bundle\applicationTemplate\common\enums\ApplicationPermissionEnum;
+use ZnBundle\User\Domain\Services\AuthService2;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnSandbox\Sandbox\Yii2\Helpers\Behavior;
 use yii2bundle\account\domain\v3\forms\LoginForm;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
@@ -18,8 +20,15 @@ use yii\web\Response;
 class AuthController extends Controller
 {
 	public $defaultAction = 'login';
+	private $authService;
 
-	/**
+	public function __construct($id, $module, $config = [], AuthService2 $authService)
+    {
+        parent::__construct($id, $module, $config);
+        $this->authService = $authService;
+    }
+
+    /**
 	 * @inheritdoc
 	 */
 	public function behaviors()
@@ -56,16 +65,17 @@ class AuthController extends Controller
 		$isValid = $form->load($body) && $form->validate();
 		if ($isValid) {
 			try {
-				\App::$domain->account->auth->authenticationFromWeb($form);
+				//\App::$domain->account->auth->authenticationFromWeb($form);
+                $this->authService->authenticationByForm($form);
 				if(!$this->isBackendAccessAllowed()) {
-					\App::$domain->account->user->logout();
+					$this->authService->logout();
 					\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['user', 'auth.login_access_error'], Alert::TYPE_DANGER);
 					return $this->goHome();
 				}
 				\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['user', 'auth.login_success'], Alert::TYPE_SUCCESS);
 				return $this->goBack();
-			} catch(UnprocessableEntityHttpException $e) {
-				$form->addErrorsFromException($e);
+			} catch(UnprocessibleEntityException $e) {
+				$form->addErrorsFromException2($e);
 			}
 		}
 		
@@ -79,7 +89,7 @@ class AuthController extends Controller
 	 */
 	public function actionLogout($redirect = null)
 	{
-		\App::$domain->account->user->logout();
+		$this->authService->logout();
 		\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['user', 'auth.logout_success'], Alert::TYPE_SUCCESS);
 		if($redirect) {
             return $this->redirect([SL . $redirect]);

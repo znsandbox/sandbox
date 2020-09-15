@@ -21,12 +21,12 @@ $items[] = [
 	'content' => $loginForm,
 ];
 
-if(\App::$domain->account->oauth->isEnabled()) {
+/*if(\App::$domain->account->oauth->isEnabled()) {
 	$items[] = [
 		'label' => I18Next::t('account', 'oauth.title'),
 		'content' => $this->render('helpers/_loginOauth.php'),
 	];
-}
+}*/
 
 if(count($items) > 1) {
     $html = \yii\bootstrap\Tabs::widget([
