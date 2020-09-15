@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Yii2\Components;
 
-use ZnCore\Base\Helpers\DbHelper;
+use ZnCore\Db\Db\Helpers\DbHelper;
 
 // todo: переместить в zncore\db
 class Connection extends \yii\db\Connection

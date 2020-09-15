@@ -25,6 +25,7 @@ class Kernel
     {
         $this->init($this->env);
         $appName = $this->env['APP_NAME'];
+        Constant::defineBase(realpath(__DIR__ . '/../../../../../..'));
         Constant::defineApp($appName);
         $config = $this->loadMainConfig($appName);
         return $config;

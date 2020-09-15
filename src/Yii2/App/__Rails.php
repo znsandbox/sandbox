@@ -14,7 +14,7 @@ class Rails
 
     public static function initAll(string $rootDir = null)
     {
-        self::init($rootDir);
+        //self::init($rootDir);
         //self::loadDomainConfig();
     }
 
