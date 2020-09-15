@@ -2,6 +2,7 @@
 
 namespace yii2bundle\account\domain\v3\entities;
 
+use Illuminate\Container\Container;
 use yii2rails\domain\data\Query;
 use yii2rails\extension\arrayTools\helpers\ArrayIterator;
 use yii2rails\extension\common\enums\StatusEnum;
@@ -17,6 +18,7 @@ use yii2rails\domain\BaseEntity;
 use yii2rails\domain\values\TimeValue;
 use yii2bundle\account\domain\v3\entities\SecurityEntity;
 use yii2bundle\account\domain\v3\interfaces\entities\LoginEntityInterface;
+use ZnBundle\User\Domain\Interfaces\Repositories\IdentityRepositoryInterface;
 
 /**
  * Class LoginEntity
@@ -117,7 +119,10 @@ class LoginEntity extends BaseEntity implements LoginEntityInterface {
     }
 
 	public static function findIdentity($id) {
-		return \App::$domain->account->login->oneById($id);
+        /** @var IdentityRepositoryInterface $repository */
+        $repository = Container::getInstance()->get(IdentityRepositoryInterface::class);
+        return $repository->oneById($id);
+		//return \App::$domain->account->login->oneById($id);
 	}
 	
 	public static function findIdentityByAccessToken($token, $type = null) {
