@@ -5,7 +5,7 @@ namespace tests\unit\helpers;
 use yii2tool\test\Test\Unit;
 use yii\base\Model;
 use yii2rails\domain\helpers\DomainHelper;
-use yii2bundle\account\domain\v3\entities\LoginEntity;
+use ZnBundle\User\Yii\Entities\LoginEntity;
 use yii2bundle\account\domain\v3\helpers\TestAuthHelper;
 
 class DomainHelperTest extends Unit

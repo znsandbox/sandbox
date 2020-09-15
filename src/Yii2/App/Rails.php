@@ -21,7 +21,7 @@ class Rails
     private static function init(string $rootDir = null)
     {
         $rootDir = $rootDir ?? FileHelper::rootPath();
-        Env::load(DotEnvHelper::get());
+        //Env::load(DotEnvHelper::get());
         Constant::defineBase($rootDir);
     }
 

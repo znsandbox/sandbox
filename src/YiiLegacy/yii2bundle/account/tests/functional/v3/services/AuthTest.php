@@ -7,7 +7,7 @@ use tests\functional\v3\enums\LoginEnum;
 use yii\web\ForbiddenHttpException;
 use yii\web\UnauthorizedHttpException;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use yii2bundle\account\domain\v3\entities\LoginEntity;
+use ZnBundle\User\Yii\Entities\LoginEntity;
 use yii2bundle\account\domain\v3\helpers\TestAuthHelper;
 
 class AuthTest extends Unit

@@ -4,7 +4,7 @@ namespace tests\functional\v3\services;
 
 use yii2tool\test\Test\Unit;
 use Yii;
-use yii2bundle\account\domain\v3\entities\LoginEntity;
+use ZnBundle\User\Yii\Entities\LoginEntity;
 use tests\functional\v3\enums\LoginEnum;
 
 class SecurityTest extends Unit

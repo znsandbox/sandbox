@@ -6,7 +6,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii2bundle\account\domain\v3\filters\auth\ConsoleAuth;
-use yii2bundle\account\domain\v3\filters\auth\HttpTokenAuth;
+use ZnBundle\User\Yii\Filters\Auth\HttpTokenAuth;
 
 class Behavior {
 	

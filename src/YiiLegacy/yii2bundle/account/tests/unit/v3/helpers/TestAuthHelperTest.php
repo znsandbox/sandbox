@@ -5,7 +5,7 @@ namespace tests\unit\v3\helpers;
 use yii2tool\test\Test\Unit;
 use tests\functional\v3\enums\LoginEnum;
 use Yii;
-use yii2bundle\account\domain\v3\entities\LoginEntity;
+use ZnBundle\User\Yii\Entities\LoginEntity;
 use yii2bundle\account\domain\v3\helpers\TestAuthHelper;
 
 class TestAuthHelperTest extends Unit

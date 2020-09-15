@@ -6,7 +6,7 @@
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii\helpers\Html;
 use yii2rails\app\domain\helpers\EnvService;
-use yii2bundle\account\domain\v3\forms\LoginForm;
+use ZnBundle\User\Yii\Forms\LoginForm;
 
 $this->title = I18Next::t('account', 'auth.login_title');
 ////\App::$domain->navigation->breadcrumbs->create($this->title);
