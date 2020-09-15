@@ -2,7 +2,7 @@
 
 namespace yii2rails\extension\code\filters\parser;
 
-use yii2rails\extension\scenario\base\BaseScenario;
+use ZnCore\Base\Libs\Scenario\Base\BaseScenario;
 
 abstract class Base extends BaseScenario {
 	

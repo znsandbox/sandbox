@@ -5,7 +5,7 @@ namespace yii2rails\domain\helpers\types;
 use yii\base\InvalidArgumentException;
 use yii\helpers\ArrayHelper;
 use yii2rails\domain\BaseEntity;
-use yii2rails\extension\arrayTools\helpers\Collection;
+use ZnCore\Base\Libs\ArrayTools\Helpers\Collection;
 use yii2rails\domain\data\EntityCollection;
 use yii2rails\domain\helpers\Helper;
 use yii2rails\domain\values\BaseValue;

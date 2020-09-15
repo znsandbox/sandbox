@@ -6,7 +6,7 @@ use yii2rails\domain\BaseEntity;
 use yii2rails\domain\dto\WithDto;
 use yii2rails\domain\entities\relation\RelationEntity;
 use yii2rails\domain\enums\RelationEnum;
-use yii2rails\extension\scenario\base\BaseStrategyContextHandlers;
+use ZnCore\Base\Libs\Scenario\Base\BaseStrategyContextHandlers;
 use yii2rails\domain\strategies\join\handlers\One;
 use yii2rails\domain\strategies\join\handlers\Many;
 use yii2rails\domain\strategies\join\handlers\ManyToMany;

@@ -4,7 +4,7 @@ namespace tests\unit\domain;
 
 use tests\_source\entities\CityEntity;
 use yii\base\InvalidArgumentException;
-use yii2rails\extension\arrayTools\helpers\Collection;
+use ZnCore\Base\Libs\ArrayTools\Helpers\Collection;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
 use tests\_source\entities\CountryEntity;
 use tests\_source\entities\CurrencyEntity;

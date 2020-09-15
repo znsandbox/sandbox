@@ -6,7 +6,7 @@ use ZnCore\Domain\Entities\ValidateErrorEntity;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
-use yii2rails\extension\scenario\collections\ScenarioCollection;
+use ZnCore\Base\Libs\Scenario\Collections\ScenarioCollection;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
 use ZnSandbox\Sandbox\Error\Domain\Helpers\UnProcessibleHelper;
 

@@ -3,7 +3,7 @@
 namespace yii2rails\domain\generator;
 
 use yii\base\InvalidArgumentException;
-use yii2rails\extension\scenario\base\BaseScenario;
+use ZnCore\Base\Libs\Scenario\Base\BaseScenario;
 use yii2rails\extension\code\entities\ClassEntity;
 use yii2rails\extension\code\entities\DocBlockEntity;
 use yii2rails\extension\code\entities\InterfaceEntity;

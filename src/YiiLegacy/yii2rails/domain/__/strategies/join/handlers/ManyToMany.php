@@ -9,7 +9,7 @@ use yii2rails\domain\dto\WithDto;
 use yii2rails\domain\entities\relation\RelationEntity;
 use yii2rails\domain\helpers\repository\RelationConfigHelper;
 use yii2rails\domain\helpers\repository\RelationRepositoryHelper;
-use yii2rails\extension\arrayTools\helpers\ArrayIterator;
+use ZnCore\Base\Libs\ArrayTools\Helpers\ArrayIterator;
 
 class ManyToMany extends Base implements HandlerInterface {
 	

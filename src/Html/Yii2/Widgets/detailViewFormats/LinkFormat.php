@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Html\Yii2\Widgets\detailViewFormats;
 
-use yii2rails\extension\arrayTools\base\BaseCollection;
+use ZnCore\Base\Libs\ArrayTools\Base\BaseCollection;
 use ZnSandbox\Sandbox\Html\Yii2\Widgets\helpers\WidgetHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Html;

@@ -18,7 +18,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\ServerErrorHttpException;
 use yii2rails\domain\data\ActiveDataProvider;
 use yii2rails\extension\activeRecord\helpers\SearchHelper;
-use yii2rails\extension\common\exceptions\DeprecatedException;
+use ZnCore\Base\Exceptions\DeprecatedException;
 use yii2rails\domain\enums\ScenarioEnum;
 
 /**

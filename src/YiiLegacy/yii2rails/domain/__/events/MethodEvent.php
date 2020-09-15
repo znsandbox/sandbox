@@ -5,7 +5,7 @@ namespace yii2rails\domain\events;
 use yii\base\Event;
 use yii2rails\domain\BaseEntity;
 use yii2rails\domain\data\Query;
-use yii2rails\extension\arrayTools\helpers\Collection;
+use ZnCore\Base\Libs\ArrayTools\Helpers\Collection;
 
 class MethodEvent extends Event {
 	

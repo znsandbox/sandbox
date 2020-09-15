@@ -3,7 +3,7 @@
 namespace tests\unit\helpers;
 
 use yii2rails\domain\helpers\DomainHelper;
-use yii2rails\extension\common\enums\RegexpPatternEnum;
+use ZnCore\Base\Enums\RegexpPatternEnum;
 use yii2rails\extension\common\helpers\StringHelper;
 use yii2rails\extension\git\domain\entities\BranchEntity;
 use yii2rails\extension\git\domain\entities\GitEntity;

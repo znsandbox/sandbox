@@ -2,8 +2,8 @@
 
 namespace yii2rails\domain\values;
 
-use yii2rails\extension\arrayTools\helpers\Collection;
-use yii2rails\extension\arrayTools\base\BaseCollection;
+use ZnCore\Base\Libs\ArrayTools\Helpers\Collection;
+use ZnCore\Base\Libs\ArrayTools\Base\BaseCollection;
 use yii2rails\extension\common\helpers\ClassHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 

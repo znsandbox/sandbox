@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
 use yii2rails\extension\code\entities\TokenEntity;
 use yii2rails\extension\code\helpers\parser\TokenCollectionHelper;
 use yii2rails\extension\code\helpers\parser\TokenHelper;
-use yii2rails\extension\develop\helpers\Benchmark;
+use ZnSandbox\Sandbox\Develop\Helpers\Benchmark;
 use yii2rails\extension\store\StoreFile;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 

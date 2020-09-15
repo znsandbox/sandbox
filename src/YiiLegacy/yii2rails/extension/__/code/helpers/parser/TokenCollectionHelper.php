@@ -3,7 +3,7 @@
 namespace yii2rails\extension\code\helpers\parser;
 
 use yii2rails\extension\code\entities\TokenEntity;
-use yii2rails\extension\scenario\collections\ScenarioCollection;
+use ZnCore\Base\Libs\Scenario\Collections\ScenarioCollection;
 use yii2rails\extension\scenario\helpers\ScenarioHelper;
 use yii2rails\extension\code\filters\parser\DocCommentOnly;
 use yii2rails\extension\code\filters\parser\RemoveComment;

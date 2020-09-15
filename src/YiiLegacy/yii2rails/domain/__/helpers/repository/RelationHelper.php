@@ -4,7 +4,7 @@ namespace yii2rails\domain\helpers\repository;
 
 use Yii;
 use yii2rails\domain\strategies\join\JoinStrategy;
-use yii2rails\extension\arrayTools\helpers\Collection;
+use ZnCore\Base\Libs\ArrayTools\Helpers\Collection;
 use yii2rails\domain\data\EntityCollection;
 use yii2rails\domain\data\Query;
 use yii2rails\domain\dto\WithDto;

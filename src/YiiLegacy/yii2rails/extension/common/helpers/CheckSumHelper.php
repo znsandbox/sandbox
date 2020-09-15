@@ -3,7 +3,7 @@
 namespace yii2rails\extension\common\helpers;
 
 use yii\base\InvalidArgumentException;
-use yii2rails\extension\common\enums\CheckSumAlgorithmEnum;
+use ZnCore\Base\Libs\CheckSum\Enums\CheckSumAlgorithmEnum;
 
 class CheckSumHelper {
 

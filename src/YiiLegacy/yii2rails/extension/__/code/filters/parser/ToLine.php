@@ -2,7 +2,7 @@
 
 namespace yii2rails\extension\code\filters\parser;
 
-use yii2rails\extension\scenario\base\BaseScenario;
+use ZnCore\Base\Libs\Scenario\Base\BaseScenario;
 use yii2rails\extension\code\entities\TokenEntity;
 
 class ToLine extends BaseScenario {

@@ -2,7 +2,7 @@
 namespace tests\unit\data;
 
 use yii2tool\test\Test\Unit;
-use yii2rails\extension\arrayTools\helpers\ArrayIterator;
+use ZnCore\Base\Libs\ArrayTools\Helpers\ArrayIterator;
 use yii2rails\domain\data\Query;
 use yii2tool\test\helpers\DataHelper;
 

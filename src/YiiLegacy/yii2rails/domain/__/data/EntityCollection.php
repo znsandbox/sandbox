@@ -3,7 +3,7 @@
 namespace yii2rails\domain\data;
 
 use yii\base\InvalidArgumentException;
-use yii2rails\extension\arrayTools\helpers\Collection;
+use ZnCore\Base\Libs\ArrayTools\Helpers\Collection;
 
 class EntityCollection extends Collection {
 	
