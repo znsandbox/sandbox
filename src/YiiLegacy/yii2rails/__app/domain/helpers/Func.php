@@ -3,7 +3,7 @@
 use yii\helpers\ArrayHelper;
 use yii2rails\app\domain\helpers\Config;
 use yii2rails\app\domain\helpers\Env;
-use ZnSandbox\Sandbox\Develop\Helpers\Debug;
+use ZnCore\Base\Helpers\Debug;
 
 function config($name, $default = null) {
 	$value = Config::get($name);

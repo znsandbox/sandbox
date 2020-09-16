@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Html\Yii2\Widgets;
 
 use yii\base\Widget;
-use ZnSandbox\Sandbox\Develop\Helpers\Debug;
+use ZnCore\Base\Helpers\Debug;
 use ZnCore\Base\Enums\Measure\TimeEnum;
 use ZnCore\Base\Legacy\Yii\Helpers\Html;
 

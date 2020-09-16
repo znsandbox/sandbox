@@ -11,5 +11,4 @@ class ErrorAction extends \yii\web\ErrorAction
 	{
 		return MessageHelper::get($this->exception);
 	}
-	
 }
