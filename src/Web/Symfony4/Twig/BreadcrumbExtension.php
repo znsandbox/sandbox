@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Web\Symfony4\Twig;
 
-use ZnSandbox\Sandbox\Html\Widgets\BreadcrumbWidget;
+use ZnLib\Web\Widgets\BreadcrumbWidget;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

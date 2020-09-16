@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Web\Symfony4\Twig;
 
 use ZnCore\Domain\Entities\DataProviderEntity;
-use ZnSandbox\Sandbox\Html\Widgets\PaginationWidget;
+use ZnLib\Web\Widgets\PaginationWidget;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

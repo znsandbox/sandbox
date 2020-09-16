@@ -3,7 +3,7 @@
 namespace yii2rails\domain\web\actions;
 
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
+use ZnLib\Web\Yii2\Widgets\Toastr\widgets\Alert;
 use Yii;
 use yii2rails\domain\base\Action;
 
@@ -23,7 +23,7 @@ class CreateAction extends Action {
                 if (isset($this->redirect) && !empty($this->redirect)) {
                     $direction = rtrim($this->baseUrl, SL) . $this->redirect;
                 }
-				\ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'create_success'], Alert::TYPE_SUCCESS);
+				\ZnLib\Web\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'create_success'], Alert::TYPE_SUCCESS);
 				return $this->redirect($direction);
 			} catch (UnprocessableEntityHttpException $e){
 				$model->addErrorsFromException($e);

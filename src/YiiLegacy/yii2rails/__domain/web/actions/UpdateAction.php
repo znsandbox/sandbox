@@ -4,7 +4,7 @@ namespace yii2rails\domain\web\actions;
 
 use yii\base\Model;
 use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
-use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
+use ZnLib\Web\Yii2\Widgets\Toastr\widgets\Alert;
 use Yii;
 use yii2rails\domain\base\Action;
 
@@ -28,7 +28,7 @@ class UpdateAction extends Action {
                     $method = $this->serviceMethod;
                     $this->service->$method($id, $model->toArray());
                     //$this->service->$method($id, $entity->toArray($onlyAttributes));
-                    \ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'update_success'], Alert::TYPE_SUCCESS);
+                    \ZnLib\Web\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'update_success'], Alert::TYPE_SUCCESS);
                     return $this->redirect(['/' . $this->baseUrl . 'view', 'id' => $id]);
                 } catch (UnprocessableEntityHttpException $e){
                     $model->addErrorsFromException($e);

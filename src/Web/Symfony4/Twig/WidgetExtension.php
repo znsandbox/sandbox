@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Web\Symfony4\Twig;
 
 use ZnCore\Base\Helpers\DiHelper;
-use ZnSandbox\Sandbox\Html\Widgets\Interfaces\WidgetInterface;
+use ZnLib\Web\Widgets\Interfaces\WidgetInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

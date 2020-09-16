@@ -3,7 +3,7 @@
 namespace yii2rails\domain\web\actions;
 
 use yii2rails\domain\base\Action;
-use ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert;
+use ZnLib\Web\Yii2\Widgets\Toastr\widgets\Alert;
 use Yii;
 
 class DeleteAction extends Action {
@@ -22,7 +22,7 @@ class DeleteAction extends Action {
             $direction = $_SERVER['HTTP_REFERER'];
         }
 
-        \ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'delete_success'], Alert::TYPE_SUCCESS);
+        \ZnLib\Web\Yii2\Widgets\Toastr\widgets\Alert::create(['main', 'delete_success'], Alert::TYPE_SUCCESS);
 		return $this->redirect($direction);
 	}
 }

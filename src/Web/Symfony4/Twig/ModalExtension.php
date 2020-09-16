@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Web\Symfony4\Twig;
 
-use ZnSandbox\Sandbox\Html\Widgets\ModalWidget;
+use ZnLib\Web\Widgets\ModalWidget;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
