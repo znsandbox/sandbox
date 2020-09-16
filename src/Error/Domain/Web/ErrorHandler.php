@@ -2,29 +2,29 @@
 
 namespace ZnSandbox\Sandbox\Error\Domain\Web;
 
-use ZnCore\Domain\Entities\ValidateErrorEntity;
-use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
+use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
 use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Libs\Scenario\Collections\ScenarioCollection;
-use yii2rails\domain\exceptions\UnprocessableEntityHttpException;
+use ZnCore\Domain\Entities\ValidateErrorEntity;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnSandbox\Sandbox\Error\Domain\Helpers\UnProcessibleHelper;
 
 class ErrorHandler extends \yii\web\ErrorHandler
 {
-	
-	public $filters = [];
-	
-	protected function convertExceptionToArray($exception)
-	{
-		if ($exception instanceof UnprocessableEntityHttpException) {
-			$errors = $exception->getErrors();
-			return UnProcessibleHelper::assoc2indexed($errors);
-		}
+
+    public $filters = [];
+
+    protected function convertExceptionToArray($exception)
+    {
+        if ($exception instanceof UnprocessableEntityHttpException) {
+            $errors = $exception->getErrors();
+            return UnProcessibleHelper::assoc2indexed($errors);
+        }
         if ($exception instanceof UnprocessibleEntityException) {
             /** @var ValidateErrorEntity[] $errors */
-		    $errors = $exception->getErrorCollection();
-		    $errorCollection = [];
+            $errors = $exception->getErrorCollection();
+            $errorCollection = [];
             foreach ($errors as $error) {
                 $errorCollection[] = [
                     'field' => $error->getField(),
@@ -33,11 +33,12 @@ class ErrorHandler extends \yii\web\ErrorHandler
             }
             return $errorCollection;
         }
-		$this->runFilters($exception);
-		return parent::convertExceptionToArray($exception);
-	}
+        $this->runFilters($exception);
+        return parent::convertExceptionToArray($exception);
+    }
 
-	protected function renderException($exception) {
+    protected function renderException($exception)
+    {
         if ($exception instanceof UnprocessibleEntityException) {
             \Yii::$app->response->setStatusCode(HttpStatusCodeEnum::UNPROCESSABLE_ENTITY);
             \Yii::$app->response->data = $this->convertExceptionToArray($exception);
@@ -53,11 +54,12 @@ class ErrorHandler extends \yii\web\ErrorHandler
 
         $this->runFilters($exception);
         parent::renderException($exception);
-	}
-	
-	private function runFilters(\Throwable $exception) {
-		$filterCollection = new ScenarioCollection($this->filters);
-		$filterCollection->runAll($exception);
-	}
-	
+    }
+
+    private function runFilters(\Throwable $exception)
+    {
+        $filterCollection = new ScenarioCollection($this->filters);
+        $filterCollection->runAll($exception);
+    }
+
 }
