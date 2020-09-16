@@ -17,12 +17,11 @@ class ErrorHelper
     public static function handleError(UnprocessibleEntityException $e, Model $model)
     {
         $arr = EntityHelper::collectionToArray($e->getErrorCollection());
-        //dd($arr);
         foreach ($arr as $error) {
             if (!empty($error['field'])) {
                 $model->addError($error['field'], $error['message']);
             } else {
-                \ZnSandbox\Sandbox\Html\Yii2\Widgets\Toastr\widgets\Alert::create($error['message'], Alert::TYPE_WARNING);
+                Alert::create($error['message'], Alert::TYPE_WARNING);
             }
         }
     }
