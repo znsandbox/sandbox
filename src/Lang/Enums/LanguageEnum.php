@@ -2,9 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Lang\Enums;
 
-//use ZnCore\Domain\Base\BaseEnum;
-
-class LanguageEnum /*extends BaseEnum*/ {
+class LanguageEnum {
 	
 	const RU = 'ru-RU';
 	const EN = 'en-UK';
