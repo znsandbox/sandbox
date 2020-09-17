@@ -3,7 +3,7 @@
 use ZnCore\Db\Db\Helpers\Manager;
 use Illuminate\Container\Container;
 use Symfony\Component\Console\Application;
-use ZnCore\Base\Console\Helpers\CommandHelper;
+use ZnLib\Console\Symfony4\Helpers\CommandHelper;
 
 /**
  * @var Application $application
