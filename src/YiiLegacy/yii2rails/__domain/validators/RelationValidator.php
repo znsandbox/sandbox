@@ -5,7 +5,7 @@ namespace yii2rails\domain\validators;
 use Yii;
 use yii\validators\Validator;
 use yii\web\NotFoundHttpException;
-use ZnSandbox\Sandbox\Lang\Yii2\Helpers\LangHelper;
+use ZnBundle\Language\Yii2\Helpers\LangHelper;
 use yii2rails\domain\interfaces\services\ReadInterface;
 use yii2rails\extension\web\helpers\ControllerHelper;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Lang\Yii2\I18N;
+namespace ZnBundle\Language\Yii2\I18N;
 
-use ZnSandbox\Sandbox\Lang\Yii2\Helpers\BundleHelper;
-use ZnSandbox\Sandbox\Lang\Yii2\Helpers\LangHelper;
+use ZnBundle\Language\Yii2\Helpers\BundleHelper;
+use ZnBundle\Language\Yii2\Helpers\LangHelper;
 
 class I18N extends \yii\i18n\I18N
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Lang\Yii2\Helpers;
+namespace ZnBundle\Language\Yii2\Helpers;
 
 use Yii;
 use yii2rails\domain\helpers\DomainHelper;
 use yii2rails\extension\common\helpers\ModuleHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
-use ZnSandbox\Sandbox\Lang\Enums\LanguageEnum;
+use ZnBundle\Language\Domain\Enums\LanguageEnum;
 
 class BundleHelper {
 	
@@ -80,7 +80,7 @@ class BundleHelper {
 	
 	private static function generateConfig($basePath, $fileMap) {
 		$config = [
-			'class' => 'ZnSandbox\Sandbox\Lang\Yii2\I18N\PhpMessageSource',
+			'class' => 'ZnBundle\Language\Yii2\I18N\PhpMessageSource',
 			'sourceLanguage' => LanguageEnum::SOURCE,
 			'basePath' => $basePath,
 		];

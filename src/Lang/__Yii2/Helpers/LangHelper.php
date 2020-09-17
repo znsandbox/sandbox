@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Lang\Yii2\Helpers;
+namespace ZnBundle\Language\Yii2\Helpers;
 
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use yii2rails\domain\helpers\DomainHelper;
@@ -12,7 +12,7 @@ class LangHelper {
 	const PREFIX_DOMAIN = 'domain:';
 	
 	public static function normalizeTranslation($config) {
-		$config['class'] = 'ZnSandbox\Sandbox\Lang\Yii2\I18N\PhpMessageSource';
+		$config['class'] = 'ZnBundle\Language\Yii2\I18N\PhpMessageSource';
 		return $config;
 	}
 	

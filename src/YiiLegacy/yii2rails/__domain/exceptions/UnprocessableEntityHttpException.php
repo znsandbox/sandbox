@@ -7,7 +7,7 @@ use yii2rails\domain\helpers\ErrorCollection;
 use Exception;
 use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
-use ZnSandbox\Sandbox\Error\Domain\Helpers\UnProcessibleHelper;
+use ZnYii\Error\Domain\Helpers\UnProcessibleHelper;
 
 class UnprocessableEntityHttpException extends HttpException {
 	

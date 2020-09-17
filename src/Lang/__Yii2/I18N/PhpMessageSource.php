@@ -1,10 +1,10 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Lang\Yii2\I18N;
+namespace ZnBundle\Language\Yii2\I18N;
 
 use yii\i18n\MessageSource;
 use yii2bundle\lang\domain\behaviors\MissingTranslationBehavior;
-use ZnSandbox\Sandbox\Lang\Enums\LanguageEnum;
+use ZnBundle\Language\Domain\Enums\LanguageEnum;
 
 class PhpMessageSource extends \yii\i18n\PhpMessageSource
 {
