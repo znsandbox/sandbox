@@ -23,7 +23,7 @@ $capsule = new Manager(null, $eloquentConfigFile);
 
 CommandHelper::registerFromNamespaceList([
     'ZnSandbox\Sandbox\Bot\Symfony\Commands',
-    'ZnSandbox\Sandbox\Socket\Symfony\Commands',
+    'ZnLib\Socket\Symfony\Commands',
 ], $container);
 
 /*
