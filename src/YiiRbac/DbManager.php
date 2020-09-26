@@ -8,13 +8,12 @@
 namespace ZnSandbox\Sandbox\YiiRbac;
 
 use Yii;
-use ZnCore\Base\Exceptions\InvalidArgumentException;
-use ZnCore\Base\Exceptions\InvalidCallException;
 use yii\caching\CacheInterface;
 use yii\db\Connection;
 use yii\db\Expression;
 use yii\db\Query;
-use yii\di\Instance;
+use ZnCore\Base\Exceptions\InvalidArgumentException;
+use ZnCore\Base\Exceptions\InvalidCallException;
 
 /**
  * DbManager represents an authorization manager that stores authorization information in database.
