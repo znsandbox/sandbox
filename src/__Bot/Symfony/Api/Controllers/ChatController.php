@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Bot\Symfony\Api\Controllers;
 
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
-use ZnLib\Rest\Base\BaseCrudApiController;
+use ZnLib\Rest\Symfony4\Base\BaseCrudApiController;
 use ZnLib\Rest\Libs\Serializer\JsonRestSerializer;
 use ZnBundle\Messenger\Domain\Interfaces\ChatServiceInterface;
 use ZnCore\Base\Enums\Http\HttpHeaderEnum;
