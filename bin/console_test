@@ -2,10 +2,11 @@
 <?php
 
 use Symfony\Component\Console\Application;
+use ZnCore\Base\Libs\DotEnv\DotEnv;
 
 require __DIR__ . '/../../../autoload.php';
 $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = 'test';
-\ZnCore\Base\Libs\DotEnv\DotEnv::init();
+DotEnv::init();
 
 // создаем консольное приложение
 $application = new Application;
