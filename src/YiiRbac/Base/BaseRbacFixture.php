@@ -22,7 +22,6 @@ abstract class BaseRbacFixture implements FixtureInterface
         $app = BootstrapYii::init('console', AppTypeEnum::CONSOLE);
         $reposiroty = new DbManager($app->db, $app->cache);
         $this->authManager = new ManagerService($reposiroty);
-        //$this->authManager = new PhpManager();
     }
 
     public function deps()
@@ -32,8 +31,6 @@ abstract class BaseRbacFixture implements FixtureInterface
 
     public function load()
     {
-        $this->authManager->removeAll();
-
         // Создание ролей
         foreach ($this->roleEnums() as $roleEnumClass) {
             $this->loadRolesFromEnum($roleEnumClass);
