@@ -32,6 +32,8 @@ abstract class BaseRbacFixture implements FixtureInterface
 
     public function load()
     {
+        $this->authManager->removeAll();
+
         // Создание ролей
         foreach ($this->roleEnums() as $roleEnumClass) {
             $this->loadRolesFromEnum($roleEnumClass);

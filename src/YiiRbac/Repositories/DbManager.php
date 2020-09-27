@@ -232,7 +232,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getItem($name)
+    public function getItem(string $name): Item
     {
         if (empty($name)) {
             return null;
@@ -265,7 +265,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function addItem($item)
+    public function addItem(Item $item): bool
     {
         $time = time();
         if ($item->createdAt === null) {
@@ -293,7 +293,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function removeItem($item)
+    public function removeItem(Item $item): bool
     {
         if (!$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -316,7 +316,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function updateItem($name, $item)
+    public function updateItem(string $name, Item $item): bool
     {
         if ($item->name !== $name && !$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -351,7 +351,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function addRule($rule)
+    public function addRule(Rule $rule): bool
     {
         $time = time();
         if ($rule->createdAt === null) {
@@ -376,7 +376,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function updateRule($name, $rule)
+    public function updateRule(string $name, Rule $rule): bool
     {
         if ($rule->name !== $name && !$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -403,7 +403,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function removeRule($rule)
+    public function removeRule(Rule $rule): bool
     {
         if (!$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -423,7 +423,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getItems($type)
+    public function getItems(int $type): array
     {
         $query = (new Query())
             ->from($this->itemTable)
@@ -465,7 +465,7 @@ class DbManager extends BaseManager
      * {@inheritdoc}
      * The roles returned by this method include the roles assigned via [[$defaultRoles]].
      */
-    public function getRolesByUser($userId)
+    public function getRolesByUser(int $userId): array
     {
         if ($this->isEmptyUserId($userId)) {
             return [];
@@ -488,7 +488,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getChildRoles($roleName)
+    public function getChildRoles(string $roleName): array
     {
         $role = $this->getRole($roleName);
 
@@ -511,7 +511,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getPermissionsByRole($roleName)
+    public function getPermissionsByRole(string $roleName): array
     {
         $childrenList = $this->getChildrenList();
         $result = [];
@@ -534,7 +534,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getPermissionsByUser($userId)
+    public function getPermissionsByUser(int $userId): array
     {
         if ($this->isEmptyUserId($userId)) {
             return [];
@@ -637,7 +637,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getRule($name)
+    public function getRule(string $name): ?Rule
     {
         if ($this->rules !== null) {
             return isset($this->rules[$name]) ? $this->rules[$name] : null;
@@ -661,7 +661,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getRules()
+    public function getRules(): array
     {
         if ($this->rules !== null) {
             return $this->rules;
@@ -684,7 +684,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getAssignment($roleName, $userId)
+    public function getAssignment(string $roleName, $userId): ?Assignment
     {
         if ($this->isEmptyUserId($userId)) {
             return null;
@@ -708,7 +708,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getAssignments($userId)
+    public function getAssignments(int $userId): array
     {
         if ($this->isEmptyUserId($userId)) {
             return [];
@@ -734,7 +734,7 @@ class DbManager extends BaseManager
      * {@inheritdoc}
      * @since 2.0.8
      */
-    public function canAddChild($parent, $child)
+    public function canAddChild(Item $parent, Item $child): bool
     {
         return !$this->detectLoop($parent, $child);
     }
@@ -742,7 +742,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function addChild($parent, $child)
+    public function addChild(Item $parent, Item $child): bool
     {
         if ($parent->name === $child->name) {
             throw new InvalidArgumentException("Cannot add '{$parent->name}' as a child of itself.");
@@ -768,7 +768,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function removeChild($parent, $child)
+    public function removeChild(Item $parent, Item $child): bool
     {
         $result = $this->db->createCommand()
                 ->delete($this->itemChildTable, ['parent' => $parent->name, 'child' => $child->name])
@@ -782,7 +782,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function removeChildren($parent)
+    public function removeChildren(Item $parent): bool
     {
         $result = $this->db->createCommand()
                 ->delete($this->itemChildTable, ['parent' => $parent->name])
@@ -796,7 +796,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function hasChild($parent, $child)
+    public function hasChild(Item $parent, Item $child): bool
     {
         return (new Query())
                 ->from($this->itemChildTable)
@@ -807,7 +807,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function getChildren($name)
+    public function getChildren(string $name): array
     {
         $query = (new Query())
             ->select(['name', 'type', 'description', 'rule_name', 'data', 'created_at', 'updated_at'])
@@ -845,7 +845,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function assign($role, $userId)
+    public function assign(Item $role, int $userId): Assignment
     {
         $assignment = new Assignment([
             'userId' => $userId,
@@ -867,7 +867,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function revoke($role, $userId)
+    public function revoke(Item $role, int $userId): bool
     {
         if ($this->isEmptyUserId($userId)) {
             return false;
@@ -882,7 +882,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    public function revokeAll($userId)
+    public function revokeAll(int $userId): bool
     {
         if ($this->isEmptyUserId($userId)) {
             return false;
@@ -1034,7 +1034,7 @@ class DbManager extends BaseManager
      * returned if role is not assigned to any user.
      * @since 2.0.7
      */
-    public function getUserIdsByRole($roleName)
+    public function getUserIdsByRole(string $roleName): array
     {
         if (empty($roleName)) {
             return [];
