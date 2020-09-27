@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Bot\Domain\Repositories\Eloquent;
 
-use ZnCore\Db\Db\Base\BaseEloquentCrudRepository;
+use ZnLib\Db\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Bot\Domain\Entities\WordEntity;
 use ZnSandbox\Sandbox\Bot\Domain\Interfaces\Repositories\WordRepositoryInterface;
 

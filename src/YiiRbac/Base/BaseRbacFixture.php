@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\YiiRbac\Base;
 
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Helpers\EnumHelper;
-use ZnCore\Db\Fixture\Libs\FixtureInterface;
+use ZnLib\Fixture\Domain\Libs\FixtureInterface;
 use ZnSandbox\Sandbox\YiiRbac\Repositories\DbManager;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
 use ZnSandbox\Sandbox\YiiRbac\PhpManager;

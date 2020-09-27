@@ -1,6 +1,6 @@
 <?php
 
-use ZnCore\Db\Db\Capsule\Manager;
+use ZnLib\Db\Capsule\Manager;
 use Illuminate\Container\Container;
 use Symfony\Component\Console\Application;
 use ZnLib\Console\Symfony4\Helpers\CommandHelper;
