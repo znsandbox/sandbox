@@ -11,6 +11,7 @@ use ZnCore\Base\Exceptions\InvalidConfigException;
 use ZnCore\Base\Legacy\Yii\Base\Component;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Assignment;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Role;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
 use ZnSandbox\Sandbox\YiiRbac\Interfaces\RepositoryInterface;

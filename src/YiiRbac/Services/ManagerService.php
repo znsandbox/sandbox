@@ -11,11 +11,13 @@ use ZnCore\Base\Exceptions\InvalidArgumentException;
 use ZnCore\Base\Exceptions\InvalidValueException;
 use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Legacy\Yii\Base\Component;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Assignment;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Role;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
 use ZnSandbox\Sandbox\YiiRbac\Interfaces\ManagerInterface;
+use ZnSandbox\Sandbox\YiiRbac\Interfaces\RepositoryInterface;
 use ZnSandbox\Sandbox\YiiRbac\Repositories\BaseManager;
 
 class ManagerService extends Component implements ManagerInterface
@@ -23,7 +25,7 @@ class ManagerService extends Component implements ManagerInterface
 
     private $repository;
 
-    public function __construct(BaseManager $repository, $config = [])
+    public function __construct(RepositoryInterface $repository, $config = [])
     {
         parent::__construct($config);
         $this->repository = $repository;
