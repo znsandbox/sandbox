@@ -7,11 +7,11 @@
 
 namespace ZnSandbox\Sandbox\YiiRbac\Repositories;
 
+use ZnCore\Base\Exceptions\InvalidArgumentException;
 use ZnCore\Base\Exceptions\InvalidConfigException;
-use ZnCore\Base\Legacy\Yii\Base\Component;
+use ZnCore\Base\Exceptions\InvalidValueException;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Assignment;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
-use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Role;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
 use ZnSandbox\Sandbox\YiiRbac\Interfaces\RepositoryInterface;
@@ -29,7 +29,7 @@ use ZnSandbox\Sandbox\YiiRbac\Interfaces\RepositoryInterface;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-abstract class BaseManager extends Component implements RepositoryInterface
+abstract class BaseManager implements RepositoryInterface
 {
     /**
      * @var array a list of role names that are assigned to every user automatically without calling [[assign()]].
@@ -48,11 +48,33 @@ abstract class BaseManager extends Component implements RepositoryInterface
     }
 
     /**
+     * Set default roles
+     * @param string[]|\Closure $roles either array of roles or a callable returning it
+     * @throws InvalidArgumentException when $roles is neither array nor Closure
+     * @throws InvalidValueException when Closure return is not an array
+     * @since 2.0.14
+     */
+    public function setDefaultRoles($roles)
+    {
+        if (is_array($roles)) {
+            $this->defaultRoles = $roles;
+        } elseif ($roles instanceof \Closure) {
+            $roles = call_user_func($roles);
+            if (!is_array($roles)) {
+                throw new InvalidValueException('Default roles closure must return an array');
+            }
+            $this->defaultRoles = $roles;
+        } else {
+            throw new InvalidArgumentException('Default roles must be either an array or a callable');
+        }
+    }
+
+    /**
      * Returns defaultRoles as array of Role objects.
      * @return Role[] default roles. The array is indexed by the role names
      * @since 2.0.12
      */
-    public function getDefaultRoleInstances()
+    protected function getDefaultRoleInstances()
     {
         $result = [];
         foreach ($this->defaultRoles as $roleName) {

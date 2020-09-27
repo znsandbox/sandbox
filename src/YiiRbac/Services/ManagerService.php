@@ -10,7 +10,6 @@ namespace ZnSandbox\Sandbox\YiiRbac\Services;
 use ZnCore\Base\Exceptions\InvalidArgumentException;
 use ZnCore\Base\Exceptions\InvalidValueException;
 use ZnCore\Base\Helpers\ClassHelper;
-use ZnCore\Base\Legacy\Yii\Base\Component;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Assignment;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
@@ -19,22 +18,32 @@ use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
 use ZnSandbox\Sandbox\YiiRbac\Interfaces\ManagerServiceInterface;
 use ZnSandbox\Sandbox\YiiRbac\Interfaces\RepositoryInterface;
 
-class ManagerService extends Component implements ManagerServiceInterface
+class ManagerService implements ManagerServiceInterface
 {
 
     private $repository;
 
-    public function __construct(RepositoryInterface $repository, $config = [])
+    public function __construct(RepositoryInterface $repository)
     {
-        parent::__construct($config);
         $this->repository = $repository;
     }
 
     /**
-     * @var array a list of role names that are assigned to every user automatically without calling [[assign()]].
-     * Note that these roles are applied to users, regardless of their state of authentication.
+     * Set default roles
+     * @param string[]|\Closure $roles either array of roles or a callable returning it
+     * @throws InvalidArgumentException when $roles is neither array nor Closure
+     * @throws InvalidValueException when Closure return is not an array
+     * @since 2.0.14
      */
-    protected $defaultRoles = [];
+    public function setDefaultRoles($roles)
+    {
+        $this->repository->setDefaultRoles($roles);
+    }
+
+    public function getDefaultRoles()
+    {
+        return $this->repository->getDefaultRoles();
+    }
 
     public function createRole(string $name): Role
     {
@@ -235,38 +244,6 @@ class ManagerService extends Component implements ManagerServiceInterface
     public function checkAccess($userId, $permissionName, $params = [])
     {
         return $this->repository->checkAccess($userId, $permissionName, $params);
-    }
-
-    /**
-     * Set default roles
-     * @param string[]|\Closure $roles either array of roles or a callable returning it
-     * @throws InvalidArgumentException when $roles is neither array nor Closure
-     * @throws InvalidValueException when Closure return is not an array
-     * @since 2.0.14
-     */
-    public function setDefaultRoles($roles)
-    {
-        if (is_array($roles)) {
-            $this->defaultRoles = $roles;
-        } elseif ($roles instanceof \Closure) {
-            $roles = call_user_func($roles);
-            if (!is_array($roles)) {
-                throw new InvalidValueException('Default roles closure must return an array');
-            }
-            $this->defaultRoles = $roles;
-        } else {
-            throw new InvalidArgumentException('Default roles must be either an array or a callable');
-        }
-    }
-
-    /**
-     * Get default roles
-     * @return string[] default roles
-     * @since 2.0.14
-     */
-    public function getDefaultRoles()
-    {
-        return $this->defaultRoles;
     }
 
 }
