@@ -16,11 +16,10 @@ use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Role;
 use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
-use ZnSandbox\Sandbox\YiiRbac\Interfaces\ManagerInterface;
+use ZnSandbox\Sandbox\YiiRbac\Interfaces\ManagerServiceInterface;
 use ZnSandbox\Sandbox\YiiRbac\Interfaces\RepositoryInterface;
-use ZnSandbox\Sandbox\YiiRbac\Repositories\BaseManager;
 
-class ManagerService extends Component implements ManagerInterface
+class ManagerService extends Component implements ManagerServiceInterface
 {
 
     private $repository;
@@ -37,21 +36,21 @@ class ManagerService extends Component implements ManagerInterface
      */
     protected $defaultRoles = [];
 
-    public function createRole($name)
+    public function createRole(string $name): Role
     {
         $role = new Role();
         $role->name = $name;
         return $role;
     }
 
-    public function createPermission($name)
+    public function createPermission(string $name): Permission
     {
         $permission = new Permission();
         $permission->name = $name;
         return $permission;
     }
 
-    public function add($object)
+    public function add(Item $object): bool
     {
         if ($object instanceof Item) {
             if ($object->ruleName && $this->getRule($object->ruleName) === null) {
@@ -68,7 +67,7 @@ class ManagerService extends Component implements ManagerInterface
         throw new InvalidArgumentException('Adding unsupported object type.');
     }
 
-    public function remove($object)
+    public function remove(Item $object): bool
     {
         if ($object instanceof Item) {
             return $this->repository->removeItem($object);
@@ -79,7 +78,7 @@ class ManagerService extends Component implements ManagerInterface
         throw new InvalidArgumentException('Removing unsupported object type.');
     }
 
-    public function update($name, $object)
+    public function update(string $name, Item $object)
     {
         if ($object instanceof Item) {
             if ($object->ruleName && $this->getRule($object->ruleName) === null) {
@@ -96,109 +95,114 @@ class ManagerService extends Component implements ManagerInterface
         throw new InvalidArgumentException('Updating unsupported object type.');
     }
 
-    public function getRole($name)
+    public function getRole(string $name): ?Role
     {
         $item = $this->repository->getItem($name);
         return $item instanceof Item && $item->type == Item::TYPE_ROLE ? $item : null;
     }
 
-    public function getPermission($name)
+    public function getPermission(string $name): ?Permission
     {
         $item = $this->repository->getItem($name);
         return $item instanceof Item && $item->type == Item::TYPE_PERMISSION ? $item : null;
     }
 
-    public function getRoles()
+    public function getPermissions(): array
+    {
+        return $this->repository->getItems(Item::TYPE_PERMISSION);
+    }
+
+    public function getRoles(): array
     {
         return $this->repository->getItems(Item::TYPE_ROLE);
     }
 
-    public function getRolesByUser($userId)
+    public function getRolesByUser(int $userId): array
     {
         return $this->repository->getRolesByUser($userId);
     }
 
-    public function getChildRoles($roleName)
+    public function getChildRoles(string $roleName): array
     {
         return $this->repository->getChildRoles($roleName);
     }
 
-    public function getPermissionsByRole($roleName)
+    public function getPermissionsByRole(string $roleName): array
     {
         return $this->repository->getPermissionsByRole($roleName);
     }
 
-    public function getPermissionsByUser($userId)
+    public function getPermissionsByUser(int $userId): array
     {
         return $this->repository->getPermissionsByUser($userId);
     }
 
-    public function getRule($name)
+    public function getRule(string $name): ?Rule
     {
         return $this->repository->getRule($name);
     }
 
-    public function getRules()
+    public function getRules(): array
     {
         return $this->repository->getRules();
     }
 
-    public function canAddChild($parent, $child)
+    public function canAddChild(Item $parent, Item $child): bool
     {
         return $this->repository->canAddChild($parent, $child);
     }
 
-    public function addChild($parent, $child)
+    public function addChild(Item $parent, Item $child): bool
     {
         return $this->repository->addChild($parent, $child);
     }
 
-    public function removeChild($parent, $child)
+    public function removeChild(Item $parent, Item $child): bool
     {
         return $this->repository->removeChild($parent, $child);
     }
 
-    public function removeChildren($parent)
+    public function removeChildren(Item $parent): bool
     {
         return $this->repository->removeChildren($parent);
     }
 
-    public function hasChild($parent, $child)
+    public function hasChild(Item $parent, Item $child): bool
     {
         return $this->repository->hasChild($parent, $child);
     }
 
-    public function getChildren($name)
+    public function getChildren(string $name): array
     {
         return $this->repository->getChildren($name);
     }
 
-    public function assign($role, $userId)
+    public function assign(Item $role, int $userId): Assignment
     {
         return $this->repository->assign($role, $userId);
     }
 
-    public function revoke($role, $userId)
+    public function revoke(Item $role, int $userId): bool
     {
         return $this->repository->revoke($role, $userId);
     }
 
-    public function revokeAll($userId)
+    public function revokeAll($userId): bool
     {
         return $this->repository->revokeAll($userId);
     }
 
-    public function getAssignment($roleName, $userId)
+    public function getAssignment(string $roleName, int $userId): ?Assignment
     {
         return $this->repository->getAssignment($roleName, $userId);
     }
 
-    public function getAssignments($userId)
+    public function getAssignments(int $userId): array
     {
         return $this->repository->getAssignments($userId);
     }
 
-    public function getUserIdsByRole($roleName)
+    public function getUserIdsByRole(string $roleName): array
     {
         return $this->repository->getUserIdsByRole($roleName);
     }
@@ -263,14 +267,6 @@ class ManagerService extends Component implements ManagerInterface
     public function getDefaultRoles()
     {
         return $this->defaultRoles;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPermissions()
-    {
-        return $this->repository->getItems(Item::TYPE_PERMISSION);
     }
 
 }
