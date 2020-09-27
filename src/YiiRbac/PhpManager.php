@@ -11,6 +11,11 @@ use ZnCore\Base\Exceptions\InvalidArgumentException;
 use ZnCore\Base\Exceptions\InvalidCallException;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\VarDumper;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Assignment;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Role;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
 
 /**
  * PhpManager represents an authorization manager that stores authorization

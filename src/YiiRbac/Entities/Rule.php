@@ -5,9 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace ZnSandbox\Sandbox\YiiRbac;
-
-
+namespace ZnSandbox\Sandbox\YiiRbac\Entities;
 
 use ZnCore\Base\Legacy\Yii\Base\BaseObject;
 

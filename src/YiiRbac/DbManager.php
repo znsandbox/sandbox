@@ -14,6 +14,11 @@ use yii\db\Expression;
 use yii\db\Query;
 use ZnCore\Base\Exceptions\InvalidArgumentException;
 use ZnCore\Base\Exceptions\InvalidCallException;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Assignment;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Role;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
 
 /**
  * DbManager represents an authorization manager that stores authorization information in database.
@@ -227,7 +232,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function getItem($name)
+    public function getItem($name)
     {
         if (empty($name)) {
             return null;
@@ -260,7 +265,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function addItem($item)
+    public function addItem($item)
     {
         $time = time();
         if ($item->createdAt === null) {
@@ -288,7 +293,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function removeItem($item)
+    public function removeItem($item)
     {
         if (!$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -311,7 +316,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function updateItem($name, $item)
+    public function updateItem($name, $item)
     {
         if ($item->name !== $name && !$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -346,7 +351,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function addRule($rule)
+    public function addRule($rule)
     {
         $time = time();
         if ($rule->createdAt === null) {
@@ -371,7 +376,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function updateRule($name, $rule)
+    public function updateRule($name, $rule)
     {
         if ($rule->name !== $name && !$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -398,7 +403,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function removeRule($rule)
+    public function removeRule($rule)
     {
         if (!$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
@@ -418,7 +423,7 @@ class DbManager extends BaseManager
     /**
      * {@inheritdoc}
      */
-    protected function getItems($type)
+    public function getItems($type)
     {
         $query = (new Query())
             ->from($this->itemTable)

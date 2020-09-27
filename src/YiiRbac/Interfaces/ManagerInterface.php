@@ -5,7 +5,13 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace ZnSandbox\Sandbox\YiiRbac;
+namespace ZnSandbox\Sandbox\YiiRbac\Interfaces;
+
+use ZnSandbox\Sandbox\YiiRbac\Entities\Assignment;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Item;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Permission;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Role;
+use ZnSandbox\Sandbox\YiiRbac\Entities\Rule;
 
 /**
  * For more details and usage information on ManagerInterface, see the [guide article on security authorization](guide:security-authorization).

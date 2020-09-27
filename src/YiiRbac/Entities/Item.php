@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace ZnSandbox\Sandbox\YiiRbac;
+namespace ZnSandbox\Sandbox\YiiRbac\Entities;
 
 use yii\base\BaseObject;
 

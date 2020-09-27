@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace ZnSandbox\Sandbox\YiiRbac;
+namespace ZnSandbox\Sandbox\YiiRbac\Entities;
 
 /**
  * For more details and usage information on Permission, see the [guide article on security authorization](guide:security-authorization).
