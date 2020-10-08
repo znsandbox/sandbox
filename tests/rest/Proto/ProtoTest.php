@@ -11,8 +11,8 @@ use ZnCrypt\Base\Domain\Libs\Encoders\GzEncoder;
 use ZnCrypt\Base\Domain\Libs\Encoders\JsonEncoder;
 use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnLib\Rest\Helpers\RestResponseHelper;
-use ZnCrypt\BaseTunnel\Domain\Transports\ProtoHttpTransport;
-use ZnCrypt\BaseTunnel\Domain\Libs\ProtoClient;
+use ZnCrypt\Tunnel\Domain\Transports\ProtoHttpTransport;
+use ZnCrypt\Tunnel\Domain\Libs\ProtoClient;
 use ZnTool\Test\Base\BaseRestApiTest;
 
 class ProtoTest extends BaseRestApiTest
