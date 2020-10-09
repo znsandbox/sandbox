@@ -241,7 +241,7 @@ class ManagerService implements ManagerServiceInterface
         return $this->repository->removeAllAssignments();
     }
 
-    public function checkAccess($userId, $permissionName, $params = [])
+    public function checkAccess(int $userId, string $permissionName, array $params = [])
     {
         return $this->repository->checkAccess($userId, $permissionName, $params);
     }
