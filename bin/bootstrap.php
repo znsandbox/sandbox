@@ -10,17 +10,6 @@ use ZnLib\Console\Symfony4\Helpers\CommandHelper;
  * @var Container $container
  */
 
-$container = Container::getInstance();
-
-// --- Application ---
-
-$container->bind(Application::class, Application::class, true);
-
-// --- Database ---
-
-$eloquentConfigFile = $_ENV['ELOQUENT_CONFIG_FILE'];
-$capsule = new Manager(null, $eloquentConfigFile);
-
 CommandHelper::registerFromNamespaceList([
     'ZnSandbox\Sandbox\Bot\Symfony\Commands',
     'ZnLib\Socket\Symfony4\Commands',
