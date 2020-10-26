@@ -24,14 +24,10 @@ class ServerService
         return $this->repository->all();
     }
 
-    public function oneByName(string $name)
+    public function oneByName(string $name): ServerEntity
     {
-        $query = new Query;
-        $query->with(['hosts']);
         /** @var ServerEntity $serverEntity */
-        $serverEntity = $this->repository->oneByName($name, $query);
-        $hostEntity = $this->hostsRepository->oneByName($name);
-        $serverEntity->setHosts($hostEntity);
+        $serverEntity = $this->repository->oneByName($name);
         return $serverEntity;
     }
 }

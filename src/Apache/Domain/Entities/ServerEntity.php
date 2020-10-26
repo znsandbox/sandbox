@@ -41,7 +41,7 @@ class ServerEntity {
         $this->config = $config;
     }
 
-    public function getHosts(): HostEntity
+    public function getHosts(): ?HostEntity
     {
         return $this->hosts;
     }

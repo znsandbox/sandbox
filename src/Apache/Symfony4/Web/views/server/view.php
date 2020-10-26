@@ -12,6 +12,12 @@
 
     <h1><a href="http://<?= $entity->getServerName() ?>" target="_blank"><?= $entity->getServerName() ?></a></h1>
 
+    <?php if ($entity->getHosts() == null): ?>
+        <div class="alert alert-warning" role="alert">
+            No hosts
+        </div>
+    <?php endif; ?>
+
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -28,7 +34,7 @@
         <?php endforeach; ?>
         <tr>
             <th>IP from hosts</th>
-            <td><?= $entity->getHosts()->getIp() ?></td>
+            <td><?= $entity->getHosts() ? $entity->getHosts()->getIp() : '-' ?></td>
         </tr>
         </tbody>
     </table>

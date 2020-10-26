@@ -17,10 +17,12 @@ class ServerRepository
 {
 
     private $directory;
+    private $hostsRepository;
 
-    public function __construct(string $directory)
+    public function __construct(string $directory, HostsRepository $hostsRepository)
     {
         $this->directory = $directory;
+        $this->hostsRepository = $hostsRepository;
     }
 
     public function oneByName(string $name)
@@ -39,7 +41,13 @@ class ServerRepository
     {
         $commonTagCollection = ConfParser::readServerConfig($this->directory);
         $commonTagCollection = ArrayHelper::index($commonTagCollection, 'config.ServerName');
+        /** @var Collection | ServerEntity[] $collection */
         $collection = EntityHelper::createEntityCollection(ServerEntity::class, $commonTagCollection);
+        foreach ($collection as $serverEntity) {
+            try {
+                $serverEntity->setHosts($this->hostsRepository->oneByName($serverEntity->getServerName()));
+            } catch (NotFoundException $e) {}
+        }
         return $collection;
     }
 
@@ -57,11 +65,14 @@ class ServerRepository
 
                 $links[$categoryHash]['title'] = ($categoryName);
                 $links[$categoryHash]['items'][] = [
-                    'name' => $hostName,
-                    'url' => "http://{$hostName}",
-                    'title' => $hostName,
-                    'description' => $this->getTitleFromReadme($documentRoot),
-                    'category_name' => $categoryName,
+                    'server' => $tagEntity,
+//                    'name' => $hostName,
+//                    'url' => "http://{$hostName}",
+//                    'title' => $hostName,
+//                    'description' => $this->getTitleFromReadme($documentRoot) ?: $this->getTitleFromReadme(FileHelper::up($documentRoot)) ?: $this->getTitleFromReadme(FileHelper::up($documentRoot, 2)),
+//                    'category_name' => $categoryName,
+//                    'directory_exists' => file_exists(realpath($documentRoot)) ? true : false,
+//                    'htaccess_exists' => file_exists(realpath($documentRoot) . '/' . '.htaccess') ? true : false,
                 ];
             }
         }
