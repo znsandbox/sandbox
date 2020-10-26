@@ -18,20 +18,9 @@ class InitModule extends BaseModule
 
     public function configContainer(Container $container)
     {
-
         $container->bind(ServerRepository::class, function () {
             return new ServerRepository($_ENV['HOST_CONF_DIR']);
         }, true);
-
-//        require_once __DIR__ . '/../../../../../../../vendor/yiisoft/yii2/requirements/YiiRequirementChecker.php';
-//        $container->bind(LockerRepositoryInterface::class, LockerRepository::class);
-//        $container->bind(RequirementRepositoryInterface::class, RequirementRepository::class);
-//        $container->bind(FileRepository::class, function () {
-//            return new FileRepository($_ENV['ELOQUENT_CONFIG_FILE']);
-//        });
-//        $container->bind(SourceRepository::class, function () {
-//            return new SourceRepository($_ENV['ELOQUENT_CONFIG_FILE']);
-//        });
     }
 
     public function configRoutes(RouteCollection $routes)
@@ -40,13 +29,13 @@ class InitModule extends BaseModule
             '_controller' => InitController::class,
             '_action' => 'index',
         ]));
-        $routes->add('init_env', new Route('/env', [
+        /*$routes->add('init_env', new Route('/env', [
             '_controller' => InitController::class,
             '_action' => 'env',
         ]));
         $routes->add('init_install', new Route('/install', [
             '_controller' => InitController::class,
             '_action' => 'install',
-        ]));
+        ]));*/
     }
 }

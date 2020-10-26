@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\Apache\Symfony4\Web\InitModule;
 use ZnLib\Web\Symfony4\MicroApp\MicroApp;
 
 $rootDir = realpath(__DIR__ . '/../../../../../../../..');
-require_once $rootDir . '/common/Bootstrap/autoload.php';
+require_once $rootDir . '/' . $_ENV['AUTOLOAD_SCRIPT'];
 DotEnv::init($rootDir);
 
 $container = Container::getInstance();
