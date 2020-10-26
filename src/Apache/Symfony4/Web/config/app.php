@@ -2,7 +2,7 @@
 
 use Illuminate\Container\Container;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
-use ZnSandbox\Sandbox\Apache\Symfony4\Web\InitModule;
+use ZnSandbox\Sandbox\Apache\Symfony4\Web\ApacheModule;
 use ZnLib\Web\Symfony4\MicroApp\MicroApp;
 
 $rootDir = realpath(__DIR__ . '/../../../../../../../..');
@@ -13,6 +13,6 @@ $container = Container::getInstance();
 
 $app = new MicroApp($container);
 $app->setErrorLevel(E_ALL);
-$app->addModule(new InitModule);
+$app->addModule(new ApacheModule());
 $response = $app->run();
 $response->send();

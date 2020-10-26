@@ -50,7 +50,7 @@ class ConfParser {
         return $config;
     }
 
-    private static function cleanContent(string $content): string {
+    public static function cleanContent(string $content): string {
         $lines = explode(PHP_EOL, $content);
         $cleanLines = [];
         foreach ($lines as $line) {

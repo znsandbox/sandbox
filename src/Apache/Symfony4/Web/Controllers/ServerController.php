@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnSandbox\Sandbox\Apache\Domain\Services\ServerService;
 
-class InitController extends BaseWebController
+class ServerController extends BaseWebController
 {
 
-    protected $viewsDir = __DIR__ . '/../views/init';
+    protected $viewsDir = __DIR__ . '/../views/server';
 
     private $serverService;
 
@@ -26,6 +26,14 @@ class InitController extends BaseWebController
         $links = $this->serverService->all();
         return $this->renderTemplate('index', [
             'links' => $links,
+        ]);
+    }
+
+    public function view(Request $request, string $name): Response
+    {
+        $entity = $this->serverService->oneByName($name);
+        return $this->renderTemplate('view', [
+            'entity' => $entity,
         ]);
     }
 
