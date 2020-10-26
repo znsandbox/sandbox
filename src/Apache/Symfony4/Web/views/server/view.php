@@ -6,8 +6,6 @@
 
 ?>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <div class="container">
 
     <h1><a href="http://<?= $entity->getServerName() ?>" target="_blank"><?= $entity->getServerName() ?></a></h1>
