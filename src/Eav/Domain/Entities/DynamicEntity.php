@@ -15,13 +15,20 @@ class DynamicEntity implements ValidateEntityInterface, EntityIdInterface, Entit
     private $_attributes = [];
     private $_validationRules = [];
 
-    public function __construct(EntityEntity $entityEntity)
+    public function __construct(EntityEntity $entityEntity = null, array $attributes = [])
     {
-        $this->_attributes = $entityEntity->getAttributeNames();
+        if($entityEntity) {
+            $this->_attributes = $entityEntity->getAttributeNames();
+        } else {
+            $this->_attributes = $attributes;
+        }
+
         if (empty($this->_attributes)) {
             throw new InvalidArgumentException('No attributes for dynamic entity!');
         }
-        $this->_validationRules = $entityEntity->getRules();
+        if($entityEntity) {
+            $this->_validationRules = $entityEntity->getRules();
+        }
     }
 
     public function attributes()
