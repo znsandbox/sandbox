@@ -13,30 +13,22 @@ class InfoEntity
     private $isAuthenticCertificate;
     private $isAuthenticSignature;
 
-    /**
-     * @return mixed
-     */
-    public function getPerson()
+    public function getPerson(): PersonEntity
     {
         return $this->person;
     }
 
-    /**
-     * @param mixed $person
-     */
-    public function setPerson($person): void
+    public function setPerson(PersonEntity $person): void
     {
         $this->person = $person;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSignature()
     {
         return $this->signature;
     }
 
+<<<<<<< HEAD
     /**
      * @return mixed
      */
@@ -56,39 +48,29 @@ class InfoEntity
     /**
      * @param mixed $signature
      */
+=======
+>>>>>>> bcec46f55915d118e0c87c8baed7825d203eb578
     public function setSignature($signature): void
     {
         $this->signature = $signature;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsAuthenticCertificate()
+    public function getIsAuthenticCertificate(): bool
     {
         return $this->isAuthenticCertificate;
     }
 
-    /**
-     * @param mixed $isAuthenticCertificate
-     */
-    public function setIsAuthenticCertificate($isAuthenticCertificate): void
+    public function setIsAuthenticCertificate(bool $isAuthenticCertificate): void
     {
         $this->isAuthenticCertificate = $isAuthenticCertificate;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsAuthenticSignature()
+    public function getIsAuthenticSignature(): bool
     {
         return $this->isAuthenticSignature;
     }
 
-    /**
-     * @param mixed $isAuthenticSignature
-     */
-    public function setIsAuthenticSignature($isAuthenticSignature): void
+    public function setIsAuthenticSignature(bool $isAuthenticSignature): void
     {
         $this->isAuthenticSignature = $isAuthenticSignature;
     }
