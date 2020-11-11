@@ -2,6 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Cert\Domain\Entities;
 
+use Illuminate\Support\Facades\Date;
+use phpseclib\Math\BigInteger;
+use DateTime;
+
 class CertificateEntity
 {
 
@@ -11,6 +15,8 @@ class CertificateEntity
     private $subject;
     private $publicKey;
     private $certificate;
+    private $extensions;
+    private $authorityInfo;
     private $signature;
     private $createdAt;
     private $expiredAt;
@@ -18,7 +24,7 @@ class CertificateEntity
     /**
      * @return mixed
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return $this->version;
     }
@@ -26,7 +32,7 @@ class CertificateEntity
     /**
      * @param mixed $version
      */
-    public function setVersion($version): void
+    public function setVersion(string $version): void
     {
         $this->version = $version;
     }
@@ -34,7 +40,7 @@ class CertificateEntity
     /**
      * @return mixed
      */
-    public function getSerialNumber()
+    public function getSerialNumber(): BigInteger
     {
         return $this->serialNumber;
     }
@@ -42,7 +48,7 @@ class CertificateEntity
     /**
      * @param mixed $serialNumber
      */
-    public function setSerialNumber($serialNumber): void
+    public function setSerialNumber(BigInteger $serialNumber): void
     {
         $this->serialNumber = $serialNumber;
     }
@@ -82,7 +88,7 @@ class CertificateEntity
     /**
      * @return mixed
      */
-    public function getPublicKey()
+    public function getPublicKey(): string
     {
         return $this->publicKey;
     }
@@ -90,7 +96,7 @@ class CertificateEntity
     /**
      * @param mixed $publicKey
      */
-    public function setPublicKey($publicKey): void
+    public function setPublicKey(string $publicKey): void
     {
         $this->publicKey = $publicKey;
     }
@@ -98,7 +104,7 @@ class CertificateEntity
     /**
      * @return mixed
      */
-    public function getCertificate()
+    public function getCertificate(): string
     {
         return $this->certificate;
     }
@@ -106,9 +112,41 @@ class CertificateEntity
     /**
      * @param mixed $certificate
      */
-    public function setCertificate($certificate): void
+    public function setCertificate(string $certificate): void
     {
         $this->certificate = $certificate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExtensions()
+    {
+        return $this->extensions;
+    }
+
+    /**
+     * @param mixed $extensions
+     */
+    public function setExtensions($extensions): void
+    {
+        $this->extensions = $extensions;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorityInfo()
+    {
+        return $this->authorityInfo;
+    }
+
+    /**
+     * @param mixed $authorityInfo
+     */
+    public function setAuthorityInfo($authorityInfo): void
+    {
+        $this->authorityInfo = $authorityInfo;
     }
 
     /**
@@ -130,7 +168,7 @@ class CertificateEntity
     /**
      * @return mixed
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
@@ -138,7 +176,7 @@ class CertificateEntity
     /**
      * @param mixed $createdAt
      */
-    public function setCreatedAt($createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -146,7 +184,7 @@ class CertificateEntity
     /**
      * @return mixed
      */
-    public function getExpiredAt()
+    public function getExpiredAt(): DateTime
     {
         return $this->expiredAt;
     }
@@ -154,7 +192,7 @@ class CertificateEntity
     /**
      * @param mixed $expiredAt
      */
-    public function setExpiredAt($expiredAt): void
+    public function setExpiredAt(DateTime $expiredAt): void
     {
         $this->expiredAt = $expiredAt;
     }

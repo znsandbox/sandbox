@@ -23,51 +23,26 @@ class SignatureService
     {
         $this->x509 = new X509();
         $this->x509->loadCA($ca);
+//        $certArray = $this->x509->loadX509($ca);
+//        dd($certArray);
     }
 
     public function getInfo(string $xml): InfoEntity
     {
-        /*$stream = stream_context_create (array("ssl" => array("capture_peer_cert" => true)));
-        $read = fopen("https://google.com", "rb", false, $stream);
-        $cont = stream_context_get_params($read);
-        $cert = ($cont["options"]["ssl"]["peer_certificate"]);
-        $certData = openssl_x509_parse($cert);
-        openssl_x509_export($cert, $certPem);
-        openssl_x509_free( $cert );
-        $certArray = $this->x509->loadX509($certPem);
-        dd($this->x509->validateSignature());*/
-//        dd($certArray);
-
+//        dd(X509Helper::getCertFromDomain('google.com'));
 
         $infoEntity = new InfoEntity();
         $signatureEntity = NcaLayerHelper::parseXmlSignature($xml);
         $certArray = $this->x509->loadX509($signatureEntity->getCertificatePemFormat());
-        $certificateEntity = new CertificateEntity();
-        $certificateEntity->setVersion($certArray['tbsCertificate']['version']);
-        $certificateEntity->setIssuer(X509Helper::getAssoc($certArray['tbsCertificate']['issuer']['rdnSequence']));
-        $certificateEntity->setSubject(X509Helper::getAssoc($certArray['tbsCertificate']['subject']['rdnSequence']));
-        $certificateEntity->setPublicKey($certArray['tbsCertificate']['subjectPublicKeyInfo']['subjectPublicKey']);
-        $certificateEntity->setSerialNumber($certArray['tbsCertificate']['serialNumber']);
-        $certificateEntity->setCertificate($signatureEntity->getCertificatePemFormat());
-        $certificateEntity->setSignature([
-            'algorithm' => $certArray['signatureAlgorithm']['algorithm'],
-            'parameters' => X509Helper::cleanParams($certArray['signatureAlgorithm']['parameters']),
-            'signatureBase64' => $certArray['signature'],
-        ]);
-        $certificateEntity->setCreatedAt(new DateTime($certArray['tbsCertificate']['validity']['notBefore']['utcTime']));
-        $certificateEntity->setExpiredAt(new DateTime($certArray['tbsCertificate']['validity']['notAfter']['utcTime']));
+        $certificateEntity = X509Helper::certArrayToEntity($certArray, $signatureEntity->getCertificatePemFormat());
 
         //dd($certificateEntity);
-//        dd($person = );
-        //dd($certArray);
-
-//        dd();
         $infoEntity->setPerson(X509Helper::createPersonEntity($certificateEntity->getSubject()));
         $infoEntity->setCertificate($certificateEntity);
 //        $infoEntity->setPerson(X509Helper::parsePerson($certArray));
         $infoEntity->setIsAuthenticCertificate($this->x509->validateSignature());
         $pubKey = $certArray['tbsCertificate']['subjectPublicKeyInfo']['subjectPublicKey'];
-        $infoEntity->setIsAuthenticSignature($this->isVerifySignature($signatureEntity->getCertificatePemFormat(), $signatureEntity));
+        $infoEntity->setIsAuthenticSignature($this->isVerifySignature($pubKey, $signatureEntity));
         $infoEntity->setSignature($signatureEntity);
         return $infoEntity;
     }
@@ -87,28 +62,19 @@ class SignatureService
         $plaintext = base64_decode($signatureEntity->getDigest());
         $signature = base64_decode($signatureEntity->getSignature());
 
-
-        /*$p = openssl_pkey_get_public($pubKey);
-        //dd($p);
-        $isVerify = openssl_verify($plaintext, $signature, $p);
-        openssl_free_key($p);
-
-        dd($isVerify);*/
-
-
-
-        $pubkeyid = openssl_get_publickey($pubKey);
-        $keyData = openssl_pkey_get_details($pubkeyid);
+//        $pubkeyid = openssl_get_publickey($pubKey);
+//        $keyData = openssl_pkey_get_details($pubkeyid);
+//        return openssl_verify($plaintext, $signature, $pubkeyid, OPENSSL_ALGO_SHA256);
 
         $rsa = new RSA();
-        $rsa->loadKey($keyData['key']); // private key
+        $rsa->loadKey($pubKey);
         $rsa->setHash('sha256');
-
-//        $rsa->setEncryptionMode(RSA::ENCRYPTION_PKCS1);
-        //dd($pubKey);
-//        return $rsa->verify($plaintext, $signature);
-
-        //($keyData['key']);
-        return openssl_verify($plaintext, $signature, $pubkeyid, OPENSSL_ALGO_SHA256);
+//        dump($rsa->getPublicKey());
+//        $rsa->loadKey($rsa->getPublicKey());
+//        dd($pubKey);
+//        $rsa->setSignatureMode(RSA::SIGNATURE_PKCS1);
+//        $rsa->setEncryptionMode(RSA::ENCRYPTION_NONE);
+//        $rsa->setPublicKey($pubKey, RSA::PUBLIC_FORMAT_PKCS1);
+        return $rsa->verify($plaintext, $signature);
     }
 }

@@ -37,13 +37,13 @@ class SignatureEntity
         return $this->certificate;
     }
 
-    public function getCertificatePemFormat()
+    public function getCertificatePemFormat() :string
     {
         $certificate = StringHelper::removeAllSpace($this->certificate);
         return RsaKeyHelper::base64ToPem($certificate, 'CERTIFICATE');
     }
 
-    public function setCertificate($certificate): void
+    public function setCertificate(string $certificate): void
     {
         $this->certificate = $certificate;
     }

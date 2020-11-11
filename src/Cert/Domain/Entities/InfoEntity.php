@@ -23,33 +23,21 @@ class InfoEntity
         $this->person = $person;
     }
 
-    public function getSignature()
-    {
-        return $this->signature;
-    }
-
-<<<<<<< HEAD
-    /**
-     * @return mixed
-     */
     public function getCertificate(): CertificateEntity
     {
         return $this->certificate;
     }
 
-    /**
-     * @param mixed $certificate
-     */
     public function setCertificate(CertificateEntity $certificate): void
     {
         $this->certificate = $certificate;
     }
 
-    /**
-     * @param mixed $signature
-     */
-=======
->>>>>>> bcec46f55915d118e0c87c8baed7825d203eb578
+    public function getSignature()
+    {
+        return $this->signature;
+    }
+
     public function setSignature($signature): void
     {
         $this->signature = $signature;
