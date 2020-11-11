@@ -2,6 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Cert\Domain\Helpers;
 
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnSandbox\Sandbox\Cert\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Cert\Domain\Entities\SignatureEntity;
 
 class NcaLayerHelper
