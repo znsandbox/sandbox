@@ -13,6 +13,7 @@ class NcaLayerHelper
     {
         $xml = str_replace(['<ds:', '</ds:', ':ds='], ['<', '</', '='], $xml);
         $array = XmlHelper::parseXml($xml);
+        //dd($array);
         $signatureEntity = new SignatureEntity();
         $signatureEntity->setDigest($array['root']['Signature']['SignedInfo']['Reference']['DigestValue']);
         $signatureEntity->setSignature($array['root']['Signature']['SignatureValue']);

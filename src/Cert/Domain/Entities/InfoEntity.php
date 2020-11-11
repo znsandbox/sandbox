@@ -8,6 +8,7 @@ class InfoEntity
 {
 
     private $person;
+    private $certificate;
     private $signature;
     private $isAuthenticCertificate;
     private $isAuthenticSignature;
@@ -34,6 +35,22 @@ class InfoEntity
     public function getSignature()
     {
         return $this->signature;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCertificate(): CertificateEntity
+    {
+        return $this->certificate;
+    }
+
+    /**
+     * @param mixed $certificate
+     */
+    public function setCertificate(CertificateEntity $certificate): void
+    {
+        $this->certificate = $certificate;
     }
 
     /**

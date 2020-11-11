@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Cert\Domain\Entities;
 
 use ZnCore\Base\Helpers\StringHelper;
+use ZnCrypt\Pki\Domain\Helpers\RsaKeyHelper;
 
 class SignatureEntity
 {
@@ -38,10 +39,8 @@ class SignatureEntity
 
     public function getCertificatePemFormat()
     {
-        return
-            "-----BEGIN CERTIFICATE-----\n"
-            . StringHelper::removeAllSpace($this->certificate, " ")
-            . "\n-----END CERTIFICATE-----";
+        $certificate = StringHelper::removeAllSpace($this->certificate);
+        return RsaKeyHelper::base64ToPem($certificate, 'CERTIFICATE');
     }
 
     public function setCertificate($certificate): void
