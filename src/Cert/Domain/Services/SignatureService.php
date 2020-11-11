@@ -36,7 +36,17 @@ class SignatureService
         return $infoEntity;
     }
 
-    public function isVerifySignature(string $pubKey, SignatureEntity $signatureEntity): bool
+    public function check(InfoEntity $infoEntity)
+    {
+        if( ! $infoEntity->getIsAuthenticCertificate()) {
+            throw new \Exception('Certificate signature not verified!');
+        }
+        if( ! $infoEntity->getIsAuthenticSignature()) {
+            //throw new \Exception('Content signature not verified!');
+        }
+    }
+
+    private function isVerifySignature(string $pubKey, SignatureEntity $signatureEntity): bool
     {
         $plaintext = base64_decode($signatureEntity->getDigest());
         $signature = base64_decode($signatureEntity->getSignature());
