@@ -15,67 +15,44 @@ use ZnSandbox\Sandbox\Cert\Domain\Helpers\XmlHelper;
 class SignatureService
 {
 
-    private $xml;
     private $x509;
-    private $signatureEntity;
-    private $certArray;
 
     public function __construct(string $ca)
     {
-//        $this->xml = $xml;
         $this->x509 = new X509();
         $this->x509->loadCA($ca);
-//        $this->signatureEntity = NcaLayerHelper::parseXmlSignature($xml);
-
-        //$this->verifyCaSignatureInCertificate();
     }
 
     public function getInfo(string $xml): InfoEntity
     {
         $infoEntity = new InfoEntity();
-        $this->signatureEntity = NcaLayerHelper::parseXmlSignature($xml);
-        $this->certArray = $this->x509->loadX509($this->signatureEntity->getCertificatePemFormat());
-        $infoEntity->setPerson(X509Helper::parsePerson($this->certArray));
+        $signatureEntity = NcaLayerHelper::parseXmlSignature($xml);
+        $certArray = $this->x509->loadX509($signatureEntity->getCertificatePemFormat());
+        $infoEntity->setPerson(X509Helper::parsePerson($certArray));
         $infoEntity->setIsAuthenticCertificate($this->x509->validateSignature());
-//        $pubKey = $this->getPublicKeyFromCert();
-        $pubKey = $this->certArray['tbsCertificate']['subjectPublicKeyInfo']['subjectPublicKey'];
-        //$signatureEntity = $this->getSignatureEntity();
-        $infoEntity->setIsAuthenticSignature($this->isVerifySignature($pubKey, $this->signatureEntity));
-        $infoEntity->setSignature($this->signatureEntity);
+        $pubKey = $certArray['tbsCertificate']['subjectPublicKeyInfo']['subjectPublicKey'];
+        $infoEntity->setIsAuthenticSignature($this->isVerifySignature($signatureEntity->getCertificatePemFormat(), $signatureEntity));
+        $infoEntity->setSignature($signatureEntity);
         return $infoEntity;
     }
-
-    /*public function getSignatureEntity(): SignatureEntity
-    {
-        return $this->signatureEntity;
-    }
-
-    public function verifyCaSignatureInCertificate()
-    {
-        if (!$this->x509->validateSignature()) {
-            throw new \Exception('Bad validate certificate signature');
-        }
-    }
-
-    public function getPublicKeyFromCert()
-    {
-        $pubKey = $this->certArray['tbsCertificate']['subjectPublicKeyInfo']['subjectPublicKey'];
-        return $pubKey;
-    }
-
-    public function getPersonFromCert(): PersonEntity
-    {
-        return X509Helper::parsePerson($this->certArray);
-    }*/
 
     public function isVerifySignature(string $pubKey, SignatureEntity $signatureEntity): bool
     {
         $plaintext = base64_decode($signatureEntity->getDigest());
         $signature = base64_decode($signatureEntity->getSignature());
 
+        $pubkeyid = openssl_get_publickey($pubKey);
+        $keyData = openssl_pkey_get_details($pubkeyid);
+
         $rsa = new RSA();
-        $rsa->loadKey($pubKey); // private key
+        $rsa->loadKey($keyData['key']); // private key
         $rsa->setHash('sha256');
-        return $rsa->verify($plaintext, $signature);
+
+//        $rsa->setEncryptionMode(RSA::ENCRYPTION_PKCS1);
+        //dd($pubKey);
+//        return $rsa->verify($plaintext, $signature);
+
+        //($keyData['key']);
+        return openssl_verify($plaintext, $signature, $pubkeyid, OPENSSL_ALGO_SHA256);
     }
 }
