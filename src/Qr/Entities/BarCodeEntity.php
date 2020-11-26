@@ -11,7 +11,7 @@ class BarCodeEntity
     private $maxLenght = 650;
     private $createdAt;
     private $collectionEncoders = [
-        'xml',
+//        'xml',
         'zip',
         'implode',
     ];

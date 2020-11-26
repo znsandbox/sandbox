@@ -13,15 +13,16 @@ use ZnSandbox\Sandbox\Qr\Encoders\ZipEncoder;
 class ClassEncoder
 {
 
-    public function encoderToClass(string $name): string
+    private $assoc = [];
+
+    public function __construct(array $assoc)
     {
-        $assoc = [
-            'xml' => XmlEncoder::class,
-            'zip' => ZipEncoder::class,
-            'implode' => ImplodeEncoder::class,
-            'base64' => Base64Encoder::class,
-        ];
-        return ArrayHelper::getValue($assoc, $name);
+        $this->assoc = $assoc;
+    }
+
+    private function encoderToClass(string $name): string
+    {
+        return ArrayHelper::getValue($this->assoc, $name);
     }
 
     public function encodersToClasses(array $names): CollectionEncoder

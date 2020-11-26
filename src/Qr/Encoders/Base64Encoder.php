@@ -4,19 +4,17 @@ namespace ZnSandbox\Sandbox\Qr\Encoders;
 
 use ZnCrypt\Base\Domain\Libs\Encoders\EncoderInterface;
 
-class ImplodeEncoder implements EncoderInterface
+class Base64Encoder implements EncoderInterface
 {
-
-    private $maxLenght = 650;
 
     public function encode($data)
     {
-        $chunks = str_split($data, $this->maxLenght);
-        return $chunks;
+        dd($data);
+        return base64_encode($data);
     }
 
     public function decode($encodedData)
     {
-        return implode('', $encodedData);
+        return base64_decode($encodedData);
     }
 }

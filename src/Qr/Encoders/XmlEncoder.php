@@ -10,11 +10,12 @@ class XmlEncoder implements EncoderInterface
 
     public function encode($data)
     {
-
+        return XmlHelper::encode($data);
     }
 
     public function decode($encodedData)
     {
+//        dd($encodedData);
         return XmlHelper::decode($encodedData);
     }
 }

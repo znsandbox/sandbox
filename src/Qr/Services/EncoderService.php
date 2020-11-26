@@ -27,35 +27,58 @@ use Zxing\QrReader;
 class EncoderService
 {
 
-    public function encode($entity)
-    {
+    private $classEncoder;
 
+    public function __construct(ClassEncoder $classEncoder)
+    {
+        $this->classEncoder = $classEncoder;
+    }
+
+    public function encode($data): Collection
+    {
+//        dd($data);
+        $barCoreEntity1 = new BarCodeEntity();
+        $resultEncoder = $this->classEncoder->encodersToClasses([
+            //        'xml',
+            'zip',
+            'implode',
+        ]);
+//        dd($resultEncoder);
+        $encoded = $resultEncoder->encode($data);
+//        dd($encoded);
+        $wrapper = new XmlWrapper();
+        $collection = new Collection();
+        $array = [];
+        foreach ($encoded as $index => $item) {
+//            $entityEncoder = $this->classEncoder->encodersToClasses($barCoreEntity1->getEntityEncoders());
+//            $encodedItem = $entityEncoder->encode($item);
+            $encodedItem = base64_encode($item);
+            $barCodeEntity = new BarCodeEntity();
+            $barCodeEntity->setId($index + 1);
+            $barCodeEntity->setData($encodedItem);
+            $barCodeEntity->setCount(count($encoded));
+            $barCodeEntity->setCreatedAt('2020-11-17T20:55:33.671+06:00');
+            $collection->add($wrapper->encode($barCodeEntity));
+        }
+        return $collection;
     }
 
     public function decode($encodedData)
     {
         $barCodeCollection = $this->arrayToCollection($encodedData);
-
         $resultCollection = new Collection();
         foreach ($barCodeCollection as $barCodeEntity) {
-            $entityEncoders = $this->encodersToClasses($barCodeEntity->getEntityEncoders());
+            $entityEncoders = $this->classEncoder->encodersToClasses($barCodeEntity->getEntityEncoders());
             $decodedItem = $entityEncoders->decode($barCodeEntity->getData());
             $resultCollection->add($decodedItem);
         }
-
         return $this->decodeBarCodeCollection($resultCollection, $barCodeCollection);
-    }
-
-    private function encodersToClasses(array $names): CollectionEncoder
-    {
-        $enc = new ClassEncoder();
-        return $enc->encodersToClasses($names);
     }
 
     private function decodeBarCodeCollection(Collection $resultCollection, Collection $barCodeCollection)
     {
         $collectionEncoders = $barCodeCollection->first()->getCollectionEncoders();
-        $resultEncoder = $this->encodersToClasses($collectionEncoders);
+        $resultEncoder = $this->classEncoder->encodersToClasses($collectionEncoders);
         return $resultEncoder->decode($resultCollection->toArray());
     }
 

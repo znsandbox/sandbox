@@ -11,7 +11,18 @@ class ZipEncoder implements EncoderInterface
 
     public function encode($data)
     {
-        return XmlHelper::encode($data);
+        $zipFile = tempnam(sys_get_temp_dir(), 'qrZip');
+        $zip = new \ZipArchive();
+        $res = $zip->open($zipFile);
+        if ($res === TRUE) {
+            $xmlContent = $zip->addFromString('one', $data);
+            $zip->close();
+        } else {
+            throw new Exception('Zip not opened!');
+        }
+        $xmlContent = FileHelper::load($zipFile);
+        unlink($zipFile);
+        return $xmlContent;
     }
 
     public function decode($encodedData)
