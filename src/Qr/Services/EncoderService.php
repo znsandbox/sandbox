@@ -13,6 +13,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCrypt\Base\Domain\Libs\Encoders\Base64Encoder;
 use ZnCrypt\Base\Domain\Libs\Encoders\CollectionEncoder;
+use ZnCrypt\Base\Domain\Libs\Encoders\EncoderInterface;
 use ZnCrypt\Pki\X509\Domain\Helpers\QrDecoderHelper;
 use ZnLib\Egov\Helpers\XmlHelper;
 use ZnSandbox\Sandbox\Qr\Encoders\ImplodeEncoder;
@@ -20,18 +21,23 @@ use ZnSandbox\Sandbox\Qr\Encoders\SplitEncoder;
 use ZnSandbox\Sandbox\Qr\Encoders\XmlEncoder;
 use ZnSandbox\Sandbox\Qr\Entities\BarCodeEntity;
 use ZnSandbox\Sandbox\Qr\Libs\ClassEncoder;
-use ZnSandbox\Sandbox\Qr\Libs\XmlWrapper;
+//use ZnSandbox\Sandbox\Qr\Libs\XmlWrapper;
 use ZnSandbox\Sandbox\Qr\Encoders\ZipEncoder;
+use ZnSandbox\Sandbox\Qr\Wrappers\JsonWrapper;
+use ZnSandbox\Sandbox\Qr\Wrappers\WrapperInterface;
+use ZnSandbox\Sandbox\Qr\Wrappers\XmlWrapper;
 use Zxing\QrReader;
 
 class EncoderService
 {
 
     private $classEncoder;
+    private $entityWrapper;
 
-    public function __construct(ClassEncoder $classEncoder)
+    public function __construct(ClassEncoder $classEncoder, /*EncoderInterface*/ $entityWrapper)
     {
         $this->classEncoder = $classEncoder;
+        $this->entityWrapper = $entityWrapper;
     }
 
     public function encode($data): Collection
@@ -44,7 +50,7 @@ class EncoderService
             'implode',
         ]);
         $encoded = $resultEncoder->encode($data);
-        $wrapper = new XmlWrapper();
+        //$wrapper = new XmlWrapper();
         $collection = new Collection();
         $array = [];
         foreach ($encoded as $index => $item) {
@@ -56,7 +62,7 @@ class EncoderService
             $barCodeEntity->setData($encodedItem);
             $barCodeEntity->setCount(count($encoded));
             $barCodeEntity->setCreatedAt('2020-11-17T20:55:33.671+06:00');
-            $collection->add($wrapper->encode($barCodeEntity));
+            $collection->add($this->entityWrapper->encode($barCodeEntity));
         }
         return $collection;
     }
@@ -83,14 +89,32 @@ class EncoderService
     private function arrayToCollection($array): Collection
     {
         $collection = new Collection();
-        $wrapper = new XmlWrapper();
+        //$wrapper = $this->entityWrapper;
         foreach ($array as $item) {
+            $wrapper = $this->detectWrapper($item);
             $barCodeEntity = $wrapper->decode($item);
             $collection->add($barCodeEntity);
         }
         $arr = EntityHelper::indexingCollection($collection, 'id');
         ksort($arr);
         return new Collection($arr);
+    }
+
+    private function detectWrapper(string $encoded): WrapperInterface
+    {
+        $wrappers = [
+            JsonWrapper::class,
+            XmlWrapper::class,
+        ];
+        foreach ($wrappers as $wrapperClass) {
+            /** @var WrapperInterface $wrapperInstance */
+            $wrapperInstance = new $wrapperClass;
+            $isDetected = $wrapperInstance->isMatch($encoded);
+            if($isDetected) {
+                return $wrapperInstance;
+            }
+        }
+        throw new \Exception('Wrapper not detected!');
     }
 
     private function decodeCollection($arr)

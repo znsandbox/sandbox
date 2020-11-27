@@ -1,15 +1,20 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Qr\Libs;
+namespace ZnSandbox\Sandbox\Qr\Wrappers;
 
-use ZnCrypt\Base\Domain\Libs\Encoders\EncoderInterface;
 use ZnLib\Egov\Helpers\XmlHelper;
 use ZnSandbox\Sandbox\Qr\Entities\BarCodeEntity;
 
-class XmlWrapper //implements EncoderInterface
+class XmlWrapper implements WrapperInterface
 {
 
-    public function encode(BarCodeEntity $entity)
+    public function isMatch(string $encodedData): bool
+    {
+//        dd($encodedData);
+        return preg_match('#<\?xml#i', $encodedData);
+    }
+
+    public function encode(BarCodeEntity $entity): string
     {
         $barCode = [
             "@xmlns" => "http://barcodes.pdf.shep.nitec.kz/",
@@ -22,7 +27,7 @@ class XmlWrapper //implements EncoderInterface
         return XmlHelper::encode(['BarcodeElement' => $barCode]);
     }
 
-    public function decode($encodedData): BarCodeEntity
+    public function decode(string $encodedData): BarCodeEntity
     {
         $decoded = XmlHelper::decode($encodedData);
         $entity = new BarCodeEntity();

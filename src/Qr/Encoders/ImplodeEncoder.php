@@ -16,8 +16,7 @@ class ImplodeEncoder implements EncoderInterface
 
     public function encode($data)
     {
-        $chunks = str_split($data, $this->maxLenght);
-        return $chunks;
+        return str_split($data, $this->maxLenght);
     }
 
     public function decode($encodedData)
