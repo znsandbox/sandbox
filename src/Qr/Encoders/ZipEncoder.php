@@ -12,7 +12,7 @@ class ZipEncoder implements EncoderInterface
     public function encode($data)
     {
         $zipFile = tempnam(sys_get_temp_dir(), 'qrZip');
-        $zip = new \ZipArchive();
+        /*$zip = new \ZipArchive();
         $res = $zip->open($zipFile);
         if ($res === TRUE) {
             $xmlContent = $zip->addFromString('one', $data);
@@ -20,7 +20,17 @@ class ZipEncoder implements EncoderInterface
         } else {
             throw new Exception('Zip not opened!');
         }
+        $xmlContent = FileHelper::load($zipFile);*/
+
+        $archive = new \PclZip($zipFile);
+        $list = $archive->create(array(
+                array( PCLZIP_ATT_FILE_NAME => 'one',
+                    PCLZIP_ATT_FILE_CONTENT => $data
+                )
+            )
+        );
         $xmlContent = FileHelper::load($zipFile);
+//        dd($xmlContent);
         unlink($zipFile);
         return $xmlContent;
     }
