@@ -8,6 +8,10 @@ use ZnSandbox\Sandbox\Qr\Entities\BarCodeEntity;
 class JsonWrapper implements WrapperInterface
 {
 
+    public function blockLeght(): int {
+        return 811;
+    }
+
     public function isMatch(string $encodedData): bool
     {
         return preg_match('#\{"#i', $encodedData);
@@ -20,15 +24,12 @@ class JsonWrapper implements WrapperInterface
         $barCode['count'] = $entity->getCount();
         $barCode['data'] = $entity->getData();
         $barCode['creationDate'] = $entity->getCreatedAt();
-//        $barCode['FavorID'] = 10100464053940;
         $jsonContent = json_encode($barCode);
-        return /*'<?json?>' .*/ $jsonContent;
+        return $jsonContent;
     }
 
     public function decode(string $encodedData): BarCodeEntity
     {
-        /*$encodedData = preg_replace('#<\?[\s\S]+\?>#i', '', $encodedData);*/
-
         $decoded = json_decode($encodedData, JSON_OBJECT_AS_ARRAY);
         $entity = new BarCodeEntity();
         $entity->setId($decoded['id']);

@@ -21,7 +21,6 @@ use ZnSandbox\Sandbox\Qr\Encoders\SplitEncoder;
 use ZnSandbox\Sandbox\Qr\Encoders\XmlEncoder;
 use ZnSandbox\Sandbox\Qr\Entities\BarCodeEntity;
 use ZnSandbox\Sandbox\Qr\Libs\ClassEncoder;
-//use ZnSandbox\Sandbox\Qr\Libs\XmlWrapper;
 use ZnSandbox\Sandbox\Qr\Encoders\ZipEncoder;
 use ZnSandbox\Sandbox\Qr\Wrappers\JsonWrapper;
 use ZnSandbox\Sandbox\Qr\Wrappers\WrapperInterface;
@@ -32,42 +31,47 @@ class EncoderService
 {
 
     private $classEncoder;
-    private $entityWrapper;
+    private $defaultEntityWrapper;
+    private $wrappers = [
+        JsonWrapper::class,
+        XmlWrapper::class,
+    ];
+    private $entityEncoders = [
+        'zip',
+    ];
 
-    public function __construct(ClassEncoder $classEncoder, /*EncoderInterface*/ $entityWrapper)
+    public function __construct(WrapperInterface $defaultEntityWrapper)
     {
+        $classEncoder = new ClassEncoder([
+            'zip' => ZipEncoder::class,
+            'base64' => Base64Encoder::class,
+        ]);
         $this->classEncoder = $classEncoder;
-        $this->entityWrapper = $entityWrapper;
+        $this->entityWrapper = $defaultEntityWrapper;
     }
 
-    public function encode($data): Collection
+    public function encode($data, WrapperInterface $entityWrapper = null): Collection
     {
-//        dd($data);
+        $entityWrapper = $entityWrapper ?: $this->entityWrapper;
         $barCoreEntity1 = new BarCodeEntity();
-        $resultEncoder = $this->classEncoder->encodersToClasses([
-            //        'xml',
-            'zip',
-            'implode',
-        ]);
+        $resultEncoder = $this->classEncoder->encodersToClasses($this->entityEncoders);
         $encoded = $resultEncoder->encode($data);
-        //$wrapper = new XmlWrapper();
+        $encodedParts = str_split($encoded, $entityWrapper->blockLeght());
         $collection = new Collection();
-        $array = [];
-        foreach ($encoded as $index => $item) {
+        foreach ($encodedParts as $index => $item) {
             $entityEncoder = $this->classEncoder->encodersToClasses($barCoreEntity1->getEntityEncoders());
             $encodedItem = $entityEncoder->encode($item);
-//            $encodedItem = base64_encode($item);
             $barCodeEntity = new BarCodeEntity();
             $barCodeEntity->setId($index + 1);
             $barCodeEntity->setData($encodedItem);
-            $barCodeEntity->setCount(count($encoded));
+            $barCodeEntity->setCount(count($encodedParts));
             $barCodeEntity->setCreatedAt('2020-11-17T20:55:33.671+06:00');
-            $collection->add($this->entityWrapper->encode($barCodeEntity));
+            $collection->add($entityWrapper->encode($barCodeEntity));
         }
         return $collection;
     }
 
-    public function decode($encodedData)
+    public function decode(Collection $encodedData)
     {
         $barCodeCollection = $this->arrayToCollection($encodedData);
         $resultCollection = new Collection();
@@ -76,20 +80,23 @@ class EncoderService
             $decodedItem = $entityEncoders->decode($barCodeEntity->getData());
             $resultCollection->add($decodedItem);
         }
-        return $this->decodeBarCodeCollection($resultCollection, $barCodeCollection);
+        /** @var BarCodeEntity $firstBarCodeEntity */
+        $firstBarCodeEntity = $barCodeCollection->first();
+        $collectionEncoders = $firstBarCodeEntity->getCollectionEncoders();
+        $resultEncoder = $this->classEncoder->encodersToClasses($collectionEncoders);
+        return $resultEncoder->decode($resultCollection->toArray());
+
+        //return $this->decodeBarCodeCollection($resultCollection, $barCodeCollection);
     }
 
     private function decodeBarCodeCollection(Collection $resultCollection, Collection $barCodeCollection)
     {
-        $collectionEncoders = $barCodeCollection->first()->getCollectionEncoders();
-        $resultEncoder = $this->classEncoder->encodersToClasses($collectionEncoders);
-        return $resultEncoder->decode($resultCollection->toArray());
+
     }
 
-    private function arrayToCollection($array): Collection
+    private function arrayToCollection(Collection $array): Collection
     {
         $collection = new Collection();
-        //$wrapper = $this->entityWrapper;
         foreach ($array as $item) {
             $wrapper = $this->detectWrapper($item);
             $barCodeEntity = $wrapper->decode($item);
@@ -102,11 +109,7 @@ class EncoderService
 
     private function detectWrapper(string $encoded): WrapperInterface
     {
-        $wrappers = [
-            JsonWrapper::class,
-            XmlWrapper::class,
-        ];
-        foreach ($wrappers as $wrapperClass) {
+        foreach ($this->wrappers as $wrapperClass) {
             /** @var WrapperInterface $wrapperInstance */
             $wrapperInstance = new $wrapperClass;
             $isDetected = $wrapperInstance->isMatch($encoded);

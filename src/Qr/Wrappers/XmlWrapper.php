@@ -8,6 +8,10 @@ use ZnSandbox\Sandbox\Qr\Entities\BarCodeEntity;
 class XmlWrapper implements WrapperInterface
 {
 
+    public function blockLeght(): int {
+        return 650;
+    }
+
     public function isMatch(string $encodedData): bool
     {
 //        dd($encodedData);

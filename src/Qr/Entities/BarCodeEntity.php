@@ -13,7 +13,7 @@ class BarCodeEntity
     private $collectionEncoders = [
 //        'xml',
         'zip',
-        'implode',
+//        'implode',
     ];
     private $entityEncoders = [
         'base64',

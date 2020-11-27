@@ -7,6 +7,8 @@ use ZnSandbox\Sandbox\Qr\Entities\BarCodeEntity;
 interface WrapperInterface
 {
 
+    public function blockLeght(): int;
+
     public function isMatch(string $encodedData): bool;
 
     public function encode(BarCodeEntity $entity): string;
