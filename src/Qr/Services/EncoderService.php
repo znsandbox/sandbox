@@ -43,16 +43,14 @@ class EncoderService
             'zip',
             'implode',
         ]);
-//        dd($resultEncoder);
         $encoded = $resultEncoder->encode($data);
-//        dd($encoded);
         $wrapper = new XmlWrapper();
         $collection = new Collection();
         $array = [];
         foreach ($encoded as $index => $item) {
-//            $entityEncoder = $this->classEncoder->encodersToClasses($barCoreEntity1->getEntityEncoders());
-//            $encodedItem = $entityEncoder->encode($item);
-            $encodedItem = base64_encode($item);
+            $entityEncoder = $this->classEncoder->encodersToClasses($barCoreEntity1->getEntityEncoders());
+            $encodedItem = $entityEncoder->encode($item);
+//            $encodedItem = base64_encode($item);
             $barCodeEntity = new BarCodeEntity();
             $barCodeEntity->setId($index + 1);
             $barCodeEntity->setData($encodedItem);

@@ -7,7 +7,12 @@ use ZnCrypt\Base\Domain\Libs\Encoders\EncoderInterface;
 class ImplodeEncoder implements EncoderInterface
 {
 
-    private $maxLenght = 650;
+    private $maxLenght;
+
+    public function __construct(int $maxLenght)
+    {
+        $this->maxLenght = $maxLenght;
+    }
 
     public function encode($data)
     {

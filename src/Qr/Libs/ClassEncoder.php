@@ -5,7 +5,6 @@ namespace ZnSandbox\Sandbox\Qr\Libs;
 use Illuminate\Support\Collection;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCrypt\Base\Domain\Libs\Encoders\Base64Encoder;
-use ZnCrypt\Base\Domain\Libs\Encoders\CollectionEncoder;
 use ZnSandbox\Sandbox\Qr\Encoders\ImplodeEncoder;
 use ZnSandbox\Sandbox\Qr\Encoders\XmlEncoder;
 use ZnSandbox\Sandbox\Qr\Encoders\ZipEncoder;
@@ -20,7 +19,7 @@ class ClassEncoder
         $this->assoc = $assoc;
     }
 
-    private function encoderToClass(string $name): string
+    private function encoderToClass(string $name)
     {
         return ArrayHelper::getValue($this->assoc, $name);
     }

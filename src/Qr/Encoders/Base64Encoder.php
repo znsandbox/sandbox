@@ -9,7 +9,6 @@ class Base64Encoder implements EncoderInterface
 
     public function encode($data)
     {
-        dd($data);
         return base64_encode($data);
     }
 
