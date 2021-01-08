@@ -14,7 +14,7 @@ class LogEntity implements EntityIdInterface
     private $level;
     private $level_name;
     private $channel;
-    private $datetime;
+    private $createdAt;
     private $extra;
 
     public function getId()
@@ -77,14 +77,14 @@ class LogEntity implements EntityIdInterface
         $this->channel = $channel;
     }
 
-    public function getDatetime(): DateTimeImmutable
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->datetime;
     }
 
-    public function setDatetime(DateTimeImmutable $datetime): void
+    public function setCreatedAt(DateTimeImmutable $createdAt): void
     {
-        $this->datetime = $datetime;
+        $this->datetime = $createdAt;
     }
 
     public function getExtra()

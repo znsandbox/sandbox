@@ -11,7 +11,7 @@ class LogRepository extends BaseEloquentCrudRepository implements LogRepositoryI
 
     public function tableName(): string
     {
-        return 'eq_log';
+        return 'log_history';
     }
 
     public function getEntityClass(): string
