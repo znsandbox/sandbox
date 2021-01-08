@@ -4,11 +4,26 @@ namespace ZnSandbox\Sandbox\Log;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use ZnCore\Base\Helpers\EnvHelper;
 use ZnCore\Domain\Interfaces\DomainInterface;
+use ZnSandbox\Sandbox\Log\Domain\Monolog\Handler\EloquentHandler;
 
 class LoggerFactory
 {
+
+    public static function createLogger($container): LoggerInterface
+    {
+        /**
+         * @var ContainerInterface $container
+         * @var EloquentHandler $handler
+         */
+        $handler = $container->get(EloquentHandler::class);
+        $level = EnvHelper::isDev() ? Logger::DEBUG : Logger::ERROR;
+        $handler->setLevel($level);
+        return new Logger('application', [$handler]);
+    }
 
     public static function createMonologLogger(string $env, string $directory, string $format = 'json'): LoggerInterface
     {

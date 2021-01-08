@@ -51,6 +51,7 @@ class Logger implements LoggerInterface
 
     public function log($level, $message, array $context = array())
     {
+        dd(func_get_args());
         $assoc = [
             \Monolog\Logger::EMERGENCY => \yii\log\Logger::LEVEL_ERROR,
             \Monolog\Logger::ALERT => \yii\log\Logger::LEVEL_ERROR,

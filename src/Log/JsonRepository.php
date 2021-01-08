@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Log;
 use Illuminate\Support\Collection;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\DomainInterface;
+use ZnSandbox\Sandbox\Log\Domain\Entities\LogEntity;
 
 class JsonRepository
 {
@@ -17,7 +18,7 @@ class JsonRepository
         $collection = new Collection();
         foreach ($lines as &$line) {
             $line = json_decode($line);
-            $logEntity = new LogEntity;
+            $logEntity = new LogEntity();
             EntityHelper::setAttributes($logEntity, $line);
             $collection->add($logEntity);
         }
