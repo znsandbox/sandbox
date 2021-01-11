@@ -2,10 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Log\Domain\Entities;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Monolog\DateTimeImmutable;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Domain\Interfaces\Entity\ValidateEntityInterface;
 
-class LogEntity implements EntityIdInterface
+class LogEntity implements EntityIdInterface, ValidateEntityInterface
 {
 
     private $id;
@@ -14,8 +16,29 @@ class LogEntity implements EntityIdInterface
     private $level;
     private $level_name;
     private $channel;
-    private $createdAt;
     private $extra;
+    private $createdAt;
+
+    public function validationRules()
+    {
+        return [
+            'message' => [
+                new Assert\NotBlank,
+            ],
+            'context' => [
+                new Assert\NotBlank,
+            ],
+            'level' => [
+                new Assert\NotBlank,
+            ],
+            'channel' => [
+                new Assert\NotBlank,
+            ],
+            'createdAt' => [
+                new Assert\NotBlank,
+            ],
+        ];
+    }
 
     public function getId()
     {
