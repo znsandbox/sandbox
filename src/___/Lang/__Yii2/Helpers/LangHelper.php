@@ -26,7 +26,7 @@ class LangHelper {
 			}
 		}
 		if(!empty($category)) {
-			$bundle .= SL . $category;
+			$bundle .= '/' . $category;
 		}
 		return $bundle;
 	}
