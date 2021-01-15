@@ -7,7 +7,6 @@ use Monolog\Formatter\NormalizerFormatter;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Log\Domain\Entities\LogEntity;
-use ZnTool\Dev\Dumper\Domain\Facades\Bot;
 
 class EloquentFormatter extends NormalizerFormatter
 {
