@@ -21,15 +21,4 @@ class LogRepository extends BaseEloquentCrudRepository implements LogRepositoryI
     {
         return LogEntity::class;
     }
-
-    public function createCollection(Collection $collection)
-    {
-        $array = [];
-        foreach ($collection as $entity) {
-            ValidationHelper::validateEntity($entity);
-            $columnList = $this->getColumnsForModify();
-            $array[] = EntityHelper::toArrayForTablize($entity, $columnList);
-        }
-        $this->getQueryBuilder()->insert($array);
-    }
 }
