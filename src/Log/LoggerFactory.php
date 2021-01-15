@@ -17,12 +17,14 @@ class LoggerFactory
     {
         /**
          * @var ContainerInterface $container
-         * @var EloquentHandler $eloquentHandler
+         * @var EloquentHandler $handler
          */
-        $eloquentHandler = $container->get(EloquentHandler::class);
+        $handler = $container->get(EloquentHandler::class);
         $level = EnvHelper::isDev() ? Logger::DEBUG : Logger::ERROR;
-        $eloquentHandler->setLevel($level);
-        return new Logger('application', [$eloquentHandler]);
+        $handler->setLevel($level);
+        $logger = new Logger('application', []);
+        $logger->pushHandler($handler);
+        return $logger;
     }
 
     public static function createMonologLogger(string $env, string $directory, string $format = 'json'): LoggerInterface
