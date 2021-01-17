@@ -36,5 +36,4 @@ class ServerController extends BaseWebController
             'entity' => $entity,
         ]);
     }
-
 }

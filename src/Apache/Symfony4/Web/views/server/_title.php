@@ -5,7 +5,7 @@
 ?>
 
 <?php if ($serverEntity->getHosts()): ?>
-    <a href="http://<?= $serverEntity->getServerName() ?>" class="">
+    <a href="<?= $serverEntity->getHosts()->getUrl() ?>" class="">
         <?= $serverEntity->getServerName() ?>
     </a>
 <?php else: ?>

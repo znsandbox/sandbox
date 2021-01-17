@@ -7,6 +7,7 @@ class HostEntity {
     private $ip;
     private $host;
     private $categoryName;
+    private $url;
 
     public function getIp()
     {
@@ -38,4 +39,8 @@ class HostEntity {
         $this->categoryName = $categoryName;
     }
 
+    public function getUrl()
+    {
+        return 'http://' . $this->host;
+    }
 }
