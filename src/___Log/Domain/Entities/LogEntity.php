@@ -4,10 +4,11 @@ namespace ZnSandbox\Sandbox\Log\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Monolog\DateTimeImmutable;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityInterface;
+use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 
-class LogEntity implements EntityIdInterface, ValidateEntityInterface
+class LogEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
 {
 
     private $id;
@@ -19,25 +20,13 @@ class LogEntity implements EntityIdInterface, ValidateEntityInterface
     private $extra;
     private $createdAt;
 
-    public function validationRules()
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        return [
-            'message' => [
-                new Assert\NotBlank,
-            ],
-            'context' => [
-                new Assert\NotBlank,
-            ],
-            'level' => [
-                new Assert\NotBlank,
-            ],
-            'channel' => [
-                new Assert\NotBlank,
-            ],
-            'createdAt' => [
-                new Assert\NotBlank,
-            ],
-        ];
+        $metadata->addPropertyConstraint('message', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('context', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('level', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('channel', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank);
     }
 
     public function getId()
