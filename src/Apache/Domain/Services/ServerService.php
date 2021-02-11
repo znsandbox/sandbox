@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Apache\Domain\Services;
 
 use ZnCore\Domain\Libs\Query;
+use ZnCore\Domain\Traits\RepositoryAwareTrait;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf\HostsRepository;
 use ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf\ServerRepository;
@@ -10,24 +11,26 @@ use ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf\ServerRepository;
 class ServerService
 {
 
+    use RepositoryAwareTrait;
+
     private $repository;
     private $hostsRepository;
 
     public function __construct(ServerRepository $repository, HostsRepository $hostsRepository)
     {
-        $this->repository = $repository;
+        $this->setRepository($repository);
         $this->hostsRepository = $hostsRepository;
     }
 
     public function all()
     {
-        return $this->repository->all();
+        return $this->getRepository()->all();
     }
 
     public function oneByName(string $name): ServerEntity
     {
         /** @var ServerEntity $serverEntity */
-        $serverEntity = $this->repository->oneByName($name);
+        $serverEntity = $this->getRepository()->oneByName($name);
         return $serverEntity;
     }
 }
