@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\Layout\Domain\Helpers;
+namespace ZnSandbox\Sandbox\Layout\Domain\Helpers;
 
 use Yii;
 use yii\helpers\Url;
