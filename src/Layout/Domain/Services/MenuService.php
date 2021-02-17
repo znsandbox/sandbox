@@ -66,9 +66,9 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
             if ($menuEntity->getLabel() === null) {
                 $this->prepareLabelForRoute($menuEntity);
             }
-//            if($menuEntity->getActive() === null) {
-            $menuEntity->setActive($route == $menuEntity->getRoute());
-//            }
+            if($menuEntity->getActive() === null) {
+                $menuEntity->setActive($route == $menuEntity->getRoute());
+            }
             if ($menuEntity->getUrl() === null) {
                 $menuEntity->setUrl(Url::to(['/' . $menuEntity->getRoute()]));
             }

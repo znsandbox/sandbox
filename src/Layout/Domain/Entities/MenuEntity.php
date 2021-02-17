@@ -26,7 +26,7 @@ class MenuEntity implements ValidateEntityByMetadataInterface, EntityIdInterface
 
     private $icon = null;
 
-    private $active = false;
+    private $active = null;
 
     private $activeRoutes = [];
 
@@ -145,7 +145,7 @@ class MenuEntity implements ValidateEntityByMetadataInterface, EntityIdInterface
         $this->active = $value;
     }
 
-    public function getActive(): bool
+    public function getActive(): ?bool
     {
         return $this->active;
     }
