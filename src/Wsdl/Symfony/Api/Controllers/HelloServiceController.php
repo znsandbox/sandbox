@@ -35,8 +35,7 @@ class HelloServiceController extends AbstractController
     public function handle(string $name)
     {
         $soapServer = new \SoapServer($this->getDefinitionFileName($name));
-        $serviceInstance = $this->services[$name];
-        $soapServer->setObject($serviceInstance);
+        $soapServer->setObject(new HelloService);
         ob_start();
         $soapServer->handle();
         $content = ob_get_clean();
