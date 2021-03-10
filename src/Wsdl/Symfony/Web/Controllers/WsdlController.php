@@ -23,8 +23,17 @@ class WsdlController
 
     public function showDocs(Request $request): Response
     {
-        $docContent = file_get_contents($this->getDefinitionFile());
-        $response = new Response($docContent);
+        /*$class = TestController::class;
+        $serviceURI = "http://www.myservice.com/soap";
+        $wsdlGenerator = new \PHP2WSDL\PHPClass2WSDL($class, $serviceURI);
+// Generate the WSDL from the class adding only the public methods that have @soap annotation.
+        $wsdlGenerator->generateWSDL(true);
+// Dump as string
+        $wsdlXML = $wsdlGenerator->dump();
+// Or save as file*/
+//        $wsdlXML = $wsdlGenerator->save('foo/example.wsdl');
+        $wsdlXML = file_get_contents($this->getDefinitionFile());
+        $response = new Response($wsdlXML);
         $response->headers->set('Content-Type', 'text/xml');
         return $response;
     }
