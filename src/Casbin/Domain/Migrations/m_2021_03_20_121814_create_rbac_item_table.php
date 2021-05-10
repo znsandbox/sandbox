@@ -5,7 +5,7 @@ namespace Migrations;
 use Illuminate\Database\Schema\Blueprint;
 use ZnLib\Migration\Domain\Base\BaseCreateTableMigration;
 
-class m_2021_03_20_121814_create_role_table extends BaseCreateTableMigration
+class m_2021_03_20_121814_create_rbac_item_table extends BaseCreateTableMigration
 {
 
     protected $tableName = 'rbac_item';

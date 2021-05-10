@@ -6,7 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use ZnLib\Migration\Domain\Base\BaseCreateTableMigration;
 use ZnLib\Migration\Domain\Enums\ForeignActionEnum;
 
-class m_2021_03_21_070522_create_inheritance_table extends BaseCreateTableMigration
+class m_2021_03_21_070522_create_rbac_inheritance_table extends BaseCreateTableMigration
 {
 
     protected $tableName = 'rbac_inheritance';

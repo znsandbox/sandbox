@@ -28,13 +28,12 @@ interface ManagerServiceInterface
      * @param string $roleName Имя роли
      * @return array
      */
-    public function allNestedRolesByRoleName(string $roleName): array;
+    public function allNestedItemsByRoleName(string $roleName): array;
 
     /**
      * Получить вложенные роли и полномочия для массива ролей
      * @param array $roleNames Массив имен ролей
      * @return array
      */
-    public function allNestedRolesByRoleNames(array $roleNames): array;
+    public function allNestedItemsByRoleNames(array $roleNames): array;
 }
-

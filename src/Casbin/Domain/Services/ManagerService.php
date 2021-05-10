@@ -4,24 +4,17 @@ namespace ZnSandbox\Sandbox\Casbin\Domain\Services;
 
 use Casbin\ManagementEnforcer;
 use ZnCore\Base\Exceptions\ForbiddenException;
-use ZnCore\Domain\Base\BaseService;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Repositories\InheritanceRepositoryInterface;
 use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Repositories\ManagerRepositoryInterface;
 use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Services\ManagerServiceInterface;
 
-class ManagerService extends BaseService implements ManagerServiceInterface
+class ManagerService implements ManagerServiceInterface
 {
 
     /** @var ManagementEnforcer */
     private $enforcer;
 
-    public function __construct(
-        EntityManagerInterface $entityManager,
-        ManagerRepositoryInterface $managerRepository
-    )
+    public function __construct(ManagerRepositoryInterface $managerRepository)
     {
-        $this->setEntityManager($entityManager);
         $this->enforcer = $managerRepository->getEnforcer();
     }
 
@@ -35,21 +28,21 @@ class ManagerService extends BaseService implements ManagerServiceInterface
 
     public function isCanByRoleNames(array $roleNames, array $permissionNames): bool
     {
-        $all = $this->allNestedRolesByRoleNames($roleNames);
+        $all = $this->allNestedItemsByRoleNames($roleNames);
         $intersect = array_intersect($permissionNames, $all);
         return !empty($intersect);
     }
 
-    public function allNestedRolesByRoleName(string $roleName): array
+    public function allNestedItemsByRoleName(string $roleName): array
     {
         return $this->enforcer->getImplicitRolesForUser($roleName);
     }
 
-    public function allNestedRolesByRoleNames(array $roleNames): array
+    public function allNestedItemsByRoleNames(array $roleNames): array
     {
         $all = [];
         foreach ($roleNames as $roleName) {
-            $nested = $this->allNestedRolesByRoleName($roleName);
+            $nested = $this->allNestedItemsByRoleName($roleName);
             $all = array_merge($all, $nested);
         }
         return $all;
