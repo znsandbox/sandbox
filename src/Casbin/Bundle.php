@@ -10,7 +10,7 @@ class Bundle extends BaseBundle
     public function migration(): array
     {
         return [
-            '/src/Modules/Rbac/Domain/Migrations',
+            '/vendor/znsandbox/sandbox/src/Casbin/Domain/Migrations',
         ];
     }
 

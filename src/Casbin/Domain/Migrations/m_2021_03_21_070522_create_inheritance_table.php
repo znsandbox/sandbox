@@ -23,13 +23,13 @@ class m_2021_03_21_070522_create_inheritance_table extends BaseCreateTableMigrat
             $table
                 ->foreign('parent')
                 ->references('name')
-                ->on($this->encodeTableName('rbac_role'))
+                ->on($this->encodeTableName('rbac_item'))
                 ->onDelete(ForeignActionEnum::CASCADE)
                 ->onUpdate(ForeignActionEnum::CASCADE);
             $table
                 ->foreign('child')
                 ->references('name')
-                ->on($this->encodeTableName('rbac_role'))
+                ->on($this->encodeTableName('rbac_item'))
                 ->onDelete(ForeignActionEnum::CASCADE)
                 ->onUpdate(ForeignActionEnum::CASCADE);
         };
