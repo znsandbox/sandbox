@@ -16,18 +16,18 @@ class m_2021_03_21_070522_create_rbac_inheritance_table extends BaseCreateTableM
     {
         return function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->comment('Идентификатор');
-            $table->string('parent')->comment('Родитель');
-            $table->string('child')->comment('Ребенок');
+            $table->string('parent_name')->comment('Родитель');
+            $table->string('child_name')->comment('Ребенок');
 
-            $table->unique(['parent', 'child']);
+            $table->unique(['parent_name', 'child_name']);
             $table
-                ->foreign('parent')
+                ->foreign('parent_name')
                 ->references('name')
                 ->on($this->encodeTableName('rbac_item'))
                 ->onDelete(ForeignActionEnum::CASCADE)
                 ->onUpdate(ForeignActionEnum::CASCADE);
             $table
-                ->foreign('child')
+                ->foreign('child_name')
                 ->references('name')
                 ->on($this->encodeTableName('rbac_item'))
                 ->onDelete(ForeignActionEnum::CASCADE)
