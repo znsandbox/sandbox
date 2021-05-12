@@ -13,15 +13,15 @@ class InheritanceEntity implements ValidateEntityByMetadataInterface, UniqueInte
 
     private $id = null;
 
-    private $parent = null;
+    private $parentName = null;
 
-    private $child = null;
+    private $childName = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('parent', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('child', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('parentName', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('childName', new Assert\NotBlank);
     }
 
     public function unique() : array
@@ -39,26 +39,24 @@ class InheritanceEntity implements ValidateEntityByMetadataInterface, UniqueInte
         return $this->id;
     }
 
-    public function setParent($value) : void
+    public function setParentName($value) : void
     {
         $this->parent = $value;
     }
 
-    public function getParent()
+    public function getParentName()
     {
         return $this->parent;
     }
 
-    public function setChild($value) : void
+    public function setChildName($value) : void
     {
         $this->child = $value;
     }
 
-    public function getChild()
+    public function getChildName()
     {
         return $this->child;
     }
 
-
 }
-

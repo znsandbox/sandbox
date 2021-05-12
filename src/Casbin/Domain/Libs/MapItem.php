@@ -121,8 +121,8 @@ class MapItem
             return;
         }
         $inheritanceEntity = new InheritanceEntity();
-        $inheritanceEntity->setParent($parentName);
-        $inheritanceEntity->setChild($childName);
+        $inheritanceEntity->setParentName($parentName);
+        $inheritanceEntity->setChildName($childName);
         $inheritanceEntity->setId(count($this->inheritance) + 1);
         $this->inheritance[$name] = $inheritanceEntity;
     }

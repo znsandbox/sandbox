@@ -50,8 +50,8 @@ class EnforcerFactory
 
     private function createEnforcer(): ManagementEnforcer
     {
-        $modelConfigFile = __DIR__ . "/../../../../../data/casbin/rbac_model.conf";
-        $policyConfigFile = __DIR__ . "/../../../../../data/casbin/rbac_policy.csv";
+//        $modelConfigFile = __DIR__ . "/../../../../../data/casbin/rbac_model.conf";
+//        $policyConfigFile = __DIR__ . "/../../../../../data/casbin/rbac_policy.csv";
         $model = Model::newModel();
         //$model->loadModel($modelConfigFile);
         //$adapter = new FileAdapter($policyConfigFile);
@@ -64,7 +64,7 @@ class EnforcerFactory
     private function configRoleManagerByMap(RoleManagerContract $roleManager, $map)
     {
         foreach ($map as $item) {
-            $roleManager->addLink($item['parent'], $item['child']);
+            $roleManager->addLink($item['parentName'], $item['childName']);
         }
     }
 }
