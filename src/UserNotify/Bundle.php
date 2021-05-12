@@ -26,7 +26,7 @@ class Bundle extends BaseBundle
     public function migration(): array
     {
         return [
-            '/Packages/Notify/Domain/Migrations',
+            '/vendor/znsandbox/sandbox/src/UserNotify/Domain/Migrations',
         ];
     }
 

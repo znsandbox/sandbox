@@ -68,6 +68,9 @@ class TypeEntity implements ValidateEntityByMetadataInterface, EntityIdInterface
         return $this->icon;
     }
 
+    /**
+     * @return Collection|null|TypeI18nEntity[]
+     */
     public function getI18n(): ?Collection
     {
         return $this->i18n;

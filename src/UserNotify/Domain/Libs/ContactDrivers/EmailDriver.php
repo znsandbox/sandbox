@@ -2,6 +2,8 @@
 
 namespace ZnSandbox\Sandbox\UserNotify\Domain\Libs\ContactDrivers;
 
+use ZnBundle\Notify\Domain\Interfaces\Services\EmailServiceInterface;
+use ZnBundle\User\Domain\Interfaces\Services\CredentialServiceInterface;
 use ZnSandbox\Sandbox\UserNotify\Domain\Entities\NotifyEntity;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Libs\ContactDriverInterface;
 use ZnBundle\Person\Domain\Services\ContactService;
@@ -15,26 +17,31 @@ class EmailDriver implements ContactDriverInterface
     const SMS_TYPE_ID = 1;
     const EMAIL_TYPE_ID = 2;
 
-    private $emailRepository;
+    private $emailService;
     private $contactService;
+    private $credentialService;
 
     public function __construct(
-        EmailRepositoryInterface $emailRepository,
+        EmailServiceInterface $emailService,
+        CredentialServiceInterface $credentialService,
         ContactService $contactService
     )
     {
-        $this->emailRepository = $emailRepository;
+        $this->emailService = $emailService;
         $this->contactService = $contactService;
+        $this->credentialService = $credentialService;
     }
 
     public function send(NotifyEntity $notifyEntity)
     {
-        $email = $this->contactService->oneMainContactByUserId($notifyEntity->getRecipientId(), self::EMAIL_TYPE_ID)->getValue();
+        //$email = $this->contactService->oneMainContactByUserId($notifyEntity->getRecipientId(), self::EMAIL_TYPE_ID)->getValue();
+        $credentialEntity = $this->credentialService->oneByIdentityIdAndType($notifyEntity->getRecipientId(), 'email');
+        
         $emailEntity = new EmailEntity();
-        $emailEntity->setFrom(Yii::$app->params['senderEmail']);
-        $emailEntity->setTo($email);
+//        $emailEntity->setFrom(Yii::$app->params['senderEmail']);
+        $emailEntity->setTo($credentialEntity->getCredential());
         $emailEntity->setSubject($notifyEntity->getSubject());
         $emailEntity->setBody($notifyEntity->getContent());
-        $this->emailRepository->send($emailEntity);
+        $this->emailService->push($emailEntity);
     }
 }
