@@ -10,7 +10,7 @@ class m_2021_01_03_123622_create_notify_history_table extends BaseCreateTableMig
 {
 
     protected $tableName = 'notify_history';
-    protected $tableComment = '';
+    protected $tableComment = 'История уведомлений для сайта';
 
     public function tableSchema()
     {

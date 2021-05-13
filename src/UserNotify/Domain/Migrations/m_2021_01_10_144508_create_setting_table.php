@@ -10,7 +10,7 @@ class m_2021_01_10_144508_create_setting_table extends BaseCreateTableMigration
 {
 
     protected $tableName = 'notify_setting';
-    protected $tableComment = '';
+    protected $tableComment = 'Настройки уведомлений пользователя';
 
     public function tableSchema()
     {

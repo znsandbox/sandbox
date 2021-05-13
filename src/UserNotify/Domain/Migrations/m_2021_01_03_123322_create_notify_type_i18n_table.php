@@ -10,16 +10,16 @@ class m_2021_01_03_123322_create_notify_type_i18n_table extends BaseCreateTableM
 {
 
     protected $tableName = 'notify_type_i18n';
-    protected $tableComment = '';
+    protected $tableComment = 'Переводы шаблонов уведомлений';
 
     public function tableSchema()
     {
         return function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->comment('Идентификатор');
-            $table->integer('type_id')->comment('');
-            $table->string('language_code')->comment('');
-            $table->string('subject')->comment('');
-            $table->string('content')->comment('');
+            $table->integer('type_id')->comment('Тип уведомления');
+            $table->string('language_code')->comment('Код языка');
+            $table->string('subject')->comment('Тема');
+            $table->string('content')->comment('Содержание');
 
             $table->unique(['type_id', 'language_code']);
             $table

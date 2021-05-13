@@ -9,7 +9,7 @@ class m_2021_01_03_123122_create_notify_type_table extends BaseCreateTableMigrat
 {
 
     protected $tableName = 'notify_type';
-    protected $tableComment = '';
+    protected $tableComment = 'Шаблоны уведомлений';
 
     public function tableSchema()
     {
