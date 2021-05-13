@@ -2,36 +2,33 @@
 
 namespace ZnSandbox\Sandbox\UserNotify\Domain\Libs\ContactDrivers;
 
+use ZnBundle\Notify\Domain\Entities\SmsEntity;
+use ZnBundle\Notify\Domain\Interfaces\Services\SmsServiceInterface;
+use ZnBundle\User\Domain\Interfaces\Services\CredentialServiceInterface;
 use ZnSandbox\Sandbox\UserNotify\Domain\Entities\NotifyEntity;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Libs\ContactDriverInterface;
-use ZnBundle\Person\Domain\Services\ContactService;
-use ZnBundle\Notify\Domain\Entities\SmsEntity;
-use ZnBundle\Notify\Domain\Interfaces\Repositories\SmsRepositoryInterface;
 
 class PhoneDriver implements ContactDriverInterface
 {
 
-    const SMS_TYPE_ID = 1;
-    const EMAIL_TYPE_ID = 2;
-
-    private $smsRepository;
-    private $contactService;
+    private $smsService;
+    private $credentialService;
 
     public function __construct(
-        SmsRepositoryInterface $smsRepository,
-        ContactService $contactService
+        SmsServiceInterface $smsService,
+        CredentialServiceInterface $credentialService
     )
     {
-        $this->smsRepository = $smsRepository;
-        $this->contactService = $contactService;
+        $this->smsService = $smsService;
+        $this->credentialService = $credentialService;
     }
 
     public function send(NotifyEntity $notifyEntity)
     {
-        $phone = $this->contactService->oneMainContactByUserId($notifyEntity->getRecipientId(), self::SMS_TYPE_ID)->getValue();
+        $credentialEntity = $this->credentialService->oneByIdentityIdAndType($notifyEntity->getRecipientId(), 'phone');
         $smsEntity = new SmsEntity();
-        $smsEntity->setPhone($phone);
+        $smsEntity->setPhone($credentialEntity->getCredential());
         $smsEntity->setMessage($notifyEntity->getSubject());
-        $this->smsRepository->send($smsEntity);
+        $this->smsService->push($smsEntity);
     }
 }

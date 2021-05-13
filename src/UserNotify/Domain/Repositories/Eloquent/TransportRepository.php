@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\UserNotify\Domain\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
@@ -23,10 +24,11 @@ class TransportRepository extends BaseEloquentCrudRepository implements Transpor
         return TransportEntity::class;
     }
 
-    public function allByTypeId(int $typeId): Collection
+    public function allEnabledByTypeId(int $typeId): Collection
     {
         $query = new Query();
         $query->where('type_id', $typeId);
+        $query->where('status_id', StatusEnum::ENABLED);
         $query->with('transport');
         $collectionVia = $this->getEntityManager()->all(TypeTransportEntity::class, $query);
         $array = EntityHelper::getColumn($collectionVia, 'transport');

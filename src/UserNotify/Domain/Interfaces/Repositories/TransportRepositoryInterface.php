@@ -13,5 +13,5 @@ interface TransportRepositoryInterface extends CrudRepositoryInterface
      * @param int $typeId
      * @return Collection|array|TransportEntity[]
      */
-    public function allByTypeId(int $typeId): Collection;
+    public function allEnabledByTypeId(int $typeId): Collection;
 }

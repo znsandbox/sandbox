@@ -53,11 +53,11 @@ class NotifyService implements NotifyServiceInterface, GetEntityClassInterface
         ValidationHelper::validateEntity($notifyEntity);
 //        $typeEntity = $this->typeService->oneByIdWithI18n($notifyEntity->getTypeId());
 //        $notifyEntity->setType($typeEntity);
-        $this->prepareAttributes($notifyEntity);
+        $this->addAttributesFromEnv($notifyEntity);
         $this->transportService->send($notifyEntity);
     }
 
-    private function prepareAttributes(NotifyEntity $notifyEntity)
+    private function addAttributesFromEnv(NotifyEntity $notifyEntity)
     {
         foreach (['api_url', 'web_url', 'admin_url', 'storage_url', 'static_url'] as $name) {
             $upperName = strtoupper($name);
