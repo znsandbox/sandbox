@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\UserNotify\Domain\Libs\ContactDrivers;
 
 use ZnBundle\Notify\Domain\Interfaces\Services\EmailServiceInterface;
 use ZnBundle\User\Domain\Interfaces\Services\CredentialServiceInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnSandbox\Sandbox\UserNotify\Domain\Entities\NotifyEntity;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Libs\ContactDriverInterface;
 use ZnBundle\Person\Domain\Services\ContactService;
@@ -28,11 +29,13 @@ class EmailDriver implements ContactDriverInterface
 
     public function send(NotifyEntity $notifyEntity)
     {
-        $credentialEntity = $this->credentialService->oneByIdentityIdAndType($notifyEntity->getRecipientId(), 'email');
-        $emailEntity = new EmailEntity();
-        $emailEntity->setTo($credentialEntity->getCredential());
-        $emailEntity->setSubject($notifyEntity->getSubject());
-        $emailEntity->setBody($notifyEntity->getContent());
-        $this->emailService->push($emailEntity);
+        try {
+            $credentialEntity = $this->credentialService->oneByIdentityIdAndType($notifyEntity->getRecipientId(), 'email');
+            $emailEntity = new EmailEntity();
+            $emailEntity->setTo($credentialEntity->getCredential());
+            $emailEntity->setSubject($notifyEntity->getSubject());
+            $emailEntity->setBody($notifyEntity->getContent());
+            $this->emailService->push($emailEntity);
+        } catch (NotFoundException $e) {}
     }
 }
