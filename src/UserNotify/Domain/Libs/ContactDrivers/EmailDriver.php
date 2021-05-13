@@ -18,17 +18,17 @@ class EmailDriver implements ContactDriverInterface
     const EMAIL_TYPE_ID = 2;
 
     private $emailService;
-    private $contactService;
+//    private $contactService;
     private $credentialService;
 
     public function __construct(
         EmailServiceInterface $emailService,
-        CredentialServiceInterface $credentialService,
-        ContactService $contactService
+        CredentialServiceInterface $credentialService
+//        ContactService $contactService
     )
     {
         $this->emailService = $emailService;
-        $this->contactService = $contactService;
+//        $this->contactService = $contactService;
         $this->credentialService = $credentialService;
     }
 

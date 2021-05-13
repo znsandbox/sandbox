@@ -37,7 +37,7 @@ class TypeService extends BaseCrudService implements TypeServiceInterface
     {
         $query = new Query();
         $query->where('name', $name);
-        $query->with('transports');
+        $query->with('i18n');
         /** @var TypeEntity $typeEntity */
         $typeEntity = $this->getEntityManager()->one(TypeEntity::class, $query);
         return $typeEntity;
