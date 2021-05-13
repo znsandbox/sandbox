@@ -21,6 +21,8 @@ class TypeEntity implements ValidateEntityByMetadataInterface, EntityIdInterface
 
     private $i18n = null;
 
+    private $transports = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('name', new Assert\NotBlank);
@@ -79,5 +81,18 @@ class TypeEntity implements ValidateEntityByMetadataInterface, EntityIdInterface
     public function setI18n(Collection $i18n): void
     {
         $this->i18n = $i18n;
+    }
+
+    /**
+     * @return Collection|null|TransportEntity
+     */
+    public function getTransports(): ?Collection
+    {
+        return $this->transports;
+    }
+
+    public function setTransports(Collection $transports): void
+    {
+        $this->transports = $transports;
     }
 }

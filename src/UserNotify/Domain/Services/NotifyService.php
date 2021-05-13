@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\UserNotify\Domain\Services;
 
 use ZnSandbox\Sandbox\UserNotify\Domain\Entities\NotifyEntity;
+use ZnSandbox\Sandbox\UserNotify\Domain\Entities\TransportEntity;
 use ZnSandbox\Sandbox\UserNotify\Domain\Entities\TypeEntity;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Libs\ContactDriverInterface;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Services\NotifyServiceInterface;
@@ -102,17 +103,28 @@ class NotifyService implements NotifyServiceInterface, GetEntityClassInterface
 
     private function sendToDrivers2(NotifyEntity $notifyEntity)
     {
+
+        //dd($notifyEntity);
+
         $types = [
             'email',
         ];
         //dd($notifyEntity);
         //$recipientSettings = $this->settingService->allByUserAndType($notifyEntity->getRecipientId(), $notifyEntity->getTypeId());
-        foreach ($types as $name) {
+        foreach ($notifyEntity->getType()->getTransports() as $transportEntity) {
+            /** @var TransportEntity $transportEntity */
             //if ($settingEntity->getIsEnabled()) {
                 //$name = $settingEntity->getContactType()->getName();
-                $this->sendMessage($name, $notifyEntity);
+                $this->sendMessage2($transportEntity->getHandlerClass(), $notifyEntity);
             //}
         }
+    }
+
+    private function sendMessage2(string $driverClass, NotifyEntity $notifyEntity)
+    {
+        /** @var ContactDriverInterface $driverInstance */
+        $driverInstance = ClassHelper::createObject($driverClass);
+        $driverInstance->send($notifyEntity);
     }
 
     private function sendMessage(string $name, NotifyEntity $notifyEntity)
