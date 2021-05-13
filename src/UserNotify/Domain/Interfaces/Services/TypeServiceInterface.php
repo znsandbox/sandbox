@@ -8,7 +8,7 @@ use ZnSandbox\Sandbox\UserNotify\Domain\Entities\TypeEntity;
 interface TypeServiceInterface extends CrudServiceInterface
 {
 
-    public function oneByIdWithI18n(int $id): TypeEntity;
+    //public function oneByIdWithI18n(int $id): TypeEntity;
     public function oneByName(string $name): TypeEntity;
 }
 

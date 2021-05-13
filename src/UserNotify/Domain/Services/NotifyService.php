@@ -39,6 +39,7 @@ class NotifyService implements NotifyServiceInterface, GetEntityClassInterface
     public function sendNotifyByTypeName(string $typeName, int $userId, array $attributes = [])
     {
         $typeEntity = $this->typeService->oneByName($typeName);
+        $this->getEntityManager()->loadEntityRelations($typeEntity, ['i18n']);
         $notifyEntity = $this->getEntityManager()->createEntity(NotifyEntity::class);
 //        $notifyEntity = new NotifyEntity();
         $notifyEntity->setType($typeEntity);
@@ -59,11 +60,19 @@ class NotifyService implements NotifyServiceInterface, GetEntityClassInterface
 
     private function addAttributesFromEnv(NotifyEntity $notifyEntity)
     {
-        foreach (['api_url', 'web_url', 'admin_url', 'storage_url', 'static_url'] as $name) {
+        $envAttributes = [
+            'api_url',
+            'web_url',
+            'admin_url',
+            'storage_url',
+            'static_url',
+        ];
+        foreach ($envAttributes as $name) {
             $upperName = strtoupper($name);
             if (isset($_ENV[$upperName])) {
                 $lowerName = strtolower($name);
-                $notifyEntity->addAttribute('env.' . $lowerName, rtrim($_ENV[$upperName], '/'));
+                $value = rtrim($_ENV[$upperName], '/');
+                $notifyEntity->addAttribute('env.' . $lowerName, $value);
             }
         }
     }
