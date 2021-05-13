@@ -28,8 +28,8 @@ class TypeService extends BaseCrudService implements TypeServiceInterface
         $query->with(['i18n']);
         /** @var TypeEntity $typeEntity */
         $typeEntity = $this->getEntityManager()->oneById(TypeEntity::class, $id, $query);
-        $transportCollection = $this->transportService->allByTypeId($id);
-        $typeEntity->setTransports($transportCollection);
+        //$transportCollection = $this->transportService->allByTypeId($id);
+        //$typeEntity->setTransports($transportCollection);
         return $typeEntity;
     }
 

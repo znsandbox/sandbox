@@ -10,7 +10,7 @@ class m_2021_05_13_055407_create_type_transport_table extends BaseCreateTableMig
 {
 
     protected $tableName = 'notify_type_transport';
-    protected $tableComment = '';
+    protected $tableComment = 'Связка шаблонов и транспорта';
 
     public function tableSchema()
     {

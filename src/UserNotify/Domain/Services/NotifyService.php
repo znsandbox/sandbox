@@ -8,6 +8,7 @@ use ZnSandbox\Sandbox\UserNotify\Domain\Entities\TypeEntity;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Libs\ContactDriverInterface;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Services\NotifyServiceInterface;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Services\SettingServiceInterface;
+use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Services\TransportServiceInterface;
 use ZnSandbox\Sandbox\UserNotify\Domain\Interfaces\Services\TypeServiceInterface;
 use ZnSandbox\Sandbox\UserNotify\Domain\Libs\ContactDrivers\EmailDriver;
 use ZnSandbox\Sandbox\UserNotify\Domain\Libs\ContactDrivers\PhoneDriver;
@@ -27,30 +28,24 @@ class NotifyService implements NotifyServiceInterface, GetEntityClassInterface
     private $settingService;
     private $em;
     private $typeService;
+    private $transportService;
 
     public function __construct(
         EntityManagerInterface $em,
         SettingServiceInterface $settingService,
-        TypeServiceInterface $typeService
+        TypeServiceInterface $typeService,
+        TransportServiceInterface $transportService
     )
     {
         $this->setEntityManager($em);
         $this->settingService = $settingService;
         $this->typeService = $typeService;
+        $this->transportService = $transportService;
     }
 
     public function getEntityClass(): string
     {
         return NotifyEntity::class;
-    }
-
-    public function send2(NotifyEntity $notifyEntity)
-    {
-        ValidationHelper::validateEntity($notifyEntity);
-        $typeEntity = $this->typeService->oneByIdWithI18n($notifyEntity->getTypeId());
-        $notifyEntity->setType($typeEntity);
-        $this->prepareAttributes($notifyEntity);
-        $this->sendToDrivers2($notifyEntity);
     }
 
     public function send(NotifyEntity $notifyEntity)
@@ -81,6 +76,26 @@ class NotifyService implements NotifyServiceInterface, GetEntityClassInterface
         $this->send2($notifyEntity);
     }
 
+    public function send2(NotifyEntity $notifyEntity)
+    {
+        ValidationHelper::validateEntity($notifyEntity);
+        $typeEntity = $this->typeService->oneByIdWithI18n($notifyEntity->getTypeId());
+        $notifyEntity->setType($typeEntity);
+        $this->prepareAttributes($notifyEntity);
+        $this->transportService->send($notifyEntity);
+        //$this->sendToDrivers2($notifyEntity);
+    }
+
+//    private function sendToDrivers2(NotifyEntity $notifyEntity)
+//    {
+//        foreach ($notifyEntity->getType()->getTransports() as $transportEntity) {
+//            /** @var TransportEntity $transportEntity */
+//            /** @var ContactDriverInterface $driverInstance */
+//            $driverInstance = ClassHelper::createObject($transportEntity->getHandlerClass());
+//            $driverInstance->send($notifyEntity);
+//        }
+//    }
+
     public function sendNotify(int $typeId, int $userId, array $attributes = [])
     {
         $notifyEntity = new NotifyEntity();
@@ -99,32 +114,6 @@ class NotifyService implements NotifyServiceInterface, GetEntityClassInterface
                 $this->sendMessage($name, $notifyEntity);
             }
         }
-    }
-
-    private function sendToDrivers2(NotifyEntity $notifyEntity)
-    {
-
-        //dd($notifyEntity);
-
-        $types = [
-            'email',
-        ];
-        //dd($notifyEntity);
-        //$recipientSettings = $this->settingService->allByUserAndType($notifyEntity->getRecipientId(), $notifyEntity->getTypeId());
-        foreach ($notifyEntity->getType()->getTransports() as $transportEntity) {
-            /** @var TransportEntity $transportEntity */
-            //if ($settingEntity->getIsEnabled()) {
-                //$name = $settingEntity->getContactType()->getName();
-                $this->sendMessage2($transportEntity->getHandlerClass(), $notifyEntity);
-            //}
-        }
-    }
-
-    private function sendMessage2(string $driverClass, NotifyEntity $notifyEntity)
-    {
-        /** @var ContactDriverInterface $driverInstance */
-        $driverInstance = ClassHelper::createObject($driverClass);
-        $driverInstance->send($notifyEntity);
     }
 
     private function sendMessage(string $name, NotifyEntity $notifyEntity)
