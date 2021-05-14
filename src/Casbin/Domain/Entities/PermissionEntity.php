@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Casbin\Domain\Entities;
 
-class RoleEntity extends ItemEntity
+class PermissionEntity extends ItemEntity
 {
 
 }

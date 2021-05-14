@@ -19,7 +19,4 @@ class ItemService extends BaseCrudService implements ItemServiceInterface
     {
         return ItemEntity::class;
     }
-
-
 }
-

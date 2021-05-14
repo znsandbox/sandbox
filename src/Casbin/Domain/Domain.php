@@ -11,5 +11,7 @@ class Domain implements DomainInterface
     {
         return 'rbac';
     }
-    
+
+
 }
+

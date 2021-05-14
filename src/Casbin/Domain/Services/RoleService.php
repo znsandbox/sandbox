@@ -19,7 +19,5 @@ class RoleService extends BaseCrudService implements RoleServiceInterface
     {
         return RoleEntity::class;
     }
-
-
 }
 
