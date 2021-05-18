@@ -12,11 +12,14 @@ return [
 		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\ItemRepositoryInterface' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Repositories\\Eloquent\\ItemRepository',
 		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Services\\PermissionServiceInterface' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Services\\PermissionService',
 		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\PermissionRepositoryInterface' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Repositories\\Eloquent\\PermissionRepository',
+		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Services\\AssignmentServiceInterface' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Services\\AssignmentService',
+		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\AssignmentRepositoryInterface' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Repositories\\Eloquent\\AssignmentRepository',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Entities\\RoleEntity' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\RoleRepositoryInterface',
 		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Entities\\InheritanceEntity' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\InheritanceRepositoryInterface',
 		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Entities\\ItemEntity' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\ItemRepositoryInterface',
 		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Entities\\PermissionEntity' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\PermissionRepositoryInterface',
+		'ZnSandbox\\Sandbox\\Casbin\\Domain\\Entities\\AssignmentEntity' => 'ZnSandbox\\Sandbox\\Casbin\\Domain\\Interfaces\\Repositories\\AssignmentRepositoryInterface',
 	],
 ];
