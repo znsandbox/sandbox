@@ -9,6 +9,7 @@ use ZnCore\Domain\Interfaces\DomainInterface;
 use ZnSandbox\Sandbox\Casbin\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Casbin\Domain\Entities\ItemEntity;
 use ZnSandbox\Sandbox\Casbin\Domain\Enums\ItemTypeEnum;
+use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\InheritanceMapInterface;
 
 class MapItem
 {
@@ -21,7 +22,7 @@ class MapItem
     /** @var Collection */
     private $inheritance;
 
-    public function __construct(AuthItem $authItem)
+    public function __construct(InheritanceMapInterface $authItem)
     {
         $this->authItem = $authItem;
     }
