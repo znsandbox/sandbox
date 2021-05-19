@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Casbin\Domain\Services;
 
 use Casbin\ManagementEnforcer;
+use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Exceptions\ForbiddenException;
 use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Repositories\ManagerRepositoryInterface;
@@ -16,6 +17,9 @@ class ManagerService implements ManagerServiceInterface
     private $enforcer;
     private $authService;
     private $assignmentService;
+    private $defaultRoles = [
+        //'rGuest',
+    ];
 
     public function __construct(
         ManagerRepositoryInterface $managerRepository,
@@ -28,11 +32,29 @@ class ManagerService implements ManagerServiceInterface
         $this->assignmentService = $assignmentService;
     }
 
+    public function getDefaultRoles(): array
+    {
+        return $this->defaultRoles;
+    }
+
+    public function setDefaultRoles(array $defaultRoles): void
+    {
+        $this->defaultRoles = $defaultRoles;
+    }
+
     public function checkMyAccess(array $permissionNames): void
     {
-        $identityEntity = $this->authService->getIdentity();
-        $roleNames = $this->assignmentService->getRolesByIdentityId($identityEntity->getId());
-        $this->checkAccess($roleNames, $permissionNames);
+        try {
+            $identityEntity = $this->authService->getIdentity();
+            $roleNames = $this->assignmentService->getRolesByIdentityId($identityEntity->getId());
+            $this->checkAccess($roleNames, $permissionNames);
+        } catch (UnauthorizedException $e) {
+            $roleNames = $this->getDefaultRoles();
+            $isCan = $this->isCanByRoleNames($roleNames, $permissionNames);
+            if (!$isCan) {
+                throw new UnauthorizedException();
+            }
+        }
     }
 
     public function checkAccess(array $roleNames, array $permissionNames): void
