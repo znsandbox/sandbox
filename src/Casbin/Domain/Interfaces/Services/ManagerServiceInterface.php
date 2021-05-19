@@ -8,6 +8,13 @@ interface ManagerServiceInterface
 {
 
     /**
+     * Проверка полномочий текущего пользователя
+     * @param array $permissionNames
+     * @throws ForbiddenException
+     */
+    public function checkMyAccess(array $permissionNames): void;
+    
+    /**
      * Проверка полномочий
      * @param array $roleNames Роли пользователя
      * @param array $permissionNames Полномочия
