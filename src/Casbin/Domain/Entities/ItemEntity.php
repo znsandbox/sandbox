@@ -11,23 +11,23 @@ use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 class ItemEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
 {
 
-    private $id = null;
+    protected $id = null;
 
-    private $type = null;
+    protected $type = null;
 
-    private $name = null;
+    protected $name = null;
 
-    private $title = null;
+    protected $title = null;
 
-    private $description = null;
+    protected $description = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
+//        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('type', new Assert\NotBlank);
         $metadata->addPropertyConstraint('name', new Assert\NotBlank);
         $metadata->addPropertyConstraint('title', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('description', new Assert\NotBlank);
+//        $metadata->addPropertyConstraint('description', new Assert\NotBlank);
     }
 
     public function unique() : array
