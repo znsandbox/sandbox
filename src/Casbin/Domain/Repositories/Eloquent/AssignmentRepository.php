@@ -11,20 +11,20 @@ use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Repositories\AssignmentRepository
 class AssignmentRepository extends BaseEloquentCrudRepository implements AssignmentRepositoryInterface
 {
 
-    public function tableName() : string
+    public function tableName(): string
     {
         return 'rbac_assignment';
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return AssignmentEntity::class;
     }
 
-    public function allByIdentityId(int $identityId): Collection {
+    public function allByIdentityId(int $identityId): Collection
+    {
         $query = new Query();
         $query->where('identity_id', $identityId);
         return $this->all($query);
     }
 }
-
