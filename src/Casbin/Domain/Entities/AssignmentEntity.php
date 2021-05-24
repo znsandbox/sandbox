@@ -19,6 +19,8 @@ class AssignmentEntity implements ValidateEntityByMetadataInterface, UniqueInter
 
     private $statusId = null;
 
+    private $item = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\NotBlank);
@@ -72,6 +74,14 @@ class AssignmentEntity implements ValidateEntityByMetadataInterface, UniqueInter
         return $this->statusId;
     }
 
+    public function getItem(): ?ItemEntity
+    {
+        return $this->item;
+    }
+
+    public function setItem(ItemEntity $item): void
+    {
+        $this->item = $item;
+    }
 
 }
-
