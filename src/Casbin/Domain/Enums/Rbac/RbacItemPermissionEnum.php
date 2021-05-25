@@ -2,8 +2,17 @@
 
 namespace ZnSandbox\Sandbox\Casbin\Domain\Enums\Rbac;
 
+use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Interfaces\GetLabelsInterface;
 
+DeprecateHelper::softThrow();
+
+/**
+ * Class RbacItemPermissionEnum
+ * @package ZnSandbox\Sandbox\Casbin\Domain\Enums\Rbac
+ * @deprecated
+ * @see RbacItemEnum
+ */
 class RbacItemPermissionEnum implements GetLabelsInterface
 {
 

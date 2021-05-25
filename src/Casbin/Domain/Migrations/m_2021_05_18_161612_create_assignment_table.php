@@ -20,6 +20,7 @@ class m_2021_05_18_161612_create_assignment_table extends BaseCreateTableMigrati
             $table->string('item_name')->comment('Имя роли или полномочия');
             $table->smallInteger('status_id')->default(100)->comment('Статус');
 
+            $table->unique(['identity_id', 'item_name']);
             $table
                 ->foreign('item_name')
                 ->references('name')

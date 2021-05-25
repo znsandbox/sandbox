@@ -3,11 +3,17 @@
 namespace ZnSandbox\Sandbox\Casbin\Domain\Services;
 
 use Illuminate\Support\Collection;
+use ZnBundle\User\Domain\Interfaces\Entities\IdentityEntityInterface;
+use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Base\Exceptions\AlreadyExistsException;
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Casbin\Domain\Entities\AssignmentEntity;
+use ZnSandbox\Sandbox\Casbin\Domain\Entities\ItemEntity;
 use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Repositories\AssignmentRepositoryInterface;
 use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Services\AssignmentServiceInterface;
 
@@ -37,5 +43,48 @@ class AssignmentService extends BaseCrudService implements AssignmentServiceInte
     {
         $collection = $this->getRepository()->allByIdentityId($identityId, $query);
         return $collection;
+    }
+
+    public function attach(AssignmentEntity $assignmentEntity) {
+        $this->checkExists($assignmentEntity);
+        $this->validate($assignmentEntity);
+        $this->getEntityManager()->persist($assignmentEntity);
+    }
+
+    public function detach(AssignmentEntity $assignmentEntity) {
+        $this->validate($assignmentEntity);
+        $this->getEntityManager()->remove($assignmentEntity);
+    }
+
+    private function checkExists(AssignmentEntity $assignmentEntity) {
+        $assignmentQuery = new Query();
+        $assignmentQuery->where('item_name', $assignmentEntity->getItemName());
+        $assignmentQuery->where('identity_id', $assignmentEntity->getIdentityId());
+        try {
+            $assignmentEntity = $this->getEntityManager()->one(AssignmentEntity::class, $assignmentQuery);
+            throw new AlreadyExistsException('Assignment already exists');
+        } catch (NotFoundException $e) {}
+    }
+
+    private function validate(AssignmentEntity $assignmentEntity) {
+        $unprocessibleEntityException = new UnprocessibleEntityException();
+
+        try {
+            $identityEntity = $this->getEntityManager()->oneById(IdentityEntityInterface::class, $assignmentEntity->getIdentityId());
+        } catch (NotFoundException $e) {
+            $unprocessibleEntityException->add('identityId', 'User not found');
+        }
+
+        $itemQuery = new Query();
+        $itemQuery->where('name', $assignmentEntity->getItemName());
+        try {
+            $itemEntity = $this->getEntityManager()->one(ItemEntity::class, $itemQuery);
+        } catch (NotFoundException $e) {
+            $unprocessibleEntityException->add('itemName', 'Item not found');
+        }
+
+        if($unprocessibleEntityException->getErrorCollection() && $unprocessibleEntityException->getErrorCollection()->count() > 0) {
+            throw $unprocessibleEntityException;
+        }
     }
 }

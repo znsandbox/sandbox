@@ -1,10 +1,10 @@
 <?php
 
-use ZnSandbox\Sandbox\Casbin\Domain\Enums\Rbac\RbacItemPermissionEnum;
+use ZnSandbox\Sandbox\Casbin\Domain\Enums\Rbac\RbacItemEnum;
 use ZnSandbox\Sandbox\Casbin\Rpc\Controllers\RoleController;
 
 return [
-    [
+   /* [
         'method_name' => 'rbacItem.all',
         'version' => '1',
         'is_verify_eds' => false,
@@ -12,6 +12,27 @@ return [
         'permission_name' => 'oRbacItemAll',
         'handler_class' => 'ZnSandbox\Sandbox\Casbin\Rpc\Controllers\ItemController',
         'handler_method' => 'all',
+        'status_id' => 100,
+    ],*/
+
+    [
+        'method_name' => 'rbacAssignment.attach',
+        'version' => '1',
+        'is_verify_eds' => false,
+        'is_verify_auth' => false,
+        'permission_name' => \ZnSandbox\Sandbox\Casbin\Domain\Enums\Rbac\RbacAssignmentEnum::ATTACH,
+        'handler_class' => \ZnSandbox\Sandbox\Casbin\Rpc\Controllers\AssignmentController::class,
+        'handler_method' => 'attach',
+        'status_id' => 100,
+    ],
+    [
+        'method_name' => 'rbacAssignment.detach',
+        'version' => '1',
+        'is_verify_eds' => false,
+        'is_verify_auth' => false,
+        'permission_name' => \ZnSandbox\Sandbox\Casbin\Domain\Enums\Rbac\RbacAssignmentEnum::DETACH,
+        'handler_class' => \ZnSandbox\Sandbox\Casbin\Rpc\Controllers\AssignmentController::class,
+        'handler_method' => 'detach',
         'status_id' => 100,
     ],
 
@@ -22,7 +43,7 @@ return [
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
-        'permission_name' => RbacItemPermissionEnum::ALL,
+        'permission_name' => RbacItemEnum::ALL,
         'handler_class' => RoleController::class,
         'handler_method' => 'all',
         'status_id' => 100,

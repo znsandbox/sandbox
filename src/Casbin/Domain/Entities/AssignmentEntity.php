@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Casbin\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -17,13 +18,12 @@ class AssignmentEntity implements ValidateEntityByMetadataInterface, UniqueInter
 
     private $itemName = null;
 
-    private $statusId = null;
+    private $statusId = StatusEnum::ENABLED;
 
     private $item = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('identityId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('itemName', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
@@ -31,7 +31,9 @@ class AssignmentEntity implements ValidateEntityByMetadataInterface, UniqueInter
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['identityId', 'itemName'],
+        ];
     }
 
     public function setId($value) : void
@@ -64,12 +66,12 @@ class AssignmentEntity implements ValidateEntityByMetadataInterface, UniqueInter
         return $this->itemName;
     }
 
-    public function setStatusId($value) : void
+    public function setStatusId(int $value) : void
     {
         $this->statusId = $value;
     }
 
-    public function getStatusId()
+    public function getStatusId(): int
     {
         return $this->statusId;
     }
