@@ -46,7 +46,6 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
 
     private function prepareEntity(MenuEntity $menuEntity, string $route)
     {
-
         if ($menuEntity->getWidget()) {
             /** @var MenuInterface $widgetInstance */
             $widgetInstance = ClassHelper::createObject($menuEntity->getWidget());
@@ -63,7 +62,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         }
 
         if ($menuEntity->getRoute()) {
-            if ($menuEntity->getLabel() === null) {
+            if ($menuEntity->getLabel() === null && $menuEntity->getLabelTranslate() == null) {
                 $this->prepareLabelForRoute($menuEntity);
             }
             if($menuEntity->getActive() === null) {
