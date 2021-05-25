@@ -48,7 +48,7 @@ return [
 
 
     [
-        'method_name' => 'role.all',
+        'method_name' => 'rbacRole.all',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -58,7 +58,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'role.oneById',
+        'method_name' => 'rbacRole.oneById',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -68,7 +68,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'role.create',
+        'method_name' => 'rbacRole.create',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -78,7 +78,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'role.update',
+        'method_name' => 'rbacRole.update',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -88,7 +88,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'role.delete',
+        'method_name' => 'rbacRole.delete',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -101,7 +101,7 @@ return [
     // permission
 
     [
-        'method_name' => 'permission.all',
+        'method_name' => 'rbacPermission.all',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -111,7 +111,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'permission.oneById',
+        'method_name' => 'rbacPermission.oneById',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -121,7 +121,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'permission.create',
+        'method_name' => 'rbacPermission.create',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -131,7 +131,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'permission.update',
+        'method_name' => 'rbacPermission.update',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
@@ -141,7 +141,7 @@ return [
         'status_id' => 100,
     ],
     [
-        'method_name' => 'permission.delete',
+        'method_name' => 'rbacPermission.delete',
         'version' => '1',
         'is_verify_eds' => false,
         'is_verify_auth' => true,
