@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Casbin\Rpc\Controllers;
 
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnSandbox\Sandbox\Casbin\Domain\Entities\AssignmentEntity;
@@ -32,6 +33,15 @@ class AssignmentController
         $assignmentEntity->setItemName($requestEntity->getParamItem('itemName'));
         $this->service->detach($assignmentEntity);
         $response = new RpcResponseEntity();
+        return $response;
+    }
+
+    public function allRoles(RpcRequestEntity $requestEntity): RpcResponseEntity
+    {
+        $collection = $this->service->allByIdentityId($requestEntity->getParamItem('identityId'));
+        $resultArray = EntityHelper::collectionToArray($collection);
+        $response = new RpcResponseEntity();
+        $response->setResult($resultArray);
         return $response;
     }
 }
