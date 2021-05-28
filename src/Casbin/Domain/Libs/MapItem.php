@@ -2,10 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Casbin\Domain\Libs;
 
-use App\Common\FixtureGenerators\AuthItem;
 use Illuminate\Support\Collection;
 use ZnCore\Base\Helpers\EnumHelper;
-use ZnCore\Domain\Interfaces\DomainInterface;
 use ZnSandbox\Sandbox\Casbin\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Casbin\Domain\Entities\ItemEntity;
 use ZnSandbox\Sandbox\Casbin\Domain\Enums\ItemTypeEnum;
@@ -82,7 +80,7 @@ class MapItem
     {
         $itemEntity = new ItemEntity();
         $type = $name[0] == 'o' ? ItemTypeEnum::PERMISSION : ItemTypeEnum::ROLE;
-        if($type == ItemTypeEnum::PERMISSION) {
+        if ($type == ItemTypeEnum::PERMISSION) {
             $this->addPermission($name, $description);
         } elseif ($type == ItemTypeEnum::ROLE) {
             $this->addRole($name, $description);
@@ -91,7 +89,7 @@ class MapItem
 
     protected function addRole(string $name, string $description = null)
     {
-        if(isset($this->items[$name])) {
+        if (isset($this->items[$name])) {
             return;
         }
         $itemEntity = new ItemEntity();
@@ -104,7 +102,7 @@ class MapItem
 
     protected function addPermission(string $name, string $description = null)
     {
-        if(isset($this->items[$name])) {
+        if (isset($this->items[$name])) {
             return;
         }
         $itemEntity = new ItemEntity();
@@ -118,7 +116,7 @@ class MapItem
     protected function addChild(string $parentName, string $childName)
     {
         $name = $parentName . ',' . $childName;
-        if(isset($this->inheritance[$name])) {
+        if (isset($this->inheritance[$name])) {
             return;
         }
         $inheritanceEntity = new InheritanceEntity();
