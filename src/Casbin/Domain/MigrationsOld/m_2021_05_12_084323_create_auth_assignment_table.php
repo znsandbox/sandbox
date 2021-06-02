@@ -23,7 +23,10 @@ class m_2021_05_12_084323_create_auth_assignment_table extends BaseCreateTableMi
             $table->unique(['item_name', 'user_id']);
             $table->index('user_id');
 
-            $table
+            $this->addForeign($table, 'item_name', 'rbac_item', 'name');
+            $this->addForeign($table, 'user_id', 'user_identity');
+
+            /*$table
                 ->foreign('item_name')
                 ->references('name')
                 ->on($this->encodeTableName('rbac_item'))
@@ -34,7 +37,7 @@ class m_2021_05_12_084323_create_auth_assignment_table extends BaseCreateTableMi
                 ->references('id')
                 ->on($this->encodeTableName('user_identity'))
                 ->onDelete(ForeignActionEnum::CASCADE)
-                ->onUpdate(ForeignActionEnum::CASCADE);
+                ->onUpdate(ForeignActionEnum::CASCADE);*/
         };
     }
 

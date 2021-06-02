@@ -22,7 +22,11 @@ class m_2021_01_03_123322_create_notify_type_i18n_table extends BaseCreateTableM
             $table->string('content')->comment('Содержание');
 
             $table->unique(['type_id', 'language_code']);
-            $table
+
+            $this->addForeign($table, 'language_code', 'language', 'code');
+            $this->addForeign($table, 'type_id', 'notify_type');
+
+            /*$table
                 ->foreign('language_code')
                 ->references('code')
                 ->on($this->encodeTableName('language'))
@@ -33,7 +37,7 @@ class m_2021_01_03_123322_create_notify_type_i18n_table extends BaseCreateTableM
                 ->references('id')
                 ->on($this->encodeTableName('notify_type'))
                 ->onDelete(ForeignActionEnum::CASCADE)
-                ->onUpdate(ForeignActionEnum::CASCADE);
+                ->onUpdate(ForeignActionEnum::CASCADE);*/
         };
     }
 }

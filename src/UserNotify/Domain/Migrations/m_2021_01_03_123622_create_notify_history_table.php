@@ -34,7 +34,10 @@ class m_2021_01_03_123622_create_notify_history_table extends BaseCreateTableMig
             $table->integer('status_id')->comment('Статус');
             $table->dateTime('created_at')->comment('Время создания');
 
-            $table
+            $this->addForeign($table, 'recipient_id', 'user_identity');
+            $this->addForeign($table, 'type_id', 'notify_type');
+
+            /*$table
                 ->foreign('recipient_id')
                 ->references('id')
                 ->on($this->encodeTableName('user_identity'))
@@ -45,7 +48,7 @@ class m_2021_01_03_123622_create_notify_history_table extends BaseCreateTableMig
                 ->references('id')
                 ->on($this->encodeTableName('notify_type'))
                 ->onDelete(ForeignActionEnum::CASCADE)
-                ->onUpdate(ForeignActionEnum::CASCADE);
+                ->onUpdate(ForeignActionEnum::CASCADE);*/
         };
     }
 }

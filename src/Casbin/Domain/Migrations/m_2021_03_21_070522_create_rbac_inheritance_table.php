@@ -20,7 +20,11 @@ class m_2021_03_21_070522_create_rbac_inheritance_table extends BaseCreateTableM
             $table->string('child_name')->comment('Ребенок');
 
             $table->unique(['parent_name', 'child_name']);
-            $table
+
+            $this->addForeign($table, 'parent_name', 'rbac_item', 'name');
+            $this->addForeign($table, 'child_name', 'rbac_item', 'name');
+
+            /*$table
                 ->foreign('parent_name')
                 ->references('name')
                 ->on($this->encodeTableName('rbac_item'))
@@ -31,7 +35,7 @@ class m_2021_03_21_070522_create_rbac_inheritance_table extends BaseCreateTableM
                 ->references('name')
                 ->on($this->encodeTableName('rbac_item'))
                 ->onDelete(ForeignActionEnum::CASCADE)
-                ->onUpdate(ForeignActionEnum::CASCADE);
+                ->onUpdate(ForeignActionEnum::CASCADE);*/
         };
     }
 }

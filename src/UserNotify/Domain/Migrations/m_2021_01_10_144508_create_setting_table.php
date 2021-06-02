@@ -22,7 +22,12 @@ class m_2021_01_10_144508_create_setting_table extends BaseCreateTableMigration
             $table->boolean('is_enabled')->comment('Включена ли отправка уведомлений');
 
             $table->unique(['user_id', 'notify_type_id', 'contact_type_id']);
-            $table
+
+            $this->addForeign($table, 'user_id', 'user_identity');
+            $this->addForeign($table, 'notify_type_id', 'notify_type');
+            $this->addForeign($table, 'contact_type_id', 'person_contact_type');
+
+            /*$table
                 ->foreign('user_id')
                 ->references('id')
                 ->on($this->encodeTableName('user_identity'))
@@ -39,7 +44,7 @@ class m_2021_01_10_144508_create_setting_table extends BaseCreateTableMigration
                 ->references('id')
                 ->on($this->encodeTableName('person_contact_type'))
                 ->onDelete(ForeignActionEnum::CASCADE)
-                ->onUpdate(ForeignActionEnum::CASCADE);
+                ->onUpdate(ForeignActionEnum::CASCADE);*/
         };
     }
 }
