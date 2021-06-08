@@ -3,9 +3,6 @@
 namespace ZnSandbox\Sandbox\Layout\Domain\Services;
 
 use Illuminate\Support\Collection;
-use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;
-use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Repositories\MenuRepositoryInterface;
-use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Services\MenuServiceInterface;
 use Yii;
 use yii\helpers\Url;
 use ZnCore\Base\Helpers\ClassHelper;
@@ -16,6 +13,9 @@ use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Web\Widgets\Interfaces\MenuInterface;
+use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;
+use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Repositories\MenuRepositoryInterface;
+use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Services\MenuServiceInterface;
 
 class MenuService extends BaseCrudService implements MenuServiceInterface
 {
@@ -33,18 +33,24 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
 
     public function all(Query $query = null)
     {
-        $action = Yii::$app->requestedAction;
-        $route = $action->controller->module->id . '/' . $action->controller->id;
+
 
         /** @var MenuEntity[] $collection */
         $collection = parent::all($query);
         foreach ($collection as $menuEntity) {
-            $this->prepareEntity($menuEntity, $route);
+            $this->prepareEntity($menuEntity);
         }
         return $collection;
     }
 
-    private function prepareEntity(MenuEntity $menuEntity, string $route)
+    private function getRoute(): string
+    {
+        $action = Yii::$app->requestedAction;
+        $route = $action->controller->module->id . '/' . $action->controller->id;
+        return $route;
+    }
+
+    private function prepareEntity(MenuEntity $menuEntity)
     {
         if ($menuEntity->getWidget()) {
             /** @var MenuInterface $widgetInstance */
@@ -54,7 +60,11 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         }
 
         if ($menuEntity->getModule()) {
-            $isVisible = array_key_exists($menuEntity->getModule(), Yii::$app->modules);
+            if(class_exists(Yii::class)) {
+                $isVisible = array_key_exists($menuEntity->getModule(), Yii::$app->modules);
+            } else {
+                $isVisible = true;
+            }
             $menuEntity->setVisible($isVisible);
             if (!$isVisible) {
                 return;
@@ -65,8 +75,8 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
             if ($menuEntity->getLabel() === null && $menuEntity->getLabelTranslate() == null) {
                 $this->prepareLabelForRoute($menuEntity);
             }
-            if($menuEntity->getActive() === null) {
-                $menuEntity->setActive($route == $menuEntity->getRoute());
+            if ($menuEntity->getActive() === null) {
+                $menuEntity->setActive($this->getRoute() == $menuEntity->getRoute());
             }
             if ($menuEntity->getUrl() === null) {
                 $menuEntity->setUrl(Url::to(['/' . $menuEntity->getRoute()]));
@@ -79,7 +89,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
             $this->prepareLabelForTranslate($menuEntity);
         }
         if ($menuEntity->getActiveRoutes()) {
-            $active = in_array($route, $menuEntity->getActiveRoutes());
+            $active = in_array($this->getRoute(), $menuEntity->getActiveRoutes());
             $menuEntity->setActive($active);
         }
         if ($menuEntity->getUrl() == null) {
@@ -120,9 +130,13 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
     {
         $menuEntity->setVisible(false);
         foreach ($menuEntity->getAccess() as $accessItem) {
-            if (Yii::$app->authManager->checkAccess(Yii::$app->user->id, $accessItem)) {
+            if(class_exists(Yii::class)) {
+                if (Yii::$app->authManager->checkAccess(Yii::$app->user->id, $accessItem)) {
+                    $menuEntity->setVisible(true);
+                    break;
+                }
+            } else {
                 $menuEntity->setVisible(true);
-                break;
             }
         }
     }
