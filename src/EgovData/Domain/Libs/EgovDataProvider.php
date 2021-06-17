@@ -2,9 +2,8 @@
 
 namespace ZnSandbox\Sandbox\EgovData\Domain\Libs;
 
-use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Collection;
-use Psr\Http\Message\ResponseInterface;
+use ZnCore\Domain\Entities\Query\Where;
 use ZnCore\Domain\Libs\Query;
 
 class EgovDataProvider
@@ -24,14 +23,29 @@ class EgovDataProvider
 
     public function all(Query $query): Collection
     {
+        $params = $this->forgeParamsFromQuery($query);
+        $data = $this->client->request('api/' . $this->apiVersion . '/' . $this->datasetName . '/' . $this->datasetVersion, $params);
+        return new Collection($data);
+    }
+
+    protected function forgeParamsFromQuery(Query $query): array
+    {
         $params = [];
-        if($query->getParam(Query::PAGE)) {
+        if ($query->getParam(Query::PAGE)) {
             $params['from'] = $query->getParam(Query::PAGE);
         }
-        if($query->getParam(Query::PER_PAGE)) {
+        if ($query->getParam(Query::PER_PAGE)) {
             $params['size'] = $query->getParam(Query::PER_PAGE);
         }
-        $data = $this->client->request('api/'.$this->apiVersion.'/'.$this->datasetName.'/' . $this->datasetVersion, $params);
-        return new Collection($data);
+        if ($query->getParam(Query::WHERE_NEW)) {
+            /** @var Where[] $whereList */
+            $whereList = $query->getParam(Query::WHERE_NEW);
+            foreach ($whereList as $where) {
+                $params['query']['bool']['must'][] = [
+                    'match' => [$where->column => $where->value],
+                ];
+            }
+        }
+        return $params;
     }
 }

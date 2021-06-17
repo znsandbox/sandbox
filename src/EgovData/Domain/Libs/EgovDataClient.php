@@ -20,13 +20,22 @@ class EgovDataClient
         $client = $this->getClient();
         $options = $this->createOptions($params);
         $response = $client->get($uri, $options);
+
         return $this->extractBodyFromResponse($response);
     }
 
-    private function createOptions(array $params = []): array {
+    private function createOptions(array $params = []): array
+    {
         $options = [];
-        $options['query']['apiKey'] = $this->apiKey;
-        $options['query']['source'] = json_encode($params);
+
+        $query['apiKey'] = $this->apiKey;
+        $query['source'] = json_encode($params, JSON_UNESCAPED_UNICODE);
+
+        //$query = http_build_query($query);
+        //$query = urldecode($query);
+        //dd($query);
+
+        $options['query'] = $query;
         return $options;
     }
 
