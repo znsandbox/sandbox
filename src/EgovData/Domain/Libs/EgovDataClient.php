@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\EgovData\Domain\Libs;
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
 
-class Client
+class EgovDataClient
 {
 
     private $apiKey;
