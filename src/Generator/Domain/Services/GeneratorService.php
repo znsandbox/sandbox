@@ -3,61 +3,40 @@
 namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
 use App\Modules\Example\Controllers\ExampleEntity;
-use Illuminate\Database\Connection;
-use Illuminate\Database\Schema\Builder as SchemaBuilder;
-use ZnCore\Base\Libs\App\Base\BaseBundle;
-use ZnCore\Domain\Helpers\EntityHelper;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnLib\Db\Capsule\Manager;
-use ZnLib\Fixture\Domain\Entities\FixtureEntity;
-use ZnLib\Fixture\Domain\Repositories\DbRepository;
+use Illuminate\Support\Collection;
+use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
+use ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent\SchemaRepository;
 
 class GeneratorService
 {
 
-    private $dbRepository;
-    private $capsule;
+    private $schemaRepository;
 
-    public function __construct(Manager $capsule, DbRepository $dbRepository)
+    public function __construct(SchemaRepository $schemaRepository)
     {
-        $this->capsule = $capsule;
-        $this->dbRepository = $dbRepository;
+        $this->schemaRepository = $schemaRepository;
     }
 
-    public function connectionName()
+    public function allTables()
     {
-        return 'default';
-        //return $this->capsule->getConnectionNameByTableName($this->tableName());
+        return $this->schemaRepository->allTables();
     }
 
-    public function getConnection(): Connection
+    /**
+     * @param $tableList
+     * @return Collection | TableEntity[]
+     */
+    public function getStructure(array $tableList): Collection
     {
-        $connection = $this->capsule->getConnection($this->connectionName());
-        return $connection;
-    }
-
-    protected function getSchema(): SchemaBuilder
-    {
-        $connection = $this->getConnection();
-        $schema = $connection->getSchemaBuilder();
-        return $schema;
-    }
-
-    public function allTables() {
-        $tableCollection = $this->dbRepository->allTables();
-        return EntityHelper::getColumn($tableCollection, 'name');
-    }
-
-    public function getStructure($tableList) {
-        $schema = $this->getSchema();
-        $structure = [];
+        $tableCollection = new Collection();
         foreach ($tableList as $tableName) {
-            $columnList = $schema->getColumnListing($tableName);
-            foreach ($columnList as $columnName) {
-                $columnType = $schema->getColumnType($tableName, $columnName);
-                $structure[$tableName][$columnName] = $columnType;
-            }
+            $columnCollection = $this->schemaRepository->getColumnsByTable($tableName);
+            $tableEntity = new TableEntity();
+            $tableEntity->setConnectionName('default');
+            $tableEntity->setName($tableName);
+            $tableEntity->setColumns($columnCollection);
+            $tableCollection->add($tableEntity);
         }
-        return $structure;
+        return $tableCollection;
     }
 }
