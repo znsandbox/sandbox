@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
 use App\Modules\Example\Controllers\ExampleEntity;
 use Illuminate\Support\Collection;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent\SchemaRepository;
 
@@ -19,7 +20,8 @@ class GeneratorService
 
     public function allTables()
     {
-        return $this->schemaRepository->allTables();
+        $tableCollection = $this->schemaRepository->allTables();
+        return EntityHelper::getColumn($tableCollection, 'name');
     }
 
     /**
@@ -28,7 +30,10 @@ class GeneratorService
      */
     public function getStructure(array $tableList): Collection
     {
-        $tableCollection = new Collection();
+        $tableCollection = $this->schemaRepository->allTablesByName($tableList);
+        return $tableCollection;
+
+        /*$tableCollection = new Collection();
         foreach ($tableList as $tableName) {
             $columnCollection = $this->schemaRepository->getColumnsByTable($tableName);
             $tableEntity = new TableEntity();
@@ -37,6 +42,6 @@ class GeneratorService
             $tableEntity->setColumns($columnCollection);
             $tableCollection->add($tableEntity);
         }
-        return $tableCollection;
+        return $tableCollection;*/
     }
 }

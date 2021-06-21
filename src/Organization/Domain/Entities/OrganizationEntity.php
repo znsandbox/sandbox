@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Organization\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -19,13 +20,13 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
 
     private $cityId = null;
 
-    private $statusId = null;
+    private $statusId = StatusEnum::ENABLED;
 
     private $type = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
+        //$metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('title', new Assert\NotBlank);
         $metadata->addPropertyConstraint('typeId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);

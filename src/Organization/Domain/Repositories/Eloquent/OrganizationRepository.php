@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Repositories\Eloquent;
 
-use Packages\Library\Domain\Interfaces\Repositories\OrganizationTypeRepositoryInterface;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
@@ -12,12 +11,12 @@ use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\TypeRepository
 class OrganizationRepository extends BaseEloquentCrudRepository implements OrganizationRepositoryInterface
 {
 
-    public function tableName() : string
+    public function tableName(): string
     {
         return 'organization_organization';
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return OrganizationEntity::class;
     }

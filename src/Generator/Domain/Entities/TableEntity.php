@@ -9,8 +9,10 @@ class TableEntity
 {
 
     private $name;
-    private $connectionName;
+    private $schemaName;
+    private $dbName;
     private $columns;
+    private $relations;
 
     public function getName(): string
     {
@@ -22,14 +24,24 @@ class TableEntity
         $this->name = $name;
     }
 
-    public function getConnectionName(): string
+    public function getSchemaName()
     {
-        return $this->connectionName;
+        return $this->schemaName;
     }
 
-    public function setConnectionName(string $connectionName): void
+    public function setSchemaName($schemaName): void
     {
-        $this->connectionName = $connectionName;
+        $this->schemaName = $schemaName;
+    }
+
+    public function getDbName()
+    {
+        return $this->dbName;
+    }
+
+    public function setDbName($dbName): void
+    {
+        $this->dbName = $dbName;
     }
 
     /**
@@ -37,11 +49,24 @@ class TableEntity
      */
     public function getColumns(): Collection
     {
-        return $this->attributes;
+        return $this->columns;
     }
 
     public function setColumns(Collection $columns): void
     {
-        $this->attributes = $columns;
+        $this->columns = $columns;
+    }
+
+    /**
+     * @return Collection | RelationEntity[]
+     */
+    public function getRelations(): Collection
+    {
+        return $this->relations;
+    }
+
+    public function setRelations(Collection $relations): void
+    {
+        $this->relations = $relations;
     }
 }

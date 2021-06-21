@@ -17,7 +17,7 @@ class TypeEntity implements ValidateEntityByMetadataInterface, UniqueInterface, 
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('title', new Assert\NotBlank);
     }
 
     public function unique() : array
