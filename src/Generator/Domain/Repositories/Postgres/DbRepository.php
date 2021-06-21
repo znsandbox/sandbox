@@ -20,17 +20,17 @@ class DbRepository extends \ZnSandbox\Sandbox\Generator\Domain\Repositories\Base
     public function allTables(): Collection
     {
         $connection = $this->getConnection();
-        $schemaCollection = $this->allSchemas();
+        $schemas = $this->allSchemas();
         $tableCollection = new Collection;
-        foreach ($schemaCollection as $schemaEntity) {
-            $tables = $connection->select("SELECT * FROM information_schema.tables WHERE table_schema = '{$schemaEntity->getName()}'");
+        foreach ($schemas as $schemaName) {
+            $tables = $connection->select("SELECT * FROM information_schema.tables WHERE table_schema = '{$schemaName}'");
             $tableNames = ArrayHelper::getColumn($tables, 'table_name');
             foreach ($tableNames as $tableName) {
                 // $tableName = StructHelper::getTableNameFromEntity($tableEntity);
                 $tableEntity = new TableEntity();
                 $tableEntity->setName($tableName);
-                $tableEntity->setSchemaName($schemaEntity->getName());
-                $tableEntity->setDbName($schemaEntity->getDbName());
+                $tableEntity->setSchemaName($schemaName);
+                $tableEntity->setDbName($connection->getDatabaseName());
                 $tableCollection->add($tableEntity);
             }
         }
@@ -64,11 +64,7 @@ WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name='$tableName';";
         return $collection;
     }
 
-    /**
-     * @param ConnectionInterface $connection
-     * @return Collection | SchemaEntity[]
-     */
-    private function allSchemas(): Collection
+    private function allSchemas(): array
     {
         $connection = $this->getConnection();
         $schemaCollection = $connection->select("select schema_name from information_schema.schemata;");
@@ -81,15 +77,6 @@ WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name='$tableName';";
             "information_schema",
         ];
         $schemaNames = array_diff($schemaNames, $excludes);
-        /** @var SchemaEntity[] | Collection $collection */
-        $collection = new Collection;
-        foreach ($schemaNames as $schemaName) {
-            $entity = new SchemaEntity;
-            $entity->setName($schemaName);
-            $entity->setDbName($connection->getConfig('database'));
-            $collection->add($entity);
-        }
-        return $collection;
+        return $schemaNames;
     }
-
 }
