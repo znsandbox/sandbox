@@ -17,6 +17,8 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
     private $title = null;
 
     private $typeId = null;
+    
+    private $description = null;
 
     private $cityId = null;
 
@@ -65,6 +67,22 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
     public function getTypeId()
     {
         return $this->typeId;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param null $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
     }
 
     public function getCityId()
