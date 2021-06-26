@@ -4,13 +4,14 @@ namespace ZnSandbox\Sandbox\EgovData\Domain\Libs;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
+use ZnCore\Base\Libs\DotEnv\DotEnv;
 
 class EgovDataClient
 {
 
     private $apiKey;
 
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey = null)
     {
         $this->apiKey = $apiKey;
     }
@@ -24,11 +25,21 @@ class EgovDataClient
         return $this->extractBodyFromResponse($response);
     }
 
+    private function getApiKey(): string {
+        if(empty($this->apiKey)) {
+            $this->apiKey = DotEnv::get('EGOV_API_KEY');
+            if(empty($this->apiKey)) {
+                throw new \Exception('Empty e.gov token!');
+            }
+        }
+        return $this->apiKey;
+    }
+
     private function createOptions(array $params = []): array
     {
         $options = [];
 
-        $query['apiKey'] = $this->apiKey;
+        $query['apiKey'] = $this->getApiKey();
         $query['source'] = json_encode($params, JSON_UNESCAPED_UNICODE);
 
         //$query = http_build_query($query);
