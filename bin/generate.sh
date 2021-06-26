@@ -1,2 +1,2 @@
 #!/bin/sh
-php console generator2:generate
+php console generator:generate

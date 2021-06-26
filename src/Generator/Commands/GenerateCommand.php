@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GenerateCommand extends Command
 {
 
-    protected static $defaultName = 'generator2:generate';
+    protected static $defaultName = 'generator:generate';
 
     private $generatorService;
 

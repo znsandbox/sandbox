@@ -8,7 +8,7 @@ require __DIR__ . '/../../../autoload.php';
 
 $bundles = [
     new \ZnCore\Base\Libs\App\Bundle(['all']),
-    new \ZnTool\Package\Bundle(['container', 'console']),
+    new \ZnTool\Package\Bundle(['all']),
     new \ZnSandbox\Sandbox\Generator\Bundle(['all']),
 ];
 $kernel = KernelFactory::createConsoleKernel($bundles);
