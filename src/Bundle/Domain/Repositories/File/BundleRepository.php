@@ -57,11 +57,7 @@ class BundleRepository implements BundleRepositoryInterface
     public function all(Query $query = null)
     {
         $bundleInstanceArray = $this->configManager->get('bundles');
-
-        //dd($bundleCollection);
-
         $bundleCollection = new Collection();
-
         foreach ($bundleInstanceArray as $bundleInstance) {
             $bundleClass = get_class($bundleInstance);
             $bundleNamespace = ClassHelper::getNamespace($bundleClass);
@@ -72,22 +68,20 @@ class BundleRepository implements BundleRepositoryInterface
             } elseif($domainEntity !== null) {
                 $bundleName = $domainEntity->getName();
             }
-
-
             $bundleEntity = new BundleEntity();
             $bundleEntity->setClassName($bundleClass);
-            $bundleEntity->setName($bundleName);
+            if(isset($bundleName)) {
+                $bundleEntity->setName($bundleName);
+            }
+            $bundleEntity->setNamespace($bundleNamespace);
             $bundleEntity->setDomain($domainEntity);
-
             $bundleCollection->add($bundleEntity);
-           // dd($bundleEntity);
-            // dd($domainNamespace);
         }
-
         return $bundleCollection;
+    }
 
-        //dd($domainCollection);
-        // TODO: Implement all() method.
+    private function extractBundleName() {
+
     }
 
     private function getDomain(string $bundleNamespace): ?DomainEntity
@@ -98,11 +92,10 @@ class BundleRepository implements BundleRepositoryInterface
             /** @var DomainInterface $domainInstance */
             $domainInstance = InstanceHelper::create($domainClass);
             $domainName = $domainInstance->getName();
-            //$domainCollection[$domainName] = $domainNamespace;
-
             $domainEntity = new DomainEntity();
             $domainEntity->setClassName($domainClass);
             $domainEntity->setName($domainName);
+            $domainEntity->setNamespace($domainNamespace);
             return $domainEntity;
         }
         return null;

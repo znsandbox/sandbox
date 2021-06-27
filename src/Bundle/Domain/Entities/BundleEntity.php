@@ -19,6 +19,8 @@ class BundleEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     private $domain = null;
 
+    private $namespace = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\NotBlank);
@@ -69,5 +71,15 @@ class BundleEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     public function setDomain(?DomainEntity $domain): void
     {
         $this->domain = $domain;
+    }
+
+    public function getNamespace()
+    {
+        return $this->namespace;
+    }
+
+    public function setNamespace($namespace): void
+    {
+        $this->namespace = $namespace;
     }
 }

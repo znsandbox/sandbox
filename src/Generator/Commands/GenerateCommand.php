@@ -2,20 +2,15 @@
 
 namespace ZnSandbox\Sandbox\Generator\Commands;
 
-use Illuminate\Support\Collection;
 use Symfony\Component\Console\Command\Command;
-use ZnCore\Base\Helpers\ClassHelper;
-use ZnCore\Base\Helpers\InstanceHelper;
-use ZnCore\Base\Libs\App\Interfaces\ConfigManagerInterface;
-use ZnCore\Base\Libs\App\Libs\ConfigManager;
-use ZnCore\Domain\Interfaces\DomainInterface;
-use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
-use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
-use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Services\BundleServiceInterface;
-use ZnSandbox\Sandbox\Generator\Domain\Services\GeneratorService;
-use ZnTool\Package\Domain\Entities\PackageEntity;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use ZnCore\Base\Helpers\ClassHelper;
+use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
+use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
+use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
+use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Services\BundleServiceInterface;
+use ZnSandbox\Sandbox\Generator\Domain\Services\GeneratorService;
 
 class GenerateCommand extends Command
 {
@@ -40,10 +35,16 @@ class GenerateCommand extends Command
     {
         $output->writeln('<fg=white># Generator</>');
 
-        $domainNamespace = $this->selectDomain($input, $output);
-        dd($domainNamespace);
+        $domainEntity = $this->selectDomain($input, $output);
+        $selectedEntities = $this->selectEntity($input, $output, $domainEntity);
 
-        $tableList = $this->generatorService->allTables();
+        $selectedTables = [];
+        foreach ($selectedEntities as $entityName) {
+            $selectedTables[] = $domainEntity->getName() . '_' . $entityName;
+        }
+        $structure = $this->generatorService->getStructure($selectedTables);
+
+        dd($structure);
 
         if (empty($tableList)) {
             $output->writeln('');
@@ -66,18 +67,44 @@ class GenerateCommand extends Command
         return 0;
     }
 
-    private function selectDomain(InputInterface $input, OutputInterface $output): string {
+    private function selectEntity(InputInterface $input, OutputInterface $output, DomainEntity $domainEntity): array
+    {
+        $tableList = $this->generatorService->allTables();
+        $entityNames = [];
+        foreach ($tableList as $tableName) {
+            $segments = explode('_', $tableName);
+            $bundleName = $segments[0];
+            if($domainEntity->getName() == $bundleName) {
+                array_shift($segments);
+                $entityNames[] = implode('_', $segments);
+            }
+        }
+
+        $question = new ChoiceQuestion(
+            'Select entity',
+            $entityNames,
+            'a'
+        );
+        $question->setMultiselect(true);
+        $selectedEntities = $this->getHelper('question')->ask($input, $output, $question);
+        return $selectedEntities;
+//        dd($entityNames);
+    }
+
+    private function selectDomain(InputInterface $input, OutputInterface $output): DomainEntity
+    {
         /** @var BundleEntity[] $bundleCollection */
         $bundleCollection = $this->bundleService->all();
         $domainCollection = [];
         $domainCollectionNamespaces = [];
         foreach ($bundleCollection as $bundleEntity) {
-            if($bundleEntity->getDomain()) {
-                $domainNamespace = ClassHelper::getNamespace($bundleEntity->getDomain()->getClassName());
+            if ($bundleEntity->getDomain()) {
+//                $domainNamespace = ClassHelper::getNamespace($bundleEntity->getDomain()->getClassName());
+                $domainNamespace = $bundleEntity->getNamespace();
                 $domainName = $bundleEntity->getDomain()->getName();
                 $title = "$domainName ($domainNamespace)";
                 $domainCollection[] = $title;
-                $domainCollectionNamespaces[$title] = $domainNamespace;
+                $domainCollectionNamespaces[$title] = $bundleEntity->getDomain();
             }
             // dd($domainNamespace);
         }
@@ -88,8 +115,6 @@ class GenerateCommand extends Command
             $domainCollection
         );
         $selectedDomain = $this->getHelper('question')->ask($input, $output, $question);
-        $domainNamespace = $domainCollectionNamespaces[$selectedDomain];
-
-        return $domainNamespace;
+        return $domainCollectionNamespaces[$selectedDomain];
     }
 }

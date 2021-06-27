@@ -17,6 +17,8 @@ class DomainEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     private $className = null;
 
+    private $namespace = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\NotBlank);
@@ -59,6 +61,14 @@ class DomainEntity implements ValidateEntityByMetadataInterface, UniqueInterface
         return $this->className;
     }
 
+    public function getNamespace()
+    {
+        return $this->namespace;
+    }
+
+    public function setNamespace($namespace): void
+    {
+        $this->namespace = $namespace;
+    }
 
 }
-
