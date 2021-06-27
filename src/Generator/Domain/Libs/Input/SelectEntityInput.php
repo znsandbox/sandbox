@@ -5,27 +5,24 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Libs\Input;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
+use ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent\SchemaRepository;
 
 class SelectEntityInput extends BaseInput
 {
 
     private $domainEntity;
+    private $schemaRepository;
 
-    /*public function __construct(
-        InputInterface $input,
-        OutputInterface $output,
-        Command $command,
-        DomainEntity $domainEntity
+    public function __construct(
+        SchemaRepository $schemaRepository
     )
     {
-        $this->input = $input;
-        $this->output = $output;
-        $this->command = $command;
-        $this->domainEntity = $domainEntity;
-    }*/
+        $this->schemaRepository = $schemaRepository;
+    }
 
     public function getDomainEntity(): DomainEntity
     {
@@ -37,8 +34,10 @@ class SelectEntityInput extends BaseInput
         $this->domainEntity = $domainEntity;
     }
 
-    public function run(array $tableList): array
+    public function run(): array
     {
+        $tableCollection = $this->schemaRepository->allTables();
+        $tableList = EntityHelper::getColumn($tableCollection, 'name');
         $entityNames = [];
         foreach ($tableList as $tableName) {
             $bundleName = TableMapperHelper::extractDomainNameFromTable($tableName);
@@ -54,6 +53,7 @@ class SelectEntityInput extends BaseInput
         );
         $question->setMultiselect(true);
         $selectedEntities = $this->getCommand()->getHelper('question')->ask($this->getInput(), $this->getOutput(), $question);
+        $this->addResultParam('entities', $selectedEntities);
         return $selectedEntities;
 //        dd($entityNames);
     }

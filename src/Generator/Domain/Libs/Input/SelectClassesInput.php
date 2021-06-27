@@ -35,6 +35,7 @@ class SelectClassesInput extends BaseInput
         );
         $question->setMultiselect(true);
         $selectedClasses = $this->getCommand()->getHelper('question')->ask($this->getInput(), $this->getOutput(), $question);
+        $this->addResultParam('classes', $selectedClasses);
         return $selectedClasses;
     }
 }

@@ -12,6 +12,7 @@ abstract class BaseInput
     private $input;
     private $output;
     private $command;
+    private $result;
 
     public function getInput(): InputInterface
     {
@@ -41,5 +42,20 @@ abstract class BaseInput
     public function setCommand(Command $command): void
     {
         $this->command = $command;
+    }
+
+    public function getResult(): array
+    {
+        return $this->result;
+    }
+
+    public function setResult(array $result): void
+    {
+        $this->result = $result;
+    }
+
+    public function addResultParam(string $name, $value): void
+    {
+        $this->result[$name] = $value;
     }
 }

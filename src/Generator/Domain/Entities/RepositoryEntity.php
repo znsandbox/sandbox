@@ -19,6 +19,8 @@ class RepositoryEntity extends ClassEntity implements ValidateEntityByMetadataIn
 
     private $class = null;
 
+    private $entity = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('driver', new Assert\NotBlank);
@@ -69,6 +71,15 @@ class RepositoryEntity extends ClassEntity implements ValidateEntityByMetadataIn
         $this->class = $class;
     }
 
+    public function getEntity(): EntityEntity
+    {
+        return $this->entity;
+    }
+
+    public function setEntity(EntityEntity $entity): void
+    {
+        $this->entity = $entity;
+    }
 
 }
 

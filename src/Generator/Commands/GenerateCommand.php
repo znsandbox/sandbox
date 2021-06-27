@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Helpers\InstanceHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
 use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
 use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
@@ -21,7 +22,12 @@ use ZnSandbox\Sandbox\Generator\Domain\Entities\ServiceEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
 use ZnSandbox\Sandbox\Generator\Domain\Libs\Input\SelectClassesInput;
+use ZnSandbox\Sandbox\Generator\Domain\Libs\Input\SelectDomainInput;
 use ZnSandbox\Sandbox\Generator\Domain\Libs\Input\SelectEntityInput;
+use ZnSandbox\Sandbox\Generator\Domain\Libs\TableAdapters\BaseAdapter;
+use ZnSandbox\Sandbox\Generator\Domain\Libs\TableAdapters\EntityAdapter;
+use ZnSandbox\Sandbox\Generator\Domain\Libs\TableAdapters\RepositoryAdapter;
+use ZnSandbox\Sandbox\Generator\Domain\Libs\TableAdapters\ServiceAdapter;
 use ZnSandbox\Sandbox\Generator\Domain\Services\GeneratorService;
 
 class GenerateCommand extends Command
@@ -47,52 +53,94 @@ class GenerateCommand extends Command
     {
         $output->writeln('<fg=white># Generator</>');
 
-        $domainEntity = $this->selectDomain($input, $output);
-        //$selectedEntities = $this->selectEntity($input, $output, $domainEntity);
-
-        $constructParams = [
+        $params = [
             'input' => $input,
             'output' => $output,
             'command' => $this,
-            'domainEntity' => $domainEntity,
         ];
 
+        $inputDefinitions = [
+            SelectDomainInput::class,
+            SelectEntityInput::class,
+            SelectClassesInput::class,
+        ];
+
+        foreach ($inputDefinitions as $inputDefinition) {
+            $inputInstance = ClassHelper::createObject($inputDefinition, $params);
+            $inputInstance->run();
+            $params = ArrayHelper::merge($params, $inputInstance->getResult());
+        }
+
+
+
+        /*$inputInstance = ClassHelper::createObject(SelectDomainInput::class, $params);
+        $inputInstance->run();
+        $params = ArrayHelper::merge($params, $inputInstance->getResult());*/
+       // $domainEntity = $params['domainEntity'];
+
+
+//dd($params);
+        //$params['domainEntity'] = $domainEntity;
+
+        //$domainEntity = $this->selectDomain($input, $output);
+        //$selectedEntities = $this->selectEntity($input, $output, $domainEntity);
+
 //        $container = ContainerHelper::getContainer();
-//        $selectEntityInput = $container->make(SelectEntityInput::class, $constructParams);
-//        $selectClassesInput = $container->make(SelectClassesInput::class, $constructParams);
+//        $selectEntityInput = $container->make(SelectEntityInput::class, $params);
+//        $selectClassesInput = $container->make(SelectClassesInput::class, $params);
 
-        $selectEntityInput = ClassHelper::createObject(SelectEntityInput::class, $constructParams);
-        $selectClassesInput = ClassHelper::createObject(SelectClassesInput::class, $constructParams);
+        /*$selectEntityInput = ClassHelper::createObject(SelectEntityInput::class, $params);
+        $selectEntityInput->run();
+        $params = ArrayHelper::merge($params, $selectEntityInput->getResult());
 
-        $tableList = $this->generatorService->allTables();
-        $selectedEntities = $selectEntityInput->run($tableList);
-        $selectedClasses = $selectClassesInput->run();
+        $selectClassesInput = ClassHelper::createObject(SelectClassesInput::class, $params);
+        $selectClassesInput->run();
+        $params = ArrayHelper::merge($params, $selectClassesInput->getResult());*/
 
+        //$tableList = $this->generatorService->allTables();
         //$selectClassesInput = new SelectClassesInput($input, $output, $this);
-
 //        $selectedClasses = $this->selectClasses($input, $output, $domainEntity);
-
-       // dd($selectedClasses);
+        //dd(array_keys($params));
 
         /** @var TableEntity[] $structure */
-        $structure = $this->getStructureTables($domainEntity, $selectedEntities);
+        $structure = $this->getStructureTables($params['domainEntity'], $params['entities']);
 
         $classCollection = new Collection();
 
+        $adapterDefinitions = [
+            'entity' => new EntityAdapter(),
+            'service' => new ServiceAdapter(),
+            'repository' => new RepositoryAdapter(),
+        ];
+
         foreach ($structure as $tableEntity) {
-            if(in_array('entity', $selectedClasses)) {
-                $entityEntity = TableMapperHelper::createEntityFromTable($domainEntity, $tableEntity);
-                $classCollection->add($entityEntity);
-            }
-            if(in_array('service', $selectedClasses)) {
-                $serviceEntity = TableMapperHelper::createServiceFromTable($domainEntity, $tableEntity);
-                $classCollection->add($serviceEntity);
-            }
-            if(in_array('repository', $selectedClasses)) {
-                $repositoryEntity = TableMapperHelper::createRepositoryFromTable($domainEntity, $tableEntity);
-                $classCollection->add($repositoryEntity);
+            foreach ($params['classes'] as $adapterName) {
+                if(in_array($adapterName, $params['classes'])) {
+                    /** @var BaseAdapter $adapterInstance */
+                    $adapterInstance = ClassHelper::createObject($adapterDefinitions[$adapterName]);
+                    $entityEntity = $adapterInstance->run($params['domainEntity'], $tableEntity);
+                    $classCollection->add($entityEntity);
+                }
             }
 
+            /*if(in_array('entity', $params['classes'])) {
+                $adapter = new EntityAdapter();
+                $entityEntity = $adapter->run($domainEntity, $tableEntity);
+//                $entityEntity = TableMapperHelper::createEntityFromTable($domainEntity, $tableEntity);
+                $classCollection->add($entityEntity);
+            }
+            if(in_array('service', $params['classes'])) {
+                $adapter = new ServiceAdapter();
+                $serviceEntity = $adapter->run($domainEntity, $tableEntity);
+                //$serviceEntity = TableMapperHelper::createServiceFromTable($domainEntity, $tableEntity);
+                $classCollection->add($serviceEntity);
+            }
+            if(in_array('repository', $params['classes'])) {
+                $adapter = new RepositoryAdapter();
+                $repositoryEntity = $adapter->run($domainEntity, $tableEntity);
+                //$repositoryEntity = TableMapperHelper::createRepositoryFromTable($domainEntity, $tableEntity);
+                $classCollection->add($repositoryEntity);
+            }*/
         }
 
         dd($classCollection);
@@ -128,30 +176,30 @@ class GenerateCommand extends Command
         return $structure;
     }
 
-    private function selectDomain(InputInterface $input, OutputInterface $output): DomainEntity
-    {
-        /** @var BundleEntity[] $bundleCollection */
-        $bundleCollection = $this->bundleService->all();
-        $domainCollection = [];
-        $domainCollectionNamespaces = [];
-        foreach ($bundleCollection as $bundleEntity) {
-            if ($bundleEntity->getDomain()) {
-//                $domainNamespace = ClassHelper::getNamespace($bundleEntity->getDomain()->getClassName());
-                $domainNamespace = $bundleEntity->getNamespace();
-                $domainName = $bundleEntity->getDomain()->getName();
-                $title = "$domainName ($domainNamespace)";
-                $domainCollection[] = $title;
-                $domainCollectionNamespaces[$title] = $bundleEntity->getDomain();
-            }
-            // dd($domainNamespace);
-        }
-
-        $output->writeln('');
-        $question = new ChoiceQuestion(
-            'Select domain',
-            $domainCollection
-        );
-        $selectedDomain = $this->getHelper('question')->ask($input, $output, $question);
-        return $domainCollectionNamespaces[$selectedDomain];
-    }
+//    private function selectDomain(InputInterface $input, OutputInterface $output): DomainEntity
+//    {
+//        /** @var BundleEntity[] $bundleCollection */
+//        $bundleCollection = $this->bundleService->all();
+//        $domainCollection = [];
+//        $domainCollectionNamespaces = [];
+//        foreach ($bundleCollection as $bundleEntity) {
+//            if ($bundleEntity->getDomain()) {
+////                $domainNamespace = ClassHelper::getNamespace($bundleEntity->getDomain()->getClassName());
+//                $domainNamespace = $bundleEntity->getNamespace();
+//                $domainName = $bundleEntity->getDomain()->getName();
+//                $title = "$domainName ($domainNamespace)";
+//                $domainCollection[] = $title;
+//                $domainCollectionNamespaces[$title] = $bundleEntity->getDomain();
+//            }
+//            // dd($domainNamespace);
+//        }
+//
+//        $output->writeln('');
+//        $question = new ChoiceQuestion(
+//            'Select domain',
+//            $domainCollection
+//        );
+//        $selectedDomain = $this->getHelper('question')->ask($input, $output, $question);
+//        return $domainCollectionNamespaces[$selectedDomain];
+//    }
 }

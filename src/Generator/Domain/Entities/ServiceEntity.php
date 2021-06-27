@@ -40,14 +40,14 @@ class ServiceEntity extends ClassEntity implements ValidateEntityByMetadataInter
         $this->name = $name;
     }
 
-    public function setEntity($value) : void
-    {
-        $this->entity = $value;
-    }
-
-    public function getEntity()
+    public function getEntity(): EntityEntity
     {
         return $this->entity;
+    }
+
+    public function setEntity(EntityEntity $entity): void
+    {
+        $this->entity = $entity;
     }
 
     public function setDomain(DomainEntity $value) : void
@@ -69,7 +69,6 @@ class ServiceEntity extends ClassEntity implements ValidateEntityByMetadataInter
     {
         $this->class = $class;
     }
-
 
 }
 
