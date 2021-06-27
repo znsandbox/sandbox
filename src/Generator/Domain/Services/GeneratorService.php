@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
-use App\Modules\Example\Controllers\ExampleEntity;
 use Illuminate\Support\Collection;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
