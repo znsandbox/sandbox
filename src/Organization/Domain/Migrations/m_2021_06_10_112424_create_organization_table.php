@@ -18,6 +18,7 @@ class m_2021_06_10_112424_create_organization_table extends BaseCreateTableMigra
             $table->string('title')->comment('Название');
             $table->integer('type_id')->comment('Тип');
             $table->integer('city_id')->comment('Город');
+            $table->string('bin')->comment('БИН');
             $table->text('description')->nullable()->comment('Описание');
             $table->smallInteger('status_id')->comment('Статус');
 

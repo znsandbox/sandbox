@@ -22,6 +22,8 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
 
     private $cityId = null;
 
+    private $bin = null;
+
     private $statusId = StatusEnum::ENABLED;
 
     private $type = null;
@@ -94,6 +96,17 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
     {
         $this->cityId = $cityId;
     }
+
+    public function getBin()
+    {
+        return $this->bin;
+    }
+
+    public function setBin($bin): void
+    {
+        $this->bin = $bin;
+    }
+
 
     public function setStatusId($value) : void
     {
