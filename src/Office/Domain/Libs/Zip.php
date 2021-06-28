@@ -26,6 +26,19 @@ class Zip
         }
     }
 
+    public function getDirectoryFiles(string $directory) {
+        $props = [];
+        $fileList = $this->files();
+        foreach ($fileList as $file) {
+            $isMatch = fnmatch($directory . '/*', $file);
+            if($isMatch) {
+                $name = str_replace($directory . '/', '', $file);
+                $props[$name] = $this->readFile($file);
+            }
+        }
+        return $props;
+    }
+
     public function files()
     {
         $i = 0;
