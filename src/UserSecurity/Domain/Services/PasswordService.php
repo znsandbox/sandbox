@@ -3,11 +3,11 @@
 namespace ZnSandbox\Sandbox\UserSecurity\Domain\Services;
 
 use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\PasswordHistoryServiceInterface;
-use App\User\Domain\Enums\UserActionEnum;
-use App\User\Domain\Enums\UserActionEventEnum;
-use App\User\Domain\Events\UserActionEvent;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Enums\UserActionEnum;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Enums\UserActionEventEnum;
+use ZnBundle\User\Domain\Events\UserActionEvent;
 use App\User\Domain\Interfaces\Services\PasswordServiceInterface;
-use App\User\Domain\Subscribers\SendNotifyAfterUpdatePasswordSubscriber;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Subscribers\SendNotifyAfterUpdatePasswordSubscriber;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use ZnBundle\User\Domain\Interfaces\Repositories\CredentialRepositoryInterface;
 use ZnCore\Base\Libs\Event\Traits\EventDispatcherTrait;

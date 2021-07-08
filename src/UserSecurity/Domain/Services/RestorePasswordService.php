@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\UserSecurity\Domain\Services;
 
 use App\User\Domain\Enums\UserNotifyTypeEnum;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Enums\UserSecurityNotifyTypeEnum;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\CreatePasswordForm;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\RequestActivationCodeForm;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\RestorePasswordServiceInterface;
@@ -70,7 +71,7 @@ class RestorePasswordService implements RestorePasswordServiceInterface
             throw new AlreadyExistsException($message);
         }
 
-        $this->notifyService->sendNotifyByTypeName(UserNotifyTypeEnum::RESTORE_PASSWORD_ACTIVATION_CODE, $credentialEntity->getIdentityId(), [
+        $this->notifyService->sendNotifyByTypeName(UserSecurityNotifyTypeEnum::RESTORE_PASSWORD_ACTIVATION_CODE, $credentialEntity->getIdentityId(), [
             'code' => $confirmEntity->getCode(),
         ]);
     }
