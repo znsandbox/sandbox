@@ -64,6 +64,9 @@ class ErrorController extends BaseWebController
 
     private function unauthorized(Request $request, \Exception $exception): Response
     {
+        if($request->getRequestUri() == '/auth') {
+            return $this->commonRender('Unauthorized', 'Unauthorized!', $exception);
+        }
         $this->session->set(WebUserEnum::UNAUTHORIZED_URL_SESSION_KEY, $request->getRequestUri());
         return $this->redirect('/auth');
     }
