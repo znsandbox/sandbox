@@ -2,6 +2,8 @@
 
 return [
 	'singletons' => [
+        'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Interfaces\\Services\\RestorePasswordServiceInterface' => 'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Services\\RestorePasswordService',
+        'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Interfaces\\Services\\UpdatePasswordServiceInterface' => 'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Services\\UpdatePasswordService',
 		'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Interfaces\\Services\\VersionHandlerServiceInterface' => 'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Services\\VersionHandlerService',
 		'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Interfaces\\Repositories\\VersionHandlerRepositoryInterface' => 'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Repositories\\Eloquent\\VersionHandlerRepository',
 		'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Interfaces\\Services\\PasswordHistoryServiceInterface' => 'ZnSandbox\\Sandbox\\UserSecurity\\Domain\\Services\\PasswordHistoryService',
