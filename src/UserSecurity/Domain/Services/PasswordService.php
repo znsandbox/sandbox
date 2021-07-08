@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\PasswordHistorySer
 use ZnSandbox\Sandbox\UserSecurity\Domain\Enums\UserActionEnum;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Enums\UserActionEventEnum;
 use ZnBundle\User\Domain\Events\UserActionEvent;
-use App\User\Domain\Interfaces\Services\PasswordServiceInterface;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\PasswordServiceInterface;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Subscribers\SendNotifyAfterUpdatePasswordSubscriber;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use ZnBundle\User\Domain\Interfaces\Repositories\CredentialRepositoryInterface;

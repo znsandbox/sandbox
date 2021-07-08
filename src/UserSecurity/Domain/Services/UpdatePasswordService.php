@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\UserSecurity\Domain\Services;
 
 use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\UpdatePasswordForm;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\PasswordServiceInterface;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\UpdatePasswordServiceInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
@@ -24,7 +25,7 @@ class UpdatePasswordService implements UpdatePasswordServiceInterface
         CredentialRepositoryInterface $credentialRepository,
         PasswordHasherInterface $passwordHasher,
         AuthServiceInterface $authService,
-        PasswordService $passwordService
+        PasswordServiceInterface $passwordService
     )
     {
         $this->credentialRepository = $credentialRepository;

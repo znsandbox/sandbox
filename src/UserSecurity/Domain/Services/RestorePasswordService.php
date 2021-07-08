@@ -2,10 +2,10 @@
 
 namespace ZnSandbox\Sandbox\UserSecurity\Domain\Services;
 
-use App\User\Domain\Enums\UserNotifyTypeEnum;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Enums\UserSecurityNotifyTypeEnum;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\CreatePasswordForm;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\RequestActivationCodeForm;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\PasswordServiceInterface;
 use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\RestorePasswordServiceInterface;
 use ZnBundle\Notify\Domain\Interfaces\Services\EmailServiceInterface;
 use ZnBundle\Summary\Domain\Interfaces\Services\AttemptServiceInterface;
@@ -34,7 +34,7 @@ class RestorePasswordService implements RestorePasswordServiceInterface
 
     public function __construct(
         CredentialRepositoryInterface $credentialRepository,
-        PasswordService $passwordService,
+        PasswordServiceInterface $passwordService,
         EmailServiceInterface $emailService,
         AttemptServiceInterface $attemptService,
         ConfirmServiceInterface $confirmService,
