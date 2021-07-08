@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\UserSecurity\Symfony4\Web\Controllers;
 
-use App\User\Domain\Forms\CreatePasswordForm;
-use App\User\Domain\Forms\RequestActivationCodeForm;
-use App\User\Domain\Interfaces\Services\RestorePasswordServiceInterface;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\CreatePasswordForm;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\RequestActivationCodeForm;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\RestorePasswordServiceInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,14 +67,14 @@ class RestorePasswordController extends BaseWebController implements ControllerA
             try {
                 $this->service->requestActivationCode($form);
                 $this->session->set(WebUserSecurityEnum::RESTORE_PASSWORD_EMAIL_SESSION_KEY, $form->getEmail());
-                $this->toastrService->success(['app_user', 'restore-password.message.request_activation_code_success']);
+                $this->toastrService->success(['user_security', 'restore-password.message.request_activation_code_success']);
                 return $this->redirect('/restore-password/create-password');
             } catch (UnprocessibleEntityException $e) {
                 $this->setUnprocessableErrorsToForm($buildForm, $e);
             } catch (AlreadyExistsException $e) {
                 $message = $e->getMessage();
-                $message .= ' ' . I18Next::t('app_user', 'restore-password.message.or_you_can_go_to_the_second_step');
-                $message .= ' <a href="/restore-password/create-password">' . I18Next::t('app_user', 'restore-password.action.create_password') . '</a>';
+                $message .= ' ' . I18Next::t('user_security', 'restore-password.message.or_you_can_go_to_the_second_step');
+                $message .= ' <a href="/restore-password/create-password">' . I18Next::t('user_security', 'restore-password.action.create_password') . '</a>';
                 $buildForm->addError(new FormError($message));
             }
         }
@@ -90,7 +90,7 @@ class RestorePasswordController extends BaseWebController implements ControllerA
 
         $email = $this->session->get(WebUserSecurityEnum::RESTORE_PASSWORD_EMAIL_SESSION_KEY);
         if (empty($email)) {
-            $this->toastrService->success(['app_user', 'restore-password.message.session_expired']);
+            $this->toastrService->success(['user_security', 'restore-password.message.session_expired']);
             return $this->redirect('/restore-password');
         }
         $form->setEmail($email);
@@ -99,7 +99,7 @@ class RestorePasswordController extends BaseWebController implements ControllerA
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             try {
                 $this->service->createPassword($form);
-                $this->toastrService->success(['app_user', 'restore-password.message.create_password_success']);
+                $this->toastrService->success(['user_security', 'restore-password.message.create_password_success']);
                 return $this->redirect('/');
             } catch (UnprocessibleEntityException $e) {
                 $this->setUnprocessableErrorsToForm($buildForm, $e);

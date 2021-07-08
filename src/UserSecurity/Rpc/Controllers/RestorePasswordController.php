@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\UserSecurity\Rpc\Controllers;
 
-use App\User\Domain\Forms\CreatePasswordForm;
-use App\User\Domain\Forms\RequestActivationCodeForm;
-use App\User\Domain\Interfaces\Services\RestorePasswordServiceInterface;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\CreatePasswordForm;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\RequestActivationCodeForm;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\RestorePasswordServiceInterface;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;

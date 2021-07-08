@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\UserSecurity\Rpc\Controllers;
 
-use App\User\Domain\Forms\UpdatePasswordForm;
-use App\User\Domain\Interfaces\Services\UpdatePasswordServiceInterface;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Forms\UpdatePasswordForm;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Interfaces\Services\UpdatePasswordServiceInterface;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;

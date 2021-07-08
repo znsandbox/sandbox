@@ -17,7 +17,7 @@ $formRender->addFormOption('autocomplete', 'off');
 
 ?>
 
-<h2><?= \ZnCore\Base\Libs\I18Next\Facades\I18Next::t('app_user', 'restore-password.action.request_activation_code') ?></h2>
+<h2><?= \ZnCore\Base\Libs\I18Next\Facades\I18Next::t('user_security', 'restore-password.action.request_activation_code') ?></h2>
 
 <?= $formRender->errors() ?>
 

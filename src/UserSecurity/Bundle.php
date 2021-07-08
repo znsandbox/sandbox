@@ -7,12 +7,12 @@ use ZnCore\Base\Libs\App\Base\BaseBundle;
 class Bundle extends BaseBundle
 {
 
-    /*public function i18next(): array
+    public function i18next(): array
     {
         return [
-            'app_user' => 'src/User/Domain/i18next/__lng__/__ns__.json',
+            'user_security' => 'vendor/znsandbox/sandbox/src/UserSecurity/Domain/i18next/__lng__/__ns__.json',
         ];
-    }*/
+    }
 
     public function symfonyRpc(): array
     {
