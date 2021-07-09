@@ -2,18 +2,22 @@
 
 namespace ZnSandbox\Sandbox\UserSecurity\Domain\Forms;
 
-use ZnSandbox\Sandbox\UserSecurity\Domain\Helpers\PasswordValidatorHelper;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
+use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
+use ZnSandbox\Sandbox\UserSecurity\Domain\Helpers\PasswordValidatorHelper;
 
-class UpdatePasswordForm implements ValidateEntityByMetadataInterface
+class UpdatePasswordForm implements ValidateEntityByMetadataInterface, BuildFormInterface
 {
 
-    private $currentPassword;
-    private $newPassword;
-    private $newPasswordConfirm;
+    private $currentPassword = '';
+    private $newPassword = '';
+    private $newPasswordConfirm = '';
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
@@ -38,6 +42,23 @@ class UpdatePasswordForm implements ValidateEntityByMetadataInterface
             'propertyPath' => 'currentPassword',
             'message' => I18Next::t('user_security', 'change-password.message.does_match_the_new_password'),
         ]));
+    }
+
+    public function buildForm(FormBuilderInterface $formBuilder)
+    {
+        $formBuilder
+            ->add('currentPassword', PasswordType::class, [
+                'label' => I18Next::t('user_security', 'change-password.attribute.old_password')
+            ])
+            ->add('newPassword', PasswordType::class, [
+                'label' => I18Next::t('user_security', 'change-password.attribute.new_password')
+            ])
+            ->add('newPasswordConfirm', PasswordType::class, [
+                'label' => I18Next::t('user_security', 'change-password.attribute.new_password_repeat')
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => I18Next::t('core', 'action.send')
+            ]);
     }
 
     public function getCurrentPassword(): string

@@ -100,7 +100,7 @@ class RestorePasswordController extends BaseWebController implements ControllerA
             try {
                 $this->service->createPassword($form);
                 $this->toastrService->success(['user_security', 'restore-password.message.create_password_success']);
-                return $this->redirect('/');
+                return $this->redirectToHome();
             } catch (UnprocessibleEntityException $e) {
                 $this->setUnprocessableErrorsToForm($buildForm, $e);
             }
