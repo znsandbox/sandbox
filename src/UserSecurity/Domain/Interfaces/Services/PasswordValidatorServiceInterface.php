@@ -12,5 +12,5 @@ interface PasswordValidatorServiceInterface
      * @param string $password
      * @throws UnprocessibleEntityException
      */
-    public function validate(string $password): void;
+    public function validate(?string $password): void;
 }

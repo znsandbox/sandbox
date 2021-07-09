@@ -13,7 +13,7 @@ class PasswordValidatorEntity implements ValidateEntityByMetadataInterface
     private static $_validator = [];
     private static $_callback = null;
 
-    public function __construct(string $password)
+    public function __construct(?string $password)
     {
         $this->setPassword($password);
     }

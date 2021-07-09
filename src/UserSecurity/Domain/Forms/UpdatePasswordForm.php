@@ -61,32 +61,32 @@ class UpdatePasswordForm implements ValidateEntityByMetadataInterface, BuildForm
             ]);
     }
 
-    public function getCurrentPassword(): string
+    public function getCurrentPassword(): ?string
     {
         return $this->currentPassword;
     }
 
-    public function setCurrentPassword(string $currentPassword): void
+    public function setCurrentPassword(?string $currentPassword): void
     {
         $this->currentPassword = $currentPassword;
     }
 
-    public function getNewPassword(): string
+    public function getNewPassword(): ?string
     {
         return $this->newPassword;
     }
 
-    public function setNewPassword(string $newPassword): void
+    public function setNewPassword(?string $newPassword): void
     {
         $this->newPassword = $newPassword;
     }
 
-    public function getNewPasswordConfirm(): string
+    public function getNewPasswordConfirm(): ?string
     {
         return $this->newPasswordConfirm;
     }
 
-    public function setNewPasswordConfirm(string $newPasswordConfirm): void
+    public function setNewPasswordConfirm(?string $newPasswordConfirm): void
     {
         $this->newPasswordConfirm = $newPasswordConfirm;
     }

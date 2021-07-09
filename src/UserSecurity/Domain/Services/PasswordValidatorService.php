@@ -104,7 +104,7 @@ class PasswordValidatorService extends BaseService implements PasswordValidatorS
         }
     }
 
-    public function validate(string $password): void
+    public function validate(?string $password): void
     {
         $this->prepareValidator();
         $passwordEntity = new PasswordValidatorEntity($password);
