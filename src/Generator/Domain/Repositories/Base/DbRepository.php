@@ -2,12 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Repositories\Base;
 
-use App\Modules\Example\Controllers\ExampleEntity;
 use Illuminate\Database\Connection;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Schema\Builder as SchemaBuilder;
 use Illuminate\Support\Collection;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Db\Capsule\Manager;
 use ZnLib\Db\Entities\SchemaEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ColumnEntity;
@@ -49,9 +49,10 @@ class DbRepository
 
     /**
      * @param string $tableName
+     * @param string $schemaName
      * @return Collection | ColumnEntity[]
      */
-    public function allColumnsByTable(string $tableName): Collection
+    public function allColumnsByTable(string $tableName, string $schemaName = 'public'): Collection
     {
         $schema = $this->getSchema();
         $columnList = $schema->getColumnListing($tableName);

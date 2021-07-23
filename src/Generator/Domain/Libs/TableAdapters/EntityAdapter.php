@@ -21,6 +21,8 @@ class EntityAdapter extends BaseAdapter
             $attributeEntity = new AttributeEntity();
             $attributeEntity->setName($columnEntity->getName());
             $attributeEntity->setType($columnEntity->getType());
+            $attributeEntity->setLength($columnEntity->getLength());
+            $attributeEntity->setNullable($columnEntity->getNullable());
             $attributeCollection->add($attributeEntity);
         }
         $entityEntity->setAttributes($attributeCollection);

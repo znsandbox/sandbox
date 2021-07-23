@@ -24,7 +24,6 @@ class m_2021_06_10_112424_create_organization_table extends BaseCreateTableMigra
             $table->smallInteger('status_id')->comment('Статус');
 
             $this->addForeign($table, 'type_id', 'organization_type');
-            $this->addForeign($table, 'region_id', 'reference_item');
         };
     }
 }
