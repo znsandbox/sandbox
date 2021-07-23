@@ -2,6 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Services;
 
+use Packages\Organization\Domain\Interfaces\Services\EmployeeServiceInterface;
+use Psr\Container\ContainerInterface;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
@@ -17,17 +19,20 @@ use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\UserServiceInterfa
 class OrganizationService extends BaseCrudService implements OrganizationServiceInterface
 {
 
-    private $userService;
+//    private $employeeService;
     private $authService;
+    private $container;
 
     public function __construct(
         EntityManagerInterface $em,
-        UserServiceInterface $userService,
+//        EmployeeServiceInterface $employeeService,
+        ContainerInterface $container,
         AuthServiceInterface $authService
     )
     {
         $this->setEntityManager($em);
-        $this->userService = $userService;
+//        $this->employeeService = $employeeService;
+        $this->container = $container;
         $this->authService = $authService;
     }
 
@@ -39,8 +44,10 @@ class OrganizationService extends BaseCrudService implements OrganizationService
     public function oneCurrent(): OrganizationEntity
     {
         $identity = $this->authService->getIdentity();
-        $userOrganizationEntity = $this->userService->oneByUserId($identity->getId());
-        return $this->oneById($userOrganizationEntity->getOrganizationId());
+        /** @var EmployeeServiceInterface $employeeService */
+        $employeeService = $this->container->get(EmployeeServiceInterface::class);
+        $employeeEntity = $employeeService->oneByUserId($identity->getId());
+        return $this->oneById($employeeEntity->getOrganizationId());
     }
 
 }
