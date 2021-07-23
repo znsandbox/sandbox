@@ -14,6 +14,10 @@ class AttributeEntity implements ValidateEntityByMetadataInterface, UniqueInterf
 
     private $type = null;
 
+    private $length = null;
+
+    private $nullable = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('name', new Assert\NotBlank);
@@ -45,6 +49,25 @@ class AttributeEntity implements ValidateEntityByMetadataInterface, UniqueInterf
         return $this->type;
     }
 
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    public function setLength($length): void
+    {
+        $this->length = $length;
+    }
+
+    public function getNullable()
+    {
+        return $this->nullable;
+    }
+
+    public function setNullable($nullable): void
+    {
+        $this->nullable = $nullable;
+    }
 
 }
 

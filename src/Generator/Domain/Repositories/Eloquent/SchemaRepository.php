@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent;
 
-use App\Modules\Example\Controllers\ExampleEntity;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Builder as SchemaBuilder;
 use Illuminate\Support\Collection;
@@ -41,7 +40,7 @@ class SchemaRepository
         return $connection;
     }
 
-    protected function getSchema(): SchemaBuilder
+    /*protected function getSchema(): SchemaBuilder
     {
         $connection = $this->getConnection();
         $schema = $connection->getSchemaBuilder();
@@ -51,7 +50,7 @@ class SchemaRepository
     public function getCapsule(): Manager
     {
         return $this->capsule;
-    }
+    }*/
 
     public function allTablesByName(array $nameList): Collection
     {
@@ -60,7 +59,7 @@ class SchemaRepository
         $newCollection = new Collection();
         foreach ($collection as $tableEntity) {
             if (in_array($tableEntity->getName(), $nameList)) {
-                $columnCollection = $this->dbRepository->allColumnsByTable($tableEntity->getName());
+                $columnCollection = $this->dbRepository->allColumnsByTable($tableEntity->getName(), $tableEntity->getSchemaName());
                 $tableEntity->setColumns($columnCollection);
                 $relationCollection = $this->dbRepository->allRelations($tableEntity->getName());
                 $tableEntity->setRelations($relationCollection);

@@ -9,6 +9,8 @@ class ColumnEntity
 
     private $name;
     private $type;
+    private $length;
+    private $nullable;
 
     public function getName()
     {
@@ -28,5 +30,25 @@ class ColumnEntity
     public function setType($type): void
     {
         $this->type = $type;
+    }
+
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    public function setLength($length): void
+    {
+        $this->length = $length;
+    }
+
+    public function getNullable()
+    {
+        return $this->nullable;
+    }
+
+    public function setNullable($nullable): void
+    {
+        $this->nullable = $nullable;
     }
 }
