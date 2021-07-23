@@ -2,10 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Repositories\Eloquent;
 
-use ZnCore\Base\Libs\I18Next\Mappers\I18nMapper;
-use ZnCore\Contract\Mapper\Interfaces\MapperInterface;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnLib\Db\Mappers\JsonMapper;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\OrganizationRepositoryInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\TypeRepositoryInterface;
@@ -35,9 +34,10 @@ class OrganizationRepository extends BaseEloquentCrudRepository implements Organ
         ];
     }
 
-    public function mapper(): MapperInterface
+    public function mappers(): array
     {
-        return new I18nMapper($this->getEntityClass(), ['title_i18n']);
+        return [
+            new JsonMapper(['title_i18n']),
+        ];
     }
 }
-
