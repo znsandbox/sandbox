@@ -22,7 +22,7 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
     private $titleI18n = null;
 
     private $typeId = null;
-    
+
     private $description = null;
 
     private $cityId = null;
@@ -34,6 +34,8 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
     private $statusId = StatusEnum::ENABLED;
 
     private $type = null;
+
+    private $locality = null;
 
     public function __construct(RuntimeLanguageServiceInterface $runtimeLanguageService)
     {
@@ -159,4 +161,15 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
     {
         $this->type = $type;
     }
+
+    public function getLocality()
+    {
+        return $this->locality;
+    }
+
+    public function setLocality($locality): void
+    {
+        $this->locality = $locality;
+    }
+
 }

@@ -2,9 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Repositories\Eloquent;
 
+use Packages\Geo\Domain\Interfaces\Repositories\LocalityRepositoryInterface;
+use ZnCore\Base\Libs\I18Next\Mappers\I18nMapper;
+use ZnCore\Contract\Mapper\Interfaces\MapperInterface;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
-use ZnLib\Db\Mappers\JsonMapper;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\OrganizationRepositoryInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\TypeRepositoryInterface;
@@ -31,13 +33,18 @@ class OrganizationRepository extends BaseEloquentCrudRepository implements Organ
                 'relationEntityAttribute' => 'type',
                 'foreignRepositoryClass' => TypeRepositoryInterface::class,
             ],
+            [
+                'class' => OneToOneRelation::class,
+                'relationAttribute' => 'city_id',
+                'relationEntityAttribute' => 'locality',
+                'foreignRepositoryClass' => LocalityRepositoryInterface::class,
+            ],
         ];
     }
 
-    public function mappers(): array
+    public function mapper(): MapperInterface
     {
-        return [
-            new JsonMapper(['title_i18n']),
-        ];
+        return new I18nMapper($this->getEntityClass(), ['title_i18n']);
     }
 }
+
