@@ -7,6 +7,13 @@ use ZnCore\Base\Libs\App\Base\BaseBundle;
 class Bundle extends BaseBundle
 {
 
+    /*public function deps(): array
+    {
+        return [
+            new \ZnBundle\User\NewBundle(['all']),
+        ];
+    }*/
+
     public function symfonyRpc(): array
     {
         return [
