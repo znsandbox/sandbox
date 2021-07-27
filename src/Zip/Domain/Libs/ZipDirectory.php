@@ -10,7 +10,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 class ZipDirectory
 {
 
-    public function createZip(string $directory, string $zipFileName = 'arch.zip')
+    public function createZipFromDirectory(string $directory, string $zipFileName = 'arch.zip')
     {
         $files = FileHelper::scanDir($directory);
         $tmpDir = $this->getTmpDirectory();
