@@ -23,6 +23,18 @@ class ZipDirectory
         return $zipFile;
     }
 
+    public function createZipFromFileArray(array $files, string $zipFileName = 'arch.zip')
+    {
+        $tmpDir = $this->getTmpDirectory();
+        $zipFile = $tmpDir . '/' . $zipFileName;
+        $zipArchive = $this->openZip($zipFile);
+        foreach ($files as $fileName => $fileContent) {
+            $zipArchive->addFromString($fileName, $fileContent);
+        }
+        $zipArchive->close();
+        return $zipFile;
+    }
+
     private function getTmpDirectory(): string
     {
         $tmpDir = sys_get_temp_dir() . '/' . StringHelper::genUuid();
