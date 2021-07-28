@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Repositories\Postgres;
 
-use App\Modules\Example\Controllers\ExampleEntity;
+use App\Example\Controllers\ExampleEntity;
 use Illuminate\Support\Collection;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Repositories\Sqlite;
 
-use App\Modules\Example\Controllers\ExampleEntity;
+use App\Example\Controllers\ExampleEntity;
 use Illuminate\Database\Connection;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Schema\Builder;
