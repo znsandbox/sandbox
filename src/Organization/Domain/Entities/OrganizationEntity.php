@@ -31,11 +31,13 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
 
     private $bin = null;
 
+    private $serverId = null;
+
     private $statusId = StatusEnum::ENABLED;
 
     private $type = null;
-
     private $locality = null;
+    private $server = null;
 
     public function __construct(RuntimeLanguageServiceInterface $runtimeLanguageService)
     {
@@ -95,17 +97,11 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
         return $this->typeId;
     }
 
-    /**
-     * @return null
-     */
     public function getDescription()
     {
         return $this->description;
     }
 
-    /**
-     * @param null $description
-     */
     public function setDescription($description): void
     {
         $this->description = $description;
@@ -141,6 +137,15 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
         $this->bin = $bin;
     }
 
+    public function getServerId()
+    {
+        return $this->serverId;
+    }
+
+    public function setServerId($serverId): void
+    {
+        $this->serverId = $serverId;
+    }
 
     public function setStatusId($value) : void
     {
@@ -170,6 +175,16 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
     public function setLocality($locality): void
     {
         $this->locality = $locality;
+    }
+
+    public function getServer()
+    {
+        return $this->server;
+    }
+
+    public function setServer($server): void
+    {
+        $this->server = $server;
     }
 
 }

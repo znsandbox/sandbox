@@ -19,11 +19,13 @@ class m_2021_06_10_112424_create_organization_table extends BaseCreateTableMigra
             $table->integer('type_id')->comment('Тип');
             $table->integer('city_id')->comment('Город');
             $table->integer('region_id')->comment('Регион');
+            $table->integer('server_id')->comment('Кто добавил организацию');
             $table->string('bin')->comment('БИН');
             $table->text('description')->nullable()->comment('Описание');
             $table->smallInteger('status_id')->comment('Статус');
 
             $this->addForeign($table, 'type_id', 'organization_type');
+            $this->addForeign($table, 'server_id', 'organization_organization');
         };
     }
 }

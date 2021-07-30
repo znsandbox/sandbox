@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Organization\Domain\Services;
 use Packages\Organization\Domain\Interfaces\Services\EmployeeServiceInterface;
 use Psr\Container\ContainerInterface;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\OrganizationRepositoryInterface;
@@ -41,13 +42,26 @@ class OrganizationService extends BaseCrudService implements OrganizationService
         return OrganizationEntity::class;
     }
 
-    public function oneCurrent(): OrganizationEntity
+    protected function forgeQuery(Query $query = null)
+    {
+        $query = parent::forgeQuery($query);
+        $query->where('server_id', $this->getCurrentOrganizationId());
+        return $query;
+    }
+
+    protected function getCurrentOrganizationId(): int
     {
         $identity = $this->authService->getIdentity();
         /** @var EmployeeServiceInterface $employeeService */
         $employeeService = $this->container->get(EmployeeServiceInterface::class);
         $employeeEntity = $employeeService->oneByUserId($identity->getId());
-        return $this->oneById($employeeEntity->getOrganizationId());
+        return $employeeEntity->getOrganizationId();
+    }
+
+    public function oneCurrent(): OrganizationEntity
+    {
+        $organizationId = $this->getCurrentOrganizationId();
+        return $this->oneById($organizationId);
     }
 
 }
