@@ -2,8 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Services;
 
+use Packages\News\Domain\Subscribers\SyncViewCountSubscriber;
 use Packages\Organization\Domain\Interfaces\Services\EmployeeServiceInterface;
+use Packages\Organization\Domain\Subscribers\OrganizationSubscriber;
 use Psr\Container\ContainerInterface;
+use ZnBundle\Storage\Domain\Subscribers\StoreHtmlResourceBehavior;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
@@ -42,14 +45,14 @@ class OrganizationService extends BaseCrudService implements OrganizationService
         return OrganizationEntity::class;
     }
 
-    protected function forgeQuery(Query $query = null)
+    public function subscribes(): array
     {
-        $query = parent::forgeQuery($query);
-        $query->where('server_id', $this->getCurrentOrganizationId());
-        return $query;
+        return [
+            OrganizationSubscriber::class
+        ];
     }
 
-    protected function getCurrentOrganizationId(): int
+    public function getCurrentOrganizationId(): int
     {
         $identity = $this->authService->getIdentity();
         /** @var EmployeeServiceInterface $employeeService */
