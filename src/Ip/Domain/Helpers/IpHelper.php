@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Ip\Helpers;
+namespace ZnSandbox\Sandbox\Ip\Domain\Helpers;
 
 class IpHelper
 {
