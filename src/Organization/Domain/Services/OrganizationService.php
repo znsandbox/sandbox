@@ -2,19 +2,14 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Services;
 
-use Packages\News\Domain\Subscribers\SyncViewCountSubscriber;
 use Packages\Organization\Domain\Interfaces\Services\EmployeeServiceInterface;
-use Packages\Organization\Domain\Subscribers\OrganizationSubscriber;
 use Psr\Container\ContainerInterface;
-use ZnBundle\Storage\Domain\Subscribers\StoreHtmlResourceBehavior;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnCore\Domain\Libs\Query;
-use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\OrganizationRepositoryInterface;
 use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
-use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\UserServiceInterface;
+use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
 
 /**
  * @method
@@ -23,19 +18,18 @@ use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\UserServiceInterfa
 class OrganizationService extends BaseCrudService implements OrganizationServiceInterface
 {
 
-//    private $employeeService;
+    protected $organization;
+
     private $authService;
     private $container;
 
     public function __construct(
         EntityManagerInterface $em,
-//        EmployeeServiceInterface $employeeService,
         ContainerInterface $container,
         AuthServiceInterface $authService
     )
     {
         $this->setEntityManager($em);
-//        $this->employeeService = $employeeService;
         $this->container = $container;
         $this->authService = $authService;
     }
@@ -45,11 +39,11 @@ class OrganizationService extends BaseCrudService implements OrganizationService
         return OrganizationEntity::class;
     }
 
-    public function subscribes(): array
+    protected function forgeQuery(Query $query = null)
     {
-        return [
-            OrganizationSubscriber::class
-        ];
+        $query = Query::forge($query);
+        $query->with(['type']);
+        return parent::forgeQuery($query);
     }
 
     public function getCurrentOrganizationId(): int
@@ -64,7 +58,10 @@ class OrganizationService extends BaseCrudService implements OrganizationService
     public function oneCurrent(): OrganizationEntity
     {
         $organizationId = $this->getCurrentOrganizationId();
-        return $this->oneById($organizationId);
+        if (empty($this->organization)) {
+            $this->organization = $this->oneById($organizationId);
+        }
+        return $this->organization;
     }
 
 }

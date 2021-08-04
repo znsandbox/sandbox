@@ -16,6 +16,7 @@ class m_2021_06_10_111313_create_type_table extends BaseCreateTableMigration
         return function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->comment('Идентификатор');
             $table->string('title')->comment('Название');
+            $table->string('code');
         };
     }
 }

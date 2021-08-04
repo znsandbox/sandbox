@@ -38,13 +38,7 @@ class OrganizationRepository extends BaseEloquentCrudRepository implements Organ
                 'relationAttribute' => 'city_id',
                 'relationEntityAttribute' => 'locality',
                 'foreignRepositoryClass' => LocalityRepositoryInterface::class,
-            ],
-            [
-                'class' => OneToOneRelation::class,
-                'relationAttribute' => 'server_id',
-                'relationEntityAttribute' => 'server',
-                'foreignRepositoryClass' => OrganizationRepositoryInterface::class,
-            ],
+            ]
         ];
     }
 

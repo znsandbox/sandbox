@@ -15,6 +15,8 @@ class TypeEntity implements ValidateEntityByMetadataInterface, UniqueInterface, 
 
     private $title = null;
 
+    private $code = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('title', new Assert\NotBlank);
@@ -43,6 +45,16 @@ class TypeEntity implements ValidateEntityByMetadataInterface, UniqueInterface, 
     public function setTitle($title): void
     {
         $this->title = $title;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function setCode($code): void
+    {
+        $this->code = $code;
     }
 
 }
