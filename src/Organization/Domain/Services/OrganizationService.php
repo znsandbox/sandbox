@@ -9,7 +9,9 @@ use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
+use ZnSandbox\Sandbox\Organization\Domain\Entities\TypeEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
+use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\TypeServiceInterface;
 
 /**
  * @method
@@ -22,16 +24,19 @@ class OrganizationService extends BaseCrudService implements OrganizationService
 
     private $authService;
     private $container;
+    private $typeService;
 
     public function __construct(
         EntityManagerInterface $em,
         ContainerInterface $container,
-        AuthServiceInterface $authService
+        AuthServiceInterface $authService,
+        TypeServiceInterface $typeService
     )
     {
         $this->setEntityManager($em);
         $this->container = $container;
         $this->authService = $authService;
+        $this->typeService = $typeService;
     }
 
     public function getEntityClass(): string
@@ -62,6 +67,20 @@ class OrganizationService extends BaseCrudService implements OrganizationService
             $this->organization = $this->oneById($organizationId);
         }
         return $this->organization;
+    }
+
+    public function getTypeIdByCode(string $code): int
+    {
+        $organizationTypeId = 0;
+        $typeCollection = $this->typeService->all();
+        /** @var TypeEntity $typeEntity */
+        foreach ($typeCollection as $typeEntity) {
+            if ($typeEntity->getCode() == $code) {
+                $organizationTypeId = $typeEntity->getId();
+                break;
+            }
+        }
+        return $organizationTypeId;
     }
 
 }
