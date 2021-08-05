@@ -44,12 +44,20 @@ class DomainService
             $dd[$domain]['isOur'] = false;
             $dd[$domain]['netname'] = [];
             //dd($domainInfo);
+
+            $currentCompanyName = null;
+            foreach ($rr['companyIp'] as $companyName => $companyIpList) {
+                if (!empty(array_intersect($companyIpList, $ip))) {
+                    $dd[$domain]['company'] = $companyName;
+                }
+            }
+
             if (empty($ip)) {
                 $res['unknown'][] = $domain;
-            } elseif (!empty(array_intersect($rr['ourIpList'], $ip))) {
+            /*} elseif (!empty(array_intersect($rr['ourIpList'], $ip))) {
                 $res['our'][] = $domain;
                 //dd($domainInfo);
-                $dd[$domain]['isOur'] = true;
+                $dd[$domain]['isOur'] = true;*/
             } else {
                 $res['their'][] = $domain;
             }
@@ -71,12 +79,13 @@ class DomainService
 
         $ipList = array_unique($ipList);
 
-        usort($dd, function ($value, $value2) {
-            return $value2['isOur'] ? 1 : -1;
-            /*if(empty($value2['ip'])) {
-                return 1;
+        usort($dd, function ($value1, $value2) {
+            $val1 = ($value1['company'] ?? '');
+            $val2 = ($value2['company'] ?? '');
+            if($val1 == $val2) {
+                return 0;
             }
-            return $value2['ip'] > $value['ip'] ? -1 : 1;*/
+            return $val1 < $val2 ? 1 : -1;
         });
 
         return [
