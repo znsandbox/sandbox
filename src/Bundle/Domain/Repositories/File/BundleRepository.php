@@ -58,6 +58,7 @@ class BundleRepository implements BundleRepositoryInterface
     {
         $bundleInstanceArray = $this->configManager->get('bundles');
         $bundleCollection = new Collection();
+
         foreach ($bundleInstanceArray as $bundleInstance) {
             $bundleClass = get_class($bundleInstance);
             $bundleNamespace = ClassHelper::getNamespace($bundleClass);

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Repositories\Eloquent;
 
-use Packages\Geo\Domain\Interfaces\Repositories\LocalityRepositoryInterface;
+use ZnSandbox\Sandbox\Geo\Domain\Interfaces\Repositories\LocalityRepositoryInterface;
 use ZnCore\Base\Libs\I18Next\Mappers\I18nMapper;
 use ZnCore\Contract\Mapper\Interfaces\MapperInterface;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
