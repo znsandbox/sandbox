@@ -20,6 +20,7 @@ class SchemaRepository
     {
         $this->capsule = $capsule;
         $driver = $this->getConnection()->getDriverName();
+        
         if ($driver == DbDriverEnum::SQLITE) {
             $this->dbRepository = new \ZnSandbox\Sandbox\Generator\Domain\Repositories\Sqlite\DbRepository($capsule);
         } elseif ($driver == DbDriverEnum::PGSQL) {
@@ -69,6 +70,9 @@ class SchemaRepository
         return $newCollection;
     }
 
+    /**
+     * @return Collection | TableEntity[]
+     */
     public function allTables(): Collection
     {
         return $this->dbRepository->allTables();

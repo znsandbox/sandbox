@@ -129,15 +129,8 @@ WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name='$tableName';";
 
         $dbName = $schema->getConnection()->getDatabaseName();
         $collection = new Collection;
-        if ($schema->getConnection()->getDriverName() == DbDriverEnum::SQLITE) {
-            $array = $schema->getConnection()->getPdo()->query('SELECT name FROM sqlite_master WHERE type=\'table\'')->fetchAll(\PDO::FETCH_COLUMN);
-            foreach ($array as $targetTableName) {
-                $tableEntity1 = new TableEntity($targetTableName);
-                $tableEntity1->setName();
-                $tableEntity1->setSchemaName($tableEntity->getSchema()->getName());
-                $tableEntity1->setDbName($tableEntity->getSchema()->getDbName());
-                $collection->add($tableEntity1);
-            }
+        /*if ($schema->getConnection()->getDriverName() == DbDriverEnum::SQLITE) {
+            
         } else {
             if ($schema->getConnection()->getDriverName() == DbDriverEnum::PGSQL) {
                 $tableCollection = self::allPostgresTables($schema->getConnection());
@@ -153,7 +146,20 @@ WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name='$tableName';";
                 $tableEntity1->setDbName($tableEntity->getSchema()->getDbName());
                 $collection->add($tableEntity1);
             }
+        }*/
+
+        $array = $schema->getConnection()->getPdo()->query('SELECT name FROM sqlite_master WHERE type=\'table\'')->fetchAll(\PDO::FETCH_COLUMN);
+        
+        foreach ($array as $targetTableName) {
+            $tableEntity1 = new TableEntity($targetTableName);
+            //$tableName = StructHelper::getTableNameFromEntity($tableEntity);
+            $tableEntity1->setName($targetTableName);
+//            $tableEntity1->setSchemaName('public');
+            $tableEntity1->setDbName($dbName);
+            $collection->add($tableEntity1);
         }
+
+        
         return $collection;
     }
 
