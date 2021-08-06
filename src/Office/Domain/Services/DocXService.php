@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Office\Domain\Services;
 
 use ZnCore\Base\Helpers\StringHelper;
+use ZnCore\Base\Helpers\TemplateHelper;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnSandbox\Sandbox\Office\Domain\Entities\DocXEntity;
@@ -70,7 +71,7 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
 
     public function renderEntity(DocXEntity $docXEntity, array $params = []): void {
         $word = $docXEntity->getWord();
-        $word['document.xml'] = StringHelper::renderTemplate($word['document.xml'], $params, '{{', '}}');
+        $word['document.xml'] = TemplateHelper::renderTemplate($word['document.xml'], $params, '{{', '}}');
         $docXEntity->setWord($word);
     }
 

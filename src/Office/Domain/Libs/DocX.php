@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ZipArchive;
 use ZnCore\Base\Helpers\StringHelper;
+use ZnCore\Base\Helpers\TemplateHelper;
 
 class DocX
 {
@@ -22,7 +23,7 @@ class DocX
     public function replace(array $replacementList)
     {
         $document = $this->zip->readFile('word/document.xml');
-        $document = StringHelper::renderTemplate($document, $replacementList, '{{', '}}');
+        $document = TemplateHelper::renderTemplate($document, $replacementList, '{{', '}}');
         $this->zip->writeFile('word/document.xml', $document);
     }
 
