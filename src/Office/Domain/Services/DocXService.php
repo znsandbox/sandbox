@@ -71,7 +71,7 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
 
     public function renderEntity(DocXEntity $docXEntity, array $params = []): void {
         $word = $docXEntity->getWord();
-        $word['document.xml'] = TemplateHelper::renderTemplate($word['document.xml'], $params, '{{', '}}');
+        $word['document.xml'] = TemplateHelper::render($word['document.xml'], $params, '{{', '}}');
         $docXEntity->setWord($word);
     }
 

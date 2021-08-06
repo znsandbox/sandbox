@@ -23,7 +23,7 @@ class DocX
     public function replace(array $replacementList)
     {
         $document = $this->zip->readFile('word/document.xml');
-        $document = TemplateHelper::renderTemplate($document, $replacementList, '{{', '}}');
+        $document = TemplateHelper::render($document, $replacementList, '{{', '}}');
         $this->zip->writeFile('word/document.xml', $document);
     }
 
