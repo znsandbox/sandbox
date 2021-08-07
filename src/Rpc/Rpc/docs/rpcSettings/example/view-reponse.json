@@ -1,0 +1,10 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "body": {
+      "cryptoProviderStrategy": "jsonDSig",
+      "waitReceiptNotification": true,
+      "requireTimestamp": true
+    }
+  }
+}
