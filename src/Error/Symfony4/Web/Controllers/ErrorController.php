@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Error\Symfony4\Web\Controllers;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -12,6 +13,8 @@ use ZnCore\Base\Exceptions\ForbiddenException;
 use ZnCore\Base\Exceptions\InvalidConfigException;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Helpers\EnvHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\VarDumper;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 
 class ErrorController extends BaseWebController
@@ -19,14 +22,22 @@ class ErrorController extends BaseWebController
 
     protected $viewsDir = __DIR__ . '/../views/error';
     private $session;
+    private $logger;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, LoggerInterface $logger)
     {
         $this->session = $session;
+        $this->logger = $logger;
     }
 
     public function handleError(Request $request, \Exception $exception): Response
     {
+        //dd($request);
+        //EntityHelper::toArray($request, true)
+        //dd();
+        $this->logger->error($exception->getMessage(), [
+            'request' => VarDumper::dumpAsString($request)
+        ]);
         if ($exception instanceof ForbiddenException) {
             return $this->forbidden($request, $exception);
         }
