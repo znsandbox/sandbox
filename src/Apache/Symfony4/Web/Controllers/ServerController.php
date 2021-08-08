@@ -24,15 +24,16 @@ class ServerController extends BaseWebController
     public function index(Request $request): Response
     {
         $links = $this->serverService->all();
-        return $this->renderTemplate('index', [
+        return $this->render('index', [
             'links' => $links,
         ]);
     }
 
-    public function view(Request $request, string $name): Response
+    public function view(Request $request): Response
     {
+        $name = $request->query->get('name');
         $entity = $this->serverService->oneByName($name);
-        return $this->renderTemplate('view', [
+        return $this->render('view', [
             'entity' => $entity,
         ]);
     }

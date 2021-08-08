@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
 use Illuminate\Support\Collection;
+use Symfony\Component\DependencyInjection\Tests\Fixtures\StdClassDecorator;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
@@ -62,6 +63,13 @@ class ServerRepository
                 $hostArray = explode('.', $hostName);
                 $categoryName = ArrayHelper::last($hostArray);
                 $categoryHash = hash(HashAlgoEnum::CRC32B, $categoryName);
+
+                /*$entity = new \StdClass();
+                $entity->title = $categoryName;
+                $entity->items = [
+                    'server' => $tagEntity,
+                ];
+                $links[$categoryHash] = $entity;*/
 
                 $links[$categoryHash]['title'] = ($categoryName);
                 $links[$categoryHash]['items'][] = [

@@ -1,3 +1,5 @@
+
+
 <div class="container">
 
     <?php foreach ($links as $group): ?>
@@ -10,7 +12,7 @@
                 ?>
                 <li class="list-group-item list-group-item-action">
                     <div class="pull-right">
-                        <a href="/view?name=<?= $serverEntity->getServerName() ?>" class="text-decoration-none text-dark">
+                        <a href="/apache/view?name=<?= $serverEntity->getServerName() ?>" class="text-decoration-none text-dark">
                             <i class="fa fa-eye"></i>
                         </a>
                         <a href="/update?name=<?= $serverEntity->getServerName() ?>" class="">
