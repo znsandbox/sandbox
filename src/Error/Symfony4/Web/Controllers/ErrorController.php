@@ -32,9 +32,6 @@ class ErrorController extends BaseWebController
 
     public function handleError(Request $request, \Exception $exception): Response
     {
-        //dd($request);
-        //EntityHelper::toArray($request, true)
-        //dd();
         $this->logger->error($exception->getMessage(), [
             'request' => VarDumper::dumpAsString($request)
         ]);
