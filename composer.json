@@ -13,6 +13,7 @@
     "symfony/serializer": "4.*|5.*"
   },
   "autoload": {
+    "files": [ "config/namespace.php" ],
     "psr-4": {
       "ZnSandbox\\Sandbox\\": "src",
       "ZnSandbox\\Telegram\\": "src/Telegram",
