@@ -8,6 +8,8 @@ use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Services\PermissionServiceInterfa
 class PermissionController extends BaseCrudRpcController
 {
 
+    protected $pageSizeMax = 200;
+
     public function __construct(PermissionServiceInterface $service)
     {
         $this->service = $service;

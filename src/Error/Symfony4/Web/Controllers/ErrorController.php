@@ -32,8 +32,21 @@ class ErrorController extends BaseWebController
 
     public function handleError(Request $request, \Exception $exception): Response
     {
-        $this->logger->error($exception->getMessage(), [
-            'request' => VarDumper::dumpAsString($request)
+        $data = [
+            'attributes' => $request->attributes->all(),
+            'request' => $request->request->all(),
+            'query' => $request->query->all(),
+            'server' => $request->server->all(),
+            'files' => $request->files->all(),
+            'cookies' => $request->cookies->all(),
+            'headers' => $request->headers->all(),
+            'requestUri' => $request->getRequestUri(),
+            'method' => $request->getMethod(),
+        ];
+        $logMessage = $exception->getMessage() ?: get_class($exception);
+        $this->logger->error($logMessage, [
+            'request' => $data,
+            'trace' => debug_backtrace()
         ]);
         if ($exception instanceof ForbiddenException) {
             return $this->forbidden($request, $exception);
