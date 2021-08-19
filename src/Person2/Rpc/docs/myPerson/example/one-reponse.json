@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "body": {
+      "code": null,
+      "firstName": "Qwery",
+      "middleName": null,
+      "lastName": "Fisher",
+      "birthday": null,
+      "sexId": null
+    }
+  }
+}
