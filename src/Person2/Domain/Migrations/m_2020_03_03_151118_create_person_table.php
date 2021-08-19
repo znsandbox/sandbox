@@ -5,7 +5,7 @@ namespace Migrations;
 use Illuminate\Database\Schema\Blueprint;
 use ZnLib\Migration\Domain\Base\BaseCreateTableMigration;
 
-class m_2018_02_25_084640_create_person_table extends BaseCreateTableMigration
+class m_2020_03_03_151118_create_person_table extends BaseCreateTableMigration
 {
 
     protected $tableName = 'person_person';
@@ -22,9 +22,11 @@ class m_2018_02_25_084640_create_person_table extends BaseCreateTableMigration
             $table->string('last_name')->nullable()->comment('Фамилия');
             $table->date('birthday')->nullable()->comment('Дата рождения');
             $table->integer('sex_id')->nullable()->comment('Пол');
+            $table->text('attributes')->nullable()->comment('Дополнительные атрибуты');
 
             $table->unique(['code']);
             $this->addForeign($table, 'identity_id', 'user_identity');
+            $this->addForeign($table, 'sex_id', 'reference_item');
         };
     }
 }
