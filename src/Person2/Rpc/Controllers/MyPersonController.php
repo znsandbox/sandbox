@@ -7,7 +7,7 @@ use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseRpcController;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 
-class PersonController extends BaseRpcController
+class MyPersonController extends BaseRpcController
 {
 
     public function __construct(MyPersonServiceInterface $personService)
