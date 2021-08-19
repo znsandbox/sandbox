@@ -7,8 +7,8 @@ use ZnCore\Base\Interfaces\GetLabelsInterface;
 class MyPersonPermissionEnum implements GetLabelsInterface
 {
 
-    const UPDATE = 'oMyPersonInfoUpdate';
-    const ONE = 'oMyPersonInfoOne';
+    const UPDATE = 'oPersonMyPersonUpdate';
+    const ONE = 'oPersonMyPersonOne';
 
     public static function getLabels()
     {

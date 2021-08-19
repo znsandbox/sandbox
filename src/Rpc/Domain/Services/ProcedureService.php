@@ -96,7 +96,7 @@ class ProcedureService
         } catch (\Throwable $e) {
             $code = $e->getCode() ?: RpcErrorCodeEnum::APPLICATION_ERROR;
             $message = $e->getMessage() ?: 'Application error: ' . get_class($e);
-            $responseEntity = $this->responseFormatter->forgeErrorResponse(intval($code), $message, EntityHelper::toArray($e));
+            $responseEntity = $this->responseFormatter->forgeErrorResponse(intval($code), $message);
         }
         $responseEntity->setId($requestEntity->getId());
         $this->triggerAfter($requestEntity, $responseEntity);
