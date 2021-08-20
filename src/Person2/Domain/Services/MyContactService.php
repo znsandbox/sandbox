@@ -2,7 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use App\Contact\Domain\Entities\ValueEntity;
+use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnSandbox\Sandbox\Contact\Domain\Entities\ValueEntity;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Person\Domain\Interfaces\Repositories\ContactRepositoryInterface;
 use ZnCore\Domain\Base\BaseCrudService;
@@ -39,5 +40,25 @@ class MyContactService extends BaseCrudService implements MyContactServiceInterf
         $query->where('entity_id', $this->eavEntity->getId());
         $query->where('record_id', $myPersonId);
         return $query;
+    }
+
+    public function deleteById($id)
+    {
+        $this->oneById($id);
+        parent::deleteById($id);
+    }
+
+    public function updateById($id, $data)
+    {
+        $this->oneById($id);
+        return parent::updateById($id, $data);
+    }
+
+    public function create($data): EntityIdInterface
+    {
+        $myPersonId = $this->myPersonService->one()->getId();
+        $data['entity_id'] = $this->eavEntity->getId();
+        $data['record_id'] = $myPersonId;
+        return parent::create($data);
     }
 }
