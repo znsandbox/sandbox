@@ -1,0 +1,10 @@
+{
+  "jsonrpc": "2.0",
+  "method": "...",
+  "params": {
+    "body": {
+      "value": "support@orleu.kz",
+      "attributeId": 1
+    }
+  }
+}

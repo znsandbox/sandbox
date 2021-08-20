@@ -23,7 +23,7 @@ class MyContactController extends BaseCrudRpcController
         return [
             'id',
             'value',
-//            'attributeId',
+            'attributeId',
             'attribute.id',
             'attribute.name',
             'attribute.title',
