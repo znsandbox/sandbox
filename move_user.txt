@@ -1,0 +1,5 @@
+ZnSandbox\Sandbox\UserSecurity => ZnUser\Password
+ZnSandbox\\Sandbox\\UserSecurity => ZnUser\\Password
+vendor/znsandbox/sandbox/src/UserSecurity => vendor/znuser/password
+
+
