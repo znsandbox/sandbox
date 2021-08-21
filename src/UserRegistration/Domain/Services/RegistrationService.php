@@ -25,7 +25,7 @@ use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\ValidationHelper;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnSandbox\Sandbox\Casbin\Domain\Entities\AssignmentEntity;
+use ZnUser\Rbac\Domain\Entities\AssignmentEntity;
 
 class RegistrationService extends BaseService implements RegistrationServiceInterface
 {

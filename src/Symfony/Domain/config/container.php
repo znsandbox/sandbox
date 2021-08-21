@@ -26,8 +26,8 @@ use ZnBundle\User\Domain\Services\AuthService3;
 use ZnBundle\User\Domain\Subscribers\SymfonyAuthenticationIdentitySubscriber;
 use ZnCrypt\Pki\Domain\Helpers\RsaKeyLoaderHelper;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
-use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Services\ManagerServiceInterface;
-use ZnSandbox\Sandbox\Casbin\Domain\Services\ManagerService;
+use ZnUser\Rbac\Domain\Interfaces\Services\ManagerServiceInterface;
+use ZnUser\Rbac\Domain\Services\ManagerService;
 
 return [
 	'definitions' => [

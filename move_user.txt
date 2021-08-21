@@ -1,5 +1,12 @@
 ZnSandbox\Sandbox\UserSecurity => ZnUser\Password
-ZnSandbox\\Sandbox\\UserSecurity => ZnUser\\Password
 vendor/znsandbox/sandbox/src/UserSecurity => vendor/znuser/password
+
+
+ZnSandbox\Sandbox\UserNotify => ZnUser\Notify
+vendor/znsandbox/sandbox/src/UserNotify => vendor/znuser/notify/src
+
+ZnSandbox\Sandbox\Casbin => ZnUser\Rbac
+vendor/znsandbox/sandbox/src/Casbin => vendor/znuser/rbac/src
+
 
 

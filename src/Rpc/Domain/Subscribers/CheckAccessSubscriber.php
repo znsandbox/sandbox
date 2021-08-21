@@ -9,8 +9,8 @@ use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Exceptions\ForbiddenException;
 use ZnCore\Domain\Traits\EntityManagerTrait;
-use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Services\AssignmentServiceInterface;
-use ZnSandbox\Sandbox\Casbin\Domain\Interfaces\Services\ManagerServiceInterface;
+use ZnUser\Rbac\Domain\Interfaces\Services\AssignmentServiceInterface;
+use ZnUser\Rbac\Domain\Interfaces\Services\ManagerServiceInterface;
 
 class CheckAccessSubscriber implements EventSubscriberInterface
 {
