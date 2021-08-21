@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
-use ZnSandbox\Sandbox\UserSecurity\Domain\Helpers\PasswordValidatorHelper;
+use ZnUser\Password\Domain\Helpers\PasswordValidatorHelper;
 
 class CreateAccountForm implements ValidateEntityByMetadataInterface, BuildFormInterface
 {
