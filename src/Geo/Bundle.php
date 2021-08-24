@@ -7,6 +7,16 @@ use ZnCore\Base\Libs\App\Base\BaseBundle;
 class Bundle extends BaseBundle
 {
 
+    public function symfonyRpc(): array
+    {
+        return [
+            __DIR__ . '/Rpc/config/country-routes.php',
+            __DIR__ . '/Rpc/config/currency-routes.php',
+            __DIR__ . '/Rpc/config/locality-routes.php',
+            __DIR__ . '/Rpc/config/region-routes.php',
+        ];
+    }
+
     public function yiiWeb(): array
     {
         return [
