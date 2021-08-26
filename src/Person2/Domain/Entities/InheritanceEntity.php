@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -13,16 +14,20 @@ class InheritanceEntity implements ValidateEntityByMetadataInterface, UniqueInte
 
     private $id = null;
 
-    private $personId = null;
+    private $childPersonId = null;
 
     private $parentPersonId = null;
 
-    private $statusId = null;
+    private $statusId = StatusEnum::ENABLED;
+
+    private $childPerson = null;
+
+    private $parentPerson = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('personId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('childPersonId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('parentPersonId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
     }
@@ -42,14 +47,14 @@ class InheritanceEntity implements ValidateEntityByMetadataInterface, UniqueInte
         return $this->id;
     }
 
-    public function setPersonId($value) : void
+    public function setChildPersonId($value) : void
     {
-        $this->personId = $value;
+        $this->childPersonId = $value;
     }
 
-    public function getPersonId()
+    public function getChildPersonId()
     {
-        return $this->personId;
+        return $this->childPersonId;
     }
 
     public function setParentPersonId($value) : void
@@ -72,6 +77,23 @@ class InheritanceEntity implements ValidateEntityByMetadataInterface, UniqueInte
         return $this->statusId;
     }
 
+    public function getChildPerson()
+    {
+        return $this->childPerson;
+    }
 
+    public function setChildPerson($childPerson): void
+    {
+        $this->childPerson = $childPerson;
+    }
+
+    public function getParentPerson()
+    {
+        return $this->parentPerson;
+    }
+
+    public function setParentPerson($parentPerson): void
+    {
+        $this->parentPerson = $parentPerson;
+    }
 }
-
