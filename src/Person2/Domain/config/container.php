@@ -10,9 +10,11 @@ return [
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\ContactServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\ContactService',
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\MyContactServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\MyContactService',
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\MyChildServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\MyChildService',
+		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\ContactRepositoryInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Repositories\\Eloquent\\ContactRepository',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Entities\\InheritanceEntity' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\InheritanceRepositoryInterface',
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Entities\\PersonEntity' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\PersonRepositoryInterface',
+		'ZnSandbox\\Sandbox\\Person2\\Domain\\Entities\\ContactEntity' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\ContactRepositoryInterface',
 	],
 ];
