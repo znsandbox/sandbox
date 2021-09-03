@@ -77,17 +77,17 @@ $attributes = [
     </div>
     <div class="col-lg-3">
 
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-header">
                 Favorite
             </div>
 
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                <!--<a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                     The current link item
-                </a>
+                </a>-->
                 <?php foreach ($collection as $favoriteEntity): ?>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="<?= \ZnCore\Base\Legacy\Yii\Helpers\Url::to([$baseUri, 'id' => $favoriteEntity->getId()]) ?>" class="list-group-item list-group-item-action">
                         <small>
                             <?= $favoriteEntity->getMethod() ?>
                             <?php if($favoriteEntity->getDescription()): ?>

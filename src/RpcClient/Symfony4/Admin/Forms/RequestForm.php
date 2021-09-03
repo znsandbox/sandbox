@@ -109,7 +109,9 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
     {
         /** @var UserEntity[] $collection */
         $collection = $this->_userService->all();
-        $options = [];
+        $options = [
+            null => 'guest'
+        ];
         foreach ($collection as $entity) {
             $options[$entity->getId()] = $entity->getLogin() ?? $entity->getDescription();
         }
