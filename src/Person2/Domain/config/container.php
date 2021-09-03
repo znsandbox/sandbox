@@ -11,6 +11,7 @@ return [
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\MyContactServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\MyContactService',
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\MyChildServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\MyChildService',
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\ContactRepositoryInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Repositories\\Eloquent\\ContactRepository',
+		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\ContactTypeServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\ContactTypeService',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Entities\\InheritanceEntity' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\InheritanceRepositoryInterface',

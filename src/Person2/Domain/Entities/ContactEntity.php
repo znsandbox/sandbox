@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -19,9 +20,9 @@ class ContactEntity implements ValidateEntityByMetadataInterface, UniqueInterfac
 
     private $value = null;
 
-    private $statusId = null;
+    private $statusId = StatusEnum::ENABLED;
 
-    private $sort = null;
+    private $sort = 100;
 
     private $createdAt = null;
 
@@ -29,21 +30,27 @@ class ContactEntity implements ValidateEntityByMetadataInterface, UniqueInterfac
 
     private $attribute = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime;
+    }
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('personId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('attributeId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('value', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('sort', new Assert\NotBlank);
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank);
+//        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank);
     }
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['personId', 'value'],
+        ];
     }
 
     public function setId($value) : void

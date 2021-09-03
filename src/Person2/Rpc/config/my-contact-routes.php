@@ -35,6 +35,16 @@ return [
         'status_id' => 100,
     ],
     [
+        'method_name' => 'myContact.createBatch',
+        'version' => '1',
+        'is_verify_eds' => false,
+        'is_verify_auth' => true,
+        'permission_name' => MyContactPermissionEnum::CREATE,
+        'handler_class' => MyContactController::class,
+        'handler_method' => 'createBatch',
+        'status_id' => 100,
+    ],
+    [
         'method_name' => 'myContact.update',
         'version' => '1',
         'is_verify_eds' => false,
