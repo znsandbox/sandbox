@@ -11,14 +11,11 @@ class UserRepository extends BaseEloquentCrudRepository implements UserRepositor
 
     public function tableName() : string
     {
-        return 'rpc-client_user';
+        return 'rpc_client_user';
     }
 
     public function getEntityClass() : string
     {
         return UserEntity::class;
     }
-
-
 }
-

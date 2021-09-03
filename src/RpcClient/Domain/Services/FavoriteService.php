@@ -24,7 +24,4 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
     {
         return FavoriteEntity::class;
     }
-
-
 }
-

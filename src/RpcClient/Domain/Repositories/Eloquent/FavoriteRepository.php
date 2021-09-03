@@ -11,14 +11,11 @@ class FavoriteRepository extends BaseEloquentCrudRepository implements FavoriteR
 
     public function tableName() : string
     {
-        return 'rpc-client_favorite';
+        return 'rpc_client_favorite';
     }
 
     public function getEntityClass() : string
     {
         return FavoriteEntity::class;
     }
-
-
 }
-
