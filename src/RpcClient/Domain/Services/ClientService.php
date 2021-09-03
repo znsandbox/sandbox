@@ -15,10 +15,6 @@ use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\ClientRepositoryI
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ClientServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\RequestForm;
 
-/**
- * @method
- * ClientRepositoryInterface getRepository()
- */
 class ClientService extends BaseService implements ClientServiceInterface
 {
 
@@ -57,17 +53,20 @@ class ClientService extends BaseService implements ClientServiceInterface
     {
         $favoriteEntity = new FavoriteEntity();
         $favoriteEntity->setMethod($form->getMethod());
-        $favoriteEntity->setBody($form->getBody());
-        $favoriteEntity->setMeta($form->getMeta());
+        $favoriteEntity->setBody(json_decode($form->getBody()));
+        $favoriteEntity->setMeta(json_decode($form->getMeta()));
         $favoriteEntity->setDescription($form->getDescription());
         $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
+        $this->generateUid($favoriteEntity);
+        $this->getEntityManager()->persist($favoriteEntity);
+    }
 
-        $scope = $favoriteEntity->getMethod() . $favoriteEntity->getBody() . $favoriteEntity->getMeta() . $favoriteEntity->getAuthBy();
+    private function generateUid(FavoriteEntity $favoriteEntity)
+    {
+        $scope = $favoriteEntity->getMethod() . json_encode($favoriteEntity->getBody()) . json_encode($favoriteEntity->getMeta()) . $favoriteEntity->getAuthBy();
         $hashBin = hash('sha1', $scope, true);
         $hash = StringHelper::base64UrlEncode($hashBin);
         $hash = rtrim($hash, '=');
         $favoriteEntity->setUid($hash);
-
-        $this->getEntityManager()->persist($favoriteEntity);
     }
 }

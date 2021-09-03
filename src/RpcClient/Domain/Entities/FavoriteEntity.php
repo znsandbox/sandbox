@@ -57,7 +57,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function unique() : array
     {
         return [
-            ['uid']
+            ['uid'],
         ];
     }
 
