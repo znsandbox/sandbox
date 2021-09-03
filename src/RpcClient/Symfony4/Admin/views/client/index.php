@@ -4,18 +4,18 @@
  * @var $formView FormView|AbstractType[]
  * @var $dataProvider DataProvider
  * @var $baseUri string
+ * @var $rpcResponseEntity \ZnLib\Rpc\Domain\Entities\RpcResponseEntity
+ * @var $collection \Illuminate\Support\Collection | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
  */
 
-use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use ZnCore\Base\Helpers\StringHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Libs\DataProvider;
-use ZnLib\Web\Widgets\Collection\CollectionWidget;
 use ZnLib\Web\Widgets\Format\Formatters\ActionFormatter;
 use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;
+use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 
 $attributes = [
     [
@@ -25,7 +25,7 @@ $attributes = [
     [
         'label' => I18Next::t('core', 'main.attribute.value'),
 //        'attributeName' => 'value',
-        'value' => function(ApiKeyEntity $apiKeyEntity) {
+        'value' => function (ApiKeyEntity $apiKeyEntity) {
             return StringHelper::mask($apiKeyEntity->getValue(), 3);
         },
         'formatter' => [
@@ -68,14 +68,37 @@ $attributes = [
             'formView' => $formView,
             'baseUri' => $baseUri,
         ]) ?>
+
+        <?php if ($rpcResponseEntity): ?>
+            <textarea id="form_certificateRequest" class="form-control" name="form[certificateRequest]" rows="20"
+                      style="font-size: 12px; font-family:monospace;"><?php echo json_encode(\ZnCore\Domain\Helpers\EntityHelper::toArray($rpcResponseEntity, true), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); ?></textarea>
+        <?php endif; ?>
+
     </div>
     <div class="col-lg-3">
-        <ul class="list-group">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
-        </ul>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Favorite
+            </div>
+
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                    The current link item
+                </a>
+                <?php foreach ($collection as $favoriteEntity): ?>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <small>
+                            <?= $favoriteEntity->getMethod() ?>
+                            <?php if($favoriteEntity->getDescription()): ?>
+                                <br/>
+                                <?= $favoriteEntity->getDescription() ?>
+                            <?php endif; ?>
+                        </small>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
     </div>
 </div>

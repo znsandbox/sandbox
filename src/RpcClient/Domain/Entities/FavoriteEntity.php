@@ -4,6 +4,8 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -25,20 +27,27 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     private $description = null;
 
-    private $statusId = null;
+    private $authorId = null;
+
+    private $statusId = StatusEnum::ENABLED;
 
     private $createdAt = null;
 
     private $updatedAt = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
+//        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('uid', new Assert\NotBlank);
         $metadata->addPropertyConstraint('method', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('body', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('meta', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('authBy', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('authorId', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('description', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank);
@@ -47,7 +56,9 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['uid']
+        ];
     }
 
     public function setId($value) : void
@@ -62,12 +73,12 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function setUid($value) : void
     {
-        $this->hash = $value;
+        $this->uid = $value;
     }
 
     public function getUid()
     {
-        return $this->hash;
+        return $this->uid;
     }
 
     public function setMethod($value) : void
@@ -118,6 +129,16 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function getAuthorId()
+    {
+        return $this->authorId;
+    }
+
+    public function setAuthorId($authorId): void
+    {
+        $this->authorId = $authorId;
     }
 
     public function setStatusId($value) : void

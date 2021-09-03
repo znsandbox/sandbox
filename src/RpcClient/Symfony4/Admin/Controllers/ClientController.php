@@ -2,28 +2,22 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers;
 
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
-use ZnCore\Domain\Helpers\EntityHelper;
-use ZnCore\Domain\Helpers\QueryHelper;
-use ZnCore\Domain\Libs\Query;
-use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
-use ZnLib\Rpc\Domain\Libs\RpcClient;
-use ZnLib\Rpc\Domain\Libs\RpcProvider;
-use ZnLib\Web\Symfony4\MicroApp\Enums\CrudControllerActionEnum;
-use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
-use ZnSandbox\Sandbox\RpcClient\Domain\Filters\ApiKeyFilter;
-use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ApiKeyServiceInterface;
-use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\FavoriteServiceInterface;
-use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ApiKeyForm;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
+use ZnLib\Rpc\Domain\Libs\RpcClient;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
+use ZnSandbox\Sandbox\RpcClient\Domain\Filters\ApiKeyFilter;
+use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ApiKeyServiceInterface;
+use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ClientServiceInterface;
+use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\FavoriteServiceInterface;
+use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ApiKeyForm;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\RequestForm;
 use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
 
@@ -34,6 +28,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
     protected $baseUri = '/rpc-client/request';
     protected $formClass = RequestForm::class;
     private $rpcClient;
+    private $clientService;
 
     public function __construct(
         ToastrServiceInterface $toastrService,
@@ -41,6 +36,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         CsrfTokenManagerInterface $tokenManager,
         BreadcrumbWidget $breadcrumbWidget,
         FavoriteServiceInterface $service,
+        ClientServiceInterface $clientService,
         RpcClient $rpcClient
     )
     {
@@ -50,6 +46,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         $this->setTokenManager($tokenManager);
         $this->setBreadcrumbWidget($breadcrumbWidget);
         $this->rpcClient = $rpcClient;
+        $this->clientService = $clientService;
 
         //$this->setFilterModel(ApiKeyFilter::class);
 
@@ -80,42 +77,16 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             try {
-                $rpcRequestEntity = new RpcRequestEntity();
-                $rpcRequestEntity->setMethod($form->getMethod());
-                $rpcRequestEntity->setParams([
-                    'body' => json_decode($form->getBody(), JSON_OBJECT_AS_ARRAY),
-                    'meta' => json_decode($form->getMeta(), JSON_OBJECT_AS_ARRAY),
-                ]);
-
-                $this->rpcProvider = new RpcProvider();
-                $rpcResponseEntity = $this->rpcProvider->sendRequestByEntity($rpcRequestEntity);
-
-//                $this->rpcClient->getGuzzleClient()->
-//                $this->rpcClient->sendRequestByEntity($rpcRequestEntity);
-
-
-                $favoriteEntity = new FavoriteEntity();
-                $favoriteEntity->setMethod($form->getMethod());
-                $favoriteEntity->setBody($form->getBody());
-                $favoriteEntity->setMeta($form->getMeta());
-                $favoriteEntity->setDescription($form->getDescription());
-
-
-
-
-                dd($favoriteEntity);
-                //$this->getService()->updateById($id, EntityHelper::toArray($form));
-                //$this->getToastrService()->success(['core', 'message.saved_success']);
-                //return $this->redirect(Url::to([$this->getBaseUri()]));
-
+                $rpcResponseEntity = $this->clientService->sendRequest($form);
             } catch (UnprocessibleEntityException $e) {
                 $this->setUnprocessableErrorsToForm($buildForm, $e);
             }
         }
 
-        $dataProvider = $this->getService()->getDataProvider();
+        $collection = $this->getService()->all();
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'rpcResponseEntity' => $rpcResponseEntity ?? null,
+            'collection' => $collection,
             'baseUri' => $this->getBaseUri(),
             'formView' => $buildForm->createView(),
 //            'filterModel' => $filterModel,

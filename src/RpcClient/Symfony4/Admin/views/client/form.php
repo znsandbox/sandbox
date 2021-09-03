@@ -26,24 +26,37 @@ $formRender = new FormRender($formView, $tokenManager);
     <?= $formRender->input('method') ?>
     <?= $formRender->hint('method') ?>
 </div>
+
 <div class="form-group required has-error">
     <?= $formRender->label('authBy') ?>
     <?= $formRender->input('authBy') ?>
     <?= $formRender->hint('authBy') ?>
 </div>
+
 <div class="form-group required has-error">
     <?= $formRender->label('body') ?>
-    <?= $formRender->input('body') ?>
+    <?= $formRender->input('body', null, [
+        'style' => "font-size: 12px; font-family:monospace;",
+        'rows' => 6,
+    ]) ?>
     <?= $formRender->hint('body') ?>
 </div>
+
 <div class="form-group required has-error">
     <?= $formRender->label('meta') ?>
-    <?= $formRender->input('meta') ?>
+    <?= $formRender->input('meta', null, [
+        'style' => "font-size: 12px; font-family:monospace;",
+        'rows' => 6,
+    ]) ?>
     <?= $formRender->hint('meta') ?>
 </div>
+
 <div class="form-group required has-error">
     <?= $formRender->label('description') ?>
-    <?= $formRender->input('description') ?>
+    <?= $formRender->input('description', null, [
+        'style' => "font-size: 12px; font-family:monospace;",
+        'rows' => 6,
+    ]) ?>
     <?= $formRender->hint('description') ?>
 </div>
 

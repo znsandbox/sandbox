@@ -24,7 +24,9 @@ class m_2021_09_01_150440_create_favorite_table extends BaseCreateTableMigration
         $table->smallInteger('status_id')->comment('Статус');
         $table->dateTime('created_at')->comment('Время создания');
         $table->dateTime('updated_at')->nullable()->comment('Время обновления');
-        
+
+        $table->unique(['uid']);
+
         $this->addForeign($table, 'auth_by', 'rpc_client_user');
         $this->addForeign($table, 'author_id', 'user_identity');
     }
