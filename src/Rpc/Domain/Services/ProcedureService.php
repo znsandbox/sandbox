@@ -82,21 +82,21 @@ class ProcedureService
             ];
             $responseEntity = $this->instanceProvider->callMethod($methodEntity->getHandlerClass(), [], $methodEntity->getHandlerMethod(), $parameters);
         } catch (NotFoundException $e) {
-            $responseEntity = $this->responseFormatter->forgeErrorResponse(HttpStatusCodeEnum::NOT_FOUND, $e->getMessage(), EntityHelper::toArray($e));
+            $responseEntity = $this->responseFormatter->forgeErrorResponse(HttpStatusCodeEnum::NOT_FOUND, $e->getMessage(), EntityHelper::toArray($e), $e);
         } catch (UnprocessibleEntityException $e) {
             $responseEntity = $this->handleUnprocessibleEntityException($e);
         } catch (\ZnCore\Base\Exceptions\UnauthorizedException | UnauthorizedException $e) {
             $message = $e->getMessage() ?: 'Unauthorized';
-            $responseEntity = $this->responseFormatter->forgeErrorResponse(HttpStatusCodeEnum::UNAUTHORIZED, $message, EntityHelper::toArray($e));
+            $responseEntity = $this->responseFormatter->forgeErrorResponse(HttpStatusCodeEnum::UNAUTHORIZED, $message, EntityHelper::toArray($e), $e);
         } catch (ForbiddenException $e) {
-            $responseEntity = $this->responseFormatter->forgeErrorResponse(HttpStatusCodeEnum::FORBIDDEN, $e->getMessage(), EntityHelper::toArray($e));
+            $responseEntity = $this->responseFormatter->forgeErrorResponse(HttpStatusCodeEnum::FORBIDDEN, $e->getMessage(), EntityHelper::toArray($e), $e);
         } catch (EntryNotFoundException $e) {
             $message = 'Server error. Bad inject dependencies in "' . $e->getMessage() . '"';
-            $responseEntity = $this->responseFormatter->forgeErrorResponse(RpcErrorCodeEnum::SYSTEM_ERROR, $message, EntityHelper::toArray($e));
+            $responseEntity = $this->responseFormatter->forgeErrorResponse(RpcErrorCodeEnum::SYSTEM_ERROR, $message, EntityHelper::toArray($e), $e);
         } catch (\Throwable $e) {
             $code = $e->getCode() ?: RpcErrorCodeEnum::APPLICATION_ERROR;
             $message = $e->getMessage() ?: 'Application error: ' . get_class($e);
-            $responseEntity = $this->responseFormatter->forgeErrorResponse(intval($code), $message);
+            $responseEntity = $this->responseFormatter->forgeErrorResponse(intval($code), $message, null, $e);
         }
         $responseEntity->setId($requestEntity->getId());
         $this->triggerAfter($requestEntity, $responseEntity);

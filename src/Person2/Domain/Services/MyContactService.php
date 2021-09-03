@@ -82,9 +82,9 @@ class MyContactService extends BaseCrudService implements MyContactServiceInterf
                 try {
                     $this->create($item);
                 } catch (AlreadyExistsException $e) {
-                    /*$errors = new UnprocessibleEntityException;
+                    $errors = new UnprocessibleEntityException;
                     $errors->add($name, $e->getMessage());
-                    throw $errors;*/
+                    throw $errors;
                 }
             }
         }
