@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 
+use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -28,6 +29,8 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     private $sexId = null;
 
     private $attributes = [];
+
+    private $contacts = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
@@ -137,5 +140,15 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    public function getContacts(): ?Collection
+    {
+        return $this->contacts;
+    }
+
+    public function setContacts(Collection $contacts): void
+    {
+        $this->contacts = $contacts;
     }
 }

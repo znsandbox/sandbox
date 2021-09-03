@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
+use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseRpcController;
@@ -15,6 +16,13 @@ class MyPersonController extends BaseRpcController
         $this->service = $personService;
     }
 
+    public function allowRelations(): array
+    {
+        return [
+            'contacts',
+        ];
+    }
+
     public function attributesExclude(): array
     {
         return [
@@ -26,7 +34,9 @@ class MyPersonController extends BaseRpcController
 
     public function one(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
-        $personEntity = $this->service->one();
+        $query = new Query();
+        $this->forgeWith($requestEntity, $query);
+        $personEntity = $this->service->one($query);
         return $this->serializeResult($personEntity);
     }
 

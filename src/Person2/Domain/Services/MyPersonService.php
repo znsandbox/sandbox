@@ -6,6 +6,7 @@ use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
@@ -23,10 +24,10 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
         $this->personRepository = $personRepository;
     }
 
-    public function one(): PersonEntity
+    public function one(Query $query): PersonEntity
     {
         $identityId = $this->authService->getIdentity()->getId();
-        return $this->personRepository->oneByIdentityId($identityId);
+        return $this->personRepository->oneByIdentityId($identityId, $query);
     }
 
     public function update(array $data): void

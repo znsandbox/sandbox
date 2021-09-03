@@ -3,11 +3,35 @@
   "result": {
     "body": {
       "code": null,
-      "firstName": "Qwery",
+      "firstName": "Harold",
       "middleName": null,
       "lastName": "Fisher",
       "birthday": null,
-      "sexId": null
+      "sexId": null,
+      "contacts": [
+        {
+          "id": 2,
+          "personId": 1,
+          "attributeId": 3,
+          "value": "+77771111111",
+          "statusId": 100,
+          "sort": "100",
+          "createdAt": "2021-08-12 12:30:46",
+          "updatedAt": null,
+          "attribute": null
+        },
+        {
+          "id": 1,
+          "personId": 1,
+          "attributeId": 1,
+          "value": "support1@orleu.kz",
+          "statusId": 100,
+          "sort": "100",
+          "createdAt": "2021-08-12 12:30:46",
+          "updatedAt": null,
+          "attribute": null
+        }
+      ]
     }
   }
 }

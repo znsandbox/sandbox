@@ -20,6 +20,7 @@ class ContactRepository extends BaseEloquentCrudRepository implements ContactRep
     {
         return ContactEntity::class;
     }
+
     public function relations2()
     {
         return [

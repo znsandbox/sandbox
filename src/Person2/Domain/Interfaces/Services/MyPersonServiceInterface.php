@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services;
 
+use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 
 interface MyPersonServiceInterface
@@ -9,5 +10,5 @@ interface MyPersonServiceInterface
 
     public function update(array $data): void;
 
-    public function one(): PersonEntity;
+    public function one(Query $query): PersonEntity;
 }
