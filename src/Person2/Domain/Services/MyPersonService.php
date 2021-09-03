@@ -24,7 +24,7 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
         $this->personRepository = $personRepository;
     }
 
-    public function one(Query $query): PersonEntity
+    public function one(Query $query = null): PersonEntity
     {
         $identityId = $this->authService->getIdentity()->getId();
         return $this->personRepository->oneByIdentityId($identityId, $query);

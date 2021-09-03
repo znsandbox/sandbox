@@ -10,5 +10,5 @@ interface MyPersonServiceInterface
 
     public function update(array $data): void;
 
-    public function one(Query $query): PersonEntity;
+    public function one(Query $query = null): PersonEntity;
 }

@@ -20,6 +20,7 @@ class MyPersonController extends BaseRpcController
     {
         return [
             'contacts',
+            'contacts.attribute',
         ];
     }
 
