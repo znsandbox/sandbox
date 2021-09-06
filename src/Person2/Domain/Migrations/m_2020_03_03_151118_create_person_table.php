@@ -15,7 +15,7 @@ class m_2020_03_03_151118_create_person_table extends BaseCreateTableMigration
     {
         return function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->comment('Идентификатор');
-            $table->integer('code')->nullable()->comment('Идентификатор персоны');
+            $table->string('code')->nullable()->comment('Идентификатор персоны');
             $table->integer('identity_id')->nullable()->comment('Аккаунт');
             $table->string('first_name')->comment('Имя');
             $table->string('middle_name')->nullable()->comment('Отчество');
