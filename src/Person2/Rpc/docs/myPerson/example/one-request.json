@@ -4,7 +4,10 @@
   "params": {
     "body": {
       "with": [
-        "contacts.attribute"
+        "contacts.attribute",
+        "representativeCitizenship",
+        "representativeType",
+        "sex"
       ]
     }
   }

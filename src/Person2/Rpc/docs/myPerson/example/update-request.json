@@ -9,12 +9,14 @@
       "Authorization": "bearer XAgQTzcEFIK2PrvtwkMyvDFD6bUjgq33z3kycw9-3t-RY2Ru1NpAc3q5fr5NeRGC"
     },
     "body": {
-      "code": null,
+      "code": "500209291424",
       "firstName": "Qwery",
       "middleName": null,
       "lastName": "Fisher",
       "birthday": null,
-      "sexId": null
+      "representativeCitizenshipId": 9,
+      "representativeTypeId": 11,
+      "sexId": 1
     }
   }
 }
