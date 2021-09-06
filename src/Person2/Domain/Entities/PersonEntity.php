@@ -5,33 +5,37 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
+use ZnUser\Rbac\Domain\Entities\ItemEntity;
 
 class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
 {
 
-    private $id = null;
+    protected $id = null;
 
-    private $code = null;
+    protected $code = null;
 
-    private $identityId = null;
+    protected $identityId = null;
 
-    private $firstName = null;
+    protected $firstName = null;
 
-    private $middleName = null;
+    protected $middleName = null;
 
-    private $lastName = null;
+    protected $lastName = null;
 
-    private $birthday = null;
+    protected $birthday = null;
 
-    private $sexId = null;
+    protected $sexId = null;
 
-    private $attributes = [];
+    protected $attributes = [];
 
-    private $contacts = null;
+    protected $contacts = null;
+
+    protected $sex = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
@@ -45,6 +49,9 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 //        $metadata->addPropertyConstraint('birthday', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('sexId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('sexId', new Assert\Positive());
+        $metadata->addPropertyConstraint('sexId', new ReferenceItem([
+            'bookName' => 'sex',
+        ]));
 //        $metadata->addPropertyConstraint('attributes', new Assert\NotBlank);
     }
 
@@ -161,5 +168,15 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     public function setContacts(Collection $contacts): void
     {
         $this->contacts = $contacts;
+    }
+
+    public function getSex(): ?ItemEntity
+    {
+        return $this->sex;
+    }
+
+    public function setSex(ItemEntity $sex): void
+    {
+        $this->sex = $sex;
     }
 }

@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Repositories\Eloquent;
 use ZnBundle\Eav\Domain\Interfaces\Repositories\EnumRepositoryInterface;
 use ZnBundle\Eav\Domain\Interfaces\Repositories\MeasureRepositoryInterface;
 use ZnBundle\Eav\Domain\Interfaces\Repositories\ValidationRepositoryInterface;
+use ZnBundle\Reference\Domain\Interfaces\Repositories\ItemRepositoryInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnCore\Domain\Relations\relations\OneToManyRelation;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
@@ -42,6 +43,12 @@ class PersonRepository extends BaseEloquentCrudRepository implements PersonRepos
                 'relationEntityAttribute' => 'contacts',
                 'foreignRepositoryClass' => ContactRepositoryInterface::class,
                 'foreignAttribute' => 'person_id',
+            ],
+            [
+                'class' => OneToOneRelation::class,
+                'relationAttribute' => 'sex_id',
+                'relationEntityAttribute' => 'sex',
+                'foreignRepositoryClass' => ItemRepositoryInterface::class
             ],
         ];
     }

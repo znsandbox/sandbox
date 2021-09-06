@@ -11,7 +11,4 @@ class Domain implements DomainInterface
     {
         return 'person';
     }
-
-
 }
-
