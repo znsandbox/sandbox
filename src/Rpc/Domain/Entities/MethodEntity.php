@@ -4,6 +4,8 @@ namespace ZnSandbox\Sandbox\Rpc\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 
@@ -18,16 +20,19 @@ class MethodEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     private $handlerClass = null;
     private $handlerMethod = null;
     private $version = null;
-    private $statusId = null;
+    private $statusId = StatusEnum::ENABLED;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('method_name', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('is_verify_eds', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('is_verify_auth', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('permission_name', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('version_id', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('status_id', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('methodName', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('isVerifyEds', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('isVerifyAuth', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('permissionName', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('versionId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('statusId', new Enum([
+            'class' => StatusEnum::class,
+        ]));
     }
 
     public function unique() : array
