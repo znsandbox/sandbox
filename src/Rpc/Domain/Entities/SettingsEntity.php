@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Rpc\Domain\Entities;
 
+use ZnCore\Domain\Constraints\Boolean;
 use ZnCore\Domain\Constraints\Enum;
 use ZnSandbox\Sandbox\Rpc\Domain\Enums\RpcCryptoProviderStrategyEnum;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -24,9 +25,9 @@ class SettingsEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
             'class' => RpcCryptoProviderStrategyEnum::class,
         ]));
 //        $metadata->addPropertyConstraint('waitReceiptNotification', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('waitReceiptNotification', new Assert\Choice(['choices' => [true, false]]));
+        $metadata->addPropertyConstraint('waitReceiptNotification', new Boolean());
 //        $metadata->addPropertyConstraint('requireTimestamp', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('requireTimestamp', new Assert\Choice(['choices' => [true, false]]));
+        $metadata->addPropertyConstraint('requireTimestamp', new Boolean());
     }
 
     public function unique(): array
