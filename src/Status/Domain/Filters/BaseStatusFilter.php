@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Status\Domain\Filters;
 
+use ZnCore\Domain\Constraints\Enum;
 use ZnSandbox\Sandbox\Status\Domain\Enums\StatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -15,8 +16,8 @@ abstract class BaseStatusFilter implements ValidateEntityByMetadataInterface
 
     protected static function loadStatusValidatorMetadata(ClassMetadata $metadata, string $enumStatus = StatusEnum::class)
     {
-        $metadata->addPropertyConstraint('statusId', new Assert\Choice([
-            'choices' => EnumHelper::getValues($enumStatus)
+        $metadata->addPropertyConstraint('statusId', new Enum([
+            'class' => $enumStatus,
         ]));
     }
 

@@ -29,6 +29,11 @@ class ValueEntity implements ValidateEntityByMetadataInterface, UniqueInterface,
 
     private $attribute = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\NotBlank);

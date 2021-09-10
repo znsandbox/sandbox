@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Language\Domain\Interfaces\Services\RuntimeLanguageServiceInterface;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Libs\I18Next\Traits\LanguageTrait;
+use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -47,6 +48,9 @@ class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInt
         $metadata->addPropertyConstraint('titleI18n', new Assert\NotBlank);
         $metadata->addPropertyConstraint('typeId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('statusId', new Enum([
+            'class' => StatusEnum::class,
+        ]));
     }
 
     public function unique() : array

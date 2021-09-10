@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Eav\Domain\Enums\AttributeTypeEnum;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Helpers\EnumHelper;
+use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -36,6 +37,9 @@ class ApplicationEntity implements ValidateEntityByMetadataInterface, UniqueInte
 //        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('title', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('statusId', new Enum([
+            'class' => StatusEnum::class,
+        ]));
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank);
     }
 

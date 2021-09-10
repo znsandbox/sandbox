@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Rpc\Domain\Entities;
 
+use ZnCore\Domain\Constraints\Enum;
 use ZnSandbox\Sandbox\Rpc\Domain\Enums\RpcCryptoProviderStrategyEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -19,7 +20,9 @@ class SettingsEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('cryptoProviderStrategy', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('cryptoProviderStrategy', new Assert\Choice(['choices' => EnumHelper::getValues(RpcCryptoProviderStrategyEnum::class)]));
+        $metadata->addPropertyConstraint('cryptoProviderStrategy', new Enum([
+            'class' => RpcCryptoProviderStrategyEnum::class,
+        ]));
 //        $metadata->addPropertyConstraint('waitReceiptNotification', new Assert\NotBlank);
         $metadata->addPropertyConstraint('waitReceiptNotification', new Assert\Choice(['choices' => [true, false]]));
 //        $metadata->addPropertyConstraint('requireTimestamp', new Assert\NotBlank);

@@ -6,6 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
+use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -50,6 +51,9 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         $metadata->addPropertyConstraint('authorId', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('description', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('statusId', new Enum([
+            'class' => StatusEnum::class,
+        ]));
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank);
     }

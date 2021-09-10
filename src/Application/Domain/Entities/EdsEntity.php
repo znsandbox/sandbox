@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Application\Domain\Entities;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -32,6 +33,11 @@ class EdsEntity implements ValidateEntityByMetadataInterface, UniqueInterface, E
 
     private $application = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('applicationId', new Assert\NotBlank);
@@ -40,6 +46,9 @@ class EdsEntity implements ValidateEntityByMetadataInterface, UniqueInterface, E
         $metadata->addPropertyConstraint('certificateRequest', new Assert\NotBlank);
         $metadata->addPropertyConstraint('certificate', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('statusId', new Enum([
+            'class' => StatusEnum::class,
+        ]));
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank);
         $metadata->addPropertyConstraint('expiredAt', new Assert\NotBlank);
     }
