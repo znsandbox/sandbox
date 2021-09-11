@@ -5,7 +5,9 @@ namespace ZnSandbox\Sandbox\Redmine\Domain\Repositories\Api;
 use Redmine\Api\AbstractApi;
 use Redmine\Client;
 use ZnCore\Base\Exceptions\NotSupportedException;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Entities\Query\Where;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Db\Traits\MapperTrait;
@@ -17,6 +19,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
     use MapperTrait;
 
     private $client;
+    private $cache = [];
 
     public function __construct(Client $client)
     {
@@ -51,17 +54,42 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
         throw new NotSupportedException('deleteByCondition');
     }
 
+    public function hashQuery(Query $query)
+    {
+        return hash('sha256', serialize($query));
+    }
+
+    public function setCache(Query $query, array $array)
+    {
+        $hash = $this->hashQuery($query);
+        $this->cache[$hash] = $array;
+    }
+
+    public function getCache(Query $query): ?array
+    {
+        $hash = $this->hashQuery($query);
+        return ArrayHelper::getValue($this->cache, $hash);
+    }
+
     public function all(Query $query = null)
     {
-        $params = $this->forgeNativeParams($query);
-        $array = $this->getEndpoint()->all($params);
+        $array = $this->getCache($query);
+        if(!$array) {
+            $params = $this->forgeNativeParams($query);
+            $array = $this->getEndpoint()->all($params);
+        }
+        $this->setCache($query, $array);
         return $this->mapperDecodeCollection($array['issues']);
     }
 
     public function count(Query $query = null): int
     {
-        $params = $this->forgeNativeParams($query);
-        $array = $this->getEndpoint()->all($params);
+        $array = $this->getCache($query);
+        if(!$array) {
+            $params = $this->forgeNativeParams($query);
+            $array = $this->getEndpoint()->all($params);
+        }
+        $this->setCache($query, $array);
         return $array['total_count'];
     }
 
@@ -91,10 +119,13 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
             'status_id' => 'closed',
             'sort' => 'created_on:desc,status:desc'*/
         ];
+//        dd($query->getWhere());
         /** @var Where[] $whereList */
-        $whereList = $query->getParam(Query::WHERE_NEW);
-        foreach ($whereList as $where) {
-            $params[$where->column] = $where->value;
+        $whereList = $query->getWhere();
+        if($whereList) {
+            foreach ($whereList as $where) {
+                $params[$where->column] = $where->value;
+            }
         }
 
         $orderList = $query->getParam(Query::ORDER);
@@ -115,6 +146,11 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
         if ($limit) {
             $params['limit'] = $limit;
         }
+        $page = $query->getParam(Query::PAGE);
+        if ($page) {
+            $params['offset'] = $limit * ($page - 1);
+        }
+
         return $params;
     }
 }
