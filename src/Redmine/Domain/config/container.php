@@ -14,6 +14,8 @@ return [
 		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\PriorityRepositoryInterface' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Repositories\\Eloquent\\PriorityRepository',
 		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Services\\IssueServiceInterface' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Services\\IssueService',
 		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\IssueRepositoryInterface' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Repositories\\Eloquent\\IssueRepository',
+		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Services\\IssueApiServiceInterface' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Services\\IssueApiService',
+		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\IssueApiRepositoryInterface' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Repositories\\Api\\IssueApiRepository',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Entities\\UserEntity' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\UserRepositoryInterface',
@@ -22,5 +24,6 @@ return [
 		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Entities\\StatusEntity' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\StatusRepositoryInterface',
 		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Entities\\PriorityEntity' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\PriorityRepositoryInterface',
 		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Entities\\IssueEntity' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\IssueRepositoryInterface',
+		'ZnSandbox\\Sandbox\\Redmine\\Domain\\Entities\\IssueApiEntity' => 'ZnSandbox\\Sandbox\\Redmine\\Domain\\Interfaces\\Repositories\\IssueApiRepositoryInterface',
 	],
 ];

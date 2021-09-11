@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Entities;
 
+use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
@@ -36,6 +37,18 @@ class IssueEntity implements ValidateEntityByMetadataInterface, UniqueInterface,
     private $createdAt = null;
 
     private $updatedAt = null;
+
+    private $project = null;
+
+    private $tracker = null;
+
+    private $status = null;
+
+    private $priority = null;
+
+    private $author = null;
+
+    private $assigned = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
@@ -169,26 +182,85 @@ class IssueEntity implements ValidateEntityByMetadataInterface, UniqueInterface,
         return $this->doneRatio;
     }
 
-    public function setCreatedAt($value) : void
+    public function setCreatedAt(DateTime $value) : void
     {
         $this->createdAt = $value;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function setUpdatedAt($value) : void
+    public function setUpdatedAt(DateTime $value) : void
     {
         $this->updatedAt = $value;
     }
 
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
+    public function getProject(): ?ProjectEntity
+    {
+        return $this->project;
+    }
+
+    public function setProject(ProjectEntity $project): void
+    {
+        $this->project = $project;
+    }
+
+    public function getTracker(): ?TrackerEntity
+    {
+        return $this->tracker;
+    }
+
+    public function setTracker(TrackerEntity $tracker): void
+    {
+        $this->tracker = $tracker;
+    }
+
+    public function getStatus(): ?StatusEntity
+    {
+        return $this->status;
+    }
+
+    public function setStatus(StatusEntity $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function getPriority(): ?PriorityEntity
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(PriorityEntity $priority): void
+    {
+        $this->priority = $priority;
+    }
+
+    public function getAuthor(): ?UserEntity
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(UserEntity $author): void
+    {
+        $this->author = $author;
+    }
+
+    public function getAssigned(): ?UserEntity
+    {
+        return $this->assigned;
+    }
+
+    public function setAssigned(UserEntity $assigned): void
+    {
+        $this->assigned = $assigned;
+    }
 
 }
 
