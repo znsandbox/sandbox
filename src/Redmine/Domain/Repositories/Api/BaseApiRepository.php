@@ -2,10 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Repositories\Api;
 
-use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Support\Collection;
 use Redmine\Api\AbstractApi;
 use Redmine\Client;
+use ZnCore\Base\Exceptions\NotSupportedException;
 use ZnCore\Domain\Entities\Query\Where;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Libs\Query;
@@ -34,34 +33,48 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
 
     public function create(EntityIdInterface $entity)
     {
-        // TODO: Implement create() method.
+        $array = $this->getEndpoint()->create($params);
     }
 
     public function update(EntityIdInterface $entity)
     {
-        // TODO: Implement update() method.
+        $array = $this->getEndpoint()->update($entity->getId(), $params);
     }
 
     public function deleteById($id)
     {
-        // TODO: Implement deleteById() method.
+        $array = $this->getEndpoint()->remove($id);
     }
 
     public function deleteByCondition(array $condition)
     {
-        // TODO: Implement deleteByCondition() method.
+        throw new NotSupportedException('deleteByCondition');
     }
 
-    protected function allByBuilder(QueryBuilder $queryBuilder): Collection
+    public function all(Query $query = null)
     {
-        $postCollection = $queryBuilder->get();
-        $array = $postCollection->toArray();
-        $collection = $this->mapperDecodeCollection($array);
-        return $collection;
+        $params = $this->forgeNativeParams($query);
+        $array = $this->getEndpoint()->all($params);
+        return $this->mapperDecodeCollection($array['issues']);
     }
 
-    protected function forgeNativeParams(Query $query): array
+    public function count(Query $query = null): int
     {
+        $params = $this->forgeNativeParams($query);
+        $array = $this->getEndpoint()->all($params);
+        return $array['total_count'];
+    }
+
+    public function oneById($id, Query $query = null): EntityIdInterface
+    {
+        $params = $this->forgeNativeParams($query);
+        $array = $this->getEndpoint()->show($id, $params);
+        return $this->mapperDecodeEntity($array['issue']);
+    }
+
+    protected function forgeNativeParams(Query $query = null): array
+    {
+        $query = Query::forge($query);
         $params = [
             //'project_id' => 'e-daryn',
             //'sort' => 'id',
@@ -86,7 +99,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
 
         $orderList = $query->getParam(Query::ORDER);
         $sortList = [];
-        if($orderList) {
+        if ($orderList) {
             foreach ($orderList as $column => $direct) {
                 $directNative = $direct == SORT_ASC ? 'asc' : 'desc';
                 $sortList[] = $column . ':' . $directNative;
@@ -103,27 +116,5 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
             $params['limit'] = $limit;
         }
         return $params;
-    }
-
-    public function all(Query $query = null)
-    {
-        $query = Query::forge($query);
-        $params = $this->forgeNativeParams($query);
-//        dd($params);
-        $array = $this->getEndpoint()->all($params);
-        return $this->mapperDecodeCollection($array['issues']);
-    }
-
-    public function count(Query $query = null): int
-    {
-
-    }
-
-    public function oneById($id, Query $query = null): EntityIdInterface
-    {
-        $query = Query::forge($query);
-        $params = $this->forgeNativeParams($query);
-        $array = $this->getEndpoint()->show($id, $params);
-        return $this->mapperDecodeEntity($array['issue']);
     }
 }
