@@ -50,6 +50,10 @@ class IssueEntity implements ValidateEntityByMetadataInterface, UniqueInterface,
 
     private $assigned = null;
 
+    private $attachments = null;
+
+    private $journals = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\NotBlank);
@@ -262,5 +266,23 @@ class IssueEntity implements ValidateEntityByMetadataInterface, UniqueInterface,
         $this->assigned = $assigned;
     }
 
-}
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
 
+    public function setAttachments($attachments): void
+    {
+        $this->attachments = $attachments;
+    }
+
+    public function getJournals()
+    {
+        return $this->journals;
+    }
+
+    public function setJournals($journals): void
+    {
+        $this->journals = $journals;
+    }
+}

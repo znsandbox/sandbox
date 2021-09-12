@@ -151,6 +151,12 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
             $params['offset'] = $limit * ($page - 1);
         }
 
+        $with = $query->getParam(Query::WITH);
+        if ($with) {
+
+            $params['include'] = implode(',', $with);
+        }
+
         return $params;
     }
 }

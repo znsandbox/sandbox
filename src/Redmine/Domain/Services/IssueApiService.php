@@ -2,15 +2,14 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Services;
 
-use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Services\IssueApiServiceInterface;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
 use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\IssueApiEntity;
+use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
+use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Services\IssueApiServiceInterface;
 
 /**
- * @method
- * IssueApiRepositoryInterface getRepository()
+ * @method IssueApiRepositoryInterface getRepository()
  */
 class IssueApiService extends BaseCrudService implements IssueApiServiceInterface
 {
@@ -20,11 +19,8 @@ class IssueApiService extends BaseCrudService implements IssueApiServiceInterfac
         $this->setEntityManager($em);
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return IssueApiEntity::class;
     }
-
-
 }
-
