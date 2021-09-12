@@ -7,7 +7,6 @@ use Redmine\Client;
 use ZnCore\Base\Exceptions\NotSupportedException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Entities\Query\Where;
-use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Db\Traits\MapperTrait;
@@ -74,7 +73,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
     public function all(Query $query = null)
     {
         $array = $this->getCache($query);
-        if(!$array) {
+        if (!$array) {
             $params = $this->forgeNativeParams($query);
             $array = $this->getEndpoint()->all($params);
         }
@@ -85,7 +84,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
     public function count(Query $query = null): int
     {
         $array = $this->getCache($query);
-        if(!$array) {
+        if (!$array) {
             $params = $this->forgeNativeParams($query);
             $array = $this->getEndpoint()->all($params);
         }
@@ -122,7 +121,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
 //        dd($query->getWhere());
         /** @var Where[] $whereList */
         $whereList = $query->getWhere();
-        if($whereList) {
+        if ($whereList) {
             foreach ($whereList as $where) {
                 $params[$where->column] = $where->value;
             }

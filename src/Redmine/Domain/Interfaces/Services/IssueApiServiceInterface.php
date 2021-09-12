@@ -7,6 +7,4 @@ use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
 interface IssueApiServiceInterface extends CrudServiceInterface
 {
 
-
 }
-
