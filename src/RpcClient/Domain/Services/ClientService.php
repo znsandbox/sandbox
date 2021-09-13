@@ -4,9 +4,11 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Domain\Enums\HttpHeaderEnum;
@@ -62,8 +64,6 @@ class ClientService extends BaseService implements ClientServiceInterface
             $authorizationToken = $this->authProvider->authBy($userEntity->getLogin(), $userEntity->getPassword());
             $rpcRequestEntity->addMeta(HttpHeaderEnum::AUTHORIZATION, $authorizationToken);
         }
-//        $rpcRequestEntity->addMeta('version', $form->getVersion());
-//        $rpcRequestEntity->addMeta('timestamp', $form->getVersion());
         $this->rpcProvider->prepareRequestEntity($rpcRequestEntity);
         return $rpcRequestEntity;
     }
@@ -84,8 +84,9 @@ class ClientService extends BaseService implements ClientServiceInterface
         $favoriteEntity->setDescription($form->getDescription());
         $favoriteEntity->setAuthBy($form->getAuthBy() ?: null);
         $favoriteEntity->setVersion($form->getVersion());
-        $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
+        $this->generateUid($favoriteEntity);
         if($favoriteEntitySource) {
+            $favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());
             if($favoriteEntitySource->getParentId()) {
                 $favoriteEntity->setParentId($favoriteEntitySource->getParentId());
             } else {
@@ -93,7 +94,15 @@ class ClientService extends BaseService implements ClientServiceInterface
             }
         }
         $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
-        $this->generateUid($favoriteEntity);
+        try {
+            $query = new Query();
+            $query->where('uid', $favoriteEntity->getUid());
+            $this->getEntityManager()->one(FavoriteEntity::class, $query);
+        } catch (NotFoundException $e) {
+            //if(!$favoriteEntitySource) {
+                $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
+            //}
+        }
         $this->getEntityManager()->persist($favoriteEntity);
     }
 

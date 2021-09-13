@@ -9,6 +9,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
+use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
 use ZnLib\Rpc\Domain\Libs\RpcClient;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
@@ -77,7 +78,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         /** @var RequestForm $form */
         $form = $this->createFormInstance();
 
-        if($id) {
+        if ($id) {
             /** @var FavoriteEntity $favoriteEntity */
             $favoriteEntity = $this->service->oneById($id);
             $form->setMethod($favoriteEntity->getMethod());
@@ -94,18 +95,28 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             try {
                 $rpcResponseEntity = $this->clientService->sendRequest($form, $favoriteEntity);
+
+                if ($rpcResponseEntity->getError() && $rpcResponseEntity->getError()['code'] == RpcErrorCodeEnum::SERVER_ERROR_METHOD_NOT_FOUND) {
+                    $e = new UnprocessibleEntityException();
+                    $e->add('version', $rpcResponseEntity->getError()['message']);
+                    $e->add('method', $rpcResponseEntity->getError()['message']);
+                    $this->setUnprocessableErrorsToForm($buildForm, $e);
+                }
+
                 $rpcRequestEntity = $this->clientService->formToRequestEntity($form);
             } catch (UnprocessibleEntityException $e) {
                 $this->setUnprocessableErrorsToForm($buildForm, $e);
             }
         }
 
-        $collection = $this->getService()->all();
+        $favoriteCollection = $this->getService()->allFavorite();
+        $historyCollection = $this->getService()->allHistory();
         return $this->render('index', [
             'favoriteEntity' => $favoriteEntity,
             'rpcResponseEntity' => $rpcResponseEntity ?? null,
             'rpcRequestEntity' => $rpcRequestEntity ?? null,
-            'collection' => $collection,
+            'favoriteCollection' => $favoriteCollection,
+            'historyCollection' => $historyCollection,
             'baseUri' => $this->getBaseUri(),
             'formView' => $buildForm->createView(),
 //            'filterModel' => $filterModel,

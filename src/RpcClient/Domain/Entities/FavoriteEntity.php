@@ -34,7 +34,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     private $authorId = null;
 
-    private $statusId = StatusEnum::ENABLED;
+    private $statusId = StatusEnum::WAIT_APPROVING;
 
     private $createdAt = null;
 
