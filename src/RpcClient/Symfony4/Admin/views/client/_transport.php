@@ -18,6 +18,16 @@ $responseData = $responseEncoder->encode(EntityHelper::toArray($rpcResponseEntit
 $requestEncoder = new RequestEncoder();
 $requestData = $requestEncoder->encode(EntityHelper::toArray($rpcRequestEntity, true));
 
+if(empty($requestData['params']['body'])) {
+    unset($requestData['params']['body']);
+}
+if(empty($requestData['params']['meta'])) {
+    unset($requestData['params']['meta']);
+}
+if(empty($requestData['params'])) {
+    unset($requestData['params']);
+}
+
 $responseCode = json_encode($responseData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 $requestCode = json_encode($requestData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 

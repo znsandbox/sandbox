@@ -17,6 +17,7 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
 {
 
     private $authBy = null;
+    private $version = null;
     private $method = null;
     private $body = '{}';
     private $meta = '{}';
@@ -33,6 +34,7 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
     {
 //        $metadata->addPropertyConstraint('authBy', new Assert\NotBlank());
         $metadata->addPropertyConstraint('method', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('version', new Assert\NotBlank());
     }
 
     public function buildForm(FormBuilderInterface $formBuilder)
@@ -40,6 +42,10 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
         $formBuilder->add('authBy', ChoiceType::class, [
             'label' => 'authBy',
             'choices' => array_flip($this->getUserOptions()),
+        ]);
+        $formBuilder->add('version', ChoiceType::class, [
+            'label' => 'version',
+            'choices' => array_flip($this->getVersionOptions()),
         ]);
         $formBuilder->add('method', TextType::class, [
             'label' => 'method'
@@ -63,6 +69,16 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
     public function setAuthBy($authBy): void
     {
         $this->authBy = $authBy;
+    }
+
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function setVersion($version): void
+    {
+        $this->version = $version;
     }
 
     public function getMethod()
@@ -118,6 +134,17 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
         ];
         foreach ($collection as $entity) {
             $options[$entity->getId()] = $entity->getLogin() ?? $entity->getDescription();
+        }
+        return $options;
+    }
+
+    public function getVersionOptions(): array
+    {
+        /** @var UserEntity[] $collection */
+        $collection = $this->_userService->all();
+        $options = [];
+        for ($i = 1; $i <= 3; $i++) {
+            $options[$i] = "Version $i";
         }
         return $options;
     }

@@ -16,6 +16,7 @@ class m_2021_09_01_150440_create_favorite_table extends BaseCreateTableMigration
         $table->integer('id')->autoIncrement()->comment('Идентификатор');
         $table->integer('parent_id')->nullable()->comment('');
         $table->string('uid')->comment('');
+        $table->integer('version')->default(1)->comment('');
         $table->string('method')->comment('');
         $table->string('body')->nullable()->comment('');
         $table->string('meta')->nullable()->comment('');
@@ -26,7 +27,7 @@ class m_2021_09_01_150440_create_favorite_table extends BaseCreateTableMigration
         $table->dateTime('created_at')->comment('Время создания');
         $table->dateTime('updated_at')->nullable()->comment('Время обновления');
 
-        $table->unique(['uid']);
+        $table->unique(['uid', 'version']);
 
         $this->addForeign($table, 'parent_id', 'rpc_client_favorite');
         $this->addForeign($table, 'auth_by', 'rpc_client_user');

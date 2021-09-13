@@ -13,54 +13,8 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnCore\Base\Helpers\StringHelper;
-use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Libs\DataProvider;
-use ZnLib\Web\Widgets\Format\Formatters\ActionFormatter;
-use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
-
-$attributes = [
-    [
-        'label' => 'ID',
-        'attributeName' => 'id',
-    ],
-    [
-        'label' => I18Next::t('core', 'main.attribute.value'),
-//        'attributeName' => 'value',
-        'value' => function (ApiKeyEntity $apiKeyEntity) {
-            return StringHelper::mask($apiKeyEntity->getValue(), 3);
-        },
-        'formatter' => [
-            'class' => LinkFormatter::class,
-            'uri' => $baseUri . '/view',
-        ],
-    ],
-    [
-        'label' => I18Next::t('core', 'main.attribute.applicationId'),
-        'attributeName' => 'application.title',
-        'sort' => true,
-        'sortAttribute' => 'application_id',
-    ],
-    [
-        'label' => I18Next::t('core', 'main.attribute.created_at'),
-        'attributeName' => 'createdAt',
-    ],
-    [
-        'label' => I18Next::t('core', 'main.attribute.expired_at'),
-        'attributeName' => 'expiredAt',
-    ],
-    [
-        'formatter' => [
-            'class' => ActionFormatter::class,
-            'actions' => [
-                'update',
-                'delete',
-            ],
-            'baseUrl' => $baseUri,
-        ],
-    ],
-];
 
 ?>
 

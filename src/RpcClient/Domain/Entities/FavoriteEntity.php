@@ -20,6 +20,8 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     private $uid = null;
 
+    private $version = "1";
+
     private $method = null;
 
     private $body = null;
@@ -47,6 +49,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     {
 //        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('uid', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('version', new Assert\NotBlank);
         $metadata->addPropertyConstraint('method', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('body', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('meta', new Assert\NotBlank);
@@ -95,6 +98,16 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function getUid()
     {
         return $this->uid;
+    }
+
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
+
+    public function setVersion(string $version): void
+    {
+        $this->version = $version;
     }
 
     public function setMethod($value) : void

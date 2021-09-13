@@ -38,6 +38,13 @@ $formRender = new FormRender($formView, $tokenManager);
 
 <div class="tab-content" id="form-tabContent">
     <div class="tab-pane fade active show" id="form-home" role="tabpanel" aria-labelledby="form-home-tab">
+
+        <div class="form-group required has-error">
+            <?= $formRender->label('version') ?>
+            <?= $formRender->input('version') ?>
+            <?= $formRender->hint('version') ?>
+        </div>
+
         <div class="form-group required has-error">
             <?= $formRender->label('method') ?>
             <?= $formRender->input('method') ?>

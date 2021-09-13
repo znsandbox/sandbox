@@ -85,6 +85,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
             $form->setBody(json_encode($favoriteEntity->getBody()));
             $form->setAuthBy($favoriteEntity->getAuthBy());
             $form->setDescription($favoriteEntity->getDescription());
+            $form->setVersion($favoriteEntity->getVersion());
         } else {
             $favoriteEntity = null;
         }
