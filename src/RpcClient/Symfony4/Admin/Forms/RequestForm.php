@@ -77,7 +77,9 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
 
     public function getBody()
     {
-        return $this->body;
+        $decoded = json_decode($this->body);
+        return json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+//        return $this->body;
     }
 
     public function setBody($body): void
@@ -87,6 +89,8 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
 
     public function getMeta()
     {
+        $decoded = json_decode($this->meta);
+        return json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         return $this->meta;
     }
 

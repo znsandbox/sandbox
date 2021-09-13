@@ -5,6 +5,7 @@
  * @var $dataProvider DataProvider
  * @var $baseUri string
  * @var $rpcResponseEntity \ZnLib\Rpc\Domain\Entities\RpcResponseEntity
+ * @var $rpcRequestEntity \ZnLib\Rpc\Domain\Entities\RpcRequestEntity
  * @var $collection \Illuminate\Support\Collection | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
  */
 
@@ -12,7 +13,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use ZnCore\Base\Helpers\StringHelper;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Libs\DataProvider;
+use ZnLib\Rpc\Domain\Encoders\RequestEncoder;
+use ZnLib\Rpc\Domain\Encoders\ResponseEncoder;
 use ZnLib\Web\Widgets\Format\Formatters\ActionFormatter;
 use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
@@ -59,8 +63,16 @@ $attributes = [
     ],
 ];
 
-?>
+$responseEncoder = new ResponseEncoder();
+$responseData = $responseEncoder->encode(EntityHelper::toArray($rpcResponseEntity, true));
 
+$requestEncoder = new RequestEncoder();
+$requestData = $requestEncoder->encode(EntityHelper::toArray($rpcRequestEntity, true));
+
+$responseCode = json_encode($responseData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+$requestCode = json_encode($requestData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+?>
 
 <div class="row">
     <div class="col-lg-9">
@@ -69,9 +81,35 @@ $attributes = [
             'baseUri' => $baseUri,
         ]) ?>
 
-        <?php if ($rpcResponseEntity): ?>
-            <textarea id="form_certificateRequest" class="form-control" name="form[certificateRequest]" rows="20"
-                      style="font-size: 12px; font-family:monospace;"><?php echo json_encode(\ZnCore\Domain\Helpers\EntityHelper::toArray($rpcResponseEntity, true), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); ?></textarea>
+        <ul class="nav nav-tabs" id="result-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="result-response-tab" data-toggle="pill" href="#result-response"
+                   role="tab" aria-controls="result-response" aria-selected="true">response</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="result-request-tab" data-toggle="pill" href="#result-request" role="tab"
+                   aria-controls="result-request" aria-selected="false">request</a>
+            </li>
+        </ul>
+
+        <?php if ($rpcRequestEntity): ?>
+            <div class="tab-content" id="result-tabContent">
+                <div class="tab-pane fade active show" id="result-response" role="tabpanel"
+                     aria-labelledby="result-response-tab">
+                    <?php if ($rpcResponseEntity): ?>
+                        <small>
+                            <pre><code><?= htmlspecialchars($responseCode) ?></code></pre>
+                        </small>
+                    <?php endif; ?>
+                </div>
+                <div class="tab-pane fade" id="result-request" role="tabpanel" aria-labelledby="result-request-tab">
+                    <?php if ($rpcRequestEntity): ?>
+                        <small>
+                            <pre><code><?= htmlspecialchars($requestCode) ?></code></pre>
+                        </small>
+                    <?php endif; ?>
+                </div>
+            </div>
         <?php endif; ?>
 
     </div>
@@ -87,10 +125,11 @@ $attributes = [
                     The current link item
                 </a>-->
                 <?php foreach ($collection as $favoriteEntity): ?>
-                    <a href="<?= \ZnCore\Base\Legacy\Yii\Helpers\Url::to([$baseUri, 'id' => $favoriteEntity->getId()]) ?>" class="list-group-item list-group-item-action">
+                    <a href="<?= \ZnCore\Base\Legacy\Yii\Helpers\Url::to([$baseUri, 'id' => $favoriteEntity->getId()]) ?>"
+                       class="list-group-item list-group-item-action">
                         <small>
                             <?= $favoriteEntity->getMethod() ?>
-                            <?php if($favoriteEntity->getDescription()): ?>
+                            <?php if ($favoriteEntity->getDescription()): ?>
                                 <br/>
                                 <?= $favoriteEntity->getDescription() ?>
                             <?php endif; ?>

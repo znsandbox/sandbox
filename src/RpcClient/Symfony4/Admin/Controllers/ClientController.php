@@ -13,6 +13,7 @@ use ZnLib\Rpc\Domain\Libs\RpcClient;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
+use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Filters\ApiKeyFilter;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ApiKeyServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ClientServiceInterface;
@@ -72,12 +73,27 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
 
     public function request(Request $request): Response
     {
+        $id = $request->query->get('id');
         /** @var RequestForm $form */
         $form = $this->createFormInstance();
+
+        if($id) {
+            /** @var FavoriteEntity $favoriteEntity */
+            $favoriteEntity = $this->service->oneById($id);
+            $form->setMethod($favoriteEntity->getMethod());
+            $form->setMeta(json_encode($favoriteEntity->getMeta()));
+            $form->setBody(json_encode($favoriteEntity->getBody()));
+            $form->setAuthBy($favoriteEntity->getAuthBy());
+            $form->setDescription($favoriteEntity->getDescription());
+        } else {
+            $favoriteEntity = null;
+        }
+
         $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             try {
-                $rpcResponseEntity = $this->clientService->sendRequest($form);
+                $rpcResponseEntity = $this->clientService->sendRequest($form, $favoriteEntity);
+                $rpcRequestEntity = $this->clientService->formToRequestEntity($form);
             } catch (UnprocessibleEntityException $e) {
                 $this->setUnprocessableErrorsToForm($buildForm, $e);
             }
@@ -86,6 +102,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         $collection = $this->getService()->all();
         return $this->render('index', [
             'rpcResponseEntity' => $rpcResponseEntity ?? null,
+            'rpcRequestEntity' => $rpcRequestEntity ?? null,
             'collection' => $collection,
             'baseUri' => $this->getBaseUri(),
             'formView' => $buildForm->createView(),

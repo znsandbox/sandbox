@@ -16,6 +16,8 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     private $id = null;
 
+    private $parentId = null;
+
     private $uid = null;
 
     private $method = null;
@@ -73,6 +75,16 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getParentId()
+    {
+        return $this->parentId;
+    }
+
+    public function setParentId($parentId): void
+    {
+        $this->parentId = $parentId;
     }
 
     public function setUid($value) : void

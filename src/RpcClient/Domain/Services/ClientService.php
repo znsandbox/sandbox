@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
@@ -32,30 +33,44 @@ class ClientService extends BaseService implements ClientServiceInterface
         $this->authService = $authService;
     }
 
-    public function sendRequest(RequestForm $form): RpcResponseEntity
+    public function sendRequest(RequestForm $form, FavoriteEntity $favoriteEntity = null): RpcResponseEntity
     {
         $rpcResponseEntity = $this->send($form);
-        $this->saveToHistory($form);
+        $this->saveToHistory($form, $favoriteEntity);
         return $rpcResponseEntity;
     }
 
-    private function send(RequestForm $form): RpcResponseEntity
+    public function formToRequestEntity(RequestForm $form): RpcRequestEntity
     {
         $rpcRequestEntity = new RpcRequestEntity();
         $rpcRequestEntity->setMethod($form->getMethod());
         $rpcRequestEntity->setParams(json_decode($form->getBody(), JSON_OBJECT_AS_ARRAY));
         $rpcRequestEntity->setMeta(json_decode($form->getMeta(), JSON_OBJECT_AS_ARRAY));
+        return $rpcRequestEntity;
+    }
+    
+    private function send(RequestForm $form): RpcResponseEntity
+    {
+        $rpcRequestEntity = $this->formToRequestEntity($form);
         $rpcResponseEntity = $this->rpcProvider->sendRequestByEntity($rpcRequestEntity);
         return $rpcResponseEntity;
     }
 
-    private function saveToHistory(RequestForm $form)
+    private function saveToHistory(RequestForm $form, FavoriteEntity $favoriteEntitySource = null)
     {
         $favoriteEntity = new FavoriteEntity();
         $favoriteEntity->setMethod($form->getMethod());
         $favoriteEntity->setBody(json_decode($form->getBody()));
         $favoriteEntity->setMeta(json_decode($form->getMeta()));
         $favoriteEntity->setDescription($form->getDescription());
+        $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
+        if($favoriteEntitySource) {
+            if($favoriteEntitySource->getParentId()) {
+                $favoriteEntity->setParentId($favoriteEntitySource->getParentId());
+            } else {
+                $favoriteEntity->setParentId($favoriteEntitySource->getId());
+            }
+        }
         $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
         $this->generateUid($favoriteEntity);
         $this->getEntityManager()->persist($favoriteEntity);

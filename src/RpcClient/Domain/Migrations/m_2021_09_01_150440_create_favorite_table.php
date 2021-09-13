@@ -14,6 +14,7 @@ class m_2021_09_01_150440_create_favorite_table extends BaseCreateTableMigration
     public function tableStructure(Blueprint $table): void
     {
         $table->integer('id')->autoIncrement()->comment('Идентификатор');
+        $table->integer('parent_id')->nullable()->comment('');
         $table->string('uid')->comment('');
         $table->string('method')->comment('');
         $table->string('body')->nullable()->comment('');
@@ -27,6 +28,7 @@ class m_2021_09_01_150440_create_favorite_table extends BaseCreateTableMigration
 
         $table->unique(['uid']);
 
+        $this->addForeign($table, 'parent_id', 'rpc_client_favorite');
         $this->addForeign($table, 'auth_by', 'rpc_client_user');
         $this->addForeign($table, 'author_id', 'user_identity');
     }
