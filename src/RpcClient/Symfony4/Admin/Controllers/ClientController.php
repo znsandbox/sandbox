@@ -101,6 +101,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
 
         $collection = $this->getService()->all();
         return $this->render('index', [
+            'favoriteEntity' => $favoriteEntity,
             'rpcResponseEntity' => $rpcResponseEntity ?? null,
             'rpcRequestEntity' => $rpcRequestEntity ?? null,
             'collection' => $collection,

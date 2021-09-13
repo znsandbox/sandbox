@@ -21,7 +21,7 @@ $formRender = new FormRender($formView, $tokenManager);
 
 <?= $formRender->beginFrom() ?>
 
-<ul class="nav nav-tabs" id="form-tab" role="tablist">
+<ul class="nav nav-tabs mb-2" id="form-tab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="form-home-tab" data-toggle="pill" href="#form-home" role="tab" aria-controls="form-home" aria-selected="true">Home</a>
     </li>
