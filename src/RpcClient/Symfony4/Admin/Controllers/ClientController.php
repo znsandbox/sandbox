@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
@@ -81,15 +82,15 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         if ($id) {
             /** @var FavoriteEntity $favoriteEntity */
             $favoriteEntity = $this->service->oneById($id);
-            $form->setMethod($favoriteEntity->getMethod());
-            $form->setMeta(json_encode($favoriteEntity->getMeta()));
-            $form->setBody(json_encode($favoriteEntity->getBody()));
-            $form->setAuthBy($favoriteEntity->getAuthBy());
-            $form->setDescription($favoriteEntity->getDescription());
-            $form->setVersion($favoriteEntity->getVersion());
         } else {
-            $favoriteEntity = null;
+            $favoriteEntity = new FavoriteEntity();
         }
+        $form->setMethod($favoriteEntity->getMethod());
+        $form->setMeta(json_encode($favoriteEntity->getMeta()));
+        $form->setBody(json_encode($favoriteEntity->getBody()));
+        $form->setAuthBy($favoriteEntity->getAuthBy());
+        $form->setDescription($favoriteEntity->getDescription());
+        $form->setVersion($favoriteEntity->getVersion());
 
         $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
@@ -108,6 +109,12 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
                 $this->setUnprocessableErrorsToForm($buildForm, $e);
             }
         }
+
+        /*try {
+            $this->getService()->oneByUnique();
+        } catch (NotFoundException $e) {
+
+        }*/
 
         $favoriteCollection = $this->getService()->allFavorite();
         $historyCollection = $this->getService()->allHistory();

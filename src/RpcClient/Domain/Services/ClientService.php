@@ -5,8 +5,12 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Domain\Base\BaseService;
+use ZnCore\Domain\Helpers\EntityHelper;
+use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
@@ -77,6 +81,23 @@ class ClientService extends BaseService implements ClientServiceInterface
 
     private function saveToHistory(RequestForm $form, FavoriteEntity $favoriteEntitySource = null)
     {
+            /*$favoriteEntity1 = new FavoriteEntity();
+            $favoriteEntity1->setMethod($form->getMethod());
+            $favoriteEntity1->setBody(json_decode($form->getBody()));
+            $favoriteEntity1->setMeta(json_decode($form->getMeta()));
+            $favoriteEntity1->setDescription($form->getDescription());
+            $favoriteEntity1->setAuthBy($form->getAuthBy() ?: null);
+            $favoriteEntity1->setVersion($form->getVersion());
+            $this->generateUid($favoriteEntity1);
+            try {
+                $favoriteEntity = $this->getEntityManager()->oneByUnique($favoriteEntity1);
+            } catch (NotFoundException $e) {
+                $favoriteEntity = new FavoriteEntity();
+            }*/
+
+//            dd($favoriteEntity1);
+
+
         $favoriteEntity = new FavoriteEntity();
         $favoriteEntity->setMethod($form->getMethod());
         $favoriteEntity->setBody(json_decode($form->getBody()));
@@ -84,34 +105,54 @@ class ClientService extends BaseService implements ClientServiceInterface
         $favoriteEntity->setDescription($form->getDescription());
         $favoriteEntity->setAuthBy($form->getAuthBy() ?: null);
         $favoriteEntity->setVersion($form->getVersion());
-        $this->generateUid($favoriteEntity);
-        if($favoriteEntitySource) {
+        $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
+        //$this->generateUid($favoriteEntity);
+
+        try {
+            $favoriteEntityUnique = $this->getEntityManager()->oneByUnique($favoriteEntity);
+            $isHas = true;
+        } catch (NotFoundException $e) {
+            $isHas = false;
+        }
+
+        if($isHas) {
             $favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());
+        }
+
+        /*if($favoriteEntitySource && $favoriteEntitySource->getStatusId() == StatusEnum::WAIT_APPROVING) {
             if($favoriteEntitySource->getParentId()) {
                 $favoriteEntity->setParentId($favoriteEntitySource->getParentId());
             } else {
                 $favoriteEntity->setParentId($favoriteEntitySource->getId());
             }
-        }
-        $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
-        try {
-            $query = new Query();
-            $query->where('uid', $favoriteEntity->getUid());
-            $this->getEntityManager()->one(FavoriteEntity::class, $query);
+        }*/
+
+       /* if(!$favoriteEntitySource) {
+            $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
+        }*/
+        /*try {
+            $f1 = $this->getEntityManager()->oneByUnique($favoriteEntity);
+            $favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());
+            $favoriteEntity->setId($f1->getId());
         } catch (NotFoundException $e) {
             //if(!$favoriteEntitySource) {
                 $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
             //}
-        }
+        }*/
         $this->getEntityManager()->persist($favoriteEntity);
     }
 
-    private function generateUid(FavoriteEntity $favoriteEntity)
+    public function oneByUnique(UniqueInterface $entity): EntityIdInterface
+    {
+        return $this->getEntityManager()->oneByUnique($entity);
+    }
+
+    /*public function generateUid(FavoriteEntity $favoriteEntity)
     {
         $scope = $favoriteEntity->getMethod() . json_encode($favoriteEntity->getBody()) . json_encode($favoriteEntity->getMeta()) . $favoriteEntity->getAuthBy();
         $hashBin = hash('sha1', $scope, true);
         $hash = StringHelper::base64UrlEncode($hashBin);
         $hash = rtrim($hash, '=');
         $favoriteEntity->setUid($hash);
-    }
+    }*/
 }

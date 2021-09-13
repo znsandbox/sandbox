@@ -100,6 +100,19 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->uid;
     }
 
+    public function generateUid()
+    {
+        $scope =
+            $this->getMethod() .
+            json_encode($this->getBody()) .
+            json_encode($this->getMeta()) .
+            $this->getAuthBy();
+        $hashBin = hash('sha1', $scope, true);
+        $hash = StringHelper::base64UrlEncode($hashBin);
+        $hash = rtrim($hash, '=');
+        $this->setUid($hash);
+    }
+
     public function getVersion(): string
     {
         return $this->version;
@@ -112,6 +125,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function setMethod($value) : void
     {
+        $this->generateUid();
         $this->method = $value;
     }
 
@@ -122,6 +136,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function setBody($value) : void
     {
+        $this->generateUid();
         $this->body = $value;
     }
 
@@ -132,6 +147,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function setMeta($value) : void
     {
+        $this->generateUid();
         $this->meta = $value;
     }
 
@@ -142,6 +158,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function setAuthBy($value) : void
     {
+        $this->generateUid();
         $this->authBy = $value;
     }
 
