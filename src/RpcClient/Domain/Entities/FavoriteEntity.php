@@ -7,9 +7,9 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Domain\Constraints\Enum;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
-use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
+use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 
 class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
 {
@@ -40,6 +40,8 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     private $updatedAt = null;
 
+    private $auth = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -63,14 +65,14 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 //        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank);
     }
 
-    public function unique() : array
+    public function unique(): array
     {
         return [
             ['uid'],
         ];
     }
 
-    public function setId($value) : void
+    public function setId($value): void
     {
         $this->id = $value;
     }
@@ -90,7 +92,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         $this->parentId = $parentId;
     }
 
-    public function setUid($value) : void
+    public function setUid($value): void
     {
         $this->uid = $value;
     }
@@ -104,8 +106,8 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     {
         $scope =
             $this->getMethod() .
-            json_encode($this->getBody()) .
-            json_encode($this->getMeta()) .
+            ($this->getBody() ? json_encode($this->getBody()) : '{}') .
+            ($this->getMeta() ? json_encode($this->getMeta()) : '{}') .
             $this->getAuthBy();
         $hashBin = hash('sha1', $scope, true);
         $hash = StringHelper::base64UrlEncode($hashBin);
@@ -123,10 +125,10 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         $this->version = $version;
     }
 
-    public function setMethod($value) : void
+    public function setMethod($value): void
     {
-        $this->generateUid();
         $this->method = $value;
+        $this->generateUid();
     }
 
     public function getMethod()
@@ -134,10 +136,10 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->method;
     }
 
-    public function setBody($value) : void
+    public function setBody($value): void
     {
-        $this->generateUid();
         $this->body = $value;
+        $this->generateUid();
     }
 
     public function getBody()
@@ -145,10 +147,10 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->body;
     }
 
-    public function setMeta($value) : void
+    public function setMeta($value): void
     {
-        $this->generateUid();
         $this->meta = $value;
+        $this->generateUid();
     }
 
     public function getMeta()
@@ -156,10 +158,10 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->meta;
     }
 
-    public function setAuthBy($value) : void
+    public function setAuthBy($value): void
     {
-        $this->generateUid();
         $this->authBy = $value;
+        $this->generateUid();
     }
 
     public function getAuthBy()
@@ -167,7 +169,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->authBy;
     }
 
-    public function setDescription($value) : void
+    public function setDescription($value): void
     {
         $this->description = $value;
     }
@@ -187,7 +189,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         $this->authorId = $authorId;
     }
 
-    public function setStatusId($value) : void
+    public function setStatusId($value): void
     {
         $this->statusId = $value;
     }
@@ -197,7 +199,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->statusId;
     }
 
-    public function setCreatedAt($value) : void
+    public function setCreatedAt($value): void
     {
         $this->createdAt = $value;
     }
@@ -207,7 +209,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->createdAt;
     }
 
-    public function setUpdatedAt($value) : void
+    public function setUpdatedAt($value): void
     {
         $this->updatedAt = $value;
     }
@@ -215,5 +217,15 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function getAuth(): ?UserEntity
+    {
+        return $this->auth;
+    }
+
+    public function setAuth(UserEntity $auth): void
+    {
+        $this->auth = $auth;
     }
 }

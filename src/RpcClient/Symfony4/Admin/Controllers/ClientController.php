@@ -14,6 +14,7 @@ use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
 use ZnLib\Rpc\Domain\Libs\RpcClient;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
+use ZnLib\Web\Symfony4\MicroApp\Libs\FormRender;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Filters\ApiKeyFilter;
@@ -118,6 +119,9 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
 
         $favoriteCollection = $this->getService()->allFavorite();
         $historyCollection = $this->getService()->allHistory();
+
+        $formRender = new FormRender($buildForm->createView(), $this->getTokenManager());
+
         return $this->render('index', [
             'favoriteEntity' => $favoriteEntity,
             'rpcResponseEntity' => $rpcResponseEntity ?? null,
@@ -125,7 +129,8 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
             'favoriteCollection' => $favoriteCollection,
             'historyCollection' => $historyCollection,
             'baseUri' => $this->getBaseUri(),
-            'formView' => $buildForm->createView(),
+            //'formView' => $buildForm->createView(),
+            'formRender' => $formRender,
 //            'filterModel' => $filterModel,
         ]);
     }

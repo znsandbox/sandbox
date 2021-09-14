@@ -2,10 +2,13 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Repositories\Eloquent;
 
+use Illuminate\Support\Collection;
+use ZnCore\Domain\Relations\relations\OneToOneRelation;
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
 use ZnLib\Db\Mappers\JsonMapper;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\FavoriteRepositoryInterface;
+use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\UserRepositoryInterface;
 
 class FavoriteRepository extends BaseEloquentCrudRepository implements FavoriteRepositoryInterface
 {
@@ -27,6 +30,18 @@ class FavoriteRepository extends BaseEloquentCrudRepository implements FavoriteR
                 'body',
                 'meta',
             ]),
+        ];
+    }
+
+    public function relations2()
+    {
+        return [
+            [
+                'class' => OneToOneRelation::class,
+                'relationAttribute' => 'auth_by',
+                'relationEntityAttribute' => 'auth',
+                'foreignRepositoryClass' => UserRepositoryInterface::class
+            ],
         ];
     }
 }

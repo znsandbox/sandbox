@@ -15,7 +15,7 @@ class m_2021_09_01_150440_create_favorite_table extends BaseCreateTableMigration
     {
         $table->integer('id')->autoIncrement()->comment('Идентификатор');
         $table->integer('parent_id')->nullable()->comment('');
-        $table->string('uid')->comment('');
+        $table->string('uid')->nullable()->comment('');
         $table->integer('version')->default(1)->comment('');
         $table->string('method')->comment('');
         $table->string('body')->nullable()->comment('');

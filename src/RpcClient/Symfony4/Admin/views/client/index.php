@@ -3,6 +3,7 @@
 /**
  * @var $this \ZnLib\Web\View\View
  * @var $formView FormView|AbstractType[]
+ * @var $formRender \ZnLib\Web\Symfony4\MicroApp\Libs\FormRender
  * @var $dataProvider DataProvider
  * @var $baseUri string
  * @var $rpcResponseEntity \ZnLib\Rpc\Domain\Entities\RpcResponseEntity
@@ -19,7 +20,7 @@ use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 
 $activeTab = 'favorite';
 foreach ($historyCollection as $favoriteEntityItem) {
-    if($favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem->getId())) {
+    if ($favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem->getId())) {
         $activeTab = 'history';
     }
 }
@@ -30,7 +31,7 @@ foreach ($historyCollection as $favoriteEntityItem) {
     <div class="col-lg-9">
 
         <?= $this->renderFile(__DIR__ . '/form.php', [
-            'formView' => $formView,
+            'formRender' => $formRender,
             'baseUri' => $baseUri,
         ]) ?>
 
@@ -44,36 +45,40 @@ foreach ($historyCollection as $favoriteEntityItem) {
 
         <ul class="nav nav-tabs mb-3" id="collection-tab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link <?= $activeTab == 'favorite' ? 'active' : '' ?>" id="collection-favorite-tab" data-toggle="pill" href="#collection-favorite"
+                <a class="nav-link <?= $activeTab == 'favorite' ? 'active' : '' ?>" id="collection-favorite-tab"
+                   data-toggle="pill" href="#collection-favorite"
                    role="tab" aria-controls="collection-favorite" aria-selected="true">favorite</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $activeTab == 'history' ? 'active' : '' ?>" id="collection-history-tab" data-toggle="pill" href="#collection-history" role="tab"
+                <a class="nav-link <?= $activeTab == 'history' ? 'active' : '' ?>" id="collection-history-tab"
+                   data-toggle="pill" href="#collection-history" role="tab"
                    aria-controls="collection-history" aria-selected="false">history</a>
             </li>
         </ul>
 
-            <div class="tab-content" id="collection-tabContent">
-                <div class="tab-pane fade <?= $activeTab == 'favorite' ? 'active show' : '' ?>" id="collection-favorite" role="tabpanel"
-                     aria-labelledby="collection-favorite-tab">
-                    <div class="list-group">
-                        <?= $this->renderFile(__DIR__ . '/_collection.php', [
-                            'baseUri' => $baseUri,
-                            'favoriteEntity' => $favoriteEntity,
-                            'collection' => $favoriteCollection,
-                        ]) ?>
-                    </div>
-                </div>
-                <div class="tab-pane fade <?= $activeTab == 'history' ? 'active show' : '' ?>" id="collection-history" role="tabpanel" aria-labelledby="collection-history-tab">
-                    <div class="list-group">
-                        <?= $this->renderFile(__DIR__ . '/_collection.php', [
-                            'baseUri' => $baseUri,
-                            'favoriteEntity' => $favoriteEntity,
-                            'collection' => $historyCollection,
-                        ]) ?>
-                    </div>
-                </div>
+        <div class="tab-content" id="collection-tabContent">
+            <div class="tab-pane fade <?= $activeTab == 'favorite' ? 'active show' : '' ?>" id="collection-favorite"
+                 role="tabpanel"
+                 aria-labelledby="collection-favorite-tab">
+
+                    <?= $this->renderFile(__DIR__ . '/_collection.php', [
+                        'baseUri' => $baseUri,
+                        'favoriteEntity' => $favoriteEntity,
+                        'collection' => $favoriteCollection,
+                    ]) ?>
+
             </div>
+            <div class="tab-pane fade <?= $activeTab == 'history' ? 'active show' : '' ?>" id="collection-history"
+                 role="tabpanel" aria-labelledby="collection-history-tab">
+
+                    <?= $this->renderFile(__DIR__ . '/_collection.php', [
+                        'baseUri' => $baseUri,
+                        'favoriteEntity' => $favoriteEntity,
+                        'collection' => $historyCollection,
+                    ]) ?>
+
+            </div>
+        </div>
 
     </div>
 </div>

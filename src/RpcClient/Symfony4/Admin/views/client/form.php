@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @var $formView FormView|AbstractType[]
+  @var $formView FormView|AbstractType[]
+ * @var $formRender FormRender
  */
 
 use Symfony\Component\Form\AbstractType;
@@ -11,8 +12,8 @@ use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormRender;
 
 /** @var CsrfTokenManagerInterface $tokenManager */
-$tokenManager = ContainerHelper::getContainer()->get(CsrfTokenManagerInterface::class);
-$formRender = new FormRender($formView, $tokenManager);
+//$tokenManager = ContainerHelper::getContainer()->get(CsrfTokenManagerInterface::class);
+//$formRender = new FormRender($formView, $tokenManager);
 //$formRender->addFormOption('autocomplete', 'off');
 
 ?>
@@ -23,16 +24,20 @@ $formRender = new FormRender($formView, $tokenManager);
 
 <ul class="nav nav-tabs mb-2" id="form-tab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="form-home-tab" data-toggle="pill" href="#form-home" role="tab" aria-controls="form-home" aria-selected="true">Home</a>
+        <a class="nav-link active" id="form-home-tab" data-toggle="pill" href="#form-home" role="tab"
+           aria-controls="form-home" aria-selected="true">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="form-body-tab" data-toggle="pill" href="#form-body" role="tab" aria-controls="form-body" aria-selected="false">body</a>
+        <a class="nav-link" id="form-body-tab" data-toggle="pill" href="#form-body" role="tab" aria-controls="form-body"
+           aria-selected="false">body</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="form-meta-tab" data-toggle="pill" href="#form-meta" role="tab" aria-controls="form-meta" aria-selected="false">meta</a>
+        <a class="nav-link" id="form-meta-tab" data-toggle="pill" href="#form-meta" role="tab" aria-controls="form-meta"
+           aria-selected="false">meta</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="form-description-tab" data-toggle="pill" href="#form-description" role="tab" aria-controls="form-description" aria-selected="false">description</a>
+        <a class="nav-link" id="form-description-tab" data-toggle="pill" href="#form-description" role="tab"
+           aria-controls="form-description" aria-selected="false">description</a>
     </li>
 </ul>
 

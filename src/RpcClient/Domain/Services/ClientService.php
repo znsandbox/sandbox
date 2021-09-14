@@ -110,13 +110,19 @@ class ClientService extends BaseService implements ClientServiceInterface
 
         try {
             $favoriteEntityUnique = $this->getEntityManager()->oneByUnique($favoriteEntity);
+            $favoriteEntity = $favoriteEntityUnique;
+//            $favoriteEntity->setStatusId($favoriteEntityUnique->getId());
+//            dd($favoriteEntity);
             $isHas = true;
         } catch (NotFoundException $e) {
             $isHas = false;
         }
 
+        //$favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
         if($isHas) {
-            $favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());
+            //$favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());
+        } else {
+
         }
 
         /*if($favoriteEntitySource && $favoriteEntitySource->getStatusId() == StatusEnum::WAIT_APPROVING) {
