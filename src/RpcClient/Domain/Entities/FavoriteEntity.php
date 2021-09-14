@@ -224,7 +224,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->auth;
     }
 
-    public function setAuth(UserEntity $auth): void
+    public function setAuth(?UserEntity $auth): void
     {
         $this->auth = $auth;
     }

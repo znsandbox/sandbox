@@ -47,12 +47,18 @@ foreach ($historyCollection as $favoriteEntityItem) {
             <li class="nav-item">
                 <a class="nav-link <?= $activeTab == 'favorite' ? 'active' : '' ?>" id="collection-favorite-tab"
                    data-toggle="pill" href="#collection-favorite"
-                   role="tab" aria-controls="collection-favorite" aria-selected="true">favorite</a>
+                   role="tab" aria-controls="collection-favorite" aria-selected="true">
+                    favorite
+                    <span class="badge badge-primary badge-pill"><?= $favoriteCollection->count() ?></span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= $activeTab == 'history' ? 'active' : '' ?>" id="collection-history-tab"
                    data-toggle="pill" href="#collection-history" role="tab"
-                   aria-controls="collection-history" aria-selected="false">history</a>
+                   aria-controls="collection-history" aria-selected="false">
+                    history
+                    <span class="badge badge-primary badge-pill"><?= $historyCollection->count() ?></span>
+                </a>
             </li>
         </ul>
 

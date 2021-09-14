@@ -3,11 +3,13 @@
 namespace ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\UserEntity;
@@ -58,6 +60,12 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
         ]);
         $formBuilder->add('description', TextareaType::class, [
             'label' => 'description'
+        ]);
+        $formBuilder->add('persist', SubmitType::class, [
+            'label' => I18Next::t('core', 'action.save')
+        ]);
+        $formBuilder->add('delete', SubmitType::class, [
+            'label' => I18Next::t('core', 'action.delete')
         ]);
     }
 
