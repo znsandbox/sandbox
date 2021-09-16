@@ -72,7 +72,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function unique(): array
     {
         return [
-            ['checksum', 'version'],
+            ['checksum', 'version', 'status_id'],
         ];
     }
 
@@ -112,6 +112,9 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function getChecksum()
     {
+        /*if($this->statusId < StatusEnum::ENABLED) {
+            return null;
+        }*/
         return $this->checksum;
     }
 

@@ -28,7 +28,7 @@ class m_2021_09_01_150440_create_favorite_table extends BaseCreateTableMigration
         $table->dateTime('created_at')->comment('Время создания');
         $table->dateTime('updated_at')->nullable()->comment('Время обновления');
 
-        $table->unique(['checksum', 'version']);
+        $table->unique(['checksum', 'version', 'status_id']);
 
         $this->addForeign($table, 'parent_id', 'rpc_client_favorite');
         $this->addForeign($table, 'auth_by', 'rpc_client_user');
