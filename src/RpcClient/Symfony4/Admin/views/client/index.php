@@ -60,29 +60,38 @@ foreach ($historyCollection as $favoriteEntityItem) {
                     <span class="badge badge-primary badge-pill"><?= $historyCollection->count() ?></span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="collection-tool-tab"
+                   data-toggle="pill" href="#collection-tool" role="tab"
+                   aria-controls="collection-tool" aria-selected="false">
+                    tool
+                </a>
+            </li>
         </ul>
 
         <div class="tab-content" id="collection-tabContent">
             <div class="tab-pane fade <?= $activeTab == 'favorite' ? 'active show' : '' ?>" id="collection-favorite"
                  role="tabpanel"
                  aria-labelledby="collection-favorite-tab">
-
-                    <?= $this->renderFile(__DIR__ . '/_collection.php', [
-                        'baseUri' => $baseUri,
-                        'favoriteEntity' => $favoriteEntity,
-                        'collection' => $favoriteCollection,
-                    ]) ?>
-
+                <?= $this->renderFile(__DIR__ . '/_collection.php', [
+                    'baseUri' => $baseUri,
+                    'favoriteEntity' => $favoriteEntity,
+                    'collection' => $favoriteCollection,
+                ]) ?>
             </div>
             <div class="tab-pane fade <?= $activeTab == 'history' ? 'active show' : '' ?>" id="collection-history"
                  role="tabpanel" aria-labelledby="collection-history-tab">
-
-                    <?= $this->renderFile(__DIR__ . '/_collection.php', [
-                        'baseUri' => $baseUri,
-                        'favoriteEntity' => $favoriteEntity,
-                        'collection' => $historyCollection,
-                    ]) ?>
-
+                <?= $this->renderFile(__DIR__ . '/_collection.php', [
+                    'baseUri' => $baseUri,
+                    'favoriteEntity' => $favoriteEntity,
+                    'collection' => $historyCollection,
+                ]) ?>
+            </div>
+            <div class="tab-pane fade <?= $activeTab == 'tool' ? 'active show' : '' ?>" id="collection-tool"
+                 role="tabpanel" aria-labelledby="collection-tool-tab">
+                <a class="btn btn-primary" href="/rpc-client/tool/import-from-routes" role="button">
+                    Import from routes
+                </a>
             </div>
         </div>
 

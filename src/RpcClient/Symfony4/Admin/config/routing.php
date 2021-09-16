@@ -11,7 +11,10 @@ return function (RoutingConfigurator $routes) {
         ->add('rpc-client/request', '/rpc-client/request')
         ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ClientController::class, 'request'])
         ->methods(['GET', 'POST']);
-    
+    $routes
+        ->add('rpc-client/tool/import-from-routes', '/rpc-client/tool/import-from-routes')
+        ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ToolController::class, 'importFromRoutes'])
+        ->methods(['GET', 'POST']);
     
     
     //    RouteHelper::generateCrud($routes, ApplicationController::class, '/application/application');
