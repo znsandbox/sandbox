@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Entities;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Base\Helpers\Helper;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
@@ -19,6 +20,8 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     private $parentId = null;
 
     private $uid = null;
+
+    private $checksum = null;
 
     private $version = "1";
 
@@ -50,7 +53,8 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
 //        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
-        $metadata->addPropertyConstraint('uid', new Assert\NotBlank);
+//        $metadata->addPropertyConstraint('uid', new Assert\NotBlank);
+//        $metadata->addPropertyConstraint('checksum', new Assert\NotBlank);
         $metadata->addPropertyConstraint('version', new Assert\NotBlank);
         $metadata->addPropertyConstraint('method', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('body', new Assert\NotBlank);
@@ -68,7 +72,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function unique(): array
     {
         return [
-            ['uid'],
+            ['checksum', 'version'],
         ];
     }
 
@@ -94,12 +98,26 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function setUid($value): void
     {
+        Helper::checkReadOnly($this->uid, $value);
         $this->uid = $value;
     }
 
     public function getUid()
     {
+        if(empty($this->uid)) {
+            $this->uid = \ZnCore\Base\Helpers\StringHelper::genUuid();
+        }
         return $this->uid;
+    }
+
+    public function getChecksum()
+    {
+        return $this->checksum;
+    }
+
+    public function setChecksum($checksum): void
+    {
+        $this->checksum = $checksum;
     }
 
     public function generateUid()
@@ -112,7 +130,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         $hashBin = hash('sha1', $scope, true);
         $hash = StringHelper::base64UrlEncode($hashBin);
         $hash = rtrim($hash, '=');
-        $this->setUid($hash);
+        $this->setChecksum($hash);
     }
 
     public function getVersion(): string

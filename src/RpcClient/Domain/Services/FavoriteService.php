@@ -44,12 +44,12 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
         $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
         if($favoriteEntity->getId()) {
 
-            try {
+            /*try {
                 $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
                 //if($favoriteEntityUnique->getId() != $favoriteEntityUnique->getId()) {
                     $this->getRepository()->deleteById($favoriteEntityUnique->getId());
                 //}
-            } catch (NotFoundException $e) {}
+            } catch (NotFoundException $e) {}*/
 
             $this->persist($favoriteEntity);
 //            $this->getRepository()->update($favoriteEntity);
