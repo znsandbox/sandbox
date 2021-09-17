@@ -15,6 +15,7 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
+use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Domain\Libs\DataProvider;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 
@@ -86,6 +87,9 @@ foreach ($historyCollection as $favoriteEntityItem) {
                     'favoriteEntity' => $favoriteEntity,
                     'collection' => $historyCollection,
                 ]) ?>
+                <a class="btn btn-primary mt-3" href="<?= Url::to([$baseUri]) ?>/clear-history" role="button">
+                    Clear
+                </a>
             </div>
             <div class="tab-pane fade <?= $activeTab == 'tool' ? 'active show' : '' ?>" id="collection-tool"
                  role="tabpanel" aria-labelledby="collection-tool-tab">

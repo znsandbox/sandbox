@@ -220,22 +220,22 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
         return $this->statusId;
     }
 
-    public function setCreatedAt($value): void
+    public function setCreatedAt(\DateTime $value): void
     {
         $this->createdAt = $value;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function setUpdatedAt($value): void
+    public function setUpdatedAt(?\DateTime $value): void
     {
         $this->updatedAt = $value;
     }
 
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

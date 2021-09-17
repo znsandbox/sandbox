@@ -12,6 +12,10 @@ return function (RoutingConfigurator $routes) {
         ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ClientController::class, 'request'])
         ->methods(['GET', 'POST']);
     $routes
+        ->add('rpc-client/request/clear-history', '/rpc-client/request/clear-history')
+        ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ClientController::class, 'clearHistory'])
+        ->methods(['GET', 'POST']);
+    $routes
         ->add('rpc-client/tool/import-from-routes', '/rpc-client/tool/import-from-routes')
         ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ToolController::class, 'importFromRoutes'])
         ->methods(['GET', 'POST']);

@@ -79,6 +79,9 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
             'request' => [
                 ExtraPermissionEnum::ADMIN_ONLY,
             ],
+            'clearHistory' => [
+                ExtraPermissionEnum::ADMIN_ONLY,
+            ],
         ];
     }
 
@@ -158,5 +161,12 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
             'formRender' => $formRender,
 //            'filterModel' => $filterModel,
         ]);
+    }
+
+    public function clearHistory(Request $request): Response
+    {
+        $this->getService()->clearHistory();
+        $this->getToastrService()->success('Clear history!');
+        return $this->redirect(Url::to([$this->getBaseUri()]));
     }
 }

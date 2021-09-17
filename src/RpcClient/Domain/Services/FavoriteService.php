@@ -75,14 +75,24 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
         return parent::all($query);
     }
 
+    public function clearHistory()
+    {
+        $this->getRepository()->deleteByCondition([
+            'status_id' => StatusEnum::WAIT_APPROVING,
+            'author_id' => $this->authService->getIdentity()->getId()
+        ]);
+    }
+
     public function allHistory(Query $query = null)
     {
         $query = $this->forgeQuery($query);
         $query->orderBy([
             'method' => SORT_ASC,
+            'created_at' => SORT_ASC,
         ]);
         $query->with(['auth']);
         $query->where('status_id', StatusEnum::WAIT_APPROVING);
+        $query->where('author_id', $this->authService->getIdentity()->getId());
         return parent::all($query);
     }
 }
