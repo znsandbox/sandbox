@@ -44,8 +44,7 @@ ksort($map);
                 } elseif($lifeTime < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 3) {
                     $colorNew = 'rgba(0,123,255,0.45)';
                 }
-
-
+                
                 ?>
                 <small>
                     <?= $favoriteEntityItem->getMethod() ?>
@@ -57,14 +56,14 @@ ksort($map);
                 <small class="text-muted111">
 
                     <?php if ($favoriteEntityItem->getBody()): ?>
-                        <i class="fas fa-circle align-middle" style="font-size: 5px; color: Dodgerblue;"></i>
+                        <i class="fas fa-database align-middle" style="-color: Dodgerblue;" title="With params"></i>
                     <?php endif; ?>
                     <?php if ($favoriteEntityItem->getMeta()): ?>
-                        <i class="fas fa-circle align-middle" style="font-size: 5px; color: Mediumslateblue;"></i>
+                        <i class="fas fa-cog align-middle" style="-color: Mediumslateblue;" title="With meta"></i>
                     <?php endif; ?>
 
                     <?php if ($favoriteEntityItem->getAuthBy()): ?>
-                        <?= $favoriteEntityItem->getAuth()->getLogin() ?> &nbsp;<i class="fas fa-user"></i>
+                         <i class="fas fa-user" title="<?= $favoriteEntityItem->getAuth()->getLogin() ?>"></i>
                     <?php endif; ?>
                 </small>
             </div>
