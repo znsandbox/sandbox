@@ -182,6 +182,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
 
     public function importFromRoutes(Request $request): Response
     {
+        /** @todo перенести в новый сервис */
         $methodCollection = $this->methodService->all();
         $routeMethodList = EntityHelper::getColumn($methodCollection, 'methodName');
         $routeMethodList = array_values($routeMethodList);

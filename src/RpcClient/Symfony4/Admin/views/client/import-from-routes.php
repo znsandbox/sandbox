@@ -27,14 +27,21 @@ use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 
 <?= $formRender->beginFrom() ?>
 
-<ul>
-    <?php foreach ($missingMethodList as $methodName): ?>
-        <li><?= $methodName ?></li>
-    <?php endforeach; ?>
-</ul>
+<h3>Missing method list</h3>
 
-<div class="form-group">
-    <?= $formRender->input('save', 'submit') ?>
-</div>
+ <?php if($missingMethodList): ?>
+     <ul>
+         <?php foreach ($missingMethodList as $methodName): ?>
+             <li><?= $methodName ?></li>
+         <?php endforeach; ?>
+     </ul>
+     <div class="form-group">
+         <?= $formRender->input('save', 'submit') ?>
+     </div>
+ <?php else: ?>
+     <div class="alert alert-secondary" role="alert">
+         Method list is empty
+     </div>
+ <?php endif; ?>
 
 <?= $formRender->endFrom() ?>
