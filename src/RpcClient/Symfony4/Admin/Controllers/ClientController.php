@@ -209,6 +209,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
                     $methodEntity = $methodCollectionIndexed[$methodName];
                     $favoriteEntity->setMethod($methodName);
                     if($methodEntity->getIsVerifyAuth()) {
+                        /** @todo: собрать коллекцию пользователей по имеи полномочия, назначить первого пользователя */
                         $favoriteEntity->setAuthBy(1);
                     }
                     $this->favoriteService->addFavorite($favoriteEntity);

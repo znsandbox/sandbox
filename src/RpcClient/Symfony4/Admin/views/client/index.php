@@ -29,7 +29,7 @@ foreach ($historyCollection as $favoriteEntityItem) {
 ?>
 
 <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-8">
 
         <?= $this->renderFile(__DIR__ . '/block/form.php', [
             'formRender' => $formRender,
@@ -42,7 +42,7 @@ foreach ($historyCollection as $favoriteEntityItem) {
         ]) ?>
 
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
 
         <ul class="nav nav-tabs mb-3" id="collection-tab" role="tablist">
             <li class="nav-item">
