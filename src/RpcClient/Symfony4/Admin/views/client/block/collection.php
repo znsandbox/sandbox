@@ -28,10 +28,12 @@ ksort($map);
 
 <div class="list-group">
 
-    <?php foreach ($favoriteEntityItems as $favoriteEntityItem): ?>
+    <?php foreach ($favoriteEntityItems as $favoriteEntityItem):
+        $isActive = $favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem->getId() || $favoriteEntity->getChecksum() == $favoriteEntityItem->getChecksum());
+        ?>
         <a href="<?= \ZnCore\Base\Legacy\Yii\Helpers\Url::to([$baseUri, 'id' => $favoriteEntityItem->getId()]) ?>"
            style="border: 1px solid rgba(0,0,0,.125) !important; padding: 0.3rem 0.7rem;"
-           class="list-group-item list-group-item-action <?= $favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem->getId()) ? 'active' : '' ?>">
+           class="list-group-item list-group-item-action <?= $isActive ? 'active' : '' ?>">
             <div class="d-flex w-100 justify-content-between">
                 <?php
 
