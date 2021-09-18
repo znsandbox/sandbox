@@ -50,8 +50,11 @@ ksort($map);
                     $colorNew = 'rgba(0,123,255,0.45)';
                 }
 
+                $isUpd = false;
                 if($favoriteEntityItem->getUpdatedAt()) {
+
                     $lifeTimeUpd = time() - $favoriteEntityItem->getUpdatedAt()->getTimestamp();
+                    //dump($favoriteEntityItem->getUpdatedAt()->getTimestamp());
                     $isUpd = $lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_DAY;
                     $colorUpd = '#ffc107';
                     if($lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 1) {
