@@ -31,12 +31,12 @@ foreach ($historyCollection as $favoriteEntityItem) {
 <div class="row">
     <div class="col-lg-9">
 
-        <?= $this->renderFile(__DIR__ . '/form.php', [
+        <?= $this->renderFile(__DIR__ . '/block/form.php', [
             'formRender' => $formRender,
             'baseUri' => $baseUri,
         ]) ?>
 
-        <?= $this->renderFile(__DIR__ . '/_transport.php', [
+        <?= $this->renderFile(__DIR__ . '/block/transport.php', [
             'rpcResponseEntity' => $rpcResponseEntity,
             'rpcRequestEntity' => $rpcRequestEntity,
         ]) ?>
@@ -74,7 +74,7 @@ foreach ($historyCollection as $favoriteEntityItem) {
             <div class="tab-pane fade <?= $activeTab == 'favorite' ? 'active show' : '' ?>" id="collection-favorite"
                  role="tabpanel"
                  aria-labelledby="collection-favorite-tab">
-                <?= $this->renderFile(__DIR__ . '/_collection.php', [
+                <?= $this->renderFile(__DIR__ . '/block/collection.php', [
                     'baseUri' => $baseUri,
                     'favoriteEntity' => $favoriteEntity,
                     'collection' => $favoriteCollection,
@@ -82,7 +82,7 @@ foreach ($historyCollection as $favoriteEntityItem) {
             </div>
             <div class="tab-pane fade <?= $activeTab == 'history' ? 'active show' : '' ?>" id="collection-history"
                  role="tabpanel" aria-labelledby="collection-history-tab">
-                <?= $this->renderFile(__DIR__ . '/_collection.php', [
+                <?= $this->renderFile(__DIR__ . '/block/collection.php', [
                     'baseUri' => $baseUri,
                     'favoriteEntity' => $favoriteEntity,
                     'collection' => $historyCollection,

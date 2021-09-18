@@ -34,36 +34,58 @@ ksort($map);
            class="list-group-item list-group-item-action <?= $favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem->getId()) ? 'active' : '' ?>">
             <div class="d-flex w-100 justify-content-between">
                 <?php
-                $lifeTime = time() - $favoriteEntityItem->getCreatedAt()->getTimestamp();
-                $isNew = $lifeTime < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_DAY;
-                $colorNew = '#007bff';
-                if($lifeTime < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 1) {
+
+
+                $lifeTimeLimitNew = \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_DAY;
+                $lifeTimeLimitPartNew = $lifeTimeLimitNew / 3;
+                $lifeTimeNew = time() - $favoriteEntityItem->getCreatedAt()->getTimestamp();
+                $isNew = $lifeTimeNew < $lifeTimeLimitNew;
+                $colorMaskNew = 'rgba(0,123,255,{{alpha}})';
+                $colorNew = 'rgba(0,123,255,1)';
+                if($lifeTimeNew < $lifeTimeLimitPartNew * 1) {
                     $colorNew = '#007bff';
-                } elseif($lifeTime < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 2) {
+                } elseif($lifeTimeNew < $lifeTimeLimitPartNew * 2) {
                     $colorNew = 'rgba(0,123,255,0.66)';
-                } elseif($lifeTime < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 3) {
+                } elseif($lifeTimeNew < $lifeTimeLimitPartNew * 3) {
                     $colorNew = 'rgba(0,123,255,0.45)';
+                }
+
+                if($favoriteEntityItem->getUpdatedAt()) {
+                    $lifeTimeUpd = time() - $favoriteEntityItem->getUpdatedAt()->getTimestamp();
+                    $isUpd = $lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_DAY;
+                    $colorUpd = '#ffc107';
+                    if($lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 1) {
+                        $colorUpd = '#ffc107';
+                    } elseif($lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 2) {
+                        $colorUpd = 'rgba(255,193,7,0.66)';
+                    } elseif($lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 3) {
+                        $colorUpd = 'rgba(255,193,7,0.45)';
+                    }
                 }
                 
                 ?>
                 <small>
                     <?= $favoriteEntityItem->getMethod() ?>
                     <?php if ($isNew): ?>
-                        <span class="badge badge-primary align-middle" style="background-color:  <?= $colorNew ?>;">New</span>
+                        <span class="badge badge-primary align-middle" style="background-color: <?= $colorNew ?> /*rgba(255,193,7,0.58)*/;">New</span>
                     <?php endif; ?>
 
+                    <?php if ($isUpd): ?>
+                        <span class="badge badge-warning align-middle" style="background-color:  <?= $colorUpd ?>;">Upd</span>
+                    <?php endif; ?>
                 </small>
+
                 <small class="text-muted111">
 
                     <?php if ($favoriteEntityItem->getBody()): ?>
-                        <i class="fas fa-database align-middle" style="-color: Dodgerblue;" title="With params"></i>
+                        <i class="fas fa-database align-middle" style="-color: Dodgerblue;" title="With body"></i>
                     <?php endif; ?>
                     <?php if ($favoriteEntityItem->getMeta()): ?>
                         <i class="fas fa-cog align-middle" style="-color: Mediumslateblue;" title="With meta"></i>
                     <?php endif; ?>
 
                     <?php if ($favoriteEntityItem->getAuthBy()): ?>
-                         <i class="fas fa-user" title="<?= $favoriteEntityItem->getAuth()->getLogin() ?>"></i>
+                         <i class="fas fa-user" title="Auth by <?= $favoriteEntityItem->getAuth()->getLogin() ?>"></i>
                     <?php endif; ?>
                 </small>
             </div>
