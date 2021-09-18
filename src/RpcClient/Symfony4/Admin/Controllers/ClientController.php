@@ -19,6 +19,7 @@ use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormRender;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
+use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Filters\ApiKeyFilter;
@@ -184,10 +185,13 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
     {
         /** @todo перенести в новый сервис */
         $methodCollection = $this->methodService->all();
+        /** @var MethodEntity[] $methodCollectionIndexed */
+        $methodCollectionIndexed = EntityHelper::indexingCollection($methodCollection, 'methodName');
         $routeMethodList = EntityHelper::getColumn($methodCollection, 'methodName');
         $routeMethodList = array_values($routeMethodList);
 
         $favoriteCollection = $this->favoriteService->allFavorite();
+        $favoriteCollectionIndexed = EntityHelper::indexingCollection($favoriteCollection, 'method');
         $favoriteMethodList = EntityHelper::getColumn($favoriteCollection, 'method');
         $favoriteMethodList = array_unique($favoriteMethodList);
         $favoriteMethodList = array_values($favoriteMethodList);
@@ -199,10 +203,18 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
 
         $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
-            foreach ($missingMethodList as $methodName) {
-                $favoriteEntity = new FavoriteEntity();
-                $favoriteEntity->setMethod($methodName);
-                $this->favoriteService->addFavorite($favoriteEntity);
+            if($missingMethodList) {
+                foreach ($missingMethodList as $methodName) {
+                    $favoriteEntity = new FavoriteEntity();
+                    $methodEntity = $methodCollectionIndexed[$methodName];
+                    $favoriteEntity->setMethod($methodName);
+                    if($methodEntity->getIsVerifyAuth()) {
+                        $favoriteEntity->setAuthBy(1);
+                    }
+                    $this->favoriteService->addFavorite($favoriteEntity);
+                }
+                $this->getToastrService()->success('Import completed successfully!');
+                return $this->redirect(Url::to([$this->getBaseUri()]));
             }
         }
 
