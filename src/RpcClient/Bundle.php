@@ -7,6 +7,13 @@ use ZnCore\Base\Libs\App\Base\BaseBundle;
 class Bundle extends BaseBundle
 {
 
+    public function symfonyWeb(): array
+    {
+        return [
+            __DIR__ . '/Symfony4/Admin/config/routing.php',
+        ];
+    }
+
     public function symfonyAdmin(): array
     {
         return [

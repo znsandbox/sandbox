@@ -93,7 +93,7 @@ foreach ($historyCollection as $favoriteEntityItem) {
             </div>
             <div class="tab-pane fade <?= $activeTab == 'tool' ? 'active show' : '' ?>" id="collection-tool"
                  role="tabpanel" aria-labelledby="collection-tool-tab">
-                <a class="btn btn-primary" href="/rpc-client/tool/import-from-routes" role="button">
+                <a class="btn btn-primary" href="<?= Url::to([$baseUri]) ?>/import-from-routes" role="button">
                     Import from routes
                 </a>
             </div>

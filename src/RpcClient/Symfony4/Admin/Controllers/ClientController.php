@@ -2,16 +2,15 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers;
 
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
-use ZnCore\Base\Enums\StatusEnum;
-use ZnCore\Base\Exceptions\AlreadyExistsException;
-use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Base\Helpers\InstanceHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
+use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
@@ -20,6 +19,7 @@ use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormRender;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
+use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Filters\ApiKeyFilter;
 use ZnSandbox\Sandbox\RpcClient\Domain\Helpers\FavoriteHelper;
@@ -27,6 +27,7 @@ use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ApiKeyServiceInterfac
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ClientServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\FavoriteServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ApiKeyForm;
+use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ImportForm;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\RequestForm;
 use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
 
@@ -39,6 +40,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
     private $rpcClient;
     private $clientService;
     private $favoriteService;
+    private $methodService;
 
     public function __construct(
         ToastrServiceInterface $toastrService,
@@ -48,7 +50,8 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         FavoriteServiceInterface $service,
         ClientServiceInterface $clientService,
         FavoriteServiceInterface $favoriteService,
-        RpcClient $rpcClient
+        RpcClient $rpcClient,
+        MethodServiceInterface $methodService
     )
     {
         $this->setService($service);
@@ -59,6 +62,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         $this->rpcClient = $rpcClient;
         $this->clientService = $clientService;
         $this->favoriteService = $favoriteService;
+        $this->methodService = $methodService;
 
         //$this->setFilterModel(ApiKeyFilter::class);
 
@@ -80,6 +84,9 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
                 ExtraPermissionEnum::ADMIN_ONLY,
             ],
             'clearHistory' => [
+                ExtraPermissionEnum::ADMIN_ONLY,
+            ],
+            'importFromRoutes' => [
                 ExtraPermissionEnum::ADMIN_ONLY,
             ],
         ];
@@ -107,7 +114,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             $action = $buildForm->getClickedButton()->getConfig()->getName();
-            if($action == 'save') {
+            if ($action == 'save') {
                 try {
                     $rpcResponseEntity = $this->clientService->sendRequest($form, $favoriteEntity);
 
@@ -123,7 +130,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
                     $this->setUnprocessableErrorsToForm($buildForm, $e);
                 }
             } elseif ($action == 'persist') {
-                if($id) {
+                if ($id) {
                     $favoriteEntity = $this->favoriteService->oneById($id);
                 }
                 $favoriteEntity = FavoriteHelper::formToEntity($form, $favoriteEntity);
@@ -131,7 +138,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
                 $this->getToastrService()->success('Added to favorite!');
                 return $this->redirect(Url::to([$this->getBaseUri(), 'id' => $favoriteEntity->getId()]));
             } elseif ($action == 'delete') {
-                if($id) {
+                if ($id) {
                     $this->favoriteService->deleteById($id);
                     $this->getToastrService()->success('Deleted!');
                     return $this->redirect(Url::to([$this->getBaseUri()]));
@@ -148,8 +155,6 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         $favoriteCollection = $this->getService()->allFavorite();
         $historyCollection = $this->getService()->allHistory();
 
-        $formRender = new FormRender($buildForm->createView(), $this->getTokenManager());
-
         return $this->render('index', [
             'favoriteEntity' => $favoriteEntity,
             'rpcResponseEntity' => $rpcResponseEntity ?? null,
@@ -158,15 +163,52 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
             'historyCollection' => $historyCollection,
             'baseUri' => $this->getBaseUri(),
             //'formView' => $buildForm->createView(),
-            'formRender' => $formRender,
+            'formRender' => $this->createFormRenderInstance($buildForm),
 //            'filterModel' => $filterModel,
         ]);
     }
 
+    protected function createFormRenderInstance(FormInterface $buildForm): FormRender
+    {
+        return new FormRender($buildForm->createView(), $this->getTokenManager());
+    }
+    
     public function clearHistory(Request $request): Response
     {
         $this->getService()->clearHistory();
         $this->getToastrService()->success('Clear history!');
         return $this->redirect(Url::to([$this->getBaseUri()]));
+    }
+
+    public function importFromRoutes(Request $request): Response
+    {
+        $methodCollection = $this->methodService->all();
+        $routeMethodList = EntityHelper::getColumn($methodCollection, 'methodName');
+        $routeMethodList = array_values($routeMethodList);
+
+        $favoriteCollection = $this->favoriteService->allFavorite();
+        $favoriteMethodList = EntityHelper::getColumn($favoriteCollection, 'method');
+        $favoriteMethodList = array_unique($favoriteMethodList);
+        $favoriteMethodList = array_values($favoriteMethodList);
+
+        $missingMethodList = array_diff($routeMethodList, $favoriteMethodList);
+
+        /** @var ImportForm $form */
+        $form = $this->createFormInstance(ImportForm::class);
+
+        $buildForm = $this->buildForm($form, $request);
+        if ($buildForm->isSubmitted() && $buildForm->isValid()) {
+            foreach ($missingMethodList as $methodName) {
+                $favoriteEntity = new FavoriteEntity();
+                $favoriteEntity->setMethod($methodName);
+                $this->favoriteService->addFavorite($favoriteEntity);
+            }
+        }
+
+        return $this->render('import-from-routes', [
+            'missingMethodList' => $missingMethodList,
+            'routeMethodList' => $routeMethodList,
+            'formRender' => $this->createFormRenderInstance($buildForm),
+        ]);
     }
 }

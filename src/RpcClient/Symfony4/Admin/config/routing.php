@@ -16,10 +16,9 @@ return function (RoutingConfigurator $routes) {
         ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ClientController::class, 'clearHistory'])
         ->methods(['GET', 'POST']);
     $routes
-        ->add('rpc-client/tool/import-from-routes', '/rpc-client/tool/import-from-routes')
-        ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ToolController::class, 'importFromRoutes'])
+        ->add('rpc-client/request/import-from-routes', '/rpc-client/request/import-from-routes')
+        ->controller([\ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers\ClientController::class, 'importFromRoutes'])
         ->methods(['GET', 'POST']);
-    
     
     //    RouteHelper::generateCrud($routes, ApplicationController::class, '/application/application');
 //    RouteHelper::generateCrud($routes, ApiKeyController::class, '/application/api-key');
