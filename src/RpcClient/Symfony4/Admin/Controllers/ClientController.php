@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
@@ -15,12 +16,9 @@ use ZnLib\Web\Symfony4\MicroApp\Libs\layoutManager;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
-use ZnSandbox\Sandbox\RpcClient\Domain\Filters\ApiKeyFilter;
 use ZnSandbox\Sandbox\RpcClient\Domain\Helpers\FavoriteHelper;
-use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ApiKeyServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ClientServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\FavoriteServiceInterface;
-use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ApiKeyForm;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ImportForm;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\RequestForm;
 use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
@@ -31,7 +29,6 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     protected $viewsDir = __DIR__ . '/../views/client';
     protected $baseUri = '/rpc-client/request';
     protected $formClass = RequestForm::class;
-//    private $rpcClient;
     private $clientService;
     private $favoriteService;
     private $methodService;
@@ -42,12 +39,12 @@ class ClientController extends BaseWebController implements ControllerAccessInte
         layoutManager $layoutManager,
         ClientServiceInterface $clientService,
         FavoriteServiceInterface $favoriteService,
-        MethodServiceInterface $methodService
-        //UrlGeneratorInterface $urlGenerator
+        MethodServiceInterface $methodService,
+        UrlGeneratorInterface $urlGenerator
     )
     {
         $this->setFormManager($formManager);
-        $this->layoutManager = $layoutManager;
+        $this->setLayoutManager($layoutManager);
         $this->clientService = $clientService;
         $this->favoriteService = $favoriteService;
         $this->methodService = $methodService;
@@ -55,7 +52,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
         //$this->setFilterModel(ApiKeyFilter::class);
 
         $title = 'Rpc client';
-        $this->layoutManager->getBreadcrumbWidget()->add($title, Url::to([$this->getBaseUri()]));
+        $this->getLayoutManager()->addBreadcrumb($title, 'rpc-client/request');
     }
 
     public function with(): array
@@ -92,15 +89,10 @@ class ClientController extends BaseWebController implements ControllerAccessInte
         } else {
             $favoriteEntity = new FavoriteEntity();
         }
-        $form->setMethod($favoriteEntity->getMethod());
-        $form->setMeta(json_encode($favoriteEntity->getMeta()));
-        $form->setBody(json_encode($favoriteEntity->getBody()));
-        $form->setAuthBy($favoriteEntity->getAuthBy());
-        $form->setDescription($favoriteEntity->getDescription());
-        $form->setVersion($favoriteEntity->getVersion());
+
+        FavoriteHelper::entityToForm($favoriteEntity, $form);
 
         $buildForm = $this->getFormManager()->buildForm($form, $request);
-//        $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             $action = $buildForm->getClickedButton()->getConfig()->getName();
             if ($action == 'save') {
@@ -124,12 +116,12 @@ class ClientController extends BaseWebController implements ControllerAccessInte
                 }
                 $favoriteEntity = FavoriteHelper::formToEntity($form, $favoriteEntity);
                 $this->favoriteService->addFavorite($favoriteEntity);
-                $this->layoutManager->getToastrService()->success('Added to favorite!');
+                $this->getLayoutManager()->toastrSuccess('Added to favorite!');
                 return $this->redirect(Url::to([$this->getBaseUri(), 'id' => $favoriteEntity->getId()]));
             } elseif ($action == 'delete') {
                 if ($id) {
                     $this->favoriteService->deleteById($id);
-                    $this->layoutManager->getToastrService()->success('Deleted!');
+                    $this->getLayoutManager()->toastrSuccess('Deleted!');
                     return $this->redirect(Url::to([$this->getBaseUri()]));
                 }
             }
@@ -154,7 +146,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     public function clearHistory(Request $request): Response
     {
         $this->favoriteService->clearHistory();
-        $this->layoutManager->getToastrService()->success('Clear history!');
+        $this->getLayoutManager()->toastrSuccess('Clear history!');
         return $this->redirect(Url::to([$this->getBaseUri()]));
     }
 
@@ -191,7 +183,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
                     }
                     $this->favoriteService->addFavorite($favoriteEntity);
                 }
-                $this->layoutManager->getToastrService()->success('Import completed successfully!');
+                $this->getLayoutManager()->toastrSuccess('Import completed successfully!');
                 return $this->redirect(Url::to([$this->getBaseUri()]));
             }
         }

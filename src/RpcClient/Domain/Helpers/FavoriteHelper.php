@@ -20,4 +20,15 @@ class FavoriteHelper
 //        $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
         return $favoriteEntity;
     }
+
+    public static function entityToForm(FavoriteEntity $favoriteEntity, RequestForm $requestForm): RequestForm
+    {
+        $requestForm->setMethod($favoriteEntity->getMethod());
+        $requestForm->setMeta(json_encode($favoriteEntity->getMeta()));
+        $requestForm->setBody(json_encode($favoriteEntity->getBody()));
+        $requestForm->setAuthBy($favoriteEntity->getAuthBy());
+        $requestForm->setDescription($favoriteEntity->getDescription());
+        $requestForm->setVersion($favoriteEntity->getVersion());
+        return $requestForm;
+    }
 }
