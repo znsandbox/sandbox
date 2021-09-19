@@ -2,27 +2,16 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers;
 
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
-use ZnCore\Base\Helpers\InstanceHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
-use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
-use ZnLib\Rpc\Domain\Libs\RpcClient;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
-use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
-use ZnLib\Web\Symfony4\MicroApp\Libs\FormRender;
 use ZnLib\Web\Symfony4\MicroApp\Libs\layoutManager;
-use ZnLib\Web\Widgets\BreadcrumbWidget;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
@@ -51,25 +40,14 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     public function __construct(
         FormManager $formManager,
         layoutManager $layoutManager,
-        ToastrServiceInterface $toastrService,
-//        FormFactoryInterface $formFactory,
-//        CsrfTokenManagerInterface $tokenManager,
-        BreadcrumbWidget $breadcrumbWidget,
-        FavoriteServiceInterface $service,
         ClientServiceInterface $clientService,
         FavoriteServiceInterface $favoriteService,
-//        RpcClient $rpcClient,
         MethodServiceInterface $methodService
         //UrlGeneratorInterface $urlGenerator
     )
     {
-//        $this->setToastrService($toastrService);
-//        $this->setFormFactory($formFactory);
-//        $this->setTokenManager($tokenManager);
-//        $this->setBreadcrumbWidget($breadcrumbWidget);
         $this->setFormManager($formManager);
         $this->layoutManager = $layoutManager;
-//        $this->rpcClient = $rpcClient;
         $this->clientService = $clientService;
         $this->favoriteService = $favoriteService;
         $this->methodService = $methodService;
