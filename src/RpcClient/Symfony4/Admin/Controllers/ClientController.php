@@ -6,6 +6,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
 use ZnCore\Base\Helpers\InstanceHelper;
@@ -53,8 +54,12 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         FavoriteServiceInterface $favoriteService,
         RpcClient $rpcClient,
         MethodServiceInterface $methodService
+        //UrlGeneratorInterface $urlGenerator
     )
     {
+
+        //dd($urlGenerator->generate('rpc-client/request/clear-history'));
+
         $this->setService($service);
         $this->setToastrService($toastrService);
         $this->setFormFactory($formFactory);

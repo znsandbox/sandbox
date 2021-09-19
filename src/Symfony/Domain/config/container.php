@@ -38,7 +38,13 @@ return [
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\SwitchRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\SwitchRepository',
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\StorageRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\StorageRepository',
 
-        TokenStorageInterface::class => function(ContainerInterface $container) {
+        /*\Symfony\Component\Routing\Generator\UrlGeneratorInterface::class => function() {
+            new \Symfony\Component\Routing\Generator\UrlGenerator();
+        },*/
+
+        \Symfony\Component\Routing\Generator\UrlGeneratorInterface::class => \Symfony\Component\Routing\Generator\UrlGenerator::class,
+
+            TokenStorageInterface::class => function(ContainerInterface $container) {
             $session = $container->get(SessionInterface::class);
             return new SessionTokenStorage($session);
         },
