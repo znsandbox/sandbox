@@ -21,6 +21,4 @@ return function (RoutingConfigurator $routes) {
         ->methods(['GET', 'POST']);
     
     //    RouteHelper::generateCrud($routes, ApplicationController::class, '/application/application');
-//    RouteHelper::generateCrud($routes, ApiKeyController::class, '/application/api-key');
-//    RouteHelper::generateCrud($routes, EdsController::class, '/application/eds');
 };

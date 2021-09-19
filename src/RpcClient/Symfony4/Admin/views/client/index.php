@@ -25,7 +25,7 @@ foreach ($historyCollection as $favoriteEntityItem) {
         $activeTab = 'history';
     }
 }
-
+//dd($this->translate('core', 'action.send'));
 ?>
 
 <div class="row">
@@ -87,13 +87,13 @@ foreach ($historyCollection as $favoriteEntityItem) {
                     'favoriteEntity' => $favoriteEntity,
                     'collection' => $historyCollection,
                 ]) ?>
-                <a class="btn btn-primary mt-3" href="<?= $this->getUrlGenerator()->generate('rpc-client/request/clear-history') ?>" role="button">
+                <a class="btn btn-primary mt-3" href="<?= $this->url('rpc-client/request/clear-history') ?>" role="button">
                     Clear
                 </a>
             </div>
             <div class="tab-pane fade <?= $activeTab == 'tool' ? 'active show' : '' ?>" id="collection-tool"
                  role="tabpanel" aria-labelledby="collection-tool-tab">
-                <a class="btn btn-primary" href="<?= $this->getUrlGenerator()->generate('rpc-client/request/import-from-routes') ?>" role="button">
+                <a class="btn btn-primary" href="<?= $this->url('rpc-client/request/import-from-routes') ?>" role="button">
                     Import from routes
                 </a>
             </div>

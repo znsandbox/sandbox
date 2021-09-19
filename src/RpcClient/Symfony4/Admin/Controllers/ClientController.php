@@ -16,9 +16,12 @@ use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
 use ZnLib\Rpc\Domain\Libs\RpcClient;
+use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
+use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormRender;
+use ZnLib\Web\Symfony4\MicroApp\Libs\layoutManager;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
@@ -33,39 +36,40 @@ use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ImportForm;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\RequestForm;
 use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
 
-class ClientController extends BaseWebCrudController implements ControllerAccessInterface
+class ClientController extends BaseWebController implements ControllerAccessInterface
 {
 
     protected $viewsDir = __DIR__ . '/../views/client';
     protected $baseUri = '/rpc-client/request';
     protected $formClass = RequestForm::class;
-    private $rpcClient;
+//    private $rpcClient;
     private $clientService;
     private $favoriteService;
     private $methodService;
+    private $layoutManager;
 
     public function __construct(
+        FormManager $formManager,
+        layoutManager $layoutManager,
         ToastrServiceInterface $toastrService,
-        FormFactoryInterface $formFactory,
-        CsrfTokenManagerInterface $tokenManager,
+//        FormFactoryInterface $formFactory,
+//        CsrfTokenManagerInterface $tokenManager,
         BreadcrumbWidget $breadcrumbWidget,
         FavoriteServiceInterface $service,
         ClientServiceInterface $clientService,
         FavoriteServiceInterface $favoriteService,
-        RpcClient $rpcClient,
+//        RpcClient $rpcClient,
         MethodServiceInterface $methodService
         //UrlGeneratorInterface $urlGenerator
     )
     {
-
-        //dd($urlGenerator->generate('rpc-client/request/clear-history'));
-
-        $this->setService($service);
-        $this->setToastrService($toastrService);
-        $this->setFormFactory($formFactory);
-        $this->setTokenManager($tokenManager);
-        $this->setBreadcrumbWidget($breadcrumbWidget);
-        $this->rpcClient = $rpcClient;
+//        $this->setToastrService($toastrService);
+//        $this->setFormFactory($formFactory);
+//        $this->setTokenManager($tokenManager);
+//        $this->setBreadcrumbWidget($breadcrumbWidget);
+        $this->setFormManager($formManager);
+        $this->layoutManager = $layoutManager;
+//        $this->rpcClient = $rpcClient;
         $this->clientService = $clientService;
         $this->favoriteService = $favoriteService;
         $this->methodService = $methodService;
@@ -73,7 +77,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         //$this->setFilterModel(ApiKeyFilter::class);
 
         $title = 'Rpc client';
-        $this->getBreadcrumbWidget()->add($title, Url::to([$this->getBaseUri()]));
+        $this->layoutManager->getBreadcrumbWidget()->add($title, Url::to([$this->getBaseUri()]));
     }
 
     public function with(): array
@@ -106,7 +110,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
 
         if ($id) {
             /** @var FavoriteEntity $favoriteEntity */
-            $favoriteEntity = $this->service->oneById($id);
+            $favoriteEntity = $this->favoriteService->oneById($id);
         } else {
             $favoriteEntity = new FavoriteEntity();
         }
@@ -117,7 +121,8 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         $form->setDescription($favoriteEntity->getDescription());
         $form->setVersion($favoriteEntity->getVersion());
 
-        $buildForm = $this->buildForm($form, $request);
+        $buildForm = $this->getFormManager()->buildForm($form, $request);
+//        $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             $action = $buildForm->getClickedButton()->getConfig()->getName();
             if ($action == 'save') {
@@ -141,25 +146,19 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
                 }
                 $favoriteEntity = FavoriteHelper::formToEntity($form, $favoriteEntity);
                 $this->favoriteService->addFavorite($favoriteEntity);
-                $this->getToastrService()->success('Added to favorite!');
+                $this->layoutManager->getToastrService()->success('Added to favorite!');
                 return $this->redirect(Url::to([$this->getBaseUri(), 'id' => $favoriteEntity->getId()]));
             } elseif ($action == 'delete') {
                 if ($id) {
                     $this->favoriteService->deleteById($id);
-                    $this->getToastrService()->success('Deleted!');
+                    $this->layoutManager->getToastrService()->success('Deleted!');
                     return $this->redirect(Url::to([$this->getBaseUri()]));
                 }
             }
         }
 
-        /*try {
-            $this->getService()->oneByUnique();
-        } catch (NotFoundException $e) {
-
-        }*/
-
-        $favoriteCollection = $this->getService()->allFavorite();
-        $historyCollection = $this->getService()->allHistory();
+        $favoriteCollection = $this->favoriteService->allFavorite();
+        $historyCollection = $this->favoriteService->allHistory();
 
         return $this->render('index', [
             'favoriteEntity' => $favoriteEntity,
@@ -169,20 +168,15 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
             'historyCollection' => $historyCollection,
             'baseUri' => $this->getBaseUri(),
             //'formView' => $buildForm->createView(),
-            'formRender' => $this->createFormRenderInstance($buildForm),
+            'formRender' => $this->getFormManager()->createFormRender($buildForm),
 //            'filterModel' => $filterModel,
         ]);
     }
 
-    protected function createFormRenderInstance(FormInterface $buildForm): FormRender
-    {
-        return new FormRender($buildForm->createView(), $this->getTokenManager());
-    }
-    
     public function clearHistory(Request $request): Response
     {
-        $this->getService()->clearHistory();
-        $this->getToastrService()->success('Clear history!');
+        $this->favoriteService->clearHistory();
+        $this->layoutManager->getToastrService()->success('Clear history!');
         return $this->redirect(Url::to([$this->getBaseUri()]));
     }
 
@@ -206,7 +200,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         /** @var ImportForm $form */
         $form = $this->createFormInstance(ImportForm::class);
 
-        $buildForm = $this->buildForm($form, $request);
+        $buildForm = $this->getFormManager()->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
             if($missingMethodList) {
                 foreach ($missingMethodList as $methodName) {
@@ -219,7 +213,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
                     }
                     $this->favoriteService->addFavorite($favoriteEntity);
                 }
-                $this->getToastrService()->success('Import completed successfully!');
+                $this->layoutManager->getToastrService()->success('Import completed successfully!');
                 return $this->redirect(Url::to([$this->getBaseUri()]));
             }
         }
@@ -227,7 +221,7 @@ class ClientController extends BaseWebCrudController implements ControllerAccess
         return $this->render('import-from-routes', [
             'missingMethodList' => $missingMethodList,
             'routeMethodList' => $routeMethodList,
-            'formRender' => $this->createFormRenderInstance($buildForm),
+            'formRender' => $this->getFormManager()->createFormRender($buildForm),
         ]);
     }
 }

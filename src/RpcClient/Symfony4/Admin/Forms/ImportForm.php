@@ -53,5 +53,8 @@ class ImportForm implements ValidateEntityByMetadataInterface, BuildFormInterfac
         $formBuilder->add('delete', SubmitType::class, [
             'label' => I18Next::t('core', 'action.delete')
         ]);*/
+        $formBuilder->add('save', SubmitType::class, [
+            'label' => I18Next::t('core', 'action.send')
+        ]);
     }
 }
