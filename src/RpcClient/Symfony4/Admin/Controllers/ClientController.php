@@ -5,7 +5,6 @@ namespace ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
@@ -37,30 +36,30 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     public function __construct(
         FormManager $formManager,
         layoutManager $layoutManager,
+        UrlGeneratorInterface $urlGenerator,
         ClientServiceInterface $clientService,
         FavoriteServiceInterface $favoriteService,
-        MethodServiceInterface $methodService,
-        UrlGeneratorInterface $urlGenerator
+        MethodServiceInterface $methodService
     )
     {
         $this->setFormManager($formManager);
         $this->setLayoutManager($layoutManager);
+        $this->setUrlGenerator($urlGenerator);
+        $this->setBaseRoute('rpc-client/request');
+
         $this->clientService = $clientService;
         $this->favoriteService = $favoriteService;
         $this->methodService = $methodService;
 
-        //$this->setFilterModel(ApiKeyFilter::class);
-
-        $title = 'Rpc client';
-        $this->getLayoutManager()->addBreadcrumb($title, 'rpc-client/request');
+        $this->getLayoutManager()->addBreadcrumb('Rpc client', 'rpc-client/request');
     }
 
-    public function with(): array
+    /*public function with(): array
     {
         return [
             'application',
         ];
-    }
+    }*/
 
     public function access(): array
     {
@@ -103,12 +102,12 @@ class ClientController extends BaseWebController implements ControllerAccessInte
                         $e = new UnprocessibleEntityException();
                         $e->add('version', $rpcResponseEntity->getError()['message']);
                         $e->add('method', $rpcResponseEntity->getError()['message']);
-                        $this->setUnprocessableErrorsToForm($buildForm, $e);
+                        $this->getFormManager()->setUnprocessableErrorsToForm($buildForm, $e);
                     }
 
                     $rpcRequestEntity = $this->clientService->formToRequestEntity($form);
                 } catch (UnprocessibleEntityException $e) {
-                    $this->setUnprocessableErrorsToForm($buildForm, $e);
+                    $this->getFormManager()->setUnprocessableErrorsToForm($buildForm, $e);
                 }
             } elseif ($action == 'persist') {
                 if ($id) {
@@ -117,12 +116,12 @@ class ClientController extends BaseWebController implements ControllerAccessInte
                 $favoriteEntity = FavoriteHelper::formToEntity($form, $favoriteEntity);
                 $this->favoriteService->addFavorite($favoriteEntity);
                 $this->getLayoutManager()->toastrSuccess('Added to favorite!');
-                return $this->redirect(Url::to([$this->getBaseUri(), 'id' => $favoriteEntity->getId()]));
+                return $this->redirectToRoute('rpc-client/request', ['id' => $favoriteEntity->getId()]);
             } elseif ($action == 'delete') {
                 if ($id) {
                     $this->favoriteService->deleteById($id);
                     $this->getLayoutManager()->toastrSuccess('Deleted!');
-                    return $this->redirect(Url::to([$this->getBaseUri()]));
+                    return $this->redirectToRoute('rpc-client/request');
                 }
             }
         }
@@ -147,7 +146,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     {
         $this->favoriteService->clearHistory();
         $this->getLayoutManager()->toastrSuccess('Clear history!');
-        return $this->redirect(Url::to([$this->getBaseUri()]));
+        return $this->redirectToRoute('rpc-client/request');
     }
 
     public function importFromRoutes(Request $request): Response
@@ -172,19 +171,19 @@ class ClientController extends BaseWebController implements ControllerAccessInte
 
         $buildForm = $this->getFormManager()->buildForm($form, $request);
         if ($buildForm->isSubmitted() && $buildForm->isValid()) {
-            if($missingMethodList) {
+            if ($missingMethodList) {
                 foreach ($missingMethodList as $methodName) {
                     $favoriteEntity = new FavoriteEntity();
                     $methodEntity = $methodCollectionIndexed[$methodName];
                     $favoriteEntity->setMethod($methodName);
-                    if($methodEntity->getIsVerifyAuth()) {
+                    if ($methodEntity->getIsVerifyAuth()) {
                         /** @todo: собрать коллекцию пользователей по имеи полномочия, назначить первого пользователя */
                         $favoriteEntity->setAuthBy(1);
                     }
                     $this->favoriteService->addFavorite($favoriteEntity);
                 }
                 $this->getLayoutManager()->toastrSuccess('Import completed successfully!');
-                return $this->redirect(Url::to([$this->getBaseUri()]));
+                return $this->redirectToRoute('rpc-client/request');
             }
         }
 
