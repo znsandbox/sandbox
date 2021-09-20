@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
+use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;
@@ -22,12 +23,18 @@ class MyChildController extends BaseCrudRpcController
         return new MyChildSerializer();
     }
 
-    public function allowRelations(): array
+    /*public function allowRelations(): array
     {
         return [
             'child_person',
             'parent_person',
         ];
+    }*/
+
+    protected function forgeWith(RpcRequestEntity $requestEntity, Query $query)
+    {
+        $query->with(['child_person']);
+        parent::forgeWith($requestEntity, $query);
     }
 
     /*public function add(RpcRequestEntity $requestEntity): RpcResponseEntity
