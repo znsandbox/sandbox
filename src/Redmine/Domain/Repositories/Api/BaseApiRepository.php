@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Redmine\Domain\Repositories\Api;
 
 use Redmine\Api\AbstractApi;
 use Redmine\Client;
+use ZnCore\Base\Exceptions\InvalidMethodParameterException;
 use ZnCore\Base\Exceptions\NotSupportedException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Entities\Query\Where;
@@ -94,6 +95,10 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
 
     public function oneById($id, Query $query = null): EntityIdInterface
     {
+        if(empty($id)) {
+            throw (new InvalidMethodParameterException('Empty ID'))
+                ->setParameterName('id');
+        }
         $params = $this->forgeNativeParams($query);
         $array = $this->getEndpoint()->show($id, $params);
         return $this->mapperDecodeEntity($array['issue']);
