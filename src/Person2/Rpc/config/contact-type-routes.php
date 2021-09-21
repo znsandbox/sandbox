@@ -13,5 +13,4 @@ return [
         'handler_method' => 'all',
         'status_id' => 100,
     ],
-
 ];
