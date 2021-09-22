@@ -40,6 +40,7 @@ class BundleEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     public function getId()
     {
+        return hash('crc32b', $this->className);
         return $this->id;
     }
 

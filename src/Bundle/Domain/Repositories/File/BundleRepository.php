@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\File;
 
 use Illuminate\Support\Collection;
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Helpers\InstanceHelper;
 use ZnCore\Base\Libs\App\Interfaces\ConfigManagerInterface;
@@ -109,7 +110,13 @@ class BundleRepository implements BundleRepositoryInterface
 
     public function oneById($id, Query $query = null): EntityIdInterface
     {
-        // TODO: Implement oneById() method.
+        $collection = $this->all();
+        foreach ($collection as $bundleEntity) {
+            if($bundleEntity->getId() == $id) {
+                return $bundleEntity;
+            }
+        }
+        throw new NotFoundException();
     }
 
     /*public function _relations()

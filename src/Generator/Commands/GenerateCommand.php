@@ -102,6 +102,9 @@ class GenerateCommand extends Command
 //        $selectedClasses = $this->selectClasses($input, $output, $domainEntity);
         //dd(array_keys($params));
 
+
+        //dd($params['domainEntity']);
+
         /** @var TableEntity[] $structure */
         $structure = $this->getStructureTables($params['domainEntity'], $params['entities']);
 
