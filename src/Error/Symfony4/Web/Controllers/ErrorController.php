@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
 use ZnBundle\User\Symfony4\Web\Enums\WebUserEnum;
 use ZnCore\Base\Exceptions\ForbiddenException;
@@ -23,11 +24,13 @@ class ErrorController extends BaseWebController
     protected $viewsDir = __DIR__ . '/../views/error';
     private $session;
     private $logger;
+    private $urlGenerator;
 
-    public function __construct(SessionInterface $session, LoggerInterface $logger)
+    public function __construct(SessionInterface $session, LoggerInterface $logger, UrlGeneratorInterface $urlGenerator)
     {
         $this->session = $session;
         $this->logger = $logger;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function handleError(Request $request, \Exception $exception): Response
@@ -85,11 +88,12 @@ class ErrorController extends BaseWebController
 
     private function unauthorized(Request $request, \Exception $exception): Response
     {
-        if($request->getRequestUri() == '/auth') {
+        $authUrl = $this->urlGenerator->generate('user/auth');
+        if($request->getRequestUri() == $authUrl) {
             return $this->commonRender('Unauthorized', 'Unauthorized!', $exception);
         }
         $this->session->set(WebUserEnum::UNAUTHORIZED_URL_SESSION_KEY, $request->getRequestUri());
-        return $this->redirect('/auth');
+        return $this->redirect($authUrl);
     }
 
     private function forbidden(Request $request, \Exception $exception): Response
