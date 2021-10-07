@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Layout\Domain\Services;
 use Illuminate\Support\Collection;
 use Yii;
 use yii\helpers\Url;
+use ZnCore\Base\Exceptions\ForbiddenException;
 use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
 use ZnCore\Base\Libs\I18Next\Exceptions\NotFoundBundleException;
@@ -16,13 +17,17 @@ use ZnLib\Web\Widgets\Interfaces\MenuInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Repositories\MenuRepositoryInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Services\MenuServiceInterface;
+use ZnUser\Rbac\Domain\Interfaces\Services\ManagerServiceInterface;
 
 class MenuService extends BaseCrudService implements MenuServiceInterface
 {
 
-    public function __construct(MenuRepositoryInterface $repository)
+    private $managerService;
+
+    public function __construct(MenuRepositoryInterface $repository, ManagerServiceInterface $managerService)
     {
         $this->setRepository($repository);
+        $this->managerService = $managerService;
     }
 
     public function allByFileName(string $fileName): Collection
@@ -33,8 +38,6 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
 
     public function all(Query $query = null)
     {
-
-
         /** @var MenuEntity[] $collection */
         $collection = parent::all($query);
         foreach ($collection as $menuEntity) {
@@ -95,6 +98,22 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         if ($menuEntity->getUrl() == null) {
             $menuEntity->addOption('class', 'nav-header');
         }
+        if($menuEntity->getItems()) {
+            $isVisibleItems = false;
+            foreach ($menuEntity->getItems() as $itemMenuEntity) {
+                $this->prepareEntity($itemMenuEntity);
+                if($itemMenuEntity->getVisible()) {
+                    $isVisibleItems = true;
+                }
+            }
+            $menuEntity->setVisible($isVisibleItems);
+        }
+        /*if($menuEntity->getUrl() == null) {
+            foreach ($menuEntity->getItems() as $subMenuEntity) {
+
+            }
+            $menuEntity->setVisible(false);
+        }*/
         /*if(is_array($menuEntity->getLabel())) {
             $menuEntity->setLabel(I18Next::translateFromArray($menuEntity->getLabel()));
         }*/
@@ -129,7 +148,15 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
     private function prepareAccess(MenuEntity $menuEntity)
     {
         $menuEntity->setVisible(false);
-        foreach ($menuEntity->getAccess() as $accessItem) {
+        try {
+            $this->managerService->checkMyAccess($menuEntity->getAccess());
+            $menuEntity->setVisible(true);
+        } catch (ForbiddenException $e) {
+            $menuEntity->setVisible(false);
+        }
+
+        /*foreach ($menuEntity->getAccess() as $accessItem) {
+
             if(class_exists(Yii::class)) {
                 if (Yii::$app->authManager->checkAccess(Yii::$app->user->id, $accessItem)) {
                     $menuEntity->setVisible(true);
@@ -138,6 +165,6 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
             } else {
                 $menuEntity->setVisible(true);
             }
-        }
+        }*/
     }
 }
