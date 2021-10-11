@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Layout\Domain\Services;
 use Illuminate\Support\Collection;
 use Yii;
 use yii\helpers\Url;
+use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
 use ZnCore\Base\Exceptions\ForbiddenException;
 use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
@@ -151,7 +152,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         try {
             $this->managerService->checkMyAccess($menuEntity->getAccess());
             $menuEntity->setVisible(true);
-        } catch (ForbiddenException $e) {
+        } catch (ForbiddenException|UnauthorizedException $e) {
             $menuEntity->setVisible(false);
         }
 
