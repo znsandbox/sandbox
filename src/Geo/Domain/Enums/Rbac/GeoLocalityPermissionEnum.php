@@ -3,10 +3,15 @@
 namespace ZnSandbox\Sandbox\Geo\Domain\Enums\Rbac;
 
 use ZnCore\Base\Interfaces\GetLabelsInterface;
+use ZnCore\Contract\Rbac\Interfaces\GetRbacInheritanceInterface;
+use ZnCore\Contract\Rbac\Traits\CrudRbacInheritanceTrait;
 
-class GeoLocalityPermissionEnum implements GetLabelsInterface
+class GeoLocalityPermissionEnum implements GetLabelsInterface, GetRbacInheritanceInterface
 {
 
+    use CrudRbacInheritanceTrait;
+
+    const CRUD = 'oGeoLocalityCrud';
     const ALL = 'oGeoLocalityAll';
     const ONE = 'oGeoLocalityOne';
     const CREATE = 'oGeoLocalityCreate';
@@ -17,6 +22,7 @@ class GeoLocalityPermissionEnum implements GetLabelsInterface
     public static function getLabels()
     {
         return [
+            self::CRUD => 'Населенный пункт. Полный доступ',
             self::ALL => 'Населенный пункт. Просмотр списка',
             self::ONE => 'Населенный пункт. Просмотр записи',
             self::CREATE => 'Населенный пункт. Создание',
