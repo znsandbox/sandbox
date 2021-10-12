@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Services;
 
+use Packages\Organization\Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
 use Packages\Organization\Domain\Interfaces\Services\EmployeeServiceInterface;
 use Psr\Container\ContainerInterface;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
@@ -10,12 +11,12 @@ use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\TypeEntity;
+use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\OrganizationRepositoryInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\TypeServiceInterface;
 
 /**
- * @method
- * OrganizationRepositoryInterface getRepository()
+ * @method OrganizationRepositoryInterface getRepository()
  */
 class OrganizationService extends BaseCrudService implements OrganizationServiceInterface
 {
@@ -25,17 +26,20 @@ class OrganizationService extends BaseCrudService implements OrganizationService
     private $authService;
     private $container;
     private $typeService;
+    private $employeeRepository;
 
     public function __construct(
         EntityManagerInterface $em,
         ContainerInterface $container,
         AuthServiceInterface $authService,
+        EmployeeRepositoryInterface $employeeRepository,
         TypeServiceInterface $typeService
     )
     {
         $this->setEntityManager($em);
         $this->container = $container;
         $this->authService = $authService;
+        $this->employeeRepository = $employeeRepository;
         $this->typeService = $typeService;
     }
 
@@ -54,9 +58,9 @@ class OrganizationService extends BaseCrudService implements OrganizationService
     public function getCurrentOrganizationId(): int
     {
         $identity = $this->authService->getIdentity();
-        /** @var EmployeeServiceInterface $employeeService */
-        $employeeService = $this->container->get(EmployeeServiceInterface::class);
-        $employeeEntity = $employeeService->oneByUserId($identity->getId());
+//        /** @var EmployeeServiceInterface $employeeService */
+//        $employeeService = $this->container->get(EmployeeServiceInterface::class);
+        $employeeEntity = $this->employeeRepository->oneByUserId($identity->getId());
         return $employeeEntity->getOrganizationId();
     }
 
