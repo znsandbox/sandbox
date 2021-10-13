@@ -4,12 +4,23 @@ namespace ZnSandbox\Sandbox\Apache\Domain\Entities;
 
 class ServerEntity {
 
+    private $id;
     private $tagName;
     private $tagAttributes;
     private $config;
     private $hosts;
     private $serverName;
     private $documentRoot;
+
+    public function getId()
+    {
+        return $this->getServerName();
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
 
     public function getTagName()
     {

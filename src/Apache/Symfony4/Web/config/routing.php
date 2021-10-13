@@ -5,9 +5,9 @@ use ZnSandbox\Sandbox\Apache\Symfony4\Web\Controllers\ServerController;
 
 return function (RoutingConfigurator $routes) {
     $routes
-        ->add('server_index', '/apache')
+        ->add('apache/server/index', '/apache')
         ->controller([ServerController::class, 'index']);
     $routes
-        ->add('server_view', '/apache/view')
+        ->add('apache/server/view', '/apache/view')
         ->controller([ServerController::class, 'view']);
 };

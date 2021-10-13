@@ -5,13 +5,14 @@ namespace ZnSandbox\Sandbox\Apache\Symfony4\Web\Controllers;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
+use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnSandbox\Sandbox\Apache\Domain\Services\ServerService;
 
-class ServerController extends BaseWebController
+class ServerController extends BaseWebCrudController
 {
 
     protected $viewsDir = __DIR__ . '/../views/server';
-
+    protected $baseUri = '/apache/server';
     private $serverService;
 
     public function __construct(
@@ -23,15 +24,17 @@ class ServerController extends BaseWebController
 
     public function index(Request $request): Response
     {
-        $links = $this->serverService->all();
+        $collection = $this->serverService->all();
         return $this->render('index', [
-            'links' => $links,
+            'collection' => $collection,
+            'baseUri' => $this->baseUri,
         ]);
     }
 
     public function view(Request $request): Response
     {
-        $name = $request->query->get('name');
+        dd($request);
+        $name = $request->query->get('id');
         $entity = $this->serverService->oneByName($name);
         return $this->render('view', [
             'entity' => $entity,

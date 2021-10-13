@@ -24,7 +24,7 @@ class ServerService
 
     public function all()
     {
-        return $this->getRepository()->all();
+        return $this->getRepository()->all2();
     }
 
     public function oneByName(string $name): ServerEntity

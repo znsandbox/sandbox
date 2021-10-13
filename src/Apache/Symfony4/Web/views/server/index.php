@@ -1,32 +1,61 @@
+<?php
 
+/**
+ * @var $this \ZnLib\Web\View\View
+ * @var $formView FormView|AbstractType[]
+ * @var $dataProvider DataProvider
+ * @var $collection \Illuminate\Support\Collection | \ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity[]
+ * @var $baseUri string
+ */
 
-<div class="container">
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormView;
+use ZnCore\Base\Legacy\Yii\Helpers\Url;
+use ZnCore\Base\Libs\I18Next\Facades\I18Next;
+use ZnCore\Domain\Libs\DataProvider;
+use ZnLib\Web\Widgets\Collection\CollectionWidget;
+use ZnLib\Web\Widgets\Format\Formatters\ActionFormatter;
+use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;
 
-    <?php foreach ($links as $group): ?>
-        <h2><?= $group['title'] ?></h2>
-        <ul class="list-group">
-            <?php foreach ($group['items'] as $link): ?>
-                <?php
-                /** @var \ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity $serverEntity */
-                $serverEntity = $link['server'];
-                ?>
-                <li class="list-group-item list-group-item-action">
-                    <div class="pull-right">
-                        <a href="/apache/view?name=<?= $serverEntity->getServerName() ?>" class="text-decoration-none text-dark">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                        <a href="/update?name=<?= $serverEntity->getServerName() ?>" class="">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <a href="/delete?name=<?= $serverEntity->getServerName() ?>" class="text-danger" data-method="post"
-                           data-confirm="Удалить хост?">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                    </div>
-                    <?php include(__DIR__ . '/_title.php') ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endforeach; ?>
+$attributes = [
+    [
+        'label' => 'ServerName',
+        'attributeName' => 'ServerName',
+        'format' => 'html',
+        'value' => function (\ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity $serverEntity) {
+            return \ZnCore\Base\Legacy\Yii\Helpers\Html::a($serverEntity->getServerName(), 'http://' . $serverEntity->getServerName(), ['target' => '_blank']);
+        },
+    ],
+    [
+        'label' => 'DocumentRoot',
+        'attributeName' => 'DocumentRoot',
+    ],
+    [
+        'formatter' => [
+            'class' => ActionFormatter::class,
+            'actions' => [
+                'view',
+                'update',
+                'delete',
+            ],
+            'baseUrl' => $baseUri,
+        ],
+    ],
+];
 
+?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <?= CollectionWidget::widget([
+            'collection' => $collection,
+            'attributes' => $attributes,
+        ]) ?>
+        <div class="float-left111">
+            <a class="btn btn-primary" href="<?= Url::to([$baseUri . '/create']) ?>" role="button">
+                <i class="fa fa-plus"></i>
+                <?= I18Next::t('core', 'action.create') ?>
+            </a>
+        </div>
+    </div>
 </div>

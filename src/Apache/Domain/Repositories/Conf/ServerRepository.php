@@ -87,6 +87,11 @@ class ServerRepository
         return $links;
     }
 
+    function all2(): Collection
+    {
+        return $this->getIndexedCollection();
+    }
+
     private function getTitleFromReadme(string $documentRoot): string
     {
         $readmeMd = $documentRoot . '/README.md';
