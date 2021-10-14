@@ -1,11 +1,5 @@
 <?php
 
-use App\Common\Enums\Rbac\ApplicationRoleEnum;
-use ZnSandbox\Sandbox\Rpc\Symfony4\Web\Libs\CryptoProviderInterface;
-use ZnSandbox\Sandbox\Rpc\Symfony4\Web\Libs\JsonDSigCryptoProvider;
-use ZnBundle\Dashboard\Domain\Interfaces\Services\DashboardServiceInterface;
-use ZnBundle\Dashboard\Domain\Services\DashboardService;
-use ZnBundle\User\Domain\Subscribers\AuthenticationAttemptSubscriber;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
 use Symfony\Component\Form\FormFactory;
@@ -24,10 +18,6 @@ use Twig\RuntimeLoader\RuntimeLoaderInterface;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnBundle\User\Domain\Services\AuthService3;
 use ZnBundle\User\Domain\Subscribers\SymfonyAuthenticationIdentitySubscriber;
-use ZnCrypt\Pki\Domain\Helpers\RsaKeyLoaderHelper;
-use ZnLib\Web\Widgets\BreadcrumbWidget;
-use ZnUser\Rbac\Domain\Interfaces\Services\ManagerServiceInterface;
-use ZnUser\Rbac\Domain\Services\ManagerService;
 
 return [
 	'definitions' => [
@@ -37,10 +27,6 @@ return [
         'ZnBundle\Notify\Domain\Interfaces\Repositories\ToastrRepositoryInterface' => 'ZnBundle\Notify\Domain\Repositories\Symfony\ToastrRepository',
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\SwitchRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\SwitchRepository',
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\StorageRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\StorageRepository',
-
-        /*\Symfony\Component\Routing\Generator\UrlGeneratorInterface::class => function() {
-            new \Symfony\Component\Routing\Generator\UrlGenerator();
-        },*/
 
         \Symfony\Component\Routing\Generator\UrlGeneratorInterface::class => \Symfony\Component\Routing\Generator\UrlGenerator::class,
 
