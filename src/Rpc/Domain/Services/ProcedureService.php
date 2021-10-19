@@ -10,6 +10,7 @@ use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\ApplicationAuthenticationSubscriber;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\CheckAccessSubscriber;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\CryptoProviderSubscriber;
+use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\LanguageSubscriber;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\LogSubscriber;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\TimestampSubscriber;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\UserAuthenticationSubscriber;
@@ -62,6 +63,7 @@ class ProcedureService
             TimestampSubscriber::class, // Проверка метки времени запроса и подстановка метки времени ответа
             CryptoProviderSubscriber::class, // Проверка подписи запроса и подписание ответа
             LogSubscriber::class, // Логирование запроса и ответа
+            LanguageSubscriber::class, // Обработка языка
         ];
     }
 
