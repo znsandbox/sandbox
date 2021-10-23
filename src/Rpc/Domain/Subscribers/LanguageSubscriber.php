@@ -35,6 +35,9 @@ class LanguageSubscriber implements EventSubscriberInterface
 
     public function onBeforeRunAction(RpcRequestEvent $event)
     {
-        $this->languageService->setLanguage($event->getRequestEntity()->getMetaItem(HttpHeaderEnum::LANGUAGE));
+        $languageCode = $event->getRequestEntity()->getMetaItem(HttpHeaderEnum::LANGUAGE);
+        if(!empty($languageCode)) {
+            $this->languageService->setLanguage($languageCode);
+        }
     }
 }
