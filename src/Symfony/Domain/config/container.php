@@ -28,6 +28,7 @@ return [
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\SwitchRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\SwitchRepository',
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\StorageRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\StorageRepository',
 
+        \Symfony\Component\HttpKernel\Controller\ControllerResolverInterface::class => \ZnLib\Web\Symfony4\HttpKernel\ControllerResolver::class,
         \Symfony\Component\Routing\Generator\UrlGeneratorInterface::class => \Symfony\Component\Routing\Generator\UrlGenerator::class,
 
             TokenStorageInterface::class => function(ContainerInterface $container) {
