@@ -2,6 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Rpc\Domain\Services;
 
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Enums\RpcEventEnum;
 use ZnSandbox\Sandbox\Rpc\Domain\Events\RpcRequestEvent;
@@ -45,12 +48,14 @@ class ProcedureService
     public function __construct(
         ResponseFormatter $responseFormatter,
         MethodServiceInterface $methodService,
+        EventDispatcherInterface $dispatcher,
         InstanceProvider $instanceProvider
     )
     {
         set_error_handler([$this, 'errorHandler']);
         $this->responseFormatter = $responseFormatter;
         $this->methodService = $methodService;
+        $this->setEventDispatcher($dispatcher);
         $this->instanceProvider = $instanceProvider;
     }
 
@@ -114,7 +119,9 @@ class ProcedureService
     private function triggerBefore(RpcRequestEntity $requestEntity, MethodEntity $methodEntity)
     {
         $requestEvent = new RpcRequestEvent($requestEntity, $methodEntity);
-        $this->getEventDispatcher()->dispatch($requestEvent, RpcEventEnum::BEFORE_RUN_ACTION);
+        $this->getEventDispatcher()->dispatch($requestEvent, RpcEventEnum::BEFORE_RUN_ACTION); // todo: deprecated
+
+        $this->getEventDispatcher()->dispatch($requestEvent, KernelEvents::REQUEST);
     }
 
     private function triggerAfter(RpcRequestEntity $requestEntity, RpcResponseEntity $responseEntity)
