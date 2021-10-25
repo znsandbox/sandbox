@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Services;
 
-use Packages\Organization\Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
-use Packages\Organization\Domain\Interfaces\Services\EmployeeServiceInterface;
+use App\Organization\Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
+use App\Organization\Domain\Interfaces\Services\EmployeeServiceInterface;
 use Psr\Container\ContainerInterface;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Domain\Base\BaseCrudService;
