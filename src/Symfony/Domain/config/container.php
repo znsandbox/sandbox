@@ -51,14 +51,14 @@ return [
             /** @var AuthService3 $authService */
             $authService = $container->get(AuthService3::class);
             $authService->addSubscriber(SymfonyAuthenticationIdentitySubscriber::class);
-            /*$authService->addSubscriber([
-                'class' => AuthenticationAttemptSubscriber::class,
+            $authService->addSubscriber([
+                'class' => \ZnBundle\User\Domain\Subscribers\AuthenticationAttemptSubscriber::class,
                 'action' => 'authorization',
                 // todo: вынести в настройки
                 'attemptCount' => 3,
                 'lifeTime' => 10,
 //                'lifeTime' => TimeEnum::SECOND_PER_MINUTE * 30,
-            ]);*/
+            ]);
             return $authService;
         },
 	],
