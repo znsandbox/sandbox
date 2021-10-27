@@ -8,6 +8,7 @@ return [
 		'ZnSandbox\\Sandbox\\Organization\\Domain\\Interfaces\\Repositories\\UserRepositoryInterface' => 'ZnSandbox\\Sandbox\\Organization\\Domain\\Repositories\\Eloquent\\UserRepository',
 		'ZnSandbox\\Sandbox\\Organization\\Domain\\Interfaces\\Services\\TypeServiceInterface' => 'ZnSandbox\\Sandbox\\Organization\\Domain\\Services\\TypeService',
 		'ZnSandbox\\Sandbox\\Organization\\Domain\\Interfaces\\Repositories\\TypeRepositoryInterface' => 'ZnSandbox\\Sandbox\\Organization\\Domain\\Repositories\\Eloquent\\TypeRepository',
+		'ZnSandbox\\Sandbox\\Organization\\Domain\\Interfaces\\Repositories\\SwitchRepositoryInterface' => 'ZnSandbox\\Sandbox\\Organization\\Domain\\Repositories\\Yii2\\SwitchRepository',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Organization\\Domain\\Entities\\OrganizationEntity' => 'ZnSandbox\\Sandbox\\Organization\\Domain\\Interfaces\\Repositories\\OrganizationRepositoryInterface',

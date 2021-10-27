@@ -12,6 +12,7 @@ use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\TypeEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\OrganizationRepositoryInterface;
+use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\SwitchRepositoryInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\TypeServiceInterface;
 
@@ -27,12 +28,14 @@ class OrganizationService extends BaseCrudService implements OrganizationService
     private $container;
     private $typeService;
     private $employeeRepository;
+    private $switchRepository;
 
     public function __construct(
         EntityManagerInterface $em,
         ContainerInterface $container,
         AuthServiceInterface $authService,
         EmployeeRepositoryInterface $employeeRepository,
+        SwitchRepositoryInterface $switchRepository,
         TypeServiceInterface $typeService
     )
     {
@@ -40,6 +43,7 @@ class OrganizationService extends BaseCrudService implements OrganizationService
         $this->container = $container;
         $this->authService = $authService;
         $this->employeeRepository = $employeeRepository;
+        $this->switchRepository = $switchRepository;
         $this->typeService = $typeService;
     }
 
@@ -57,11 +61,21 @@ class OrganizationService extends BaseCrudService implements OrganizationService
 
     public function getCurrentOrganizationId(): int
     {
+        $id = $this->switchRepository->getId();
+        if($id) {
+            return $id;
+        }
+
         $identity = $this->authService->getIdentity();
 //        /** @var EmployeeServiceInterface $employeeService */
 //        $employeeService = $this->container->get(EmployeeServiceInterface::class);
         $employeeEntity = $this->employeeRepository->oneByUserId($identity->getId());
         return $employeeEntity->getOrganizationId();
+    }
+
+    public function setCurrentOrganizationId(int $id): void
+    {
+        $this->switchRepository->setId($id);
     }
 
     public function oneCurrent(): OrganizationEntity
