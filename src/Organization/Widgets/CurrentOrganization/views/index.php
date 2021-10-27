@@ -14,7 +14,7 @@ use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
 
 $items = [];
 foreach ($organizationCollection as $organizationEntity) {
-    $items[$organizationEntity->getId()] = $organizationEntity->getTitle();
+    $items[$organizationEntity->getId()] = $organizationEntity->getTitle() . " ({$organizationEntity->getLocality()->getName()})";
 }
 
 ?>
