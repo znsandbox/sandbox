@@ -23,7 +23,7 @@ foreach ($organizationCollection as $organizationEntity) {
       action="<?= Url::to(['/organization/organization/switch']) ?>">
     <div class="input-group input-group-sm">
         <?= Html::dropDownList('organizationId', $currentOrganizationId, $items, [
-            'class' => 'form-control form-control-navbar',
+            'class' => 'form-control form-control-navbar select2',
             'onchange' => '$("#CurrentOrganizationWidget").submit()',
         ]) ?>
     </div>
