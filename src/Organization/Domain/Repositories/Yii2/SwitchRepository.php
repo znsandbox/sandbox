@@ -18,7 +18,7 @@ class SwitchRepository implements SwitchRepositoryInterface
         $this->session = $session;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->session->get(self::SESSION_PARAM_NAME);
     }
