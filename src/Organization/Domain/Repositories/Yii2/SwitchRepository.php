@@ -18,14 +18,18 @@ class SwitchRepository implements SwitchRepositoryInterface
         $this->session = $session;
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->session->get(self::SESSION_PARAM_NAME);
     }
 
     public function setId(int $id): void
     {
-        $this->session->set(self::SESSION_PARAM_NAME, $id);
+        if(empty($id)) {
+            $this->reset();
+        } else {
+            $this->session->set(self::SESSION_PARAM_NAME, $id);
+        }
     }
 
     public function reset(): void

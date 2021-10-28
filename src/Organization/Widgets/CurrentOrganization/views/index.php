@@ -13,6 +13,7 @@ use ZnLib\Web\View\View;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
 
 $items = [];
+$items[-100] = '- Выбор организации -';
 foreach ($organizationCollection as $organizationEntity) {
     $items[$organizationEntity->getId()] = $organizationEntity->getTitle() . " ({$organizationEntity->getLocality()->getName()})";
 }
