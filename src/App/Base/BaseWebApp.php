@@ -8,10 +8,10 @@ use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
-use ZnLib\Web\Symfony4\Subscribers\ErrorHandleSubscriber;
-use ZnLib\Web\Symfony4\Subscribers\FindRouteSubscriber;
-use ZnLib\Web\Symfony4\Subscribers\WebDetectTestEnvSubscriber;
-use ZnLib\Web\Symfony4\Subscribers\WebFirewallSubscriber;
+use ZnSandbox\Sandbox\App\Subscribers\ErrorHandleSubscriber;
+use ZnSandbox\Sandbox\App\Subscribers\FindRouteSubscriber;
+use ZnSandbox\Sandbox\App\Subscribers\WebDetectTestEnvSubscriber;
+use ZnSandbox\Sandbox\App\Subscribers\WebFirewallSubscriber;
 use ZnLib\Web\View\View;
 use ZnSandbox\Sandbox\App\Base\BaseApp;
 

@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\App\Base;
 
-use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -11,7 +10,8 @@ use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
 use ZnCore\Base\Libs\Container\ContainerAttributeTrait;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
 use ZnCore\Base\Libs\Event\Traits\EventDispatcherTrait;
-use ZnLib\Web\Symfony4\Enums\AppEventEnum;
+use ZnSandbox\Sandbox\App\Enums\AppEventEnum;
+use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
 use ZnSandbox\Sandbox\App\Libs\ZnCore;
 
 abstract class BaseApp implements AppInterface
@@ -62,9 +62,7 @@ abstract class BaseApp implements AppInterface
         $bundles = $this->bundles();
         $import = $this->import();
         $appName = $this->appName();
-
         $this->znCore->loadBundles($bundles, $import, $appName);
-
     }
 
     protected function initEnv(): void
