@@ -1,8 +1,8 @@
 <?php
 
-namespace ZnSandbox\Sandbox\App\Apps;
+namespace ZnSandbox\Sandbox\App\Base;
 
-abstract class AdminApp extends WebApp
+abstract class BaseAdminApp extends BaseWebApp
 {
 
     public function appName(): string

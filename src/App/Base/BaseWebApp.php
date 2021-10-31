@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\App\Apps;
+namespace ZnSandbox\Sandbox\App\Base;
 
 use Symfony\Component\ErrorHandler\ErrorRenderer\ErrorRendererInterface;
 use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
@@ -15,7 +15,7 @@ use ZnLib\Web\Symfony4\Subscribers\WebFirewallSubscriber;
 use ZnLib\Web\View\View;
 use ZnSandbox\Sandbox\App\Base\BaseApp;
 
-abstract class WebApp extends BaseApp
+abstract class BaseWebApp extends BaseApp
 {
 
     public function appName(): string
