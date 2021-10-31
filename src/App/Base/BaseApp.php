@@ -31,12 +31,13 @@ abstract class BaseApp implements AppInterface
 
     public function __construct(
         ContainerInterface $container,
+        EventDispatcherInterface $dispatcher,
         ZnCore $znCore,
-//        EventDispatcherInterface $dispatcher,
         ContainerConfiguratorInterface $containerConfigurator
     )
     {
         $this->setContainer($container);
+        $this->setEventDispatcher($dispatcher);
         $this->containerConfigurator = $containerConfigurator;
         $this->znCore = $znCore;
     }
@@ -45,24 +46,8 @@ abstract class BaseApp implements AppInterface
     {
         $this->initEnv();
         $this->configContainer($this->containerConfigurator);
-        $this->loadConfig();
-        $this->configEventDispatcher();
-    }
-
-    protected function configEventDispatcher(): void
-    {
-        /** @var EventDispatcherInterface $dispatcher */
-        $dispatcher = $this->getContainer()->get(EventDispatcherInterface::class);
-        $this->configDispatcher($dispatcher);
-        $this->setEventDispatcher($dispatcher);
-    }
-
-    protected function loadConfig(): void
-    {
-        $bundles = $this->bundles();
-        $import = $this->import();
-        $appName = $this->appName();
-        $this->znCore->loadBundles($bundles, $import, $appName);
+        $this->znCore->loadBundles($this->bundles(), $this->import(), $this->appName());
+        $this->configDispatcher($this->getEventDispatcher());
     }
 
     protected function initEnv(): void
