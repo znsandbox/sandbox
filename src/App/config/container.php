@@ -42,13 +42,6 @@ return [
 //            $em->addOrm($eloquentOrm);
             return $em;
         },
-        //ConfigManagerInterface::class => ConfigManager::class,
-//        EventDispatcherInterface::class => \Symfony\Component\EventDispatcher\EventDispatcher::class,
-//        \Symfony\Component\EventDispatcher\EventDispatcherInterface::class => \Symfony\Component\EventDispatcher\EventDispatcher::class,
-        /*EventDispatcherInterface::class => function () {
-            $eventDispatcher = new EventDispatcher();
-            return $eventDispatcher;
-        },*/
         FileRepository::class => function () {
             return new FileRepository(DotEnv::get('ELOQUENT_CONFIG_FILE'));
         },
@@ -70,6 +63,13 @@ return [
         //\Symfony\Component\Cache\Adapter\AbstractAdapter::class => AdapterInterface::class,
         /*DotEnvConfigInterface::class => function() {
             return new DotEnvConfig($_ENV);
+        },*/
+        //ConfigManagerInterface::class => ConfigManager::class,
+//        EventDispatcherInterface::class => \Symfony\Component\EventDispatcher\EventDispatcher::class,
+//        \Symfony\Component\EventDispatcher\EventDispatcherInterface::class => \Symfony\Component\EventDispatcher\EventDispatcher::class,
+        /*EventDispatcherInterface::class => function () {
+            $eventDispatcher = new EventDispatcher();
+            return $eventDispatcher;
         },*/
     ],
 ];
