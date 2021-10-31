@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\App\Apps;
 
-use ZnSandbox\Sandbox\App\Base\BaseApp;
 use Symfony\Component\ErrorHandler\ErrorRenderer\ErrorRendererInterface;
 use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -11,10 +10,10 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Web\Symfony4\Subscribers\ErrorHandleSubscriber;
 use ZnLib\Web\Symfony4\Subscribers\FindRouteSubscriber;
-use ZnLib\Web\Symfony4\Subscribers\SetLayoutSubscriber;
 use ZnLib\Web\Symfony4\Subscribers\WebDetectTestEnvSubscriber;
 use ZnLib\Web\Symfony4\Subscribers\WebFirewallSubscriber;
 use ZnLib\Web\View\View;
+use ZnSandbox\Sandbox\App\Base\BaseApp;
 
 abstract class WebApp extends BaseApp
 {
@@ -36,22 +35,12 @@ abstract class WebApp extends BaseApp
         return ['i18next', 'container', 'symfonyWeb'];
     }
 
-    /*protected function bundles(): array
-    {
-        $bundles = include __DIR__ . '/../../../config/bundle.php';
-        $bundles[] = new \App\AppWeb\Bundle(['all']);
-        return $bundles;
-    }*/
-
     protected function configDispatcher(EventDispatcherInterface $dispatcher): void
     {
         $dispatcher->addSubscriber($this->container->get(FindRouteSubscriber::class));
         $dispatcher->addSubscriber($this->container->get(WebFirewallSubscriber::class));
         //$dispatcher->addSubscriber($this->container->get(UnauthorizedSubscriber::class));
         $dispatcher->addSubscriber($this->container->get(ErrorHandleSubscriber::class));
-        /*$setLayoutSubscriber = $this->container->get(SetLayoutSubscriber::class);
-        $setLayoutSubscriber->setLayout(__DIR__ . '/../../../src/Common/views/layouts/website/main.php');
-        $dispatcher->addSubscriber($setLayoutSubscriber);*/
     }
 
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void

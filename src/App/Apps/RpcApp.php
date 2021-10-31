@@ -2,13 +2,13 @@
 
 namespace ZnSandbox\Sandbox\App\Apps;
 
-use ZnSandbox\Sandbox\App\Base\BaseApp;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Rest\Helpers\CorsHelper;
 use ZnLib\Rpc\Symfony4\HttpKernel\RpcFramework;
 use ZnLib\Web\Symfony4\Subscribers\WebDetectTestEnvSubscriber;
+use ZnSandbox\Sandbox\App\Base\BaseApp;
 
 abstract class RpcApp extends BaseApp
 {
