@@ -40,16 +40,16 @@ class ZnCore
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
     {
 //        $containerConfigurator->singleton(EventDispatcherInterface::class, EventDispatcher::class);
-        /*$containerConfigurator->singleton(EventDispatcherInterface::class, function () {
+        $containerConfigurator->singleton(ContainerInterface::class, function () {
+            return $this->getContainer();
+        });
+        $containerConfigurator->singleton(EventDispatcherInterface::class, function () {
             return new EventDispatcher();
-        });*/
+        });
 
         $containerConfigurator->singleton(ConfigManagerInterface::class, ConfigManager::class);
         $containerConfigurator->singleton(ZnCore::class, function () {
             return $this;
-        });
-        $containerConfigurator->singleton(ContainerInterface::class, function () {
-            return $this->getContainer();
         });
         $containerConfigurator->singleton(ContainerConfiguratorInterface::class, function () use($containerConfigurator) {
             return $containerConfigurator;
