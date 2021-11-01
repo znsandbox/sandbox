@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Organization\Domain\Repositories\Yii2;
 
-use yii\web\Session;
+//use yii\web\Session;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\SwitchEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\SwitchRepositoryInterface;
 
@@ -13,9 +13,10 @@ class SwitchRepository implements SwitchRepositoryInterface
 
     private $session;
 
-    public function __construct(Session $session)
+    public function __construct(/*Session $session*/)
     {
-        $this->session = $session;
+        $this->session = \Yii::$app->getSession();
+//        $this->session = $session;
     }
 
     public function getId(): ?int

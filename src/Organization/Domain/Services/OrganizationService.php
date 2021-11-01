@@ -73,8 +73,8 @@ class OrganizationService extends BaseCrudService implements OrganizationService
         if($id) {
             return $id;
         }
-
         $identity = $this->authService->getIdentity();
+
 //        /** @var EmployeeServiceInterface $employeeService */
 //        $employeeService = $this->container->get(EmployeeServiceInterface::class);
         $employeeEntity = $this->employeeRepository->oneByUserId($identity->getId());
