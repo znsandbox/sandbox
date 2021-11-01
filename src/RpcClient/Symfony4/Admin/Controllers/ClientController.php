@@ -13,7 +13,7 @@ use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
-use ZnLib\Web\Symfony4\MicroApp\Libs\layoutManager;
+use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
@@ -37,7 +37,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
 
     public function __construct(
         FormManager $formManager,
-        layoutManager $layoutManager,
+        LayoutManager $layoutManager,
         UrlGeneratorInterface $urlGenerator,
         ClientServiceInterface $clientService,
         FavoriteServiceInterface $favoriteService,

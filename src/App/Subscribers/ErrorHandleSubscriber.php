@@ -2,40 +2,22 @@
 
 namespace ZnSandbox\Sandbox\App\Subscribers;
 
-use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
-use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
-use Symfony\Component\HttpKernel\Controller\ErrorController;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use ZnBundle\User\Symfony4\Web\Enums\WebUserEnum;
-use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerLayoutInterface;
+use ZnSandbox\Sandbox\App\Libs\CallAction;
+use ZnSandbox\Sandbox\Error\Symfony4\Web\Controllers\ErrorController2;
 
 class ErrorHandleSubscriber implements EventSubscriberInterface
 {
 
-    private $authUrl = 'user/auth';
-    private $urlGenerator;
-    private $session;
-    private $errorController;
-    private $controllerResolver;
-    private $argumentResolver;
+    private $callAction;
 
     public function __construct(
-        UrlGeneratorInterface $urlGenerator,
-        ControllerResolverInterface $controllerResolver,
-        Session $session
+        CallAction $callAction
     )
     {
-        $this->urlGenerator = $urlGenerator;
-        $this->controllerResolver = $controllerResolver;
-        $this->session = $session;
+        $this->callAction = $callAction;
     }
 
     public static function getSubscribedEvents(): array
@@ -48,18 +30,16 @@ class ErrorHandleSubscriber implements EventSubscriberInterface
     public function onKernelException(ExceptionEvent $event)
     {
         $request = $event->getRequest()->duplicate();
-        $request->attributes->set('_controller', \ZnSandbox\Sandbox\Error\Symfony4\Web\Controllers\ErrorController::class);
+        $request->attributes->set('_controller', ErrorController2::class);
         $request->attributes->set('_action', 'handleError');
-        $controller = $this->controllerResolver->getController($request);
-        list($controllerInstance, $actionName) = $controller;
-        if($controllerInstance instanceof ControllerLayoutInterface) {
-            $controllerInstance->setLayout(null);
-        }
+
         $arguments = [
             $request,
-            $event->getThrowable()
+            $event->getThrowable(),
         ];
-        $response = $controller(...$arguments);
+        $response = $this->callAction->call($request, $arguments);
+
         $event->setResponse($response);
+        $event->stopPropagation();
     }
 }

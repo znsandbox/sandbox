@@ -19,6 +19,10 @@ use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnBundle\User\Domain\Services\AuthService3;
 use ZnBundle\User\Domain\Subscribers\SymfonyAuthenticationIdentitySubscriber;
 
+
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
+
 return [
     'definitions' => [
 
@@ -28,6 +32,7 @@ return [
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\SwitchRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\SwitchRepository',
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\StorageRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\StorageRepository',
 
+        ArgumentResolverInterface::class => ArgumentResolver::class,
         \Symfony\Component\HttpKernel\Controller\ControllerResolverInterface::class => \ZnLib\Web\Symfony4\HttpKernel\ControllerResolver::class,
         \Symfony\Component\Routing\Generator\UrlGeneratorInterface::class => \Symfony\Component\Routing\Generator\UrlGenerator::class,
 
