@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Rpc\Subscribers;
+namespace ZnSandbox\Sandbox\Rpc\Domain\Subscribers;
 
 use Symfony\Bundle\FrameworkBundle\Test\TestBrowserToken;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -19,33 +19,35 @@ use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Enums\HttpHeaderEnum;
 use ZnLib\Web\Symfony4\MicroApp\Libs\CookieValue;
+use ZnSandbox\Sandbox\Rpc\Domain\Enums\RpcEventEnum;
 use ZnSandbox\Sandbox\Rpc\Domain\Events\RpcRequestEvent;
 
 class RpcFirewallSubscriber implements EventSubscriberInterface
 {
 
     private $authService;
-    private $identityService;
-    private $session;
-    private $security;
+//    private $identityService;
+//    private $session;
+//    private $security;
 
     public function __construct(
-        AuthServiceInterface $authService,
-        IdentityServiceInterface $identityService,
-        Security $security,
-        SessionInterface $session
+        AuthServiceInterface $authService
+//        IdentityServiceInterface $identityService,
+//        Security $security,
+//        SessionInterface $session
     )
     {
         $this->authService = $authService;
-        $this->identityService = $identityService;
-        $this->security = $security;
-        $this->session = $session;
+//        $this->identityService = $identityService;
+//        $this->security = $security;
+//        $this->session = $session;
     }
 
     public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::REQUEST => ['onKernelRequest', 128],
+            RpcEventEnum::BEFORE_RUN_ACTION => 'onKernelRequest',
         ];
     }
 

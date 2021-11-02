@@ -12,6 +12,12 @@ use ZnCore\Domain\Traits\EntityManagerTrait;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Enums\HttpHeaderEnum;
 
+/**
+ * Class UserAuthenticationSubscriber
+ * @package ZnSandbox\Sandbox\Rpc\Domain\Subscribers
+ * @deprecated 
+ * @uses RpcFirewallSubscriber
+ */
 class UserAuthenticationSubscriber implements EventSubscriberInterface
 {
 
