@@ -1,11 +1,12 @@
 <?php
 
-namespace ZnSandbox\Sandbox\App\Base;
+namespace ZnSandbox\Sandbox\Rpc\Domain\Base;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Rpc\Symfony4\HttpKernel\RpcFramework;
+use ZnSandbox\Sandbox\App\Base\BaseApp;
 use ZnSandbox\Sandbox\App\Subscribers\WebDetectTestEnvSubscriber;
 
 abstract class BaseRpcApp extends BaseApp
