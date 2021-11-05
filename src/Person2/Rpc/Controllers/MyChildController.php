@@ -8,14 +8,17 @@ use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;
 use ZnLib\Rpc\Rpc\Serializers\SerializerInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
 use ZnSandbox\Sandbox\Person2\Rpc\Serializers\MyChildSerializer;
 
 class MyChildController extends BaseCrudRpcController
 {
+    private $personService;
 
-    public function __construct(MyChildServiceInterface $myChildService)
+    public function __construct(MyChildServiceInterface $myChildService, PersonServiceInterface $personService)
     {
         $this->service = $myChildService;
+        $this->personService = $personService;
     }
 
     public function serializer(): SerializerInterface
@@ -35,6 +38,18 @@ class MyChildController extends BaseCrudRpcController
     {
         $query->with(['child_person']);
         parent::forgeWith($requestEntity, $query);
+    }
+
+    public function update(RpcRequestEntity $requestEntity): RpcResponseEntity
+    {
+        $id = $requestEntity->getParamItem('id');
+        $data = $requestEntity->getParams();
+
+        unset($data['id']);
+
+        $this->personService->updateById($id, $data);
+
+        return new RpcResponseEntity();
     }
 
     /*public function add(RpcRequestEntity $requestEntity): RpcResponseEntity

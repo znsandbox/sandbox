@@ -39,7 +39,6 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('code', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('identityId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('identityId', new Assert\Positive());
@@ -57,7 +56,9 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['code']
+        ];
     }
 
     public function setId($value) : void

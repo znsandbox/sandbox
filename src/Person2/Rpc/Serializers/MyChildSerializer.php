@@ -11,6 +11,10 @@ class MyChildSerializer extends DefaultSerializer
     protected function encodeEntity(object $entity)
     {
         /** @var InheritanceEntity $entity */
+        if ($entity->getChildPerson() === null) {
+            return null;
+        }
+
         return parent::encodeEntity($entity->getChildPerson());
     }
 }

@@ -27,7 +27,6 @@ class InheritanceEntity implements ValidateEntityByMetadataInterface, UniqueInte
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\NotBlank);
         $metadata->addPropertyConstraint('childPersonId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('parentPersonId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
