@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Layout\Domain\Services;
 
 use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Yii;
 use yii\helpers\Url;
@@ -71,7 +72,11 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
     private function generateUrl(string $route, array $params = []): string
     {
         if($this->urlGenerator instanceof UrlGeneratorInterface) {
-            return $this->urlGenerator->generate($route, $params);
+            try {
+                return $this->urlGenerator->generate($route, $params);
+            } catch (RouteNotFoundException $e) {
+
+            }
         }
         return Url::to(['/' . $route]);
     }
