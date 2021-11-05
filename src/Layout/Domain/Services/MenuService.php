@@ -7,11 +7,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Yii;
-use yii\helpers\Url;
 use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
 use ZnCore\Base\Exceptions\ForbiddenException;
 use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
+use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Base\Libs\I18Next\Exceptions\NotFoundBundleException;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Base\BaseCrudService;
@@ -72,8 +72,9 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
     private function generateUrl(string $route, array $params = []): string
     {
         if($this->urlGenerator instanceof UrlGeneratorInterface) {
+            return $this->urlGenerator->generate($route, $params);
             try {
-                return $this->urlGenerator->generate($route, $params);
+
             } catch (RouteNotFoundException $e) {
 
             }
