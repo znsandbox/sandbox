@@ -8,10 +8,10 @@ use ZnLib\Db\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Repositories\MethodRepositoryInterface;
 
-class MethodRepository extends BaseFileCrudRepository implements MethodRepositoryInterface
+class MethodRepository extends \ZnLib\Rpc\Domain\Repositories\File\MethodRepository  //BaseFileCrudRepository implements MethodRepositoryInterface
 {
 
-    public function fileName(): string
+    /*public function fileName(): string
     {
         return __DIR__ . '/../../../../../../../../fixtures/rpc_route.php';
     }
@@ -32,5 +32,5 @@ class MethodRepository extends BaseFileCrudRepository implements MethodRepositor
     protected function getItems(): array
     {
         return parent::getItems()['collection'];
-    }
+    }*/
 }

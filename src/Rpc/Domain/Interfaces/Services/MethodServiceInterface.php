@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
 use ZnLib\Rpc\Domain\Exceptions\MethodNotFoundException;
 
-interface MethodServiceInterface extends CrudServiceInterface
+interface MethodServiceInterface extends \ZnLib\Rpc\Domain\Interfaces\Services\MethodServiceInterface //CrudServiceInterface
 {
 
     /**
@@ -14,5 +14,5 @@ interface MethodServiceInterface extends CrudServiceInterface
      * @param int $version
      * @return MethodEntity
      */
-    public function oneByMethodName(string $method, int $version): MethodEntity;
+    //public function oneByMethodName(string $method, int $version): MethodEntity;
 }

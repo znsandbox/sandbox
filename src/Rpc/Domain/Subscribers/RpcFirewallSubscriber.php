@@ -22,60 +22,60 @@ use ZnLib\Web\Symfony4\MicroApp\Libs\CookieValue;
 use ZnSandbox\Sandbox\Rpc\Domain\Enums\RpcEventEnum;
 use ZnSandbox\Sandbox\Rpc\Domain\Events\RpcRequestEvent;
 
-class RpcFirewallSubscriber implements EventSubscriberInterface
+class RpcFirewallSubscriber extends \ZnLib\Rpc\Domain\Subscribers\RpcFirewallSubscriber //implements EventSubscriberInterface
 {
 
-    private $authService;
-//    private $identityService;
-//    private $session;
-//    private $security;
-
-    public function __construct(
-        AuthServiceInterface $authService
-//        IdentityServiceInterface $identityService,
-//        Security $security,
-//        SessionInterface $session
-    )
-    {
-        $this->authService = $authService;
-//        $this->identityService = $identityService;
-//        $this->security = $security;
-//        $this->session = $session;
-    }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            KernelEvents::REQUEST => ['onKernelRequest', 128],
-            RpcEventEnum::BEFORE_RUN_ACTION => 'onKernelRequest',
-        ];
-    }
-
-    public function onKernelRequest(RpcRequestEvent $event)
-    {
-        $requestEntity = $event->getRequestEntity();
-        $methodEntity = $event->getMethodEntity();
-        if ($methodEntity->getIsVerifyAuth()) {
-            $this->userAuthentication($requestEntity);
-        }
-    }
-
-    /**
-     * Аутентификация пользователя
-     * @param RpcRequestEntity $requestEntity
-     * @throws UnauthorizedException
-     */
-    private function userAuthentication(RpcRequestEntity $requestEntity)
-    {
-        $authorization = $requestEntity->getMetaItem(HttpHeaderEnum::AUTHORIZATION);
-        if (empty($authorization)) {
-            throw new UnauthorizedException('Empty token');
-        }
-        try {
-            $identity = $this->authService->authenticationByToken($authorization);
-            $this->authService->setIdentity($identity);
-        } catch (NotFoundException $e) {
-            throw new UnauthorizedException('Bad token');
-        }
-    }
+//    private $authService;
+////    private $identityService;
+////    private $session;
+////    private $security;
+//
+//    public function __construct(
+//        AuthServiceInterface $authService
+////        IdentityServiceInterface $identityService,
+////        Security $security,
+////        SessionInterface $session
+//    )
+//    {
+//        $this->authService = $authService;
+////        $this->identityService = $identityService;
+////        $this->security = $security;
+////        $this->session = $session;
+//    }
+//
+//    public static function getSubscribedEvents(): array
+//    {
+//        return [
+//            KernelEvents::REQUEST => ['onKernelRequest', 128],
+//            RpcEventEnum::BEFORE_RUN_ACTION => 'onKernelRequest',
+//        ];
+//    }
+//
+//    public function onKernelRequest(RpcRequestEvent $event)
+//    {
+//        $requestEntity = $event->getRequestEntity();
+//        $methodEntity = $event->getMethodEntity();
+//        if ($methodEntity->getIsVerifyAuth()) {
+//            $this->userAuthentication($requestEntity);
+//        }
+//    }
+//
+//    /**
+//     * Аутентификация пользователя
+//     * @param RpcRequestEntity $requestEntity
+//     * @throws UnauthorizedException
+//     */
+//    private function userAuthentication(RpcRequestEntity $requestEntity)
+//    {
+//        $authorization = $requestEntity->getMetaItem(HttpHeaderEnum::AUTHORIZATION);
+//        if (empty($authorization)) {
+//            throw new UnauthorizedException('Empty token');
+//        }
+//        try {
+//            $identity = $this->authService->authenticationByToken($authorization);
+//            $this->authService->setIdentity($identity);
+//        } catch (NotFoundException $e) {
+//            throw new UnauthorizedException('Bad token');
+//        }
+//    }
 }

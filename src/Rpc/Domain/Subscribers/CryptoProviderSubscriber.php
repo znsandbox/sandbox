@@ -11,10 +11,10 @@ use ZnSandbox\Sandbox\Rpc\Symfony4\Web\Libs\CryptoProviderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use ZnCore\Domain\Traits\EntityManagerTrait;
 
-class CryptoProviderSubscriber implements EventSubscriberInterface
+class CryptoProviderSubscriber extends \ZnLib\Rpc\Domain\Subscribers\CryptoProviderSubscriber //implements EventSubscriberInterface
 {
 
-    use EntityManagerTrait;
+    /*use EntityManagerTrait;
 
     private $cryptoProvider;
     private $settingsService;
@@ -44,5 +44,5 @@ class CryptoProviderSubscriber implements EventSubscriberInterface
         if($settingsEntity->getCryptoProviderStrategy() == RpcCryptoProviderStrategyEnum::JSON_DSIG) {
             $this->cryptoProvider->signResponse($event->getResponseEntity());
         }
-    }
+    }*/
 }

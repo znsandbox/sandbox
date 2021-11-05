@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Repositories;
 
 use ZnCore\Domain\Interfaces\Repository\CrudRepositoryInterface;
 
-interface VersionHandlerRepositoryInterface extends CrudRepositoryInterface
+interface VersionHandlerRepositoryInterface extends \ZnLib\Rpc\Domain\Interfaces\Repositories\VersionHandlerRepositoryInterface // CrudRepositoryInterface
 {
 
 

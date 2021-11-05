@@ -39,7 +39,9 @@ class SystemService extends BaseCrudService implements SystemServiceInterface
         $collection = $this->systemRepository->allByName($name);
         $data = [];
         foreach ($collection as $systemEntity) {
-            $data[$systemEntity->getKey()] = $systemEntity->getValue();
+            if($systemEntity->getKey()) {
+                $data[$systemEntity->getKey()] = $systemEntity->getValue();
+            }
         }
         return $data;
     }

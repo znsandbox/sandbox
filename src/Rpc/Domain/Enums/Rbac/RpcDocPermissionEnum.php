@@ -4,10 +4,10 @@ namespace ZnSandbox\Sandbox\Rpc\Domain\Enums\Rbac;
 
 use ZnCore\Base\Interfaces\GetLabelsInterface;
 
-class RpcDocPermissionEnum implements GetLabelsInterface
+class RpcDocPermissionEnum extends \ZnLib\Rpc\Domain\Enums\Rbac\RpcDocPermissionEnum  //implements GetLabelsInterface
 {
 
-    const ALL = 'oRbacDocAll';
+   /* const ALL = 'oRbacDocAll';
     const ONE = 'oRbacDocOne';
     const DOWNLOAD = 'oRbacDocDownload';
 
@@ -18,5 +18,5 @@ class RpcDocPermissionEnum implements GetLabelsInterface
             self::ONE => 'Документация RPC. Просмотр записи',
             self::DOWNLOAD => 'Документация RPC. Скачать',
         ];
-    }
+    }*/
 }

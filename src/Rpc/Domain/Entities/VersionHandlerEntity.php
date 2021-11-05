@@ -10,10 +10,10 @@ use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 
-class VersionHandlerEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
+class VersionHandlerEntity extends \ZnLib\Rpc\Domain\Entities\VersionHandlerEntity  //implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
 {
 
-    private $id = null;
+    /*private $id = null;
 
     private $version = null;
 
@@ -75,7 +75,7 @@ class VersionHandlerEntity implements ValidateEntityByMetadataInterface, UniqueI
     public function getStatusId()
     {
         return $this->statusId;
-    }
+    }*/
 
 
 }

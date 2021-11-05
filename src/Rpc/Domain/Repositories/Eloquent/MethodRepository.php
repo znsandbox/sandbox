@@ -7,10 +7,10 @@ use ZnLib\Db\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Repositories\MethodRepositoryInterface;
 
-class MethodRepository extends BaseEloquentCrudRepository implements MethodRepositoryInterface
+class MethodRepository extends \ZnLib\Rpc\Domain\Repositories\Eloquent\MethodRepository  //BaseEloquentCrudRepository implements MethodRepositoryInterface
 {
 
-    public function tableName() : string
+    /*public function tableName() : string
     {
         return 'rpc_route';
     }
@@ -26,6 +26,6 @@ class MethodRepository extends BaseEloquentCrudRepository implements MethodRepos
         $query->where('version', $version);
         $query->where('method_name', $method);
         return $this->one($query);
-    }
+    }*/
 }
 

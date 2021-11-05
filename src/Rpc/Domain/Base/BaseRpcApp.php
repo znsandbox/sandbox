@@ -17,10 +17,10 @@ use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\RpcFirewallSubscriber;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\TimestampSubscriber;
 use ZnSandbox\Sandbox\Rpc\Domain\Subscribers\UserAuthenticationSubscriber;
 
-abstract class BaseRpcApp extends BaseApp
+abstract class BaseRpcApp extends \ZnLib\Rpc\Domain\Base\BaseRpcApp //BaseApp
 {
 
-    public function appName(): string
+    /*public function appName(): string
     {
         return 'rpc';
     }
@@ -52,5 +52,5 @@ abstract class BaseRpcApp extends BaseApp
         $dispatcher->addSubscriber($this->container->get(CryptoProviderSubscriber::class)); // Проверка подписи запроса и подписание ответа
         $dispatcher->addSubscriber($this->container->get(LogSubscriber::class)); // Логирование запроса и ответа
         $dispatcher->addSubscriber($this->container->get(LanguageSubscriber::class)); // Обработка языка
-    }
+    }*/
 }

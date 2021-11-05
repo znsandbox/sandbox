@@ -11,10 +11,10 @@ use ZnCore\Base\Helpers\EnumHelper;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 
-class SettingsEntity implements ValidateEntityByMetadataInterface, UniqueInterface
+class SettingsEntity extends \ZnLib\Rpc\Domain\Entities\SettingsEntity  //implements ValidateEntityByMetadataInterface, UniqueInterface
 {
 
-    private $cryptoProviderStrategy = 'default';
+    /*private $cryptoProviderStrategy = 'default';
     private $waitReceiptNotification = false;
     private $requireTimestamp = false;
 
@@ -63,5 +63,5 @@ class SettingsEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function getRequireTimestamp(): bool
     {
         return $this->requireTimestamp;
-    }
+    }*/
 }

@@ -13,10 +13,10 @@ use ZnCore\Domain\Traits\EntityManagerTrait;
 use ZnLib\Rpc\Domain\Enums\HttpHeaderEnum;
 use ZnLib\Rpc\Domain\Exceptions\InvalidRequestException;
 
-class TimestampSubscriber implements EventSubscriberInterface
+class TimestampSubscriber extends \ZnLib\Rpc\Domain\Subscribers\TimestampSubscriber //implements EventSubscriberInterface
 {
 
-    use EntityManagerTrait;
+   /* use EntityManagerTrait;
 
     private $cryptoProvider;
     private $settingsService;
@@ -52,5 +52,5 @@ class TimestampSubscriber implements EventSubscriberInterface
         if($settingsEntity->getRequireTimestamp()) {
             $event->getResponseEntity()->addMeta(HttpHeaderEnum::TIMESTAMP, date(\DateTime::ISO8601));
         }
-    }
+    }*/
 }

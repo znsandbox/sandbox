@@ -9,10 +9,10 @@ use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnLib\Rpc\Domain\Exceptions\MethodNotFoundException;
 
-class MethodService extends BaseCrudService implements MethodServiceInterface
+class MethodService extends \ZnLib\Rpc\Domain\Services\MethodService  // BaseCrudService implements MethodServiceInterface
 {
 
-    public function __construct(EntityManagerInterface $em)
+    /*public function __construct(EntityManagerInterface $em)
     {
         $this->setEntityManager($em);
     }
@@ -51,5 +51,5 @@ class MethodService extends BaseCrudService implements MethodServiceInterface
             'status_id' => 100,
         ];
         return $this->createEntity($attributes);
-    }
+    }*/
 }

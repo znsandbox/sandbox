@@ -2,10 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Rpc\Domain\Helpers;
 
-class ErrorHelper
+class ErrorHelper extends \ZnLib\Rpc\Domain\Helpers\ErrorHelper
 {
 
-    public static function descriptionFromJsonErrorCode(int $jsonErrorCode): string {
+    /*public static function descriptionFromJsonErrorCode(int $jsonErrorCode): string {
         switch ($jsonErrorCode) {
             case JSON_ERROR_NONE: // Ошибок нет
                 $errorDescription = 'No errors';
@@ -30,5 +30,5 @@ class ErrorHelper
                 break;
         }
         return $errorDescription;
-    }
+    }*/
 }

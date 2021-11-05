@@ -8,10 +8,10 @@ use ZnSandbox\Sandbox\Settings\Domain\Interfaces\Services\SystemServiceInterface
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Helpers\ValidationHelper;
 
-class SettingsService implements SettingsServiceInterface
+class SettingsService extends \ZnLib\Rpc\Domain\Services\SettingsService //implements SettingsServiceInterface
 {
 
-    private $systemService;
+    /*private $systemService;
 
     public function __construct(SystemServiceInterface $systemService)
     {
@@ -36,5 +36,5 @@ class SettingsService implements SettingsServiceInterface
         $settingsEntity = new SettingsEntity();
         EntityHelper::setAttributes($settingsEntity, $data);
         return $settingsEntity;
-    }
+    }*/
 }

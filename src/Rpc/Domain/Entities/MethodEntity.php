@@ -10,10 +10,10 @@ use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 
-class MethodEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
+class MethodEntity extends \ZnLib\Rpc\Domain\Entities\MethodEntity //implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
 {
 
-    private $id = null;
+    /*private $id = null;
     private $methodName = null;
     private $isVerifyEds = null;
     private $isVerifyAuth = null;
@@ -131,7 +131,7 @@ class MethodEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     public function setStatusId($statusId): void
     {
         $this->statusId = $statusId;
-    }
+    }*/
 
 }
 

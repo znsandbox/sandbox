@@ -14,10 +14,10 @@ use ZnCore\Domain\Traits\EntityManagerTrait;
 use ZnLib\Rpc\Domain\Enums\HttpHeaderEnum;
 use ZnLib\Rpc\Domain\Exceptions\InvalidRequestException;
 
-class LanguageSubscriber implements EventSubscriberInterface
+class LanguageSubscriber extends \ZnLib\Rpc\Domain\Subscribers\LanguageSubscriber //implements EventSubscriberInterface
 {
 
-    use EntityManagerTrait;
+    /*use EntityManagerTrait;
 
     private $languageService;
 
@@ -39,5 +39,5 @@ class LanguageSubscriber implements EventSubscriberInterface
         if(!empty($languageCode)) {
             $this->languageService->setLanguage($languageCode);
         }
-    }
+    }*/
 }

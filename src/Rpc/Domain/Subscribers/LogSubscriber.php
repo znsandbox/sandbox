@@ -9,10 +9,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Traits\EntityManagerTrait;
 
-class LogSubscriber implements EventSubscriberInterface
+class LogSubscriber extends \ZnLib\Rpc\Domain\Subscribers\LogSubscriber //implements EventSubscriberInterface
 {
 
-    use EntityManagerTrait;
+    /*use EntityManagerTrait;
 
     private $logger;
 
@@ -39,5 +39,5 @@ class LogSubscriber implements EventSubscriberInterface
         } else {
             $this->logger->info('request_success', $context);
         }
-    }
+    }*/
 }

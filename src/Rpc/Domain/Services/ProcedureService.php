@@ -36,10 +36,10 @@ use ZnLib\Rpc\Domain\Exceptions\SystemErrorException;
 use ZnLib\Rpc\Domain\Helpers\RequestHelper;
 use ZnLib\Rpc\Domain\Libs\ResponseFormatter;
 
-class ProcedureService
+class ProcedureService extends \ZnLib\Rpc\Domain\Services\ProcedureService
 {
 
-    use EventDispatcherTrait;
+    /*use EventDispatcherTrait;
 
     private $methodService;
     private $responseFormatter;
@@ -134,5 +134,5 @@ class ProcedureService
     {
         $errorData = ValidationHelper::collectionToArray($e->getErrorCollection());
         return $this->responseFormatter->forgeErrorResponse(RpcErrorCodeEnum::SERVER_ERROR_INVALID_PARAMS, 'Parameter validation error', $errorData);
-    }
+    }*/
 }
