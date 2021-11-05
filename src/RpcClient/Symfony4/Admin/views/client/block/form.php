@@ -95,9 +95,9 @@ use ZnLib\Web\Symfony4\MicroApp\Libs\FormRender;
 </div>
 
 <div class="form-group">
-    <?= $formRender->input('save', 'submit') ?>
+    <?= $formRender->input('save', 'submit', ['class' => 'btn btn-default']) ?>
     <?= $formRender->input('persist', 'submit') ?>
-    <?= $formRender->input('delete', 'submit') ?>
+    <?= $formRender->input('delete', 'submit', ['class' => 'btn btn-danger']) ?>
 </div>
 
 <?= $formRender->endFrom() ?>

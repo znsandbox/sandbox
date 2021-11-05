@@ -3,6 +3,8 @@
 namespace ZnSandbox\Sandbox\Layout\Domain\Services;
 
 use Illuminate\Support\Collection;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Yii;
 use yii\helpers\Url;
 use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
@@ -24,11 +26,17 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
 {
 
     private $managerService;
+    private $urlGenerator;
 
-    public function __construct(MenuRepositoryInterface $repository, ManagerServiceInterface $managerService)
+    public function __construct(
+        MenuRepositoryInterface $repository,
+        ManagerServiceInterface $managerService,
+        UrlGeneratorInterface $urlGenerator = null
+    )
     {
         $this->setRepository($repository);
         $this->managerService = $managerService;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function allByFileName(string $fileName): Collection
@@ -49,9 +57,23 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
 
     private function getRoute(): string
     {
-        $action = Yii::$app->requestedAction;
-        $route = $action->controller->module->id . '/' . $action->controller->id;
+        if(class_exists(Yii::class)) {
+            $action = Yii::$app->requestedAction;
+            $route = $action->controller->module->id . '/' . $action->controller->id;
+            return $route;
+        }
+        $request = Request::createFromGlobals();
+        $route = $request->getPathInfo();
+        $route = trim($route, '/');
         return $route;
+    }
+
+    private function generateUrl(string $route, array $params = []): string
+    {
+        if($this->urlGenerator instanceof UrlGeneratorInterface) {
+            return $this->urlGenerator->generate($route, $params);
+        }
+        return Url::to(['/' . $route]);
     }
 
     private function prepareEntity(MenuEntity $menuEntity)
@@ -64,7 +86,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         }
 
         if ($menuEntity->getModule()) {
-            if(class_exists(Yii::class)) {
+            if (class_exists(Yii::class)) {
                 $isVisible = array_key_exists($menuEntity->getModule(), Yii::$app->modules);
             } else {
                 $isVisible = true;
@@ -83,7 +105,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
                 $menuEntity->setActive($this->getRoute() == $menuEntity->getRoute());
             }
             if ($menuEntity->getUrl() === null) {
-                $menuEntity->setUrl(Url::to(['/' . $menuEntity->getRoute()]));
+                $menuEntity->setUrl($this->generateUrl($menuEntity->getRoute()));
             }
         }
         if ($menuEntity->getAccess()) {
@@ -99,11 +121,11 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         if ($menuEntity->getUrl() == null) {
             $menuEntity->addOption('class', 'nav-header');
         }
-        if($menuEntity->getItems()) {
+        if ($menuEntity->getItems()) {
             $isVisibleItems = false;
             foreach ($menuEntity->getItems() as $itemMenuEntity) {
                 $this->prepareEntity($itemMenuEntity);
-                if($itemMenuEntity->getVisible()) {
+                if ($itemMenuEntity->getVisible()) {
                     $isVisibleItems = true;
                 }
             }
