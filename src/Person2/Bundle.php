@@ -31,6 +31,13 @@ class Bundle extends BaseBundle
         ];
     }*/
 
+    public function i18next(): array
+    {
+        return [
+            'person' => '/vendor/znsandbox/sandbox/src/Person2/Domain/i18next/__lng__/__ns__.json',
+        ];
+    }
+
     public function migration(): array
     {
         return [
