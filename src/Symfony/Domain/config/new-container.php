@@ -42,6 +42,7 @@ return [
         },
 
         \ZnLib\Web\View\View::class => \ZnLib\Web\View\View::class,
+
         SessionInterface::class => Session::class,
         CsrfTokenManagerInterface::class => CsrfTokenManager::class,
         RuntimeLoaderInterface::class => FactoryRuntimeLoader::class,

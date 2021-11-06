@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\App\Subscribers;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use ZnCore\Base\Helpers\LoadHelper;
@@ -46,6 +47,9 @@ class SetLayoutSubscriber implements EventSubscriberInterface
     public function onKernelResponse(ResponseEvent $event)
     {
         $response = $event->getResponse();
+        if($response instanceof RedirectResponse) {
+            return;
+        }
         $params = $this->getLayoutParams();
         $params['content'] = $response->getContent();
 //        $view = ContainerHelper::getContainer()->get(View::class);
