@@ -42,6 +42,8 @@ return [
         },
 
         \ZnLib\Web\View\View::class => \ZnLib\Web\View\View::class,
+        \ZnLib\Web\View\Resources\Css::class => \ZnLib\Web\View\Resources\Css::class,
+        \ZnLib\Web\View\Resources\Js::class => \ZnLib\Web\View\Resources\Js::class,
 
         SessionInterface::class => Session::class,
         CsrfTokenManagerInterface::class => CsrfTokenManager::class,
