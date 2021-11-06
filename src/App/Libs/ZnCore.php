@@ -51,8 +51,8 @@ class ZnCore
         $containerConfigurator->singleton(ZnCore::class, function () {
             return $this;
         });
-        $containerConfigurator->singleton(\ZnLib\Web\View\Css::class, \ZnLib\Web\View\Css::class);
-        $containerConfigurator->singleton(\ZnLib\Web\View\Js::class, \ZnLib\Web\View\Js::class);
+        $containerConfigurator->singleton(\ZnLib\Web\View\Resources\Css::class, \ZnLib\Web\View\Resources\Css::class);
+        $containerConfigurator->singleton(\ZnLib\Web\View\Resources\Js::class, \ZnLib\Web\View\Resources\Js::class);
         $containerConfigurator->singleton(\ZnLib\Web\View\View::class, \ZnLib\Web\View\View::class);
     }
 }

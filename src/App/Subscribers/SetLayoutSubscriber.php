@@ -3,12 +3,9 @@
 namespace ZnSandbox\Sandbox\App\Subscribers;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use ZnCore\Base\Helpers\LoadHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerLayoutInterface;
 use ZnLib\Web\View\View;
 
@@ -47,14 +44,10 @@ class SetLayoutSubscriber implements EventSubscriberInterface
     public function onKernelResponse(ResponseEvent $event)
     {
         $response = $event->getResponse();
-        if($response instanceof RedirectResponse) {
-            return;
+        $isWebResponse = get_class($response) == Response::class;
+        if ($isWebResponse) {
+            $this->wrapContent($response);
         }
-        $params = $this->getLayoutParams();
-        $params['content'] = $response->getContent();
-//        $view = ContainerHelper::getContainer()->get(View::class);
-        $content = $this->view->renderFile($this->layout, $params);
-        $response->setContent($content);
     }
 
     public function getLayout(): ?string
@@ -80,5 +73,14 @@ class SetLayoutSubscriber implements EventSubscriberInterface
     public function addLayoutParam(string $name, $value): void
     {
         $this->layoutParams[$name] = $value;
+    }
+
+    private function wrapContent(Response $response): void
+    {
+        $params = $this->getLayoutParams();
+        $params['content'] = $response->getContent();
+//        $view = ContainerHelper::getContainer()->get(View::class);
+        $content = $this->view->renderFile($this->layout, $params);
+        $response->setContent($content);
     }
 }
