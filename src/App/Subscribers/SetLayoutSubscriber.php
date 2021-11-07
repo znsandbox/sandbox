@@ -46,18 +46,20 @@ class SetLayoutSubscriber implements EventSubscriberInterface
     public function onKernelResponse(ResponseEvent $event)
     {
         $response = $event->getResponse();
-        $target = $event->getRequest()->headers->get('target');
+        $isAjax = $event->getRequest()->isXmlHttpRequest();
 
         $isWebResponse = get_class($response) == Response::class;
-        if ($isWebResponse && empty($target)) {
+        if ($isWebResponse && !$isAjax) {
             $this->wrapContent($response);
-        } elseif($target == 'content') {
+        } elseif($isAjax) {
+//            sleep(1);
             $jsonResponse = new JsonResponse([
                 'title' => 'title',
                 'url' => $event->getRequest()->getRequestUri(),
                 'content' => [
                     'content' => $response->getContent(),
                     'breadcrumb' => BreadcrumbWidget::widget(),
+                    'runtime' => round(microtime(true) - MICRO_TIME, 3),
                 ],
             ]);
             $event->setResponse($jsonResponse);
