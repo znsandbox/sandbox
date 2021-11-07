@@ -49,9 +49,8 @@ class SetLayoutSubscriber implements EventSubscriberInterface
         $isAjax = $event->getRequest()->isXmlHttpRequest();
 
         $isWebResponse = get_class($response) == Response::class;
-        if ($isWebResponse && !$isAjax) {
-            $this->wrapContent($response);
-        } elseif($isAjax) {
+
+        if($isAjax) {
 //            sleep(1);
             $jsonResponse = new JsonResponse([
                 'title' => 'title',
@@ -63,6 +62,8 @@ class SetLayoutSubscriber implements EventSubscriberInterface
                 ],
             ]);
             $event->setResponse($jsonResponse);
+        } elseif ($isWebResponse) {
+            $this->wrapContent($response);
         }
     }
 
