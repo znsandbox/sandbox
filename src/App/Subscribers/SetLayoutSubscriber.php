@@ -3,11 +3,13 @@
 namespace ZnSandbox\Sandbox\App\Subscribers;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerLayoutInterface;
 use ZnLib\Web\View\View;
+use ZnLib\Web\Widgets\BreadcrumbWidget;
 
 class SetLayoutSubscriber implements EventSubscriberInterface
 {
@@ -44,9 +46,21 @@ class SetLayoutSubscriber implements EventSubscriberInterface
     public function onKernelResponse(ResponseEvent $event)
     {
         $response = $event->getResponse();
+        $target = $event->getRequest()->headers->get('target');
+
         $isWebResponse = get_class($response) == Response::class;
-        if ($isWebResponse) {
+        if ($isWebResponse && empty($target)) {
             $this->wrapContent($response);
+        } elseif($target == 'content') {
+            $jsonResponse = new JsonResponse([
+                'title' => 'title',
+                'url' => $event->getRequest()->getRequestUri(),
+                'content' => [
+                    'content' => $response->getContent(),
+                    'breadcrumb' => BreadcrumbWidget::widget(),
+                ],
+            ]);
+            $event->setResponse($jsonResponse);
         }
     }
 
