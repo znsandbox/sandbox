@@ -53,7 +53,7 @@ class SetLayoutSubscriber implements EventSubscriberInterface
         if($isAjax) {
 //            sleep(1);
             $jsonResponse = new JsonResponse([
-                'title' => 'title',
+                //'title' => 'title',
                 'url' => $event->getRequest()->getRequestUri(),
                 'content' => [
                     'content' => $response->getContent(),
