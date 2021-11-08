@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerLayoutInterface;
 use ZnLib\Web\View\View;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
@@ -62,7 +63,7 @@ class SetLayoutSubscriber implements EventSubscriberInterface
                 ],
             ]);
             $event->setResponse($jsonResponse);
-        } elseif ($isWebResponse) {
+        } elseif ($isWebResponse && $response->getStatusCode() === HttpStatusCodeEnum::OK) {
             $this->wrapContent($response);
         }
     }
