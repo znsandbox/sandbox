@@ -10,7 +10,7 @@ class m_2021_06_29_103236_create_eds_table extends BaseCreateTableMigration
 {
 
     protected $tableName = 'application_eds';
-    protected $tableComment = '';
+    protected $tableComment = 'ЭЦП-ключи';
 
     public function tableSchema()
     {

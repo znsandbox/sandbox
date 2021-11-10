@@ -9,7 +9,7 @@ class m_2021_06_28_114857_create_api_key_table extends BaseCreateTableMigration
 {
 
     protected $tableName = 'application_api_key';
-    protected $tableComment = '';
+    protected $tableComment = 'API key';
 
     public function tableSchema()
     {
