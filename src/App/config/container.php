@@ -59,7 +59,7 @@ return [
             return $adapter;
         },
         CacheInterface::class => AdapterInterface::class,
-        //LoggerInterface::class => NullLogger::class,
+        LoggerInterface::class => \Psr\Log\NullLogger::class,
         //\Symfony\Component\Cache\Adapter\AbstractAdapter::class => AdapterInterface::class,
         /*DotEnvConfigInterface::class => function() {
             return new DotEnvConfig($_ENV);
