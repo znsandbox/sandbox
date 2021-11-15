@@ -14,16 +14,16 @@ use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterfac
 class AuthorSubscriber implements EventSubscriberInterface
 {
 
-    private $authService;
+//    private $authService;
     private $myPersonService;
     private $attribute;
 
     public function __construct(
-        AuthServiceInterface $authService,
+//        AuthServiceInterface $authService,
         MyPersonServiceInterface $myPersonService
     )
     {
-        $this->authService = $authService;
+//        $this->authService = $authService;
         $this->myPersonService = $myPersonService;
     }
 
