@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
+use ZnCore\Base\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
@@ -119,6 +120,16 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+    public function getTitle(): string{
+        $parentFio =
+            $this->getLastName() . ' ' .
+            $this->getFirstName() . ' ' .
+            $this->getMiddleName();
+        $parentFio = StringHelper::removeDoubleSpace($parentFio);
+        $parentFio = trim($parentFio);
+        return $parentFio;
     }
 
     public function setBirthday($value) : void
