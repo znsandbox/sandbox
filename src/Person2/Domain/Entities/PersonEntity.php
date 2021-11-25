@@ -44,6 +44,9 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 //        $metadata->addPropertyConstraint('identityId', new Assert\NotBlank);
         $metadata->addPropertyConstraint('identityId', new Assert\Positive());
         $metadata->addPropertyConstraint('firstName', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('birthday', new Assert\DateTime([
+            'format' => 'd.m.Y',
+        ]));
 //        $metadata->addPropertyConstraint('middleName', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('lastName', new Assert\NotBlank);
 //        $metadata->addPropertyConstraint('birthday', new Assert\NotBlank);
