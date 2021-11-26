@@ -30,7 +30,7 @@ class MyPersonController extends BaseRpcController
         return [
             'id',
             'identityId',
-            'attributes',
+//            'attributes',
         ];
     }
 

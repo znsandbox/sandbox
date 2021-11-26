@@ -32,7 +32,7 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     protected $sexId = null;
 
-    protected $attributes = [];
+//    protected $attributes = [];
 
     protected $contacts = null;
 
@@ -155,7 +155,7 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
         return $this->sexId;
     }
 
-    public function setAttributes($value) : void
+    /*public function setAttributes($value) : void
     {
         $this->attributes = $value;
     }
@@ -173,7 +173,7 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     protected function getAttribute($name)
     {
         return ArrayHelper::getValue($this->attributes, $name);
-    }
+    }*/
 
     public function getContacts(): ?Collection
     {

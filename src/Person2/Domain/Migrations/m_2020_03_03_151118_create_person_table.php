@@ -22,7 +22,7 @@ class m_2020_03_03_151118_create_person_table extends BaseCreateTableMigration
             $table->string('last_name')->nullable()->comment('Фамилия');
             $table->date('birthday')->nullable()->comment('Дата рождения');
             $table->integer('sex_id')->nullable()->comment('Пол');
-            $table->text('attributes')->nullable()->comment('Дополнительные атрибуты');
+//            $table->text('attributes')->nullable()->comment('Дополнительные атрибуты');
 
             $table->unique(['code']);
             $this->addForeign($table, 'identity_id', 'user_identity');
