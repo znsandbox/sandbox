@@ -3,13 +3,13 @@
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
 use Psr\Container\ContainerInterface;
-use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
 use ZnCore\Base\Libs\Container\ContainerAwareTrait;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;
 use ZnLib\Rpc\Rpc\Serializers\SerializerInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
 use ZnSandbox\Sandbox\Person2\Rpc\Serializers\MyChildSerializer;
@@ -53,14 +53,16 @@ class MyChildController extends BaseCrudRpcController
 
     public function update(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
-        $id = $requestEntity->getParamItem('id');
+        $childPersonId = $requestEntity->getParamItem('id');
         $data = $requestEntity->getParams();
 
         unset($data['id']);
 
-        $this->personService->updateById($id, $data);
+        $this->personService->updateById($childPersonId, $data);
 
-        return new RpcResponseEntity();
+        /** @var InheritanceEntity $inheritanceEntity */
+        $inheritanceEntity = $this->service->all((new Query())->where('child_person_id', $childPersonId))->first();
+        return $this->serializeResult($inheritanceEntity);
     }
 
     /*public function add(RpcRequestEntity $requestEntity): RpcResponseEntity
