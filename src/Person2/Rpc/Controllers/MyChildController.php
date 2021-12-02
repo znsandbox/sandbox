@@ -2,6 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
+use Psr\Container\ContainerInterface;
+use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
+use ZnCore\Base\Libs\Container\ContainerAwareTrait;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
@@ -13,17 +16,25 @@ use ZnSandbox\Sandbox\Person2\Rpc\Serializers\MyChildSerializer;
 
 class MyChildController extends BaseCrudRpcController
 {
+
+    use ContainerAwareTrait;
+
     private $personService;
 
-    public function __construct(MyChildServiceInterface $myChildService, PersonServiceInterface $personService)
+    public function __construct(
+        MyChildServiceInterface $myChildService,
+        PersonServiceInterface $personService,
+        ContainerInterface $container
+    )
     {
         $this->service = $myChildService;
         $this->personService = $personService;
+        $this->setContainer($container);
     }
 
     public function serializer(): SerializerInterface
     {
-        return new MyChildSerializer();
+        return $this->getContainer()->get(MyChildSerializer::class);
     }
 
     /*public function allowRelations(): array
