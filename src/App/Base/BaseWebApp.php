@@ -40,7 +40,7 @@ abstract class BaseWebApp extends BaseApp
         $dispatcher->addSubscriber($this->container->get(FindRouteSubscriber::class));
         $dispatcher->addSubscriber($this->container->get(WebFirewallSubscriber::class));
         //$dispatcher->addSubscriber($this->container->get(UnauthorizedSubscriber::class));
-        $dispatcher->addSubscriber($this->container->get(ErrorHandleSubscriber::class));
+//        $dispatcher->addSubscriber($this->container->get(ErrorHandleSubscriber::class));
     }
 
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
