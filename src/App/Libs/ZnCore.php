@@ -19,14 +19,22 @@ class ZnCore
 {
 
     use ContainerAwareTrait;
-
+    
     public function init(): void
     {
         ContainerHelper::setContainer($this->getContainer());
-        $containerConfigurator = ContainerHelper::getContainerConfiguratorByContainer($this->getContainer());
-        $this->configContainer($containerConfigurator);
+        $this->addContainerConfig([$this, 'configContainer']);
+        
+//        $containerConfigurator = $this->getContainerConfigurator();
+//        $this->configContainer($containerConfigurator);
     }
 
+    public function addContainerConfig(callable $function) {
+        $containerConfigurator = $this->getContainerConfigurator();
+        call_user_func($function, $containerConfigurator);
+        //$function($containerConfigurator);
+    }
+    
     public function loadBundles(array $bundles, array $import, string $appName): void
     {
         $bundleLoader = new BundleLoader($bundles, $import);
@@ -36,6 +44,10 @@ class ZnCore
         $configCollectionLoader->addSubscriber(ConfigureEntityManagerSubscriber::class);
         $configCollectionLoader->setLoader($bundleLoader);
         $config = $configCollectionLoader->loadMainConfig($appName);
+    }
+
+    protected function getContainerConfigurator() {
+        return ContainerHelper::getContainerConfiguratorByContainer($this->getContainer());
     }
 
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
