@@ -33,13 +33,13 @@ class SyncTranslateBehavior implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            EventEnum::BEFORE_CREATE_ENTITY => 'onBeforeUpdateOrCreate',
-            EventEnum::BEFORE_UPDATE_ENTITY => 'onBeforeUpdateOrCreate',
-            EventEnum::BEFORE_DELETE_ENTITY => 'onBeforeDelete',
+            EventEnum::AFTER_CREATE_ENTITY => 'onAfterUpdateOrCreate',
+            EventEnum::AFTER_UPDATE_ENTITY => 'onAfterUpdateOrCreate',
+            EventEnum::AFTER_DELETE_ENTITY => 'onAfterDelete',
         ];
     }
 
-    public function onBeforeUpdateOrCreate(EntityEvent $event)
+    public function onAfterUpdateOrCreate(EntityEvent $event)
     {
         $entity = $event->getEntity();
         $i18nArray = EntityHelper::getValue($entity, $this->attribute);
@@ -47,7 +47,7 @@ class SyncTranslateBehavior implements EventSubscriberInterface
         $this->translateService->batchPersist($entityTypeId, $entity->getId(), $i18nArray);
     }
 
-    public function onBeforeDelete(EntityEvent $event)
+    public function onAfterDelete(EntityEvent $event)
     {
         /** @var EntityIdInterface $entity */
         $entity = $event->getEntity();
