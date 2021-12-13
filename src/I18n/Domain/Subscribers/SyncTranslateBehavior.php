@@ -11,7 +11,7 @@ use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Traits\EntityManagerTrait;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services\TranslateServiceInterface;
 
-class MyChildBehavior implements EventSubscriberInterface
+class SyncTranslateBehavior implements EventSubscriberInterface
 {
 
     use EntityManagerTrait;
