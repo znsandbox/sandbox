@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\I18n\Domain\Subscribers;
 
+use App\Workshop\Domain\Entities\CategoryEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnCore\Domain\Enums\EventEnum;
@@ -42,21 +43,24 @@ class SyncTranslateBehavior implements EventSubscriberInterface
     {
         $entity = $event->getEntity();
         $i18nArray = EntityHelper::getValue($entity, $this->attribute);
-        $this->translateService->batchPersist(1, $entity->getId(), $i18nArray);
+        $entityTypeId = $this->getTypeId($entity);
+        $this->translateService->batchPersist($entityTypeId, $entity->getId(), $i18nArray);
     }
 
     public function onBeforeDelete(EntityEvent $event)
     {
         /** @var EntityIdInterface $entity */
         $entity = $event->getEntity();
-        $this->translateService->removeByUnique(1, $entity->getId());
+        $entityTypeId = $this->getTypeId($entity);
+        $this->translateService->removeByUnique($entityTypeId, $entity->getId());
     }
 
     private function getTypeId(object $entity): int
     {
         $className = get_class($entity);
         $assoc = [
-
+            CategoryEntity::class => 10,
         ];
+        return $assoc[$className];
     }
 }
