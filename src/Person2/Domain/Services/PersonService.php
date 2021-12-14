@@ -23,11 +23,4 @@ class PersonService extends BaseCrudService implements PersonServiceInterface
     {
         return PersonEntity::class;
     }
-
-    public function persistEntity(array $data): PersonEntity
-    {
-        $personEntity = $this->createEntity($data);
-        $this->getEntityManager()->persist($personEntity);
-        return $personEntity;
-    }
 }

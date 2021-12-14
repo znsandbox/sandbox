@@ -2,11 +2,13 @@
 
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
-use ZnCore\Domain\Libs\Query;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
+use ZnCore\Domain\Helpers\ValidationHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;
-use ZnLib\Rpc\Rpc\Base\BaseRpcController;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
 
 class PersonController extends BaseCrudRpcController
@@ -20,41 +22,18 @@ class PersonController extends BaseCrudRpcController
     public function persist(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
         $params = $requestEntity->getParams();
-        $entity = $this->service->persistEntity($params);
+
+        $errors = ValidationHelper::validateValue(ArrayHelper::getValue($params, 'code'), [new NotBlank()]);
+        if ($errors->count()) {
+            $e = new UnprocessibleEntityException();
+            foreach ($errors as $errorEntity) {
+                $e->add('code', $errorEntity->getMessage());
+            }
+            throw $e;
+        }
+
+        $entity = $this->service->createEntity($params);
+        $this->service->persist($entity);
         return $this->serializeResult($entity);
     }
-
-/*
-    public function allowRelations(): array
-    {
-        return [
-            'contacts',
-            'contacts.attribute',
-            'sex',
-        ];
-    }
-
-    public function attributesExclude(): array
-    {
-        return [
-            'id',
-            'identityId',
-//            'attributes',
-        ];
-    }
-
-    public function one(RpcRequestEntity $requestEntity): RpcResponseEntity
-    {
-        $query = new Query();
-        $this->forgeWith($requestEntity, $query);
-        $personEntity = $this->service->one($query);
-        return $this->serializeResult($personEntity);
-    }
-
-    public function update(RpcRequestEntity $requestEntity): RpcResponseEntity
-    {
-        $data = $requestEntity->getParams();
-        $this->service->update($data);
-        return $this->serializeResult(null);
-    }*/
 }
