@@ -2,23 +2,22 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use phpDocumentor\Reflection\Types\This;
-use ZnCore\Base\Exceptions\DeprecatedException;
 use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Enums\EventEnum;
 use ZnCore\Domain\Events\EntityEvent;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
+use ZnSandbox\Sandbox\Person2\Domain\Entities\ChildEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
-use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\ChildRepositoryInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\ChildServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
-use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
-use ZnCore\Domain\Helpers\EntityHelper;
-use ZnSandbox\Sandbox\Person2\Domain\Subscribers\MyChildBehavior;
 
-class MyChildService extends BaseCrudService implements MyChildServiceInterface
+class ChildService extends BaseCrudService implements ChildServiceInterface
 {
 
     private $myPersonService;
@@ -40,14 +39,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
         return InheritanceEntity::class;
     }
 
-    public function subscribes(): array
-    {
-        return [
-            MyChildBehavior::class,
-        ];
-    }
-
-    protected function forgeQuery(Query $query = null)
+    /*protected function forgeQuery(Query $query = null)
     {
         $query = parent::forgeQuery($query);
         $myPersonId = $this->myPersonService->one()->getId();
@@ -59,7 +51,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
     {
         $this->oneById($id);
         parent::deleteById($id);
-    }
+    }*/
 
     public function updateById($id, $data)
     {
@@ -79,7 +71,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
     {
         $myPersonId = $this->myPersonService->one()->getId();
         $childEntity = $this->personService->create($data);
-        $data['parent_person_id'] = $myPersonId;
+        //$data['parent_person_id'] = $myPersonId;
         $data['child_person_id'] = $childEntity->getId();
         return parent::create($data);
     }

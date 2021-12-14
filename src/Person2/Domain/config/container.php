@@ -14,6 +14,7 @@ return [
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\ContactTypeServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\ContactTypeService',
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\SexServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\SexService',
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\SexRepositoryInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Repositories\\Eloquent\\SexRepository',
+		'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Services\\ChildServiceInterface' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Services\\ChildService',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Person2\\Domain\\Entities\\InheritanceEntity' => 'ZnSandbox\\Sandbox\\Person2\\Domain\\Interfaces\\Repositories\\InheritanceRepositoryInterface',
