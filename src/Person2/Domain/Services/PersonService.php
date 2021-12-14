@@ -2,11 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;
 use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
 
 /**
  * @method PersonRepositoryInterface getRepository()
@@ -19,8 +19,15 @@ class PersonService extends BaseCrudService implements PersonServiceInterface
         $this->setEntityManager($em);
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return PersonEntity::class;
+    }
+
+    public function persistEntity(array $data): PersonEntity
+    {
+        $personEntity = $this->createEntity($data);
+        $this->getEntityManager()->persist($personEntity);
+        return $personEntity;
     }
 }
