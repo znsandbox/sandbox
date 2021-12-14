@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\I18n\Domain\Services;
 use Illuminate\Support\Collection;
 use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Repositories\TranslateRepositoryInterface;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services\TranslateServiceInterface;
@@ -25,9 +26,9 @@ class TranslateService extends BaseService implements TranslateServiceInterface
         return TranslateEntity::class;
     }
 
-    public function oneByUnique(int $entityTypeId, int $entityId, int $languageId, Query $query = null): TranslateEntity
+    public function oneByEntity(int $entityTypeId, int $entityId, int $languageId, Query $query = null): TranslateEntity
     {
-        return $this->getRepository()->oneByUnique($entityTypeId, $entityId, $languageId, $query);
+        return $this->getRepository()->oneByEntity($entityTypeId, $entityId, $languageId, $query);
     }
 
     public function removeByUnique(int $entityTypeId, int $entityId): void

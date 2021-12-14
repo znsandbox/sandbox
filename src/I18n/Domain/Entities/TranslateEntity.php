@@ -21,6 +21,8 @@ class TranslateEntity implements ValidateEntityByMetadataInterface, UniqueInterf
 
     private $value = null;
 
+    private $language = null;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('entityTypeId', new Assert\NotBlank);
@@ -89,6 +91,14 @@ class TranslateEntity implements ValidateEntityByMetadataInterface, UniqueInterf
         return $this->value;
     }
 
+    public function setLanguage($language): void
+    {
+        $this->language = $language;
+    }
 
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 }
 
