@@ -41,5 +41,5 @@ class ChildController extends BaseCrudRpcController
         return $this->getContainer()->get(MyChildSerializer::class);
     }
 
-
+    // todo: реализовать валидацию на пустоту поля code
 }
