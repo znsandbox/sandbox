@@ -137,7 +137,8 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     public function setBirthday($value) : void
     {
-        $this->birthday = $value;
+        $date = new \DateTime($value);
+        $this->birthday = $date->format('d.m.Y');
     }
 
     public function getBirthday()
