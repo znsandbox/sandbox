@@ -37,11 +37,12 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
     public function update(array $data): void
     {
         if(isset($data['id'])) {
-            unset($data['id']);
+            //unset($data['id']);
         }
         $personEntity = $this->one();
+        //dump($personEntity);
         EntityHelper::setAttributes($personEntity, $data);
-        $this->getEntityManager()->persist($personEntity);
+        $this->getEntityManager()->update($personEntity);
     }
 
     public function isMyChild($id)
