@@ -82,7 +82,7 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
 
     public function getCode()
     {
-        return $this->code;
+        return trim($this->code) ? $this->code : null;
     }
 
     public function setIdentityId($value) : void
