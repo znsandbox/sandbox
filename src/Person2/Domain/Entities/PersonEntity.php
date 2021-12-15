@@ -180,7 +180,7 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
         return $this->contacts;
     }
 
-    public function setContacts(Collection $contacts): void
+    public function setContacts(?Collection $contacts): void
     {
         $this->contacts = $contacts;
     }
@@ -190,7 +190,7 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
         return $this->sex;
     }
 
-    public function setSex(ItemEntity $sex): void
+    public function setSex(?ItemEntity $sex): void
     {
         $this->sex = $sex;
     }
