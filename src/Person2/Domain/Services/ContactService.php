@@ -5,23 +5,39 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 use Illuminate\Support\Collection;
 use ZnBundle\Eav\Domain\Interfaces\Services\CategoryServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
+use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\Query;
+use ZnSandbox\Sandbox\Person2\Domain\Entities\ContactEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\ContactServiceInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\ContactTypeServiceInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 
-class ContactService extends BaseService implements ContactServiceInterface
+class ContactService extends BaseCrudService implements ContactServiceInterface
 {
 
-    /*private $entityEntity;
+    protected $contactTypeService;
 
-    public function __construct(EntityManagerInterface $em, EntityServiceInterface $entityService)
+    public function __construct(
+        EntityManagerInterface $em,
+        ContactTypeServiceInterface $contactTypeService
+    )
     {
         $this->setEntityManager($em);
-        $this->entityEntity = $entityService->oneByName('personContact');
+        $this->contactTypeService = $contactTypeService;
     }
 
-    public function allByPersonId(int $personId): Collection
+    public function getEntityClass(): string
     {
+        return ContactEntity::class;
+    }
 
-    }*/
+    public function allByPersonId(int $personId, Query $query = null): Collection
+    {
+        $query = $this->forgeQuery($query);
+        $query->where('person_id', $myPersonId);
+        return $this->all($query);
+    }
+
 }

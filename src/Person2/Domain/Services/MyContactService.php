@@ -20,11 +20,10 @@ use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterfac
 /**
  * @method ContactRepositoryInterface getRepository()
  */
-class MyContactService extends BaseCrudService implements MyContactServiceInterface
+class MyContactService extends ContactService implements MyContactServiceInterface
 {
 
     private $myPersonService;
-    private $contactTypeService;
 
     public function __construct(
         EntityManagerInterface $em,
@@ -32,14 +31,8 @@ class MyContactService extends BaseCrudService implements MyContactServiceInterf
         ContactTypeServiceInterface $contactTypeService
     )
     {
-        $this->setEntityManager($em);
+        parent::__construct($em, $contactTypeService);
         $this->myPersonService = $myPersonService;
-        $this->contactTypeService = $contactTypeService;
-    }
-
-    public function getEntityClass(): string
-    {
-        return ContactEntity::class;
     }
 
     protected function forgeQuery(Query $query = null)

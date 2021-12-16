@@ -13,6 +13,7 @@ class Bundle extends BaseBundle
             __DIR__ . '/Rpc/config/contact-type-routes.php',
             __DIR__ . '/Rpc/config/my-person-routes.php',
             __DIR__ . '/Rpc/config/my-contact-routes.php',
+            __DIR__ . '/Rpc/config/contact-routes.php',
             __DIR__ . '/Rpc/config/my-child-routes.php',
             __DIR__ . '/Rpc/config/child-routes.php',
             __DIR__ . '/Rpc/config/person-routes.php',
