@@ -79,10 +79,10 @@
 
     <service name="testService">
         <port name="testServicePort" binding="tns:testServiceBinding-hello">
-            <soap:address location="http://rpc.elumiti.cd/wsdl"/>
+            <soap:address location="http://rpc.example.com/wsdl"/>
         </port>
         <port name="testServicePort" binding="tns:testServiceBinding-method1">
-            <soap:address location="http://rpc.elumiti.cd/wsdl"/>
+            <soap:address location="http://rpc.example.com/wsdl"/>
         </port>
     </service>
 </definitions>
