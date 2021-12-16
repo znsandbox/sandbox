@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
@@ -27,8 +28,10 @@ class PersonService extends BaseCrudService implements PersonServiceInterface
 
     public function persist(object $entity)
     {
-        $uniqueEntity = $this->getEntityManager()->oneByUnique($entity);
-        EntityHelper::setAttributesFromObject($uniqueEntity, $entity);
+        try {
+            $uniqueEntity = $this->getEntityManager()->oneByUnique($entity);
+            EntityHelper::setAttributesFromObject($uniqueEntity, $entity);
+        } catch (NotFoundException $e) {}
         parent::persist($entity);
     }
 }
