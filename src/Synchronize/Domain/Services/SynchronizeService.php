@@ -28,6 +28,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
     private $dbRepository;
     private $fileRepository;
     private $schemaRepository;
+    private $config;
 
     public function __construct(
         EntityManagerInterface $em,
@@ -44,6 +45,11 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
         $this->dbRepository = $dbRepository;
         $this->fileRepository = $fileRepository;
         $this->schemaRepository = $schemaRepository;
+    }
+
+    public function setConfig($config): void
+    {
+        $this->config = $config;
     }
 
     private function getFromDb(string $name, array $uniqueAttributes = null): array
@@ -146,41 +152,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
      */
     public function config(): Collection
     {
-        $config = [
-            [
-                'tableName' => 'reference_book',
-                'uniqueAttributes' => ['id'],
-                'updateAttributes' => [],
-            ],
-            [
-                'tableName' => 'reference_item',
-                'uniqueAttributes' => ['id'],
-                'updateAttributes' => [],
-            ],
-            [
-                'tableName' => 'rbac_item',
-                'uniqueAttributes' => ['name'],
-                'updateAttributes' => ['type', 'name', 'title', 'description'],
-                'titleAttributes' => ['name', 'title'],
-                'clearCache' => [
-                    RbacCacheEnum::ENFORCER
-                ],
-            ],
-            [
-                'tableName' => 'rbac_inheritance',
-                'uniqueAttributes' => ['parent_name', 'child_name'],
-                'updateAttributes' => ['parent_name', 'child_name'],
-                'titleAttributes' => ['parent_name', 'child_name'],
-                'clearCache' => [
-                    RbacCacheEnum::ENFORCER
-                ],
-            ],
-            [
-                'tableName' => 'rpc_route',
-                'uniqueAttributes' => ['id'],
-                'updateAttributes' => [],
-            ],
-        ];
+        $config = $this->config;
 
         $config = ArrayHelper::index($config, 'tableName');
 

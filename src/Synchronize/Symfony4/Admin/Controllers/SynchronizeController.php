@@ -50,6 +50,7 @@ class SynchronizeController extends BaseWebController implements ControllerAcces
             $this->getLayoutManager()->getToastrService()->success(['synchronize', 'synchronize.message.sync_success']);
         }
         $diffCollection = $this->synchronizeService->diff();
+       // dd($diffCollection);
         return $this->render('index', [
             'diffCollection' => $diffCollection,
         ]);
