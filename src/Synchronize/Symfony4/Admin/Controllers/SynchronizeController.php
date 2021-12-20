@@ -2,9 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Symfony4\Admin\Controllers;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use ZnBundle\User\Domain\Enums\WebCookieEnum;
 use ZnCore\Base\Enums\Http\HttpMethodEnum;
+use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
@@ -40,19 +43,25 @@ class SynchronizeController extends BaseWebController implements ControllerAcces
             'index' => [
                 ExtraPermissionEnum::ADMIN_ONLY,
             ],
+            'sync' => [
+                ExtraPermissionEnum::ADMIN_ONLY,
+            ],
         ];
     }
 
     public function index(Request $request): Response
     {
-        if ($request->getMethod() == HttpMethodEnum::POST) {
-            $this->synchronizeService->sync();
-            $this->getLayoutManager()->getToastrService()->success(['synchronize', 'synchronize.message.sync_success']);
-        }
         $diffCollection = $this->synchronizeService->diff();
-       // dd($diffCollection);
         return $this->render('index', [
             'diffCollection' => $diffCollection,
         ]);
+    }
+
+    public function sync(Request $request): Response
+    {
+        $this->synchronizeService->sync();
+        $this->getLayoutManager()->getToastrService()->success(['synchronize', 'synchronize.message.sync_success']);
+        $response = new RedirectResponse($this->getLayoutManager()->generateUrl('synchronize/synchronize/index'), HttpStatusCodeEnum::TEMPORARY_REDIRECT);
+        return $response;
     }
 }

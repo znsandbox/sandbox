@@ -2,6 +2,7 @@
 
 /**
  * @var Collection | DiffCollectionEntity[] $diffCollection
+ * @var \ZnLib\Web\View\View $this
  */
 
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
@@ -91,7 +92,7 @@ function printTitle(DiffCollectionEntity $diffCollectionEntity, array $row): str
 
     <?php endforeach; ?>
 
-    <form method="post">
+    <form method="post" action="<?= $this->urlGenerator->generate('synchronize/synchronize/sync') ?>">
         <input type="submit" class="btn btn-primary" value="<?= I18Next::t('core', 'action.send') ?>"/>
     </form>
 
