@@ -7,6 +7,13 @@ use ZnCore\Base\Libs\App\Base\BaseBundle;
 class Bundle extends BaseBundle
 {
 
+    public function symfonyAdmin(): array
+    {
+        return [
+            __DIR__ . '/Symfony4/Admin/config/routing.php',
+        ];
+    }
+    
     public function yiiAdmin(): array
     {
         return [
@@ -19,10 +26,10 @@ class Bundle extends BaseBundle
     public function i18next(): array
     {
         return [
-            'Synchronize' => 'src/Tools/Domain/i18next/__lng__/__ns__.json',
+            'synchronize' => 'vendor/znsandbox/sandbox/src/Synchronize/Domain/i18next/__lng__/__ns__.json',
         ];
     }
-
+    
     /*public function migration(): array
     {
         return [

@@ -175,6 +175,11 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
                     RbacCacheEnum::ENFORCER
                 ],
             ],
+            [
+                'tableName' => 'rpc_route',
+                'uniqueAttributes' => ['id'],
+                'updateAttributes' => [],
+            ],
         ];
 
         $config = ArrayHelper::index($config, 'tableName');
