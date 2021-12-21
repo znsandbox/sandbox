@@ -17,6 +17,9 @@ use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
+use ZnSandbox\Sandbox\RpcClient\Domain\Enums\Rbac\RpcClientFavoritePermissionEnum;
+use ZnSandbox\Sandbox\RpcClient\Domain\Enums\Rbac\RpcClientHistoryPermissionEnum;
+use ZnSandbox\Sandbox\RpcClient\Domain\Enums\Rbac\RpcClientRequestPermissionEnum;
 use ZnSandbox\Sandbox\RpcClient\Domain\Helpers\FavoriteHelper;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ClientServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\FavoriteServiceInterface;
@@ -67,13 +70,13 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     {
         return [
             'request' => [
-                ExtraPermissionEnum::ADMIN_ONLY,
+                RpcClientRequestPermissionEnum::SEND,
             ],
             'clearHistory' => [
-                ExtraPermissionEnum::ADMIN_ONLY,
+                RpcClientHistoryPermissionEnum::DELETE,
             ],
             'importFromRoutes' => [
-                ExtraPermissionEnum::ADMIN_ONLY,
+                RpcClientFavoritePermissionEnum::CREATE,
             ],
         ];
     }
