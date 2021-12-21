@@ -13,6 +13,7 @@ use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
 use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
 use ZnLib\Web\Symfony4\MicroApp\MicroApp;
+use ZnSandbox\Sandbox\Synchronize\Domain\Enums\Rbac\SynchronizeSynchronizePermissionEnum;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
 use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
 
@@ -41,10 +42,10 @@ class SynchronizeController extends BaseWebController implements ControllerAcces
     {
         return [
             'index' => [
-                ExtraPermissionEnum::ADMIN_ONLY,
+                SynchronizeSynchronizePermissionEnum::ALL,
             ],
             'sync' => [
-                ExtraPermissionEnum::ADMIN_ONLY,
+                SynchronizeSynchronizePermissionEnum::UPDATE,
             ],
         ];
     }

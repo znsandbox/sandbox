@@ -9,6 +9,6 @@ class Domain implements DomainInterface
 
     public function getName()
     {
-        return 'tools';
+        return 'synchronize';
     }
 }
