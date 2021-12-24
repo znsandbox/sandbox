@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
 use ZnCore\Base\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
@@ -37,6 +38,8 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     protected $contacts = null;
 
     protected $sex = null;
+
+    protected $identity = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
@@ -194,5 +197,15 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     public function setSex(?ItemEntity $sex): void
     {
         $this->sex = $sex;
+    }
+
+    public function getIdentity(): ?IdentityEntityInterface
+    {
+        return $this->identity;
+    }
+
+    public function setIdentity(?IdentityEntityInterface $identity): void
+    {
+        $this->identity = $identity;
     }
 }
