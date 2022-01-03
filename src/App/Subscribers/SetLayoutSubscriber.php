@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerLayoutInterface;
 use ZnLib\Web\View\View;
+use ZnLib\Web\Widgets\Alert\AlertWidget;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
 
 class SetLayoutSubscriber implements EventSubscriberInterface
@@ -59,6 +60,7 @@ class SetLayoutSubscriber implements EventSubscriberInterface
                 'content' => [
                     'content' => $response->getContent(),
                     'breadcrumb' => BreadcrumbWidget::widget(),
+                    'alert' => AlertWidget::widget(),
                     'runtime' => round(microtime(true) - MICRO_TIME, 3),
                 ],
             ]);
