@@ -59,6 +59,7 @@ class ZnCore
             return $containerConfigurator;
         });
         $containerConfigurator->singleton(EventDispatcherInterface::class, EventDispatcher::class);
+        $containerConfigurator->singleton(\Psr\EventDispatcher\EventDispatcherInterface::class, EventDispatcherInterface::class);
         $containerConfigurator->singleton(ConfigManagerInterface::class, ConfigManager::class);
         $containerConfigurator->singleton(ZnCore::class, function () {
             return $this;
