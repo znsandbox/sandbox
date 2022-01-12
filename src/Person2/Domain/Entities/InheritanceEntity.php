@@ -37,7 +37,9 @@ class InheritanceEntity implements ValidateEntityByMetadataInterface, UniqueInte
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['child_person_id', 'parent_person_id'],
+        ];
     }
 
     public function setId($value) : void
