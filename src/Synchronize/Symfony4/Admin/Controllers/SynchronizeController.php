@@ -42,10 +42,12 @@ class SynchronizeController extends BaseWebController implements ControllerAcces
     {
         return [
             'index' => [
-                SynchronizeSynchronizePermissionEnum::ALL,
+                ExtraPermissionEnum::ADMIN_ONLY,
+//                SynchronizeSynchronizePermissionEnum::ALL,
             ],
             'sync' => [
-                SynchronizeSynchronizePermissionEnum::UPDATE,
+                ExtraPermissionEnum::ADMIN_ONLY,
+//                SynchronizeSynchronizePermissionEnum::UPDATE,
             ],
         ];
     }
