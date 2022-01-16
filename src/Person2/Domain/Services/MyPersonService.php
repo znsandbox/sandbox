@@ -20,7 +20,12 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
     private $personRepository;
     private $inheritanceRepository;
 
-    public function __construct(EntityManagerInterface $em, AuthServiceInterface $authService, PersonRepositoryInterface $personRepository, InheritanceRepositoryInterface $inheritanceRepository)
+    public function __construct(
+        EntityManagerInterface $em,
+        AuthServiceInterface $authService,
+        PersonRepositoryInterface $personRepository,
+        InheritanceRepositoryInterface $inheritanceRepository
+    )
     {
         $this->setEntityManager($em);
         $this->authService = $authService;
