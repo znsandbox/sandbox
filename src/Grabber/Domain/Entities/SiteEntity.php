@@ -13,20 +13,22 @@ class SiteEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
 
     protected $id = null;
 
-    protected $domain = null;
+    protected $host = null;
 
     protected $title = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\Positive());
-        $metadata->addPropertyConstraint('domain', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('host', new Assert\NotBlank());
 //        $metadata->addPropertyConstraint('title', new Assert\NotBlank());
     }
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['host']
+        ];
     }
 
     public function setId($value) : void
@@ -39,14 +41,14 @@ class SiteEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
         return $this->id;
     }
 
-    public function setDomain($value) : void
+    public function setHost($value) : void
     {
-        $this->domain = $value;
+        $this->host = $value;
     }
 
-    public function getDomain()
+    public function getHost()
     {
-        return $this->domain;
+        return $this->host;
     }
 
     public function setTitle($value) : void

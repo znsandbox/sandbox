@@ -8,16 +8,13 @@ use ZnSandbox\Sandbox\Grabber\Domain\Entities\SiteEntity;
 class SiteRepository extends BaseEloquentCrudRepository
 {
 
-    public function tableName() : string
+    public function tableName(): string
     {
         return 'grabber_site';
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return SiteEntity::class;
     }
-
-
 }
-

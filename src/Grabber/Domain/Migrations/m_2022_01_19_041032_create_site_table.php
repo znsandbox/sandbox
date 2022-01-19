@@ -14,7 +14,9 @@ class m_2022_01_19_041032_create_site_table extends BaseCreateTableMigration
     public function tableStructure(Blueprint $table): void
     {
         $table->integer('id')->autoIncrement()->comment('Идентификатор');
-        $table->string('domain')->comment('');
+        $table->string('host')->comment('');
         $table->string('title')->nullable()->comment('Название');
+        
+        $table->unique(['host']);
     }
 }

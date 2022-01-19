@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
+use ZnCrypt\Base\Domain\Helpers\SafeBase64Helper;
+use ZnCrypt\Pki\JsonDSig\Domain\Libs\C14n;
 
 class PageEntity implements EntityIdInterface, ValidateEntityByMetadataInterface, UniqueInterface
 {
@@ -17,10 +19,14 @@ class PageEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
     protected $id = null;
     
     protected $siteId = null;
+    
+    protected $hash = null;
 
     protected $title = null;
 
     protected $uri = null;
+    
+    protected $query = null;
 
     protected $content = null;
 
@@ -38,7 +44,8 @@ class PageEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
 //        $metadata->addPropertyConstraint('id', new Assert\Positive());
-//        $metadata->addPropertyConstraint('title', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('siteId', new Assert\NotBlank());
+//        $metadata->addPropertyConstraint('hash', new Assert\NotBlank());
         $metadata->addPropertyConstraint('uri', new Assert\NotBlank());
 //        $metadata->addPropertyConstraint('content', new Assert\NotBlank());
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank());
@@ -52,7 +59,9 @@ class PageEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['hash']
+        ];
     }
 
     public function setId($value) : void
@@ -75,6 +84,27 @@ class PageEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
         $this->siteId = $siteId;
     }
 
+    public function getHash()
+    {
+        $c14n = new C14n(['sort-string', 'json-unescaped-unicode']);
+        $actual = $c14n->encode([
+            'siteId' => $this->siteId,
+            'uri' => $this->uri,
+            'query' => $this->query,
+        ]);
+        $hashBinary = hash('sha1', $actual, true);
+        $hashB64 = SafeBase64Helper::encode($hashBinary);
+        return $hashB64;
+        //dd($hashB64);
+        
+//        return $this->hash;
+    }
+
+    public function setHash($hash): void
+    {
+        $this->hash = $hash;
+    }
+
     public function setUri($value) : void
     {
         $this->uri = $value;
@@ -83,6 +113,16 @@ class PageEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
     public function getUri()
     {
         return $this->uri;
+    }
+
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    public function setQuery($query): void
+    {
+        $this->query = $query;
     }
 
     public function setTitle($value) : void
