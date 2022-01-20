@@ -6,6 +6,7 @@ return [
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\SiteRepositoryInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Repositories\\Eloquent\\SiteRepository',
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Services\\PageServiceInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Services\\PageService',
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\PageRepositoryInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Repositories\\Eloquent\\PageRepository',
+		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Services\\QueueServiceInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Services\\QueueService',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Entities\\SiteEntity' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\SiteRepositoryInterface',

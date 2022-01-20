@@ -152,7 +152,11 @@ class PageEntity implements EntityIdInterface, ValidateEntityByMetadataInterface
 
     public function getStatusId()
     {
-        return $this->statusId;
+        if($this->getContent()) {
+            return StatusEnum::ENABLED;
+        }
+        return StatusEnum::WAIT_APPROVING;
+//        return $this->statusId;
     }
 
     public function setCreatedAt($value) : void
