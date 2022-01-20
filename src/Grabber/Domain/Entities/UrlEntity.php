@@ -15,8 +15,6 @@ class UrlEntity
 
     protected $queryParams = null;
 
-    protected $string;
-
     public function __construct(string $url = null)
     {
         if($url) {
@@ -73,7 +71,18 @@ class UrlEntity
         $this->queryParams[$name] = $value;
     }
 
-    public function getString() {
+    /*public function getString() {
+        $url = $this->getScheme() . '://' . $this->getHost();
+        if($this->getPath()) {
+            $url .= '/' . $this->getPath();
+        }
+        if($this->getQueryParams()) {
+            $url .= '?' . http_build_query($this->getQueryParams());
+        }
+        return $url;
+    }*/
+
+    public function __toString() {
         $url = $this->getScheme() . '://' . $this->getHost();
         if($this->getPath()) {
             $url .= '/' . $this->getPath();
