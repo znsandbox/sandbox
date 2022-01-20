@@ -2,6 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz;
 
+use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
+
 class ListUrl
 {
 
@@ -19,5 +21,23 @@ class ListUrl
             $url .= '?' . http_build_query($query);
         }
         return $url;
+    }
+
+    public function parse(string $url): UrlEntity {
+        $urlArr = parse_url($url);
+        $queryParts = null;
+        if (!empty($urlArr['query'])) {
+            parse_str($urlArr['query'], $queryParts);
+        }
+        $urlArr['queryParams'] = $queryParts;
+
+        $urlArr['path'] = trim($urlArr['path'], '/');
+
+        $urlEntity = new UrlEntity();
+        $urlEntity->setScheme($urlArr['scheme']);
+        $urlEntity->setHost($urlArr['host']);
+        $urlEntity->setPath($urlArr['path']);
+        $urlEntity->setQueryParams($urlArr['queryParams']);
+        return $urlEntity;
     }
 }

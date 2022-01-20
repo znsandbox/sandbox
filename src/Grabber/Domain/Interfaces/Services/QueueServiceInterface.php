@@ -2,8 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services;
 
-interface QueueServiceInterface
+use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
+
+interface QueueServiceInterface extends CrudServiceInterface
 {
 
-    public function add(string $url);
+
 }
+

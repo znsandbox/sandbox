@@ -7,9 +7,11 @@ return [
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Services\\PageServiceInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Services\\PageService',
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\PageRepositoryInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Repositories\\Eloquent\\PageRepository',
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Services\\QueueServiceInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Services\\QueueService',
+		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\QueueRepositoryInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Repositories\\Eloquent\\QueueRepository',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Entities\\SiteEntity' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\SiteRepositoryInterface',
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Entities\\PageEntity' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\PageRepositoryInterface',
+		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Entities\\QueueEntity' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\QueueRepositoryInterface',
 	],
 ];
