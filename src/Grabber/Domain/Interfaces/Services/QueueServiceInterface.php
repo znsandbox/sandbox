@@ -4,10 +4,13 @@ namespace ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services;
 
 use Illuminate\Support\Collection;
 use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnSandbox\Sandbox\Grabber\Domain\Dto\TotalDto;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;
 
 interface QueueServiceInterface extends CrudServiceInterface
 {
+
+    public function total(): TotalDto;
 
     public function parseOne(QueueEntity $queueEntity);
 

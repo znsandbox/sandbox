@@ -29,16 +29,10 @@ class QueueParseCommand extends Command
         $isEmpty = false;
         while ($isRun) {
             $queueCollection = $this->runAll($output);
-            if ($queueCollection->isEmpty()) {
-                /*if(!$isEmpty) {
-                    $output->writeln('wait ');
-                    $isEmpty = true;
-                }
-                if($isEmpty) {
-                    $output->write('.');
-                }*/
+            if (!$queueCollection->isEmpty()) {
+                $output->writeln('Wait queue ...');
             }
-            sleep(1);
+            sleep(3);
         }
 
         return 0;
@@ -47,6 +41,11 @@ class QueueParseCommand extends Command
     private function runAll(OutputInterface $output): Collection
     {
         $queueCollection = $this->queueService->allGrabed();
+        if($queueCollection->isEmpty()) {
+            return $queueCollection;
+        }
+
+        $output->writeln('New tasks ' . $queueCollection->count());
         foreach ($queueCollection as $queueEntity) {
             $this->runOne($output, $queueEntity);
         }

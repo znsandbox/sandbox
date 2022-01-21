@@ -7,6 +7,7 @@ use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnSandbox\Sandbox\Grabber\Domain\Dto\TotalDto;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\SiteEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
@@ -64,6 +65,15 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $this->runOne($queueEntity);
         }
 //        dd($queueCollection);
+    }
+
+    public function total(): TotalDto {
+        $totalDto = new TotalDto();
+        $totalDto->setAll($this->getRepository()->countAll());
+        $totalDto->setNew($this->getRepository()->countNew());
+        $totalDto->setGrabed($this->getRepository()->countGrabed());
+        $totalDto->setParsed($this->getRepository()->countParsed());
+        return $totalDto;
     }
 
     public function parseOne(QueueEntity $queueEntity)
