@@ -36,7 +36,7 @@ class QueueRepository extends BaseEloquentCrudRepository implements QueueReposit
     public function allNew(Query $query = null): Collection
     {
         $query = $this->forgeQuery($query);
-        $query->limit(20);
+        $query->limit(100);
         $query->where('status_id', StatusEnum::WAIT_APPROVING);
         $query->with('site');
         return $this->all($query);
@@ -45,7 +45,7 @@ class QueueRepository extends BaseEloquentCrudRepository implements QueueReposit
     public function allGrabed(Query $query = null): Collection
     {
         $query = new Query();
-        $query->limit(20);
+        $query->limit(100);
         $query->where('status_id', StatusEnum::COMPLETED);
         $query->with('site');
         return $this->all($query);
