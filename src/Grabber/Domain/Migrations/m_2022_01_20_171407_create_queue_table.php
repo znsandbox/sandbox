@@ -18,7 +18,7 @@ class m_2022_01_20_171407_create_queue_table extends BaseCreateTableMigration
         $table->string('hash')->comment('');
         $table->string('path')->comment('');
         $table->string('query')->nullable()->comment('');
-        $table->string('content')->nullable()->comment('');
+        $table->longText('content')->nullable()->comment('');
         $table->string('type')->comment('');
         $table->smallInteger('status_id')->comment('Статус');
         $table->dateTime('created_at')->comment('Время создания');

@@ -13,6 +13,7 @@ use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCrypt\Base\Domain\Helpers\SafeBase64Helper;
 use ZnCrypt\Pki\JsonDSig\Domain\Libs\C14n;
 use ZnSandbox\Sandbox\Grabber\Domain\Enums\QueueTypeEnum;
+use ZnSandbox\Sandbox\Grabber\Domain\Libs\Hasher;
 
 class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterface, UniqueInterface
 {
@@ -36,6 +37,8 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
     protected $createdAt = null;
 
     protected $updatedAt = null;
+
+    protected $site = null;
 
     public function __construct()
     {
@@ -99,7 +102,13 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
 
     public function getHash()
     {
-        $c14n = new C14n(['sort-string', 'json-unescaped-unicode']);
+        $hasher = new Hasher();
+        return $hasher->hashArray([
+            'siteId' => $this->siteId,
+            'path' => $this->path,
+            'query' => $this->query,
+        ]);
+        /*$c14n = new C14n(['sort-string', 'json-unescaped-unicode']);
         $actual = $c14n->encode([
             'siteId' => $this->siteId,
             'path' => $this->path,
@@ -107,7 +116,7 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
         ]);
         $hashBinary = hash('sha1', $actual, true);
         $hashB64 = SafeBase64Helper::encode($hashBinary);
-        return $hashB64;
+        return $hashB64;*/
         //dd($hashB64);
 
 //        return $this->hash;
@@ -160,6 +169,9 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
 
     public function getStatusId()
     {
+        if($this->statusId !== null) {
+            return $this->statusId;
+        }
         if($this->getContent()) {
             return StatusEnum::ENABLED;
         }
@@ -187,6 +199,13 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
         return $this->updatedAt;
     }
 
+    public function getSite(): ?SiteEntity
+    {
+        return $this->site;
+    }
 
+    public function setSite(?SiteEntity $site): void
+    {
+        $this->site = $site;
+    }
 }
-
