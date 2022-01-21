@@ -45,7 +45,6 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 //            $queueEntity->setStatusId(QueueStatusEnum::PARSED);
             $this->getEntityManager()->persist($queueEntity);
         }
-        //dd($queueEntity);
     }
 
     public function allNew(): Collection
@@ -64,7 +63,6 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
         foreach ($queueCollection as $queueEntity) {
             $this->runOne($queueEntity);
         }
-//        dd($queueCollection);
     }
 
     public function total(): TotalDto {
@@ -86,13 +84,12 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 
             $itemLinks = $parser->parse($content);
 
-            $url = $this->forgeUrlByQueueEntity($queueEntity);
+            $url = UrlHelper::forgeUrlByQueueEntity($queueEntity);
 
 
             foreach ($pages as $page) {
                 $urlEntity = new UrlEntity($url);
                 $urlEntity->setQueryParam('page', $page);
-                //dump($urlEntity->__toString());
                 $this->addLink($urlEntity->__toString(), QueueTypeEnum::LIST);
             }
 
@@ -111,18 +108,18 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
         //dd($queueEntity);
     }
 
-    private function forgeUrlByQueueEntity(QueueEntity $queueEntity): string {
+    /*private function forgeUrlByQueueEntity(QueueEntity $queueEntity): string {
         $urlEntity = new UrlEntity();
         $urlEntity->setHost($queueEntity->getSite()->getHost());
         $urlEntity->setPath($queueEntity->getPath());
         $urlEntity->setQueryParams($queueEntity->getQuery());
         $urlEntity->setScheme('https');
         return $urlEntity->__toString();
-    }
+    }*/
 
     public function runOne(QueueEntity $queueEntity)
     {
-        $url = $this->forgeUrlByQueueEntity($queueEntity);
+        $url = UrlHelper::forgeUrlByQueueEntity($queueEntity);
 //        dd($url);
 
 

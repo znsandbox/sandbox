@@ -7,6 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;
+use ZnSandbox\Sandbox\Grabber\Domain\Helpers\UrlHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\QueueServiceInterface;
 
 class QueueGrabCommand extends Command
@@ -55,7 +56,8 @@ class QueueGrabCommand extends Command
 
     private function runOne(OutputInterface $output, QueueEntity $queueEntity)
     {
-        $output->write($queueEntity->getHash() . ' ... ');
+        $url = UrlHelper::forgeUrlByQueueEntity($queueEntity);
+        $output->write($url . ' ... ');
         try {
             $this->queueService->runOne($queueEntity);
             $output->writeln('OK');
