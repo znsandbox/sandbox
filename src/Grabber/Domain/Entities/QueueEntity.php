@@ -12,6 +12,7 @@ use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCrypt\Base\Domain\Helpers\SafeBase64Helper;
 use ZnCrypt\Pki\JsonDSig\Domain\Libs\C14n;
+use ZnSandbox\Sandbox\Grabber\Domain\Enums\QueueStatusEnum;
 use ZnSandbox\Sandbox\Grabber\Domain\Enums\QueueTypeEnum;
 use ZnSandbox\Sandbox\Grabber\Domain\Libs\Hasher;
 
@@ -32,7 +33,7 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
 
     protected $type = null;
 
-    protected $statusId = StatusEnum::WAIT_APPROVING;
+    protected $statusId = QueueStatusEnum::WAIT_APPROVING;
 
     protected $createdAt = null;
 
@@ -62,7 +63,7 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
         $metadata->addPropertyConstraint('statusId', new Assert\NotBlank());
         $metadata->addPropertyConstraint('statusId', new Assert\Positive());
         $metadata->addPropertyConstraint('statusId', new Enum([
-            'class' => StatusEnum::class,
+            'class' => QueueStatusEnum::class,
         ]));
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank());
 //        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank());
@@ -173,9 +174,9 @@ class QueueEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
             return $this->statusId;
         }
         if($this->getContent()) {
-            return StatusEnum::ENABLED;
+            return QueueStatusEnum::ENABLED;
         }
-        return StatusEnum::WAIT_APPROVING;
+        return QueueStatusEnum::WAIT_APPROVING;
 //        return $this->statusId;
     }
 

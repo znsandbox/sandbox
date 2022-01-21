@@ -4,14 +4,19 @@ namespace ZnSandbox\Sandbox\Grabber\Domain\Services;
 
 use Illuminate\Support\Collection;
 use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\SiteEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
+use ZnSandbox\Sandbox\Grabber\Domain\Enums\QueueStatusEnum;
+use ZnSandbox\Sandbox\Grabber\Domain\Enums\QueueTypeEnum;
 use ZnSandbox\Sandbox\Grabber\Domain\Helpers\UrlHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Repositories\QueueRepositoryInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\QueueServiceInterface;
+use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\ListParser;
+use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\PaginatorParser;
 
 /**
  * @method QueueRepositoryInterface getRepository()
@@ -32,14 +37,24 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
     public function addLink(string $url, string $type)
     {
         $queueEntity = $this->createEntityByUrl($url);
-        $queueEntity->setType($type);
-        $this->getEntityManager()->persist($queueEntity);
+        try {
+            $queueEntityUnq = $this->getEntityManager()->oneByUnique($queueEntity);
+        } catch (NotFoundException $e) {
+            $queueEntity->setType($type);
+//            $queueEntity->setStatusId(QueueStatusEnum::PARSED);
+            $this->getEntityManager()->persist($queueEntity);
+        }
         //dd($queueEntity);
     }
 
     public function allNew(): Collection
     {
         return $this->getRepository()->allNew();
+    }
+
+    public function allGrabed(): Collection
+    {
+        return $this->getRepository()->allGrabed();
     }
 
     public function runAll()
@@ -51,14 +66,53 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 //        dd($queueCollection);
     }
 
-    public function runOne(QueueEntity $queueEntity)
+    public function parseOne(QueueEntity $queueEntity)
     {
+        if($queueEntity->getType() == QueueTypeEnum::LIST) {
+            $content = $queueEntity->getContent();
+            $parser = new ListParser();
+            $paginatorParser = new PaginatorParser();
+            $pages = $paginatorParser->parse($content);
+
+            $itemLinks = $parser->parse($content);
+
+            $url = $this->forgeUrlByQueueEntity($queueEntity);
+
+
+            foreach ($pages as $page) {
+                $urlEntity = new UrlEntity($url);
+                $urlEntity->setQueryParam('page', $page);
+                //dump($urlEntity->__toString());
+                $this->addLink($urlEntity->__toString(), QueueTypeEnum::LIST);
+            }
+
+            foreach ($itemLinks as $itemLink) {
+                $this->addLink($itemLink, QueueTypeEnum::ITEM);
+            }
+            $queueEntity->setStatusId(QueueStatusEnum::PARSED);
+            $this->getEntityManager()->persist($queueEntity);
+        }
+
+        if($queueEntity->getType() == QueueTypeEnum::ITEM) {
+            $queueEntity->setStatusId(QueueStatusEnum::PARSED);
+            $this->getEntityManager()->persist($queueEntity);
+        }
+
+        //dd($queueEntity);
+    }
+
+    private function forgeUrlByQueueEntity(QueueEntity $queueEntity): string {
         $urlEntity = new UrlEntity();
         $urlEntity->setHost($queueEntity->getSite()->getHost());
         $urlEntity->setPath($queueEntity->getPath());
         $urlEntity->setQueryParams($queueEntity->getQuery());
         $urlEntity->setScheme('https');
-        $url = $urlEntity->__toString();
+        return $urlEntity->__toString();
+    }
+
+    public function runOne(QueueEntity $queueEntity)
+    {
+        $url = $this->forgeUrlByQueueEntity($queueEntity);
 //        dd($url);
 
 
