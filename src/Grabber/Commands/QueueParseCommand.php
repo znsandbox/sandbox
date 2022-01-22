@@ -32,8 +32,8 @@ class QueueParseCommand extends Command
             $queueCollection = $this->runAll($output);
             if (!$queueCollection->isEmpty()) {
                 $output->writeln('Wait queue ...');
+                sleep(3);
             }
-            sleep(3);
         }
 
         return 0;
@@ -59,11 +59,11 @@ class QueueParseCommand extends Command
         $output->write($url . ' ... ');
         try {
             $this->queueService->parseOne($queueEntity);
-            $output->writeln('OK');
+            $output->writeln('<info>OK</info>');
 //            sleep(1);
         } catch (\Exception $e) {
 //            dd($e);
-            $output->writeln('FAIL');
+            $output->writeln('<error>FAIL</error>');
         }
     }
 }

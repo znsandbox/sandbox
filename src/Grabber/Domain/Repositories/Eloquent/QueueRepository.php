@@ -6,8 +6,10 @@ use Illuminate\Support\Collection;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Libs\Query;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
+use ZnCore\Domain\Subscribers\UpdatedAtSubscriber;
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
 use ZnLib\Db\Mappers\JsonMapper;
+use ZnLib\Db\Mappers\TimeMapper;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Enums\QueueStatusEnum;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Repositories\QueueRepositoryInterface;
@@ -30,6 +32,14 @@ class QueueRepository extends BaseEloquentCrudRepository implements QueueReposit
     {
         return [
             new JsonMapper(['query']),
+            new TimeMapper(['created_at', 'updated_at']),
+        ];
+    }
+
+    public function subscribes(): array
+    {
+        return [
+            UpdatedAtSubscriber::class,
         ];
     }
 
@@ -51,28 +61,42 @@ class QueueRepository extends BaseEloquentCrudRepository implements QueueReposit
         return $this->all($query);
     }
 
-    public function countAll(Query $query = null): int {
+    public function countAll(Query $query = null): int
+    {
         $query = $this->forgeQuery($query);
 //        $query->where('status_id', StatusEnum::WAIT_APPROVING);
         return $this->count($query);
     }
 
-    public function countNew(Query $query = null): int {
+    public function countNew(Query $query = null): int
+    {
         $query = $this->forgeQuery($query);
         $query->where('status_id', StatusEnum::WAIT_APPROVING);
         return $this->count($query);
     }
 
-    public function countGrabed(Query $query = null): int {
+    public function countGrabed(Query $query = null): int
+    {
         $query = $this->forgeQuery($query);
         $query->where('status_id', StatusEnum::COMPLETED);
         return $this->count($query);
     }
 
-    public function countParsed(Query $query = null): int {
+    public function countParsed(Query $query = null): int
+    {
         $query = $this->forgeQuery($query);
         $query->where('status_id', QueueStatusEnum::PARSED);
         return $this->count($query);
+    }
+
+    public function lastUpdate(Query $query = null): QueueEntity
+    {
+        $query = $this->forgeQuery($query);
+        $query->orderBy([
+            'created_at' => SORT_DESC,
+            'updated_at' => SORT_DESC,
+        ]);
+        return $this->one($query);
     }
 
     public function relations2()

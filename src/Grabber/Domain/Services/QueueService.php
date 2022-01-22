@@ -7,6 +7,7 @@ use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Grabber\Domain\Dto\TotalDto;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\SiteEntity;
@@ -65,7 +66,18 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
         }
     }
 
-    public function total(): TotalDto {
+    public function lastUpdateTime(Query $query = null): \DateTime
+    {
+        $qeueEntity = $this->getRepository()->lastUpdate();
+        if(!$qeueEntity->getUpdatedAt() || $qeueEntity->getCreatedAt() > $qeueEntity->getUpdatedAt()) {
+            return $qeueEntity->getCreatedAt();
+        } else {
+            return $qeueEntity->getUpdatedAt();
+        }
+    }
+
+    public function total(): TotalDto
+    {
         $totalDto = new TotalDto();
         $totalDto->setAll($this->getRepository()->countAll());
         $totalDto->setNew($this->getRepository()->countNew());
@@ -76,7 +88,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 
     public function parseOne(QueueEntity $queueEntity)
     {
-        if($queueEntity->getType() == QueueTypeEnum::LIST) {
+        if ($queueEntity->getType() == QueueTypeEnum::LIST) {
             $content = $queueEntity->getContent();
             $parser = new ListParser();
             $paginatorParser = new PaginatorParser();
@@ -100,7 +112,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $this->getEntityManager()->persist($queueEntity);
         }
 
-        if($queueEntity->getType() == QueueTypeEnum::ITEM) {
+        if ($queueEntity->getType() == QueueTypeEnum::ITEM) {
             $queueEntity->setStatusId(QueueStatusEnum::PARSED);
             $this->getEntityManager()->persist($queueEntity);
         }

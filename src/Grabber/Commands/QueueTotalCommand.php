@@ -24,21 +24,39 @@ class QueueTotalCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('<fg=white># Grabber Queue grab</>');
+        date_default_timezone_set('Asia/Almaty');
 
+        $sleepTime = 1;
         $isRun = true;
         $isEmpty = false;
+        $lastUpdateTimePersist = null;
         while ($isRun) {
             $totalDto = $this->queueService->total();
+            $lastUpdateTime = $this->queueService->lastUpdateTime();
+            $now = new \DateTime('now');
+//            $now->setTimezone($lastUpdateTime->getTimezone());
+            $seconds = abs($now->getTimestamp() - $lastUpdateTime->getTimestamp());
+
+
+
+            $isActive = $seconds < 5;
+//            $isActive = $lastUpdateTimePersist && $lastUpdateTime - $lastUpdateTimePersist;
+            $lastUpdateTimePersist = $lastUpdateTime;
+
             $output->write(sprintf("\033\143"));
             $output->writeln('');
-            $output->writeln('## Total (' . date('Y.m.d H:i:s') . ')');
+            $output->writeln('## Total');
+            $output->writeln('');
             $output->writeln('All: ' . $totalDto->getAll());
             $output->writeln('New: ' . $totalDto->getNew());
             $output->writeln('Grabed: ' . $totalDto->getGrabed());
             $output->writeln('Parsed: ' . $totalDto->getParsed());
-            $output->writeln('Wait 3 second ...');
+            $output->writeln('');
+            $output->writeln('Time: ' . $now->format('Y.m.d H:i:s'));
+            $output->writeln('Last update: ' . $lastUpdateTime->format('Y.m.d H:i:s'));
+            $output->writeln('Status: ' . ($isActive ? '<info>Active</info>' : '<fg=#a3c>Sleep</>') . ' - ' . $seconds);
 
-            sleep(1);
+            usleep($isActive ? 300 : 1000);
             // выводить кол-во страниц продуктов, общее, 90, 200, 210
         }
 

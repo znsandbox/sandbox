@@ -31,9 +31,12 @@ class QueueGrabCommand extends Command
         while ($isRun) {
             $queueCollection = $this->runAll($output);
             if (!$queueCollection->isEmpty()) {
-                $output->writeln('Wait queue ...');
+                $output->writeln('<fg=#aaaaaa>Wait queue ...</>');
             }
-            sleep(3);
+            if ($queueCollection->isEmpty()) {
+                $output->writeln('<fg=#aaaaaa>.</>');
+                sleep(3);
+            }
         }
 
         return 0;
@@ -60,11 +63,11 @@ class QueueGrabCommand extends Command
         $output->write($url . ' ... ');
         try {
             $this->queueService->runOne($queueEntity);
-            $output->writeln('OK');
+            $output->writeln('<info>OK</info>');
             sleep(1);
 //            usleep(200);
         } catch (\Exception $e) {
-            $output->writeln('FAIL');
+            $output->writeln('<error>FAIL</error>');
         }
     }
 }
