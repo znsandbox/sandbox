@@ -110,4 +110,4 @@ class QueueRepository extends BaseEloquentCrudRepository implements QueueReposit
             ],
         ];
     }
-}
+}o

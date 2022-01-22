@@ -19,10 +19,10 @@ class UrlEntity
     {
         if($url) {
             $urlArr = UrlHelper::parse($url);
-            $this->setScheme($urlArr['scheme']);
-            $this->setHost($urlArr['host']);
-            $this->setPath($urlArr['path']);
-            $this->setQueryParams($urlArr['queryParams']);
+            $this->setScheme($urlArr['scheme'] ?? null);
+            $this->setHost($urlArr['host'] ?? null);
+            $this->setPath($urlArr['path'] ?? null);
+            $this->setQueryParams($urlArr['queryParams'] ?? null);
         }
     }
 
