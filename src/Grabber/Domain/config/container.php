@@ -10,6 +10,8 @@ return [
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\QueueRepositoryInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Repositories\\Eloquent\\QueueRepository',
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\MetumRepositoryInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Repositories\\Eloquent\\MetumRepository',
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\ContentRepositoryInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Repositories\\Eloquent\\ContentRepository',
+		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Services\\ContentServiceInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Services\\ContentService',
+		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Services\\MetumServiceInterface' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Services\\MetumService',
 	],
 	'entities' => [
 		'ZnSandbox\\Sandbox\\Grabber\\Domain\\Entities\\SiteEntity' => 'ZnSandbox\\Sandbox\\Grabber\\Domain\\Interfaces\\Repositories\\SiteRepositoryInterface',
