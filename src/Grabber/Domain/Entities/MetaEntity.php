@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Constraints\Arr;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 
-class MetumEntity implements EntityIdInterface, ValidateEntityByMetadataInterface, UniqueInterface
+class MetaEntity implements EntityIdInterface, ValidateEntityByMetadataInterface, UniqueInterface
 {
 
     protected $id = null;
@@ -42,7 +42,7 @@ class MetumEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\Positive());
+//        $metadata->addPropertyConstraint('id', new Assert\Positive());
         $metadata->addPropertyConstraint('pageId', new Assert\NotBlank());
         $metadata->addPropertyConstraint('pageId', new Assert\Positive());
         $metadata->addPropertyConstraint('title', new Assert\NotBlank());
@@ -54,7 +54,7 @@ class MetumEntity implements EntityIdInterface, ValidateEntityByMetadataInterfac
         $metadata->addPropertyConstraint('attributes', new Assert\NotBlank());
         $metadata->addPropertyConstraint('attributes', new Arr());
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank());
-        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank());
+//        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank());
     }
 
     public function unique() : array

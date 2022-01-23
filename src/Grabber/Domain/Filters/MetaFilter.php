@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Constraints\Arr;
 
-class MetumFilter implements ValidateEntityByMetadataInterface
+class MetaFilter implements ValidateEntityByMetadataInterface
 {
 
     protected $pageId = null;

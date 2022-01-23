@@ -17,6 +17,7 @@ use ZnSandbox\Sandbox\Grabber\Domain\Enums\QueueTypeEnum;
 use ZnSandbox\Sandbox\Grabber\Domain\Helpers\UrlHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Repositories\QueueRepositoryInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\QueueServiceInterface;
+use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\SiteServiceInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\ListParser;
 use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\PaginatorParser;
 
@@ -26,9 +27,12 @@ use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\PaginatorParser;
 class QueueService extends BaseCrudService implements QueueServiceInterface
 {
 
-    public function __construct(EntityManagerInterface $em)
+    private $siteService;
+
+    public function __construct(EntityManagerInterface $em, SiteServiceInterface $siteService)
     {
         $this->setEntityManager($em);
+        $this->siteService = $siteService;
     }
 
     public function getEntityClass(): string
@@ -151,18 +155,28 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
         $this->getEntityManager()->persist($queueEntity);
     }
 
-    private function createEntityByUrl(string $url): QueueEntity
+    public function persistByUrl(string $url): QueueEntity
     {
+        $queueEntity = $this->createEntityByUrl($url);
+        $this->getEntityManager()->persist($queueEntity);
+        return $queueEntity;
+    }
+
+    public function createEntityByUrl(string $url): QueueEntity
+    {
+        $siteEntity = $this->siteService->forgeEntityByUrl($url);
+
         $urlArr = UrlHelper::parse($url);
 
-        $siteEntity = new SiteEntity();
+        /*$siteEntity = new SiteEntity();
         $siteEntity->setHost($urlArr['host']);
-        $this->getEntityManager()->persist($siteEntity);
+        $this->getEntityManager()->persist($siteEntity);*/
 
         $queueEntity = new QueueEntity();
         $queueEntity->setSiteId($siteEntity->getId());
         $queueEntity->setPath($urlArr['path']);
         $queueEntity->setQuery($urlArr['queryParams']);
+        $queueEntity->setType(QueueTypeEnum::COMMON);
         return $queueEntity;
     }
 }
