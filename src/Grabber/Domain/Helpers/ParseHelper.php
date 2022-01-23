@@ -4,7 +4,10 @@ namespace ZnSandbox\Sandbox\Grabber\Domain\Helpers;
 
 use DOMAttr;
 use Symfony\Component\DomCrawler\Crawler;
+use ZnCore\Base\Helpers\HtmlHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
 
 class ParseHelper
 {
@@ -53,6 +56,15 @@ class ParseHelper
     {
         $propertyArray = self::parseMetaInfo($crawler);
 
+
+        $map = self::parseMetaFromArray($propertyArray);
+//        ArrayHelper::setValue($map, 'misc', array_values(ArrayHelper::getValue($map, 'misc', [])));
+
+        return $map;
+    }
+
+    public static function parseMetaFromArray(array $propertyArray): array
+    {
         $map = [];
         foreach ($propertyArray as $i => $item) {
             if (isset($item['property'])) {
@@ -65,16 +77,21 @@ class ParseHelper
 //                ArrayHelper::setValue($map, ['misc', $i], $item);
             }
         }
-
         $map['all'] = $propertyArray;
-
-//        ArrayHelper::setValue($map, 'misc', array_values(ArrayHelper::getValue($map, 'misc', [])));
-
         return $map;
     }
 
     public static function parseTitle(Crawler $crawler): string
     {
         return $crawler->filter('title')->html();
+    }
+
+    public static function getBase64Content(string $url): string
+    {
+        $urlEntity = new UrlEntity($url);
+        $ext = FileHelper::fileExt($urlEntity->getPath());
+        $mime = FileHelper::mimeTypeByExtension($ext);
+        $imageContent = HtmlHelper::generateBase64Content(file_get_contents($url), $mime ?: 'image/jpeg');
+        return $imageContent;
     }
 }

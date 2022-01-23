@@ -70,14 +70,14 @@ class MetaService extends BaseCrudService implements MetaServiceInterface
         $metaEntity->setKeywords($keywords);
         $metaEntity->setImage($image);
         $metaEntity->setAttributes($meta['all']);
+        $this->getEntityManager()->persist($metaEntity);
 //        dd($queueEntity);
-        try {
-            $this->getEntityManager()->persist($metaEntity);
+        /*try {
+
 
         } catch (\Exception $e) {
             dd($e);
-        }
-
+        }*/
 
         return $metaEntity;
     }
