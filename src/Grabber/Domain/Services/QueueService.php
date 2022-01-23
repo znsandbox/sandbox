@@ -9,6 +9,7 @@ use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Grabber\Domain\Dto\TotalDto;
+use ZnSandbox\Sandbox\Grabber\Domain\Entities\ContentEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\SiteEntity;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
@@ -120,6 +121,17 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $queueEntity->setStatusId(QueueStatusEnum::PARSED);
             $this->getEntityManager()->persist($queueEntity);
         }
+
+        if ($queueEntity->getType() == QueueTypeEnum::COMMON) {
+            $queueEntity->setStatusId(QueueStatusEnum::PARSED);
+            $this->getEntityManager()->persist($queueEntity);
+        }
+
+        $contentEntity = new ContentEntity();
+        $contentEntity->setPageId($queueEntity->getId());
+        $contentEntity->setContent($queueEntity->getContent());
+//        dump($contentEntity);
+        $this->getEntityManager()->persist($contentEntity);
 
         //dd($queueEntity);
     }

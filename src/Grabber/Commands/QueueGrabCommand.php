@@ -34,7 +34,7 @@ class QueueGrabCommand extends Command
                 $output->writeln('<fg=#aaaaaa>Wait queue ...</>');
             }
             if ($queueCollection->isEmpty()) {
-                $output->writeln('<fg=#aaaaaa>.</>');
+//                $output->writeln('<fg=#aaaaaa>.</>');
                 sleep(3);
             }
         }

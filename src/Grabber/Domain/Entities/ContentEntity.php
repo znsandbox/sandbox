@@ -29,12 +29,12 @@ class ContentEntity implements EntityIdInterface, ValidateEntityByMetadataInterf
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\Positive());
+//        $metadata->addPropertyConstraint('id', new Assert\Positive());
         $metadata->addPropertyConstraint('pageId', new Assert\NotBlank());
         $metadata->addPropertyConstraint('pageId', new Assert\Positive());
         $metadata->addPropertyConstraint('content', new Assert\NotBlank());
         $metadata->addPropertyConstraint('createdAt', new Assert\NotBlank());
-        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank());
+//        $metadata->addPropertyConstraint('updatedAt', new Assert\NotBlank());
     }
 
     public function unique() : array
