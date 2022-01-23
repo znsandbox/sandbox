@@ -17,10 +17,10 @@ class QueueGrabSpaCommand extends Command
     protected static $defaultName = 'grabber:queue:grab-spa';
     private $queueService;
 
-    public function __construct(?string $name = null, QueueServiceInterface $queueService)
+    public function __construct(?string $name = null, QueueServiceInterface $walletService)
     {
         parent::__construct($name);
-        $this->queueService = $queueService;
+        $this->queueService = $walletService;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
