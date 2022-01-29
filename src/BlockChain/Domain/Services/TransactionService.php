@@ -13,10 +13,13 @@ use Mdanter\Ecc\EccFactory;
 use Mdanter\Ecc\Serializer\PrivateKey\DerPrivateKeySerializer;
 use Mdanter\Ecc\Serializer\PrivateKey\PemPrivateKeySerializer;
 use Mdanter\Ecc\Serializer\PublicKey\DerPublicKeySerializer;
+use Mdanter\Ecc\Serializer\PublicKey\PemPublicKeySerializer;
 use Mdanter\Ecc\Serializer\Signature\DerSignatureSerializer;
 use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Helpers\ValidationHelper;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\Query;
 use ZnCrypt\Pki\JsonDSig\Domain\Libs\C14n;
 use ZnSandbox\Sandbox\BlockChain\Domain\Entities\AddressEntity;
 use ZnSandbox\Sandbox\BlockChain\Domain\Entities\TransactionEntity;
@@ -48,6 +51,15 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         return $private;
     }
 
+    private function loadPublicFromPemFile(string $file): PublicKeyInterface
+    {
+        $adapter = EccFactory::getAdapter();
+        $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
+        $pemPublic = file_get_contents($this->publicPemFile);
+        $public = $pemPublicKeySerializer->parse($pemPublic);
+        return $public;
+    }
+
     public function publicKeyToDer(PublicKeyInterface $public): string
     {
         $adapter = EccFactory::getAdapter();
@@ -65,13 +77,13 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         return $masterAddr;
     }
 
-    protected function getDigest(TransactionEntity $transactionEntity): string
+    protected function getDigest(TransactionEntity $transactionEntity): \GMP
     {
         $data = [
             'fromAddress' => $transactionEntity->getFromAddress(),
             'toAddress' => $transactionEntity->getToAddress(),
             'amount' => $transactionEntity->getAmount(),
-            'createdAt' => $transactionEntity->getCreatedAt()->getTimestamp(),
+            'createdAt' => $transactionEntity->getCreatedAt(),
             'payload' => $transactionEntity->getPayload(),
         ];
 
@@ -84,8 +96,9 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         $c14n = new C14n(['sort-string', 'json-unescaped-unicode']);
         $canonicalJson = $c14n->encode($data);
         $gmp = $hasher->makeHash($canonicalJson, $generator);
+        return $gmp;
         $hash = gmp_strval($gmp, 16);
-        return $hash;
+        return gmp_init($hash, 10);
     }
 
     public function send(string $privateKey, string $toAddress, int $amount): TransactionEntity
@@ -107,35 +120,65 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         $transactionEntity->setFromAddress($network->getAddress());
         $digest = $this->getDigest($transactionEntity);
         $transactionEntity->setDigest($digest);
+        //dd($transactionEntity);
         $serializedSig = $this->sign($transactionEntity->getDigest(), $private);
-        $transactionEntity->setSignature(base64_encode($serializedSig));
-
+        $transactionEntity->setSignature($serializedSig);
+//dd($digest);
+//
         ValidationHelper::validateEntity($transactionEntity);
-
         $check = $this->verifyByPublicKey($transactionEntity, $public);
         if(!$check) {
             throw new \Exception('Signature not verified!');
         }
+
         $this->getEntityManager()->persist($transactionEntity);
+//        $transactionEntity1 = EntityHelper::createEntity(TransactionEntity::class, EntityHelper::toArray($transactionEntity));
+        $transactionEntity1 = $this->getEntityManager()->oneById(TransactionEntity::class, $transactionEntity->getId());
+
+//        dd($transactionEntity, $transactionEntity1);
+        $this->verify($transactionEntity1);
+
         return $transactionEntity;
+    }
+
+    private function verify(TransactionEntity $transactionEntity): bool
+    {
+        $query = new Query();
+        $query->where('address', $transactionEntity->getFromAddress());
+        /** @var AddressEntity $addressEntity */
+        $addressEntity = $this->getEntityManager()->one(AddressEntity::class, $query);
+
+        $adapter = EccFactory::getAdapter();
+        $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
+        $public = $pemPublicKeySerializer->parse($addressEntity->getPublicKey());
+        return $this->verifyByPublicKey($transactionEntity, $public);
     }
 
     private function verifyByPublicKey(TransactionEntity $transactionEntity, PublicKeyInterface $public): bool
     {
-        if ($transactionEntity->getDigest() !== $this->getDigest($transactionEntity)) {
-            throw new \Exception('Bad digest!');
+        ValidationHelper::validateEntity($transactionEntity);
+//        dd($transactionEntity);
+        $expectedDigest = $this->getDigest($transactionEntity);
+//        dd((string) $transactionEntity->getDigest() , (string)$expectedDigest);
+        if ($transactionEntity->getDigest() != $expectedDigest) {
+            throw new \Exception('Bad digest! ' . $transactionEntity->getDigest() . ' != ' . $expectedDigest);
         }
         $adapter = EccFactory::getAdapter();
         $sigSerializer = new DerSignatureSerializer();
-        $sig = $sigSerializer->parse(base64_decode($transactionEntity->getSignature()));
-        $hashGmp = gmp_init($transactionEntity->getDigest(), 16);
+        $sig = $sigSerializer->parse($transactionEntity->getSignature());
 
+//        $hashGmp = gmp_init($transactionEntity->getDigest(), 10);
+        $hashGmp = $transactionEntity->getDigest();
+//dd($hashGmp);
         $signer = new Signer($adapter);
         $check = $signer->verify($public, $sig, $hashGmp);
+        if(!$check) {
+            throw new \Exception('Not verify signature!');
+        }
         return $check;
     }
 
-    private function sign(string $digest, PrivateKeyInterface $private)
+    private function sign(\GMP $digest, PrivateKeyInterface $private)
     {
         $adapter = EccFactory::getAdapter();
         $generator = EccFactory::getNistCurves()->generator384();
@@ -146,8 +189,10 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
 //        $hasher = new SignHasher($algorithm, $adapter);
 //        $hash = $hasher->makeHash($document, $generator);
-        $hashGmp = gmp_init($digest, 16);
-
+//        dd($digest);
+//        $hashGmp = gmp_init($digest, 16);
+        $hashGmp = $digest;
+//dd($hashGmp);
         # Derandomized signatures are not necessary, but is avoids
         # the risk of a low entropy RNG, causing accidental reuse
         # of a k value for a different message, which leaks the
@@ -166,6 +211,5 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
         $serializedSig = $serializer->serialize($signature);
         return $serializedSig;
-        dd($serializedSig);
     }
 }

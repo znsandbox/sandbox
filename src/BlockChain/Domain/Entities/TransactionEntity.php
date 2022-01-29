@@ -32,14 +32,14 @@ class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataIn
 
     public function __construct()
     {
-        $this->createdAt = new DateTime();
+        $this->createdAt = time();
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
 //        $metadata->addPropertyConstraint('id', new Assert\Positive());
 //        $metadata->addPropertyConstraint('payload', new Assert\NotBlank());
-        $metadata->addPropertyConstraint('digest', new Assert\NotBlank());
+//        $metadata->addPropertyConstraint('digest', new Assert\NotBlank());
         $metadata->addPropertyConstraint('fromAddress', new Assert\NotBlank());
         $metadata->addPropertyConstraint('toAddress', new Assert\NotBlank());
         $metadata->addPropertyConstraint('signature', new Assert\NotBlank());
@@ -48,7 +48,9 @@ class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataIn
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['digest']
+        ];
     }
 
     public function setId($value) : void
@@ -61,18 +63,12 @@ class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataIn
         return $this->id;
     }
 
-    /**
-     * @return null
-     */
-    public function getAmount()
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
 
-    /**
-     * @param null $amount
-     */
-    public function setAmount($amount): void
+    public function setAmount(?int $amount): void
     {
         $this->amount = $amount;
     }
@@ -127,12 +123,12 @@ class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataIn
         return $this->signature;
     }
 
-    public function setCreatedAt($value) : void
+    public function setCreatedAt(int $value) : void
     {
         $this->createdAt = $value;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): int
     {
         return $this->createdAt;
     }

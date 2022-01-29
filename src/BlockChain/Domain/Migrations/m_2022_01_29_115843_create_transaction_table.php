@@ -20,7 +20,9 @@ class m_2022_01_29_115843_create_transaction_table extends BaseCreateTableMigrat
         $table->string('from_address')->comment('');
         $table->string('to_address')->comment('');
         $table->text('signature')->comment('');
-        $table->dateTime('created_at')->comment('Время создания');
+        $table->bigInteger('created_at')->comment('Время создания');
+
+
 
         $this->addForeign($table, 'from_address', 'blockchain_address', 'address');
         $this->addForeign($table, 'to_address', 'blockchain_address', 'address');
