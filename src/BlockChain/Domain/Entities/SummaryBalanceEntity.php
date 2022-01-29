@@ -29,7 +29,9 @@ class SummaryBalanceEntity implements EntityIdInterface, ValidateEntityByMetadat
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['address']
+        ];
     }
 
     public function setId($value) : void

@@ -8,11 +8,15 @@ use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
+use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
+use ZnSandbox\Sandbox\Grabber\Domain\Libs\Hasher;
 
 class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataInterface, UniqueInterface
 {
 
     protected $id = null;
+
+    protected $amount = null;
 
     protected $payload = null;
 
@@ -33,8 +37,8 @@ class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataIn
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('id', new Assert\Positive());
-        $metadata->addPropertyConstraint('payload', new Assert\NotBlank());
+//        $metadata->addPropertyConstraint('id', new Assert\Positive());
+//        $metadata->addPropertyConstraint('payload', new Assert\NotBlank());
         $metadata->addPropertyConstraint('digest', new Assert\NotBlank());
         $metadata->addPropertyConstraint('fromAddress', new Assert\NotBlank());
         $metadata->addPropertyConstraint('toAddress', new Assert\NotBlank());
@@ -55,6 +59,22 @@ class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataIn
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param null $amount
+     */
+    public function setAmount($amount): void
+    {
+        $this->amount = $amount;
     }
 
     public function setPayload($value) : void

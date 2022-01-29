@@ -14,7 +14,8 @@ class m_2022_01_29_115843_create_transaction_table extends BaseCreateTableMigrat
     public function tableStructure(Blueprint $table): void
     {
         $table->integer('id')->autoIncrement()->comment('Идентификатор');
-        $table->longText('payload')->comment('');
+        $table->bigInteger('amount')->nullable()->comment('');
+        $table->longText('payload')->nullable()->comment('');
         $table->string('digest')->comment('');
         $table->string('from_address')->comment('');
         $table->string('to_address')->comment('');

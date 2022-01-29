@@ -26,7 +26,9 @@ class AddressEntity implements EntityIdInterface, ValidateEntityByMetadataInterf
 
     public function unique() : array
     {
-        return [];
+        return [
+            ['address']
+        ];
     }
 
     public function setId($value) : void
