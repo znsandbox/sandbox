@@ -117,6 +117,7 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         $transactionEntity = new TransactionEntity();
         $transactionEntity->setAmount($amount);
         $transactionEntity->setToAddress($toAddress);
+        // todo: validate address
         $transactionEntity->setFromAddress($network->getAddress());
         $digest = $this->getDigest($transactionEntity);
         $transactionEntity->setDigest($digest);
@@ -126,10 +127,8 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 //dd($digest);
 //
         ValidationHelper::validateEntity($transactionEntity);
-        $check = $this->verifyByPublicKey($transactionEntity, $public);
-        if(!$check) {
-            throw new \Exception('Signature not verified!');
-        }
+        $this->verifyByPublicKey($transactionEntity, $public);
+
 
         $this->getEntityManager()->persist($transactionEntity);
 //        $transactionEntity1 = EntityHelper::createEntity(TransactionEntity::class, EntityHelper::toArray($transactionEntity));
@@ -141,7 +140,7 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         return $transactionEntity;
     }
 
-    private function verify(TransactionEntity $transactionEntity): bool
+    private function verify(TransactionEntity $transactionEntity): void
     {
         $query = new Query();
         $query->where('address', $transactionEntity->getFromAddress());
@@ -151,10 +150,10 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         $adapter = EccFactory::getAdapter();
         $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
         $public = $pemPublicKeySerializer->parse($addressEntity->getPublicKey());
-        return $this->verifyByPublicKey($transactionEntity, $public);
+        $this->verifyByPublicKey($transactionEntity, $public);
     }
 
-    private function verifyByPublicKey(TransactionEntity $transactionEntity, PublicKeyInterface $public): bool
+    private function verifyByPublicKey(TransactionEntity $transactionEntity, PublicKeyInterface $public): void
     {
         ValidationHelper::validateEntity($transactionEntity);
 //        dd($transactionEntity);
@@ -175,7 +174,6 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         if(!$check) {
             throw new \Exception('Not verify signature!');
         }
-        return $check;
     }
 
     private function sign(\GMP $digest, PrivateKeyInterface $private)
