@@ -112,17 +112,20 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
         $bitcoinKey = new BitcoinKey($this->privateKeyWif);
         $network = $bitcoinKey->getAddr();
+        $publicKey = $bitcoinKey->getPublic();
+
+//        $pubKeyHash = Hash::sha256ripe160($publicKey->getBuffer());
+//        $pubKeyHash = Hash::sha256ripe160(new Buffer($bitcoinKey->getPublic()->getBinary()));
+//        $pubKeyHash = Hash::sha256ripe160(new Buffer(hex2bin($bitcoinKey->getPublic()->getHex())));
 
         $addressEntity = new AddressEntity();
         $addressEntity->setAddress($network->getAddress());
-        $addressEntity->setHash(Base58::decode($network->getAddress())->getHex());
-        $addressEntity->setPublicKey($bitcoinKey->getPublic()->getPubKeyHash()->getHex());
-
-//        dd(BitcoinHelper::extractP2pkhAddressFromPublicKeyHash(hex2bin($bitcoinKey->getPublic()->getPubKeyHash()->getHex())));
-
-//        $derPublic = $this->publicKeyToDer($public);
-//        $addressEntity->setPublicKey(base64_encode($derPublic));
+        $addressEntity->setHash($bitcoinKey->getPublic()->getPubKeyHash()->getHex());
+//        $addressEntity->setHash(BitcoinHelper::parseAddress($network->getAddress()));
+        $addressEntity->setPublicKey($bitcoinKey->getPublic()->getHex());
         $this->getEntityManager()->persist($addressEntity);
+
+//        dd($addressEntity, $pubKeyHash, BitcoinHelper::parseAddress($network->getAddress()));
 
         $transactionEntity = new TransactionEntity();
         $transactionEntity->setAmount($amount);

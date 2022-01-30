@@ -20,6 +20,27 @@ use BitWasp\Buffertools\Buffer;
 class BitcoinHelper
 {
 
+    public static function parseAddress(string $addressBase58)
+    {
+        $bitcoinECDSA = new BitcoinECDSA();
+        $addressHex = $bitcoinECDSA->base58_decode($addressBase58);
+        $addressBinary    = hex2bin($addressHex);
+        if(strlen($addressBinary) !== 25) {
+            return false;
+        }
+        $checksum   = substr($addressBinary, 21, 4);
+        $rawAddress = substr($addressBinary, 0, 21);
+        $checksumCalculated = substr(hex2bin($bitcoinECDSA->hash256($rawAddress)), 0, 4);
+
+        return [
+            'addressChecksum' => $checksum,
+            'addressHashRaw' => $rawAddress,
+            'addressHashHex' => bin2hex($rawAddress),
+            'checksumCalculated' => $checksumCalculated,
+            'isValidChecksum' => $checksumCalculated === $checksum,
+        ];
+    }
+
     public static function validateAddress(string $address): void {
         if(!self::isValidAddress($address)) {
             throw new \Exception('to address not valid!');
