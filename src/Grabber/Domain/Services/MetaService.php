@@ -39,7 +39,7 @@ class MetaService extends BaseCrudService implements MetaServiceInterface
         return MetaEntity::class;
     }
 
-    public function oneByHtml(string $html): MetaEntity
+    public function oneByHtml(string $html, string $url): MetaEntity
     {
         $crawler = new Crawler($html);
         $title = ParseHelper::parseTitle($crawler);
@@ -85,7 +85,7 @@ class MetaService extends BaseCrudService implements MetaServiceInterface
     public function oneByUrl(string $url): MetaEntity
     {
         $html = file_get_contents($url);
-        return $this->oneByHtml($html);
+        return $this->oneByHtml($html, $url);
     }
 }
 
