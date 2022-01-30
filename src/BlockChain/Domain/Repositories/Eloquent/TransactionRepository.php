@@ -27,7 +27,7 @@ class TransactionRepository extends BaseEloquentCrudRepository
         return [
 //            new TimeMapper(['created_at']),
             new JsonMapper(['payload']),
-            new BinaryMapper(['signature']),
+//            new BinaryMapper(['signature']),
             new GmpMapper(['digest']),
         ];
     }

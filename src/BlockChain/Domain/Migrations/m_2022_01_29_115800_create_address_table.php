@@ -15,6 +15,7 @@ class m_2022_01_29_115800_create_address_table extends BaseCreateTableMigration
     {
         $table->integer('id')->autoIncrement()->comment('Идентификатор');
         $table->string('address')->comment('');
+        $table->string('hash')->comment('');
         $table->text('public_key')->comment('');
 
         $table->unique(['address']);

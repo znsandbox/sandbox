@@ -2,8 +2,17 @@
 
 namespace ZnSandbox\Sandbox\BlockChain\Domain\Services;
 
+use BitWasp\Bitcoin\Address\AddressCreator;
 use BitWasp\Bitcoin\Address\PayToPubKeyHashAddress;
+use BitWasp\Bitcoin\Base58;
+use BitWasp\Bitcoin\Bitcoin;
+use BitWasp\Bitcoin\Crypto\EcAdapter\EcSerializer;
+use BitWasp\Bitcoin\Crypto\EcAdapter\Impl\PhpEcc\Key\PublicKey;
+use BitWasp\Bitcoin\Crypto\EcAdapter\Serializer\Signature\CompactSignatureSerializerInterface;
 use BitWasp\Bitcoin\Crypto\Hash;
+use BitWasp\Bitcoin\Key\Factory\PrivateKeyFactory;
+use BitWasp\Bitcoin\MessageSigner\MessageSigner;
+use BitWasp\Bitcoin\Serializer\MessageSigner\SignedMessageSerializer;
 use BitWasp\Buffertools\Buffer;
 use Mdanter\Ecc\Crypto\Key\PrivateKeyInterface;
 use Mdanter\Ecc\Crypto\Key\PublicKeyInterface;
@@ -25,6 +34,7 @@ use ZnSandbox\Sandbox\BlockChain\Domain\Entities\AddressEntity;
 use ZnSandbox\Sandbox\BlockChain\Domain\Entities\TransactionEntity;
 use ZnSandbox\Sandbox\BlockChain\Domain\Interfaces\Repositories\TransactionRepositoryInterface;
 use ZnSandbox\Sandbox\BlockChain\Domain\Interfaces\Services\TransactionServiceInterface;
+use GMP;
 
 /**
  * @method TransactionRepositoryInterface getRepository()
@@ -77,15 +87,34 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         return $masterAddr;
     }
 
-    protected function getDigest(TransactionEntity $transactionEntity): \GMP
+    protected function getPayload(TransactionEntity $transactionEntity): array
     {
         $data = [
+            'from' => $transactionEntity->getFromAddress(),
+            'to' => $transactionEntity->getToAddress(),
+            'amount' => $transactionEntity->getAmount(),
+            'createdAt' => $transactionEntity->getCreatedAt(),
+//            'payload' => $transactionEntity->getPayload(),
+        ];
+        return $data;
+    }
+
+    protected function getDigest(TransactionEntity $transactionEntity): GMP
+    {
+        /*$data = [
             'fromAddress' => $transactionEntity->getFromAddress(),
             'toAddress' => $transactionEntity->getToAddress(),
             'amount' => $transactionEntity->getAmount(),
             'createdAt' => $transactionEntity->getCreatedAt(),
             'payload' => $transactionEntity->getPayload(),
-        ];
+        ];*/
+
+        $data = $transactionEntity->getPayload();
+
+        if (empty($data)) {
+            throw new \Exception('Empty payload!');
+        }
+        //dd($data);
 
 //        $adapter = EccFactory::getAdapter();
         $generator = EccFactory::getNistCurves()->generator384();
@@ -95,10 +124,11 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
         $c14n = new C14n(['sort-string', 'json-unescaped-unicode']);
         $canonicalJson = $c14n->encode($data);
+        //dd($canonicalJson);
         $gmp = $hasher->makeHash($canonicalJson, $generator);
         return $gmp;
-        $hash = gmp_strval($gmp, 16);
-        return gmp_init($hash, 10);
+//        $hash = gmp_strval($gmp, 16);
+//        return gmp_init($hash, 10);
     }
 
     public function send(string $privateKey, string $toAddress, int $amount): TransactionEntity
@@ -106,12 +136,37 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         $private = $this->loadPrivateFromPemFile(__DIR__ . '/../../../../../../../var/ecc/keys/private.pem');
         $public = $private->getPublicKey();
 
-        $network = $this->publicKeyToAddress($public);
+
+
+
+        /* $derPublic = $this->publicKeyToDer($public);
+         $ec = Bitcoin::getEcAdapter();
+         $pub = new PublicKey($ec, $public->getPoint());
+         dd($pub->getPubKeyHash());
+         $buf = new Buffer($derPublic);
+ //        dd($buf->getBinary());
+         $th = Hash::sha256ripe160($buf);
+         $fromAddr = new PayToPubKeyHashAddress($th);*/
+        /*
+                $bufferTo = Base58::decode($toAddress);
+        //        dd($buffer->getHex());
+        //        $aa = Base58::encode($buffer);
+        //        dd($aa, $toAddress);
+                $th1 = Hash::sha256ripe160($bufferTo);
+                $toAddr = new PayToPubKeyHashAddress($th1);
+
+                dd($buf, $fromAddr->getAddress(), $th, $bufferTo->getHex(), $toAddr->getAddress());*/
+
+
+//        $network = $this->publicKeyToAddress($public);
+        $network = $this->getAddr();
 
         $addressEntity = new AddressEntity();
         $addressEntity->setAddress($network->getAddress());
-        $derPublic = $this->publicKeyToDer($public);
-        $addressEntity->setPublicKey(base64_encode($derPublic));
+        $addressEntity->setHash(Base58::decode($network->getAddress())->getHex());
+        $addressEntity->setPublicKey(base64_encode($this->getPublic()->getBinary()));
+//        $derPublic = $this->publicKeyToDer($public);
+//        $addressEntity->setPublicKey(base64_encode($derPublic));
         $this->getEntityManager()->persist($addressEntity);
 
         $transactionEntity = new TransactionEntity();
@@ -119,14 +174,16 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         $transactionEntity->setToAddress($toAddress);
         // todo: validate address
         $transactionEntity->setFromAddress($network->getAddress());
+        $transactionEntity->setPayload($this->getPayload($transactionEntity));
+
+
         $digest = $this->getDigest($transactionEntity);
         $transactionEntity->setDigest($digest);
-        //dd($transactionEntity);
-        $serializedSig = $this->sign($transactionEntity->getDigest(), $private);
+        $serializedSig = $this->sign($transactionEntity, $private);
         $transactionEntity->setSignature($serializedSig);
-//dd($digest);
-//
+
         ValidationHelper::validateEntity($transactionEntity);
+//        dd($transactionEntity);
         $this->verifyByPublicKey($transactionEntity, $public);
 
 
@@ -147,13 +204,53 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         /** @var AddressEntity $addressEntity */
         $addressEntity = $this->getEntityManager()->one(AddressEntity::class, $query);
 
-        $adapter = EccFactory::getAdapter();
-        $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
-        $public = $pemPublicKeySerializer->parse($addressEntity->getPublicKey());
-        $this->verifyByPublicKey($transactionEntity, $public);
+//        $adapter = EccFactory::getAdapter();
+//        $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
+//        $public = $pemPublicKeySerializer->parse($addressEntity->getPublicKey());
+        $this->verifyByPublicKey($transactionEntity/*, $public*/);
     }
 
-    private function verifyByPublicKey(TransactionEntity $transactionEntity, PublicKeyInterface $public): void
+    private function verifyByPublicKey(TransactionEntity $transactionEntity/*, PublicKeyInterface $public*/): void
+    {
+        ValidationHelper::validateEntity($transactionEntity);
+
+        /*$privFactory = new PrivateKeyFactory();
+        $priv = $privFactory->fromWif('Kwoii6A3caGLhVfms1c8KnxnqGVzaZjLJfguDvzJvBiTbzBCHKKB');
+        $publicKey = $priv->getPublicKey();
+        $pubKeyHash = $publicKey->getPubKeyHash();
+        $masterAddr = new PayToPubKeyHashAddress($pubKeyHash);*/
+
+        $addrCreator = new AddressCreator();
+        $masterAddr = $addrCreator->fromString($transactionEntity->getFromAddress());
+
+        //dd($masterAddr->getAddress());
+
+        $addrCreator = new AddressCreator();
+        /** @var PayToPubKeyHashAddress $payToPubKeyHashAddress */
+        $payToPubKeyHashAddress = $addrCreator->fromString($transactionEntity->getFromAddress());
+        //dd($payToPubKeyHashAddress);
+
+        /** @var CompactSignatureSerializerInterface $compactSigSerializer */
+        $compactSigSerializer = EcSerializer::getSerializer(CompactSignatureSerializerInterface::class);
+        $serializer = new SignedMessageSerializer($compactSigSerializer);
+
+//        dd($transactionEntity);
+        $signedMessage = $serializer->parse($transactionEntity->getSignature());
+//        dd($signedMessage->getBuffer()->getBinary());
+        $signer = new MessageSigner();
+        $isValid = $signer->verify($signedMessage, $masterAddr);
+        if (!$isValid) {
+            throw new \Exception('Not verify signature!');
+        }
+//        dd($isValid);
+        /*if ($isValid) {
+            $this->alertSuccess('Signature verified!');
+        } else {
+            $this->alertDanger('Failed to verify signature!');
+        }*/
+    }
+
+    private function verifyByPublicKey_(TransactionEntity $transactionEntity, PublicKeyInterface $public): void
     {
         ValidationHelper::validateEntity($transactionEntity);
 //        dd($transactionEntity);
@@ -171,26 +268,86 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 //dd($hashGmp);
         $signer = new Signer($adapter);
         $check = $signer->verify($public, $sig, $hashGmp);
-        if(!$check) {
+        if (!$check) {
             throw new \Exception('Not verify signature!');
         }
     }
 
-    private function sign(\GMP $digest, PrivateKeyInterface $private)
+    private function getPrivate(): \BitWasp\Bitcoin\Crypto\EcAdapter\Key\PrivateKeyInterface
     {
-        $adapter = EccFactory::getAdapter();
-        $generator = EccFactory::getNistCurves()->generator384();
+        $privFactory = new PrivateKeyFactory();
+        $priv = $privFactory->fromWif('Kwoii6A3caGLhVfms1c8KnxnqGVzaZjLJfguDvzJvBiTbzBCHKKB');
+        return $priv;
+    }
+
+    private function getPublic(): \BitWasp\Bitcoin\Crypto\EcAdapter\Key\PublicKeyInterface
+    {
+        $priv = $this->getPrivate();
+        $publicKey = $priv->getPublicKey();
+        return $publicKey;
+    }
+
+    private function getAddr(): PayToPubKeyHashAddress
+    {
+        $publicKey = $this->getPublic();
+        $pubKeyHash = $publicKey->getPubKeyHash();
+        $masterAddr = new PayToPubKeyHashAddress($pubKeyHash);
+        return $masterAddr;
+    }
+
+    private function sign(TransactionEntity $transactionEntity, PrivateKeyInterface $private)
+    {
+        $priv = $this->getPrivate();
+//        $pubKeyHash = $publicKey->getPubKeyHash();
+//        $masterAddr = new PayToPubKeyHashAddress($pubKeyHash);
+//        dd($masterAddr->getAddress());
+
+        $ec = Bitcoin::getEcAdapter();
+//        $random = new Random();
+//        $privKeyFactory = new PrivateKeyFactory($ec);
+//        $privateKey = $privKeyFactory->generateCompressed($random);
+
+        $c14n = new C14n(['sort-string', 'json-unescaped-unicode']);
+        $message = $c14n->encode($transactionEntity->getPayload());
+
+        //dd($message);
+
+        $signer = new MessageSigner($ec);
+        $signed = $signer->sign($message, $priv);
+        return $signed->getBuffer()->getBinary();
+
+        dd($signed->getBuffer()->getBinary());
+        $signatureBinary = $signed->getCompactSignature()->getBinary();
+//        dd($signatureBinary);
+        return $signatureBinary;
+
+
+        //dump($priv->getPublicKey()->getPubKeyHash());
+        $payToPubKeyHashAddress = new PayToPubKeyHashAddress($priv->getPublicKey()->getPubKeyHash());
+//        dd($payToPubKeyHashAddress->getAddress());
+
+        /** @var CompactSignatureSerializerInterface $compactSigSerializer */
+//        $compactSigSerializer = EcSerializer::getSerializer(CompactSignatureSerializerInterface::class);
+//        $serializer = new SignedMessageSerializer($compactSigSerializer);
+//        $signedMessage = $serializer->parse($signed->getBuffer()->getBinary());
+
+        dump($signatureBinary);
+
+//        dd($signedMessage->getCompactSignature()->getBinary());
+//        dd($signedMessage->getMessage());
+
+        dump($payToPubKeyHashAddress->getAddress());
+        dd($signed->getBuffer()->getBinary());
+
+    }
+
+    private function sign_(TransactionEntity $transactionEntity, PrivateKeyInterface $private)
+    {
+        /** @var GMP $hashGmp */
+        $hashGmp = $transactionEntity->getDigest();
         $useDerandomizedSignatures = true;
         $algorithm = 'sha256';
 
-//                    $document = 'I am writing today...';
-
-//        $hasher = new SignHasher($algorithm, $adapter);
-//        $hash = $hasher->makeHash($document, $generator);
-//        dd($digest);
-//        $hashGmp = gmp_init($digest, 16);
-        $hashGmp = $digest;
-//dd($hashGmp);
         # Derandomized signatures are not necessary, but is avoids
         # the risk of a low entropy RNG, causing accidental reuse
         # of a k value for a different message, which leaks the
@@ -200,14 +357,20 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         } else {
             $random = \Mdanter\Ecc\Random\RandomGeneratorFactory::getRandomGenerator();
         }
+        $generator = EccFactory::getNistCurves()->generator384();
         $randomK = $random->generate($generator->getOrder());
 
+        $adapter = EccFactory::getAdapter();
         $signer = new Signer($adapter);
         $signature = $signer->sign($private, $hashGmp, $randomK);
 
         $serializer = new DerSignatureSerializer();
-
         $serializedSig = $serializer->serialize($signature);
         return $serializedSig;
+    }
+
+    private function getRandom()
+    {
+
     }
 }

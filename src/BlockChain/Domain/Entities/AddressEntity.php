@@ -15,12 +15,15 @@ class AddressEntity implements EntityIdInterface, ValidateEntityByMetadataInterf
 
     protected $address = null;
 
+    protected $hash = null;
+
     protected $publicKey = null;
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('id', new Assert\Positive());
         $metadata->addPropertyConstraint('address', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('hash', new Assert\NotBlank());
         $metadata->addPropertyConstraint('publicKey', new Assert\NotBlank());
     }
 
@@ -49,6 +52,16 @@ class AddressEntity implements EntityIdInterface, ValidateEntityByMetadataInterf
     public function getAddress()
     {
         return $this->address;
+    }
+
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    public function setHash($hash): void
+    {
+        $this->hash = $hash;
     }
 
     public function setPublicKey($value) : void
