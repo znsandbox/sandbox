@@ -56,23 +56,23 @@ class BitcoinKey
         return $signed->getBuffer()->getBinary();
     }
 
-    public function isVerify(string $signaturePem, string $address): bool {
-        $addrCreator = new AddressCreator();
-        /** @var PayToPubKeyHashAddress $payToPubKeyHashAddress */
-        $payToPubKeyHashAddress = $addrCreator->fromString($address);
-
-//        /** @var CompactSignatureSerializerInterface $compactSigSerializer */
-//        $compactSigSerializer = EcSerializer::getSerializer(CompactSignatureSerializerInterface::class);
-//        $serializer = new SignedMessageSerializer($compactSigSerializer);
-//        $signedMessage = $serializer->parse($signaturePem);
-
-//        dd($signedMessage->getBuffer()->getBinary());
-//        $signer = new MessageSigner();
-//        $isValid = $signer->verify($signedMessage, $payToPubKeyHashAddress);
-
-        $publicKey = BitcoinHelper::extractPublicKey($signaturePem);
-        return $publicKey->getPubKeyHash()->equals($payToPubKeyHashAddress->getHash());
-    }
+//    public function isVerify(string $signaturePem, string $address): bool {
+//        $addrCreator = new AddressCreator();
+//        /** @var PayToPubKeyHashAddress $payToPubKeyHashAddress */
+//        $payToPubKeyHashAddress = $addrCreator->fromString($address);
+//
+////        /** @var CompactSignatureSerializerInterface $compactSigSerializer */
+////        $compactSigSerializer = EcSerializer::getSerializer(CompactSignatureSerializerInterface::class);
+////        $serializer = new SignedMessageSerializer($compactSigSerializer);
+////        $signedMessage = $serializer->parse($signaturePem);
+//
+////        dd($signedMessage->getBuffer()->getBinary());
+////        $signer = new MessageSigner();
+////        $isValid = $signer->verify($signedMessage, $payToPubKeyHashAddress);
+//
+//        $publicKey = BitcoinHelper::extractPublicKey($signaturePem);
+//        return $publicKey->getPubKeyHash()->equals($payToPubKeyHashAddress->getHash());
+//    }
 
 //    public function extractPublicKey(SignedMessage $signedMessage, NetworkInterface $network = null): PublicKeyInterface
 //    {

@@ -15,6 +15,7 @@ use BitWasp\Bitcoin\MessageSigner\SignedMessage;
 use BitWasp\Bitcoin\Network\NetworkInterface;
 use BitWasp\Bitcoin\Script\WitnessProgram;
 use BitWasp\Bitcoin\Serializer\MessageSigner\SignedMessageSerializer;
+use BitWasp\Buffertools\Buffer;
 
 class BitcoinHelper
 {
@@ -80,6 +81,13 @@ class BitcoinHelper
         $payToPubKeyHashAddress = $addrCreator->fromString($address);
         $publicKey = BitcoinHelper::extractPublicKey($signaturePem);
         return $publicKey->getPubKeyHash()->equals($payToPubKeyHashAddress->getHash());
+    }
+
+    public static function extractP2pkhAddressFromPublicKeyHash(string $binaryHash): string
+    {
+        $buf = new Buffer($binaryHash);
+        $p2pkh = new PayToPubKeyHashAddress($buf);
+        return $p2pkh->getAddress();
     }
 
     public static function extractP2pkhAddressFromSignature(string $signaturePem, NetworkInterface $network = null): string

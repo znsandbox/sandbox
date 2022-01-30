@@ -61,41 +61,6 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         return TransactionEntity::class;
     }
 
-    /*private function loadPrivateFromPemFile(string $file): PrivateKeyInterface
-    {
-        $adapter = EccFactory::getAdapter();
-        $pemPrivateKeySerializer = new PemPrivateKeySerializer(new DerPrivateKeySerializer($adapter));
-        $pemPrivate = file_get_contents($file);
-        $private = $pemPrivateKeySerializer->parse($pemPrivate);
-        return $private;
-    }
-
-    private function loadPublicFromPemFile(string $file): PublicKeyInterface
-    {
-        $adapter = EccFactory::getAdapter();
-        $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
-        $pemPublic = file_get_contents($this->publicPemFile);
-        $public = $pemPublicKeySerializer->parse($pemPublic);
-        return $public;
-    }
-
-    public function publicKeyToDer(PublicKeyInterface $public): string
-    {
-        $adapter = EccFactory::getAdapter();
-        $derPublicKeySerializer = new DerPublicKeySerializer($adapter);
-        $derPublic = $derPublicKeySerializer->serialize($public);
-        return $derPublic;
-    }
-
-    public function publicKeyToAddress(PublicKeyInterface $public): PayToPubKeyHashAddress
-    {
-        $derPublic = $this->publicKeyToDer($public);
-        $buf = new Buffer($derPublic);
-        $th = Hash::sha256ripe160($buf);
-        $masterAddr = new PayToPubKeyHashAddress($th);
-        return $masterAddr;
-    }*/
-
     protected function getPayload(TransactionEntity $transactionEntity): array
     {
         $data = [
@@ -131,7 +96,10 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
         $hasher = new SignHasher($algorithm);
 
-        $c14n = new C14n(['sort-string', 'json-unescaped-unicode']);
+        $c14n = new C14n([
+//            'sort-string',
+            'json-unescaped-unicode',
+        ]);
         $canonicalJson = $c14n->encode($data);
         //dd($canonicalJson);
         $gmp = $hasher->makeHash($canonicalJson, $generator);
@@ -140,12 +108,6 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
     public function send(string $privateKey, string $toAddress, int $amount): TransactionEntity
     {
-        /*$bitcoinECDSA = new BitcoinECDSA();
-
-        if(!$bitcoinECDSA->validateAddress($toAddress)) {
-            throw new \Exception('to address not valid!');
-        }*/
-
         BitcoinHelper::validateAddress($toAddress);
 
         $bitcoinKey = new BitcoinKey($this->privateKeyWif);
@@ -154,7 +116,10 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         $addressEntity = new AddressEntity();
         $addressEntity->setAddress($network->getAddress());
         $addressEntity->setHash(Base58::decode($network->getAddress())->getHex());
-        $addressEntity->setPublicKey(base64_encode($bitcoinKey->getPublic()->getBinary()));
+        $addressEntity->setPublicKey($bitcoinKey->getPublic()->getPubKeyHash()->getHex());
+
+//        dd(BitcoinHelper::extractP2pkhAddressFromPublicKeyHash(hex2bin($bitcoinKey->getPublic()->getPubKeyHash()->getHex())));
+
 //        $derPublic = $this->publicKeyToDer($public);
 //        $addressEntity->setPublicKey(base64_encode($derPublic));
         $this->getEntityManager()->persist($addressEntity);
@@ -174,7 +139,7 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
         ValidationHelper::validateEntity($transactionEntity);
 //        dd($transactionEntity);
-        $this->verifyByPublicKey($transactionEntity/*, $public*/);
+        $this->verify($transactionEntity/*, $public*/);
 
 
         $this->getEntityManager()->persist($transactionEntity);
@@ -189,19 +154,6 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
 
     private function verify(TransactionEntity $transactionEntity): void
     {
-        $query = new Query();
-        $query->where('address', $transactionEntity->getFromAddress());
-        /** @var AddressEntity $addressEntity */
-        $addressEntity = $this->getEntityManager()->one(AddressEntity::class, $query);
-
-//        $adapter = EccFactory::getAdapter();
-//        $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
-//        $public = $pemPublicKeySerializer->parse($addressEntity->getPublicKey());
-        $this->verifyByPublicKey($transactionEntity/*, $public*/);
-    }
-
-    private function verifyByPublicKey(TransactionEntity $transactionEntity/*, PublicKeyInterface $public*/): void
-    {
         ValidationHelper::validateEntity($transactionEntity);
 
         $signaturePem = $transactionEntity->getSignature();
@@ -213,7 +165,24 @@ class TransactionService extends BaseCrudService implements TransactionServiceIn
         if (!$isValid) {
             throw new \Exception('Not verify signature!');
         }
+
+
+
+//        $query = new Query();
+//        $query->where('address', $transactionEntity->getFromAddress());
+//        /** @var AddressEntity $addressEntity */
+//        $addressEntity = $this->getEntityManager()->one(AddressEntity::class, $query);
+
+//        $adapter = EccFactory::getAdapter();
+//        $pemPublicKeySerializer = new PemPublicKeySerializer(new DerPublicKeySerializer($adapter));
+//        $public = $pemPublicKeySerializer->parse($addressEntity->getPublicKey());
+//        $this->verifyByPublicKey($transactionEntity/*, $public*/);
     }
+
+//    private function verifyByPublicKey(TransactionEntity $transactionEntity/*, PublicKeyInterface $public*/): void
+//    {
+//
+//    }
 
     private function sign(TransactionEntity $transactionEntity/*, PrivateKeyInterface $private*/)
     {
