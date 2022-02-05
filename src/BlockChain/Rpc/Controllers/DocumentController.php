@@ -84,8 +84,15 @@ H68Jiv7qQdQ0Qu2RvKO8QUCbh1Jmq+6YgIGS/8gialBoDtcKF364efb/sx5xKqjx45hqcDuVQIDAn6bY
         if(!$isVerify) {
             throw new \Exception('Signature not verified!');
         }
+
+        $data = json_decode($signedMessage->getMessage(), JSON_OBJECT_AS_ARRAY);
+        if(json_last_error()) {
+            $data = null;
+        }
+
         return [
             'address' => $fromAddress,
+            'data' => $data,
 //            'document' => $document,
             'message' => $signedMessage->getMessage(),
             'publicKey' => $pub->getHex(),
