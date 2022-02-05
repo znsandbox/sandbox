@@ -17,6 +17,8 @@ use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;
 use ZnLib\Rpc\Rpc\Serializers\SerializerInterface;
+use ZnSandbox\Sandbox\BlockChain\Domain\Helper\BitcoinHelper;
+//use ZnSandbox\Sandbox\BlockChain\Domain\Libs\MessageSigner\MessageSigner;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
@@ -42,13 +44,21 @@ class DocumentController extends BaseCrudRpcController
 
     public function send(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
-        $fromAddress = $requestEntity->getParamItem('fromAddress');
+//        $fromAddress = $requestEntity->getParamItem('fromAddress');
         $document = $requestEntity->getParamItem('document');
+        $result = $this->verifyDocument($document);
+        return $this->serializeResult($result);
+    }
 
-        $privFactory = new PrivateKeyFactory();
+    private function verifyDocument(string $document) {
+        $pub = BitcoinHelper::extractPublicKey($document);
+        $fromAddress = BitcoinHelper::extractP2pkhAddressFromPublicKeyHash($pub->getPubKeyHash()->getBinary());
+
+        /*$privFactory = new PrivateKeyFactory();
         $priv = $privFactory->fromWif('L4stU9ZoL9AXmxuerpTRE26Tbq5AQKFrBxT1sgoTAnxHywUumf41');
         $publicKey = $priv->getPublicKey();
-        $pubKeyHash = $publicKey->getPubKeyHash();
+        $pubKeyHash = $publicKey->getPubKeyHash();*/
+
         $ec = Bitcoin::getEcAdapter();
         $signer = new MessageSigner($ec);
 
@@ -67,12 +77,19 @@ H68Jiv7qQdQ0Qu2RvKO8QUCbh1Jmq+6YgIGS/8gialBoDtcKF364efb/sx5xKqjx45hqcDuVQIDAn6bY
         $addrCreator = new AddressCreator();
         /** @var PayToPubKeyHashAddress $payToPubKeyHashAddress */
         $payToPubKeyHashAddress = $addrCreator->fromString($fromAddress);
-        
+
+//        $pub = null;
+//        $pub = $signer->recoverPubKey($signedMessage, $payToPubKeyHashAddress);
         $isVerify = $signer->verify($signedMessage, $payToPubKeyHashAddress);
         if(!$isVerify) {
             throw new \Exception('Signature not verified!');
         }
-
-        return $this->serializeResult([$fromAddress, $document, $isVerify]);
+        return [
+            'address' => $fromAddress,
+//            'document' => $document,
+            'message' => $signedMessage->getMessage(),
+            'publicKey' => $pub->getHex(),
+            'isVerify' => $isVerify,
+        ];
     }
 }

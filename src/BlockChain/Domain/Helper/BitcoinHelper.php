@@ -132,6 +132,16 @@ class BitcoinHelper
     public static function extractPublicKey(string $signaturePem, NetworkInterface $network = null): PublicKeyInterface
     {
         $signedMessage = self::parseSignature($signaturePem);
+        return self::extractPublicKeyBySignedMessage($signedMessage, $network);
+
+        /*$pubKeyHash = $publicKey->getPubKeyHash();
+        $masterAddr = new PayToPubKeyHashAddress($pubKeyHash);
+        dd($masterAddr->getAddress());
+        return $publicKey->getPubKeyHash()->equals($address->getHash());*/
+    }
+
+    public static function extractPublicKeyBySignedMessage(SignedMessage $signedMessage, NetworkInterface $network = null): PublicKeyInterface
+    {
         $ecAdapter = Bitcoin::getEcAdapter();
         $signer = new MessageSigner($ecAdapter);
         $network = $network ?: Bitcoin::getNetwork();
@@ -142,10 +152,5 @@ class BitcoinHelper
             $signedMessage->getCompactSignature()
         );
         return $publicKey;
-
-        /*$pubKeyHash = $publicKey->getPubKeyHash();
-        $masterAddr = new PayToPubKeyHashAddress($pubKeyHash);
-        dd($masterAddr->getAddress());
-        return $publicKey->getPubKeyHash()->equals($address->getHash());*/
     }
 }
