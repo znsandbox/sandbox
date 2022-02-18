@@ -2,7 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz;
 
+use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
+
+DeprecateHelper::hardThrow();
 
 class ListUrl
 {

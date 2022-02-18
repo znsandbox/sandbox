@@ -19,6 +19,7 @@ use ZnSandbox\Sandbox\Grabber\Domain\Helpers\UrlHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Repositories\QueueRepositoryInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\QueueServiceInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\SiteServiceInterface;
+use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\ItemParser;
 use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\ListParser;
 use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\PaginatorParser;
 
@@ -93,6 +94,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 
     public function parseOne(QueueEntity $queueEntity)
     {
+        
         if ($queueEntity->getType() == QueueTypeEnum::LIST) {
             $content = $queueEntity->getContent();
             $parser = new ListParser();
@@ -119,6 +121,8 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 
         if ($queueEntity->getType() == QueueTypeEnum::ITEM) {
             $queueEntity->setStatusId(QueueStatusEnum::PARSED);
+            $parser = new ItemParser();
+            dd($parser->parse($queueEntity->getContent()));
             $this->getEntityManager()->persist($queueEntity);
         }
 
