@@ -15,6 +15,11 @@ class ItemParser implements ListParserInterface
         $crawler = new Crawler($html);
 
         $data = [];
+
+        $ogProps = ParseHelper::parseMeta($crawler);
+        
+        $data['sourceUrl'] = $ogProps['property']['og']['url'];
+        
         $data['breadcrumbs'] = $this->parseBreadcrumb($crawler);
         
         if (count($data['breadcrumbs']) > 1) {

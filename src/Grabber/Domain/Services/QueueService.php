@@ -140,6 +140,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $productEntity->setTypeId(ProductTypeEnum::PRODUCT);
             $productEntity->setCompanyId($companyId);
             $productEntity->setImageUrl($item['mainImageUrl']);
+            $productEntity->setSourceUrl($item['sourceUrl']);
             $productEntity->setAttributes($item['attributes']);
 
             $categoryEntity = new CategoryEntity();
