@@ -16,10 +16,7 @@ class ItemParser implements ListParserInterface
 
         $data = [];
         $data['breadcrumbs'] = $this->parseBreadcrumb($crawler);
-
         $data['price'] = $this->parsePrice($crawler);
-
-//        dd($data);
 
 //        $data['src'] = $crawler->filter('div.image > a.main-image > img')->attr('src');
         $data['mainImageUrl'] = $crawler->filter('a.main-image')->attr('href');
@@ -27,10 +24,48 @@ class ItemParser implements ListParserInterface
         $data['shortDescription'] = $crawler->filter('div.short_description > p')->html();
         $data['description'] = $crawler->filter('#tab-description')->html();
 
-        $ogProps = ParseHelper::parseMetaOg($crawler);
+        //$data['ogProps'] = ParseHelper::parseMetaOg($crawler);
+        $data['attributes'] = $this->parseAttributes($crawler);
 
-        $data['ogProps'] = $ogProps;
+        $data = $this->prepare($data);
 
+        return $data;
+    }
+
+    private function prepare($data) {
+        $data['title'] = str_replace(' | Вэйп клаб Казахстан', '', $data['title']);
+
+        $assoc = [
+            'manufacturer' => 'Производитель',
+            'model' => 'Модель',
+            'class' => 'Класс',
+            'nicotine' => 'Содержание никотина',
+            'taste' => 'Вкус',
+            'tasteList' => 'Со вкусами',
+            'volume' => 'Объем',
+            'composition' => 'Состав',
+            'bottleType' => 'Флакон',
+            'countryOfOrigin' => 'Страна производства',
+        ];
+        foreach ($assoc as $name => $title) {
+            $assoc[$name] = mb_strtolower($title);
+        }
+
+        $assocFlip = array_flip($assoc);
+
+//        dd($assoc);
+
+        foreach ($data['attributes'] as &$attribute) {
+            $title = mb_strtolower($attribute['title']);
+            if(isset($assocFlip[$title])) {
+                $attribute['name'] = $assocFlip[$title];
+            }
+        }
+       // dd($data['attributes']);
+        return $data;
+    }
+
+    private function parseAttributes(Crawler $crawler) {
         $props = $crawler->filter('ul.list-unstyled > li');
 
         $attrs = [];
@@ -62,17 +97,7 @@ class ItemParser implements ListParserInterface
                 ];
             }
         }
-
-        $data['attrs'] = $attrs;
-
-        $data = $this->prepare($data);
-
-        return $data;
-    }
-
-    private function prepare($data) {
-        $data['title'] = str_replace(' | Вэйп клаб Казахстан', '', $data['title']);
-        return $data;
+        return $attrs;
     }
 
     private function parsePrice(Crawler $crawler) {

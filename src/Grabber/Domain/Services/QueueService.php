@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Grabber\Domain\Services;
 
 use Illuminate\Support\Collection;
+use Incloud\Packages\Shop\Domain\Entities\ProductEntity;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
@@ -122,7 +123,20 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
         if ($queueEntity->getType() == QueueTypeEnum::ITEM) {
             $queueEntity->setStatusId(QueueStatusEnum::PARSED);
             $parser = new ItemParser();
-            dd($parser->parse($queueEntity->getContent()));
+            $item = $parser->parse($queueEntity->getContent());
+
+            $productEntity = new ProductEntity();
+
+            $productEntity->setTitle($item['title']);
+            $productEntity->setDescription($item['description']);
+            $productEntity->setShortDescription($item['shortDescription']);
+            $productEntity->setPrice($item['price']['amount']);
+//            $productEntity->set($item['']);
+
+
+
+            dd($item);
+
             $this->getEntityManager()->persist($queueEntity);
         }
 
