@@ -134,6 +134,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $productEntity = new ProductEntity();
 
             $productEntity->setTitle($item['title']);
+            $productEntity->setModel($item['model']);
             $productEntity->setDescription($item['description']);
             $productEntity->setShortDescription($item['shortDescription'] ?? null);
             $productEntity->setPrice($item['price']['amount']);

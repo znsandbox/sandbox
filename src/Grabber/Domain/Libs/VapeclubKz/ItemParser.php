@@ -39,8 +39,11 @@ class ItemParser implements ListParserInterface
 
         //$data['ogProps'] = ParseHelper::parseMetaOg($crawler);
         $data['attributes'] = $this->parseAttributes($crawler);
+        $data['mainAttributes'] = $this->parseMainAttributes($crawler);
 
         $data = $this->prepare($data);
+
+//        dd($data);
 
         return $data;
     }
@@ -88,10 +91,17 @@ class ItemParser implements ListParserInterface
             }
         }
         // dd($data['attributes']);
+
+        foreach ($data['mainAttributes'] as $attribute) {
+            if($attribute['title'] == 'Модель') {
+                $data['model'] = $attribute['value'];
+            }
+        }
+        
         return $data;
     }
 
-    private function parseAttributes(Crawler $crawler)
+    private function parseMainAttributes(Crawler $crawler)
     {
         $props = $crawler->filter('ul.list-unstyled > li');
 
@@ -106,25 +116,32 @@ class ItemParser implements ListParserInterface
                 $html = trim($html, "\n\t\r ");
                 //$this->dump($html);
 
-               
+
                 $items = explode(':', $html);
                 if(count($items) > 1) {
                     list($title, $value) = $items;
                 } else {
                     list($title, $value) = $html;
                 }
-                
+
                 $attrs[] = [
                     'title' => trim($title),
                     'value' => trim($value),
                 ];
             }
         }
+        
+        return $attrs;
+    }
+    
+    private function parseAttributes(Crawler $crawler)
+    {
+        $attrs = [];
 
         $table = ParseHelper::parseTable($crawler->filter('table.attrbutes'));
 
         foreach ($table as $row) {
-            if (count($row) > 1) {
+            if (count($row) > 1 && !empty($row[1])) {
                 $attrs[] = [
                     'title' => $row[0],
                     'value' => $row[1],
