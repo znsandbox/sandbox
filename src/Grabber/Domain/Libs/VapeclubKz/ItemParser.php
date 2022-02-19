@@ -16,6 +16,17 @@ class ItemParser implements ListParserInterface
 
         $data = [];
         $data['breadcrumbs'] = $this->parseBreadcrumb($crawler);
+        
+        if (count($data['breadcrumbs']) > 1) {
+            $data['categoryTitle'] = $data['breadcrumbs'][1];
+        }
+        
+        
+
+        //dd($data);
+
+
+
         $data['price'] = $this->parsePrice($crawler);
 
 //        $data['src'] = $crawler->filter('div.image > a.main-image > img')->attr('src');
@@ -32,7 +43,16 @@ class ItemParser implements ListParserInterface
         return $data;
     }
 
-    private function prepare($data) {
+    private function makeToken($title): string
+    {
+        $title = mb_strtolower($title);
+        $title = StringHelper::removeDoubleSpace($title);
+        $title = trim($title);
+        return $title;
+    }
+
+    private function prepare($data)
+    {
         $data['title'] = str_replace(' | Вэйп клаб Казахстан', '', $data['title']);
 
         $assoc = [
@@ -48,7 +68,7 @@ class ItemParser implements ListParserInterface
             'countryOfOrigin' => 'Страна производства',
         ];
         foreach ($assoc as $name => $title) {
-            $assoc[$name] = mb_strtolower($title);
+            $assoc[$name] = self::makeToken($title);
         }
 
         $assocFlip = array_flip($assoc);
@@ -56,16 +76,17 @@ class ItemParser implements ListParserInterface
 //        dd($assoc);
 
         foreach ($data['attributes'] as &$attribute) {
-            $title = mb_strtolower($attribute['title']);
-            if(isset($assocFlip[$title])) {
+            $title = self::makeToken($attribute['title']);
+            if (isset($assocFlip[$title])) {
                 $attribute['name'] = $assocFlip[$title];
             }
         }
-       // dd($data['attributes']);
+        // dd($data['attributes']);
         return $data;
     }
 
-    private function parseAttributes(Crawler $crawler) {
+    private function parseAttributes(Crawler $crawler)
+    {
         $props = $crawler->filter('ul.list-unstyled > li');
 
         $attrs = [];
@@ -100,7 +121,8 @@ class ItemParser implements ListParserInterface
         return $attrs;
     }
 
-    private function parsePrice(Crawler $crawler) {
+    private function parsePrice(Crawler $crawler)
+    {
         $price = $crawler->filter('.update_price')->html();
         $isMatch = preg_match('#(([\d\s]+)\s*([^\d]+))#i', $price, $matches);
         if ($isMatch) {
@@ -116,7 +138,8 @@ class ItemParser implements ListParserInterface
         return null;
     }
 
-    private function parseBreadcrumb(Crawler $crawler) {
+    private function parseBreadcrumb(Crawler $crawler)
+    {
         return $crawler->filter('ul.breadcrumb a')->each(function (Crawler $crawler, $i) {
 //            dd($crawler->html());
             return $crawler->html();

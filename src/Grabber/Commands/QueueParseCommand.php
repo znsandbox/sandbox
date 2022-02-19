@@ -57,11 +57,13 @@ class QueueParseCommand extends Command
     {
         $url = UrlHelper::forgeUrlByQueueEntity($queueEntity);
         $output->write($url . ' ... ');
+        
         try {
             $this->queueService->parseOne($queueEntity);
             $output->writeln('<info>OK</info>');
 //            sleep(1);
         } catch (\Exception $e) {
+//            dd($queueEntity);
 //            dd($e);
             $output->writeln('<error>FAIL</error>');
         }

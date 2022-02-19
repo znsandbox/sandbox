@@ -3,7 +3,9 @@
 namespace ZnSandbox\Sandbox\Grabber\Domain\Services;
 
 use Illuminate\Support\Collection;
+use Incloud\Packages\Shop\Domain\Entities\CategoryEntity;
 use Incloud\Packages\Shop\Domain\Entities\ProductEntity;
+use Incloud\Packages\Shop\Domain\Enums\ProductTypeEnum;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
@@ -131,11 +133,17 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $productEntity->setDescription($item['description']);
             $productEntity->setShortDescription($item['shortDescription']);
             $productEntity->setPrice($item['price']['amount']);
-//            $productEntity->set($item['']);
+            $productEntity->setTypeId(ProductTypeEnum::PRODUCT);
+            $productEntity->setImageUrl($item['mainImageUrl']);
 
+            $categoryEntity = new CategoryEntity();
+            $categoryEntity->setParentId(39);
+            $categoryEntity->setTitle($item['categoryTitle']);
+            $categoryEntity = $this->getEntityManager()->oneByUnique($categoryEntity);
+            $productEntity->setCategoryId($categoryEntity->getId());
+            dd($productEntity);
 
-
-            dd($item);
+            dd($item['categoryTitle']);
 
             $this->getEntityManager()->persist($queueEntity);
         }
