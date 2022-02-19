@@ -126,26 +126,39 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $queueEntity->setStatusId(QueueStatusEnum::PARSED);
             $parser = new ItemParser();
             $item = $parser->parse($queueEntity->getContent());
+            
+//            dd($item);
+            
+            $companyId = 3;
 
             $productEntity = new ProductEntity();
 
             $productEntity->setTitle($item['title']);
             $productEntity->setDescription($item['description']);
-            $productEntity->setShortDescription($item['shortDescription']);
+            $productEntity->setShortDescription($item['shortDescription'] ?? null);
             $productEntity->setPrice($item['price']['amount']);
             $productEntity->setTypeId(ProductTypeEnum::PRODUCT);
+            $productEntity->setCompanyId($companyId);
             $productEntity->setImageUrl($item['mainImageUrl']);
+            $productEntity->setAttributes($item['attributes']);
 
             $categoryEntity = new CategoryEntity();
+            $categoryEntity->setCompanyId($companyId);
             $categoryEntity->setParentId(39);
             $categoryEntity->setTitle($item['categoryTitle']);
-            $categoryEntity = $this->getEntityManager()->oneByUnique($categoryEntity);
-            $productEntity->setCategoryId($categoryEntity->getId());
-            dd($productEntity);
+//            $categoryEntity = $this->getEntityManager()->oneByUnique($categoryEntity);
 
-            dd($item['categoryTitle']);
+//            dd($productEntity);
+            
+            $this->getEntityManager()->persist($categoryEntity);
+            $productEntity->setCategoryId($categoryEntity->getId());
+            $this->getEntityManager()->persist($productEntity);
+//            dd($productEntity);
+
+//            dd($item['categoryTitle']);
 
             $this->getEntityManager()->persist($queueEntity);
+            
         }
 
         if ($queueEntity->getType() == QueueTypeEnum::COMMON) {

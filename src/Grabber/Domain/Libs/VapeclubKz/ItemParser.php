@@ -21,18 +21,15 @@ class ItemParser implements ListParserInterface
             $data['categoryTitle'] = $data['breadcrumbs'][1];
         }
         
-        
-
         //dd($data);
 
-
-
         $data['price'] = $this->parsePrice($crawler);
-
 //        $data['src'] = $crawler->filter('div.image > a.main-image > img')->attr('src');
         $data['mainImageUrl'] = $crawler->filter('a.main-image')->attr('href');
         $data['title'] = $crawler->filter('title')->html();
-        $data['shortDescription'] = $crawler->filter('div.short_description > p')->html();
+        if($crawler->filter('div.short_description')->count()) {
+            $data['shortDescription'] = strip_tags($crawler->filter('div.short_description')->html());
+        }
         $data['description'] = $crawler->filter('#tab-description')->html();
 
         //$data['ogProps'] = ParseHelper::parseMetaOg($crawler);
@@ -53,7 +50,11 @@ class ItemParser implements ListParserInterface
 
     private function prepare($data)
     {
-        $data['title'] = str_replace(' | Вэйп клаб Казахстан', '', $data['title']);
+        $data['title'] = str_replace('Вэйп клаб Казахстан', '', $data['title']);
+        $data['title'] = str_replace('Вейп клаб Казахстан', '', $data['title']);
+        $data['title'] = StringHelper::removeDoubleSpace($data['title']);
+        $data['title'] = trim($data['title'], ' |');
+        $data['title'] = strip_tags($data['title']);
 
         $assoc = [
             'manufacturer' => 'Производитель',
@@ -100,7 +101,14 @@ class ItemParser implements ListParserInterface
                 $html = trim($html, "\n\t\r ");
                 //$this->dump($html);
 
-                list($title, $value) = explode(':', $html);
+               
+                $items = explode(':', $html);
+                if(count($items) > 1) {
+                    list($title, $value) = $items;
+                } else {
+                    list($title, $value) = $html;
+                }
+                
                 $attrs[] = [
                     'title' => trim($title),
                     'value' => trim($value),
