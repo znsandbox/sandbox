@@ -43,7 +43,7 @@ class ItemParser implements ListParserInterface
         $data['mainImageUrl'] = $crawler->filter('a.main-image')->attr('href');
         $data['title'] = $crawler->filter('title')->html();
         if($crawler->filter('div.short_description')->count()) {
-            $data['shortDescription'] = strip_tags($crawler->filter('div.short_description')->html());
+            $data['shortDescription'] = ParseHelper::normalizeStringFromHtml($crawler->filter('div.short_description')->html());
         }
         $data['description'] = $crawler->filter('#tab-description')->html();
 
@@ -57,14 +57,15 @@ class ItemParser implements ListParserInterface
 
 //        dd($data);
 
+        unset($data['mainAttributes']);
+        
         return $data;
     }
 
     private function makeToken($title): string
     {
         $title = mb_strtolower($title);
-        $title = StringHelper::removeDoubleSpace($title);
-        $title = trim($title);
+        $title = ParseHelper::normalizeStringFromHtml($title);
         return $title;
     }
 
@@ -117,13 +118,11 @@ class ItemParser implements ListParserInterface
     {
         $data['title'] = str_replace('Вэйп клаб Казахстан', '', $data['title']);
         $data['title'] = str_replace('Вейп клаб Казахстан', '', $data['title']);
-        $data['title'] = StringHelper::removeDoubleSpace($data['title']);
         $data['title'] = trim($data['title'], ' |');
-        $data['title'] = strip_tags($data['title']);
+        $data['title'] = ParseHelper::normalizeStringFromHtml($data['title']);
 
         $data['attributes'] = $this->markAttributes($data['attributes']);
         $data['mainAttributes'] = $this->markAttributes($data['mainAttributes']);
-        // dd($data['attributes']);
 
         $data['model'] = $this->extractModelFromMainAttributes($data['mainAttributes']);
         $data['brand'] = $this->extractBrandlFromMainAttributes($data['mainAttributes']);
@@ -131,51 +130,58 @@ class ItemParser implements ListParserInterface
         return $data;
     }
 
+    private function normalizeStringFromHtml($text) {
+        $text = htmlspecialchars_decode($text);
+        $text = trim($text);
+        $text = strip_tags($text);
+        $text = StringHelper::removeDoubleSpace($text);
+        return $text;
+    }
+    
     private function parseMainAttributes(Crawler $crawler)
     {
         $props = $crawler->filter('ul.list-unstyled > li');
-
         $attrs = [];
-
         foreach ($props as $content) {
             $el = new Crawler($content);
             $html = $el->html();
             if ($html !== '0') {
                 $html = strip_tags($html);
-                $html = StringHelper::removeDoubleSpace($html);
+//                $html = StringHelper::removeDoubleSpace($html);
                 $html = trim($html, "\n\t\r ");
-                //$this->dump($html);
-
-
                 $items = explode(':', $html);
                 if(count($items) > 1) {
                     list($title, $value) = $items;
                 } else {
                     list($title, $value) = $html;
                 }
-
-                $attrs[] = [
-                    'title' => trim($title),
-                    'value' => trim($value),
-                ];
+                $title = ParseHelper::normalizeStringFromHtml($title);
+                $value = ParseHelper::normalizeStringFromHtml($value);
+                if($title || $value) {
+                    $attrs[] = [
+                        'title' => $title,
+                        'value' => $value,
+                    ];
+                }
             }
         }
-        
         return $attrs;
     }
     
     private function parseAttributes(Crawler $crawler)
     {
         $attrs = [];
-
         $table = ParseHelper::parseTable($crawler->filter('table.attrbutes'));
-
         foreach ($table as $row) {
             if (count($row) > 1 && !empty($row[1])) {
-                $attrs[] = [
-                    'title' => $row[0],
-                    'value' => $row[1],
-                ];
+                $title = ParseHelper::normalizeStringFromHtml($row[0]);
+                $value = ParseHelper::normalizeStringFromHtml($row[1]);
+                if($title || $value) {
+                    $attrs[] = [
+                        'title' => $title,
+                        'value' => $value,
+                    ];
+                }
             }
         }
         return $attrs;
@@ -189,11 +195,9 @@ class ItemParser implements ListParserInterface
             $amount = StringHelper::removeAllSpace($matches[2]);
             $currency = $matches[3];
             return [
-                'amount' => $amount,
-                'currency' => $currency,
+                'amount' => ParseHelper::normalizeStringFromHtml($amount),
+                'currency' => ParseHelper::normalizeStringFromHtml($currency),
             ];
-
-//            dd($matches);
         }
         return null;
     }
@@ -201,8 +205,7 @@ class ItemParser implements ListParserInterface
     private function parseBreadcrumb(Crawler $crawler)
     {
         return $crawler->filter('ul.breadcrumb a')->each(function (Crawler $crawler, $i) {
-//            dd($crawler->html());
-            return $crawler->html();
+            return ParseHelper::normalizeStringFromHtml($crawler->html());
         });
     }
 }

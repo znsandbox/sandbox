@@ -128,6 +128,8 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $queueEntity->setStatusId(QueueStatusEnum::PARSED);
             $parser = new ItemParser();
             $item = $parser->parse($queueEntity->getContent());
+
+//            dd($item);
             
             $companyId = 3;
 
