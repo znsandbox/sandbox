@@ -132,11 +132,11 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 //            dd($item);
             
             $companyId = 3;
+            $parentCategoryId = 39;
 
             $productEntity = new ProductEntity();
-
             $productEntity->setTitle($item['title']);
-            $productEntity->setModel($item['model']);
+//            $productEntity->setModel($item['model']);
             $productEntity->setDescription($item['description']);
             $productEntity->setShortDescription($item['shortDescription'] ?? null);
             $productEntity->setPrice($item['price']['amount']);
@@ -153,29 +153,23 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             if($item['brand']) {
                 $brandEntity = new BrandEntity();
                 $brandEntity->setTitle($item['brand']);
-                $this->getEntityManager()->persist($brandEntity);
-//                $productEntity->setBrandId($brandEntity->getId());
-//                dd($brandEntity);
                 if($item['model']) {
                     $modelEntity = new ModelEntity();
-                    $modelEntity->setBrandId($brandEntity->getId());
+                    $modelEntity->setBrand($brandEntity);
                     $modelEntity->setTitle($item['model']);
-                    $this->getEntityManager()->persist($modelEntity);
-                    $productEntity->setModelId($modelEntity->getId());
+                    $productEntity->setModel($modelEntity);
                 }
             }
             
             $categoryEntity = new CategoryEntity();
             $categoryEntity->setCompanyId($companyId);
-            $categoryEntity->setParentId(39);
+            $categoryEntity->setParentId($parentCategoryId);
             $categoryEntity->setTitle($item['categoryTitle']);
-//            $categoryEntity = $this->getEntityManager()->oneByUnique($categoryEntity);
+            $productEntity->setCategory($categoryEntity);
 
-//            dd($productEntity);
+            $this->persistProduct($productEntity);
             
-            $this->getEntityManager()->persist($categoryEntity);
-            $productEntity->setCategoryId($categoryEntity->getId());
-            $this->getEntityManager()->persist($productEntity);
+            
 //            dd($productEntity);
 
 //            dd($item['categoryTitle']);
@@ -196,6 +190,26 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
         $this->getEntityManager()->persist($contentEntity);
 
         //dd($queueEntity);
+    }
+    
+    private function persistProduct(ProductEntity $productEntity) {
+
+        $modelEntity = $productEntity->getModel();
+        if($modelEntity) {
+            $brandEntity = $modelEntity->getBrand();
+            if($brandEntity) {
+                $this->getEntityManager()->persist($brandEntity);
+                $modelEntity->setBrandId($brandEntity->getId());
+            }
+            $this->getEntityManager()->persist($modelEntity);
+            $productEntity->setModelId($modelEntity->getId());
+        }
+        $categoryEntity = $productEntity->getCategory();
+        if($categoryEntity) {
+            $this->getEntityManager()->persist($categoryEntity);
+            $productEntity->setCategoryId($categoryEntity->getId());
+        }
+        $this->getEntityManager()->persist($productEntity);
     }
 
     /*private function forgeUrlByQueueEntity(QueueEntity $queueEntity): string {

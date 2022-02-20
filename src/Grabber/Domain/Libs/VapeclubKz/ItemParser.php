@@ -55,8 +55,6 @@ class ItemParser implements ListParserInterface
 
         $data = $this->prepare($data);
 
-//        dd($data);
-
         unset($data['mainAttributes']);
         
         return $data;
