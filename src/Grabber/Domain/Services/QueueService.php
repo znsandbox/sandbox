@@ -152,7 +152,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
                 $brandEntity = new BrandEntity();
                 $brandEntity->setTitle($item['brand']);
                 $this->getEntityManager()->persist($brandEntity);
-                $productEntity->setBrandId($brandEntity->getId());
+//                $productEntity->setBrandId($brandEntity->getId());
 //                dd($brandEntity);
                 if($item['model']) {
                     $modelEntity = new ModelEntity();
@@ -162,9 +162,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
                     $productEntity->setModelId($modelEntity->getId());
                 }
             }
-
             
-
             $categoryEntity = new CategoryEntity();
             $categoryEntity->setCompanyId($companyId);
             $categoryEntity->setParentId(39);
