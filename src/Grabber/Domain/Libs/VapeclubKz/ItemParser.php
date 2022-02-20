@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz;
 
+use NS40\e;
 use Symfony\Component\DomCrawler\Crawler;
 use ZnCore\Base\Helpers\StringHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Helpers\ParseHelper;
@@ -17,6 +18,15 @@ class ItemParser implements ListParserInterface
         $data = [];
 
         $ogProps = ParseHelper::parseMeta($crawler);
+        
+        if(!empty($ogProps['name']['keywords'])) {
+            $keywords = $ogProps['name']['keywords'];
+            $keywords = trim($keywords, ' ,');
+            $keywordsTags = explode(',', $keywords);
+            $keywordsTags = array_map('trim', $keywordsTags);
+            $data['tags'] = $keywordsTags;
+//            dd($keywordsTags);
+        }
         
         $data['sourceUrl'] = $ogProps['property']['og']['url'];
         

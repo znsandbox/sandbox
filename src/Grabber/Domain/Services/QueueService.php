@@ -143,7 +143,11 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $productEntity->setImageUrl($item['mainImageUrl']);
             $productEntity->setSourceUrl($item['sourceUrl']);
             $productEntity->setAttributes($item['attributes']);
-            
+
+            /*if($item['tags']) {
+                dd($item['tags']);
+            }*/
+
             if($item['brand']) {
                 $brandEntity = new BrandEntity();
                 $brandEntity->setTitle($item['brand']);
