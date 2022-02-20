@@ -40,6 +40,8 @@ class ItemParser implements ListParserInterface
         //$data['ogProps'] = ParseHelper::parseMetaOg($crawler);
         $data['attributes'] = $this->parseAttributes($crawler);
         $data['mainAttributes'] = $this->parseMainAttributes($crawler);
+        
+        // todo: parse meta og keywords and description
 
         $data = $this->prepare($data);
 
@@ -56,14 +58,8 @@ class ItemParser implements ListParserInterface
         return $title;
     }
 
-    private function prepare($data)
+    private function markAttributes($attributes)
     {
-        $data['title'] = str_replace('Вэйп клаб Казахстан', '', $data['title']);
-        $data['title'] = str_replace('Вейп клаб Казахстан', '', $data['title']);
-        $data['title'] = StringHelper::removeDoubleSpace($data['title']);
-        $data['title'] = trim($data['title'], ' |');
-        $data['title'] = strip_tags($data['title']);
-
         $assoc = [
             'manufacturer' => 'Производитель',
             'model' => 'Модель',
@@ -79,25 +75,49 @@ class ItemParser implements ListParserInterface
         foreach ($assoc as $name => $title) {
             $assoc[$name] = self::makeToken($title);
         }
-
         $assocFlip = array_flip($assoc);
-
-//        dd($assoc);
-
-        foreach ($data['attributes'] as &$attribute) {
+        foreach ($attributes as &$attribute) {
             $title = self::makeToken($attribute['title']);
             if (isset($assocFlip[$title])) {
                 $attribute['name'] = $assocFlip[$title];
             }
         }
-        // dd($data['attributes']);
+        return $attributes;
+    }
 
-        foreach ($data['mainAttributes'] as $attribute) {
+    private function extractModelFromMainAttributes($attributes) {
+        foreach ($attributes as $attribute) {
             if($attribute['title'] == 'Модель') {
-                $data['model'] = $attribute['value'];
+                return $attribute['value'];
             }
         }
-        
+        return null;
+    }
+
+    private function extractBrandlFromMainAttributes($attributes) {
+        foreach ($attributes as $attribute) {
+            if($attribute['title'] == 'Производитель') {
+                return $attribute['value'];
+            }
+        }
+        return null;
+    }
+    
+    private function prepare($data)
+    {
+        $data['title'] = str_replace('Вэйп клаб Казахстан', '', $data['title']);
+        $data['title'] = str_replace('Вейп клаб Казахстан', '', $data['title']);
+        $data['title'] = StringHelper::removeDoubleSpace($data['title']);
+        $data['title'] = trim($data['title'], ' |');
+        $data['title'] = strip_tags($data['title']);
+
+        $data['attributes'] = $this->markAttributes($data['attributes']);
+        $data['mainAttributes'] = $this->markAttributes($data['mainAttributes']);
+        // dd($data['attributes']);
+
+        $data['model'] = $this->extractModelFromMainAttributes($data['mainAttributes']);
+        $data['brand'] = $this->extractBrandlFromMainAttributes($data['mainAttributes']);
+
         return $data;
     }
 

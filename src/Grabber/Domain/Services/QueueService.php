@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Grabber\Domain\Services;
 
 use Illuminate\Support\Collection;
+use Incloud\Packages\Shop\Domain\Entities\BrandEntity;
 use Incloud\Packages\Shop\Domain\Entities\CategoryEntity;
 use Incloud\Packages\Shop\Domain\Entities\ProductEntity;
 use Incloud\Packages\Shop\Domain\Enums\ProductTypeEnum;
@@ -127,8 +128,6 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $parser = new ItemParser();
             $item = $parser->parse($queueEntity->getContent());
             
-//            dd($item);
-            
             $companyId = 3;
 
             $productEntity = new ProductEntity();
@@ -143,6 +142,14 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
             $productEntity->setImageUrl($item['mainImageUrl']);
             $productEntity->setSourceUrl($item['sourceUrl']);
             $productEntity->setAttributes($item['attributes']);
+            
+            if($item['brand']) {
+                $brandEntity = new BrandEntity();
+                $brandEntity->setTitle($item['brand']);
+                $this->getEntityManager()->persist($brandEntity);
+                $productEntity->setBrandId($brandEntity->getId());
+//                dd($brandEntity);
+            }
 
             $categoryEntity = new CategoryEntity();
             $categoryEntity->setCompanyId($companyId);
