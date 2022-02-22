@@ -3,6 +3,11 @@
 namespace ZnSandbox\Sandbox\Grabber\Domain\Services;
 
 use Illuminate\Support\Collection;
+use Incloud\Packages\Shop\Domain\Entities\BrandEntity;
+use Incloud\Packages\Shop\Domain\Entities\CategoryEntity;
+use Incloud\Packages\Shop\Domain\Entities\ModelEntity;
+use Incloud\Packages\Shop\Domain\Entities\ProductEntity;
+use Incloud\Packages\Shop\Domain\Enums\ProductTypeEnum;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
@@ -19,6 +24,7 @@ use ZnSandbox\Sandbox\Grabber\Domain\Helpers\UrlHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Repositories\QueueRepositoryInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\QueueServiceInterface;
 use ZnSandbox\Sandbox\Grabber\Domain\Interfaces\Services\SiteServiceInterface;
+use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\ItemParser;
 use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\ListParser;
 use ZnSandbox\Sandbox\Grabber\Domain\Libs\VapeclubKz\PaginatorParser;
 
@@ -93,6 +99,7 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 
     public function parseOne(QueueEntity $queueEntity)
     {
+        
         if ($queueEntity->getType() == QueueTypeEnum::LIST) {
             $content = $queueEntity->getContent();
             $parser = new ListParser();
@@ -119,7 +126,56 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
 
         if ($queueEntity->getType() == QueueTypeEnum::ITEM) {
             $queueEntity->setStatusId(QueueStatusEnum::PARSED);
+            $parser = new ItemParser();
+            $item = $parser->parse($queueEntity->getContent());
+
+//            dd($item);
+            
+            $companyId = 3;
+            $parentCategoryId = 39;
+
+            $productEntity = new ProductEntity();
+            $productEntity->setTitle($item['title']);
+//            $productEntity->setModel($item['model']);
+            $productEntity->setDescription($item['description']);
+            $productEntity->setShortDescription($item['shortDescription'] ?? null);
+            $productEntity->setPrice($item['price']['amount']);
+            $productEntity->setTypeId(ProductTypeEnum::PRODUCT);
+            $productEntity->setCompanyId($companyId);
+            $productEntity->setImageUrl($item['mainImageUrl']);
+            $productEntity->setSourceUrl($item['sourceUrl']);
+            $productEntity->setAttributes($item['attributes']);
+
+            /*if($item['tags']) {
+                dd($item['tags']);
+            }*/
+
+            if($item['brand']) {
+                $brandEntity = new BrandEntity();
+                $brandEntity->setTitle($item['brand']);
+                if($item['model']) {
+                    $modelEntity = new ModelEntity();
+                    $modelEntity->setBrand($brandEntity);
+                    $modelEntity->setTitle($item['model']);
+                    $productEntity->setModel($modelEntity);
+                }
+            }
+            
+            $categoryEntity = new CategoryEntity();
+            $categoryEntity->setCompanyId($companyId);
+            $categoryEntity->setParentId($parentCategoryId);
+            $categoryEntity->setTitle($item['categoryTitle']);
+            $productEntity->setCategory($categoryEntity);
+
+            $this->persistProduct($productEntity);
+            
+            
+//            dd($productEntity);
+
+//            dd($item['categoryTitle']);
+
             $this->getEntityManager()->persist($queueEntity);
+            
         }
 
         if ($queueEntity->getType() == QueueTypeEnum::COMMON) {
@@ -134,6 +190,26 @@ class QueueService extends BaseCrudService implements QueueServiceInterface
         $this->getEntityManager()->persist($contentEntity);
 
         //dd($queueEntity);
+    }
+    
+    private function persistProduct(ProductEntity $productEntity) {
+
+        $modelEntity = $productEntity->getModel();
+        if($modelEntity) {
+            $brandEntity = $modelEntity->getBrand();
+            if($brandEntity) {
+                $this->getEntityManager()->persist($brandEntity);
+                $modelEntity->setBrandId($brandEntity->getId());
+            }
+            $this->getEntityManager()->persist($modelEntity);
+            $productEntity->setModelId($modelEntity->getId());
+        }
+        $categoryEntity = $productEntity->getCategory();
+        if($categoryEntity) {
+            $this->getEntityManager()->persist($categoryEntity);
+            $productEntity->setCategoryId($categoryEntity->getId());
+        }
+        $this->getEntityManager()->persist($productEntity);
     }
 
     /*private function forgeUrlByQueueEntity(QueueEntity $queueEntity): string {

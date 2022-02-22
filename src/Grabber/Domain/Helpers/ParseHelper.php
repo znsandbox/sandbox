@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Grabber\Domain\Helpers;
 use DOMAttr;
 use Symfony\Component\DomCrawler\Crawler;
 use ZnCore\Base\Helpers\HtmlHelper;
+use ZnCore\Base\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
@@ -12,11 +13,19 @@ use ZnSandbox\Sandbox\Grabber\Domain\Entities\UrlEntity;
 class ParseHelper
 {
 
+    public static function normalizeStringFromHtml($text) {
+        $text = htmlspecialchars_decode($text);
+        $text = trim($text);
+        $text = strip_tags($text);
+        $text = StringHelper::removeDoubleSpace($text);
+        return $text;
+    }
+    
     public static function parseTable(Crawler $crawler): array
     {
         return $crawler->filter('tr')->each(function ($tr, $i) {
             return $tr->filter('td')->each(function ($td, $i) {
-                return trim($td->text());
+                return self::normalizeStringFromHtml($td->text());
             });
         });
     }
@@ -31,9 +40,13 @@ class ParseHelper
     {
         return $crawler->filter('meta[property]')->each(function (Crawler $crawler, $i) {
             $property = $crawler->attr('property');
+            $property = str_replace('og:', '', $property);
+            $property = self::normalizeStringFromHtml($property);
+            $content = $crawler->attr('content');
+            $content = self::normalizeStringFromHtml($content);
             return [
-                'property' => str_replace('og:', '', $property),
-                'content' => $crawler->attr('content'),
+                'property' => $property,
+                'content' => $content,
             ];
         });
     }
