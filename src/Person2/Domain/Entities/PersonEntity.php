@@ -6,9 +6,11 @@ use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
+use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
@@ -32,6 +34,8 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     protected $birthday = null;
 
     protected $sexId = null;
+
+    protected $statusId = StatusEnum::ENABLED;
 
 //    protected $attributes = [];
 
@@ -57,6 +61,11 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
         $metadata->addPropertyConstraint('sexId', new Assert\Positive());
         $metadata->addPropertyConstraint('sexId', new ReferenceItem([
             'bookName' => 'sex',
+        ]));
+
+        $metadata->addPropertyConstraint('statusId', new Assert\NotBlank);
+        $metadata->addPropertyConstraint('statusId', new Enum([
+            'class' => StatusEnum::class,
         ]));
 //        $metadata->addPropertyConstraint('attributes', new Assert\NotBlank);
     }
@@ -159,6 +168,16 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
     public function getSexId()
     {
         return $this->sexId;
+    }
+
+    public function getStatusId(): int
+    {
+        return $this->statusId;
+    }
+
+    public function setStatusId(int $statusId): void
+    {
+        $this->statusId = $statusId;
     }
 
     /*public function setAttributes($value) : void
