@@ -60,12 +60,12 @@ class TableEntity
     /**
      * @return Collection | RelationEntity[]
      */
-    public function getRelations(): Collection
+    public function getRelations(): ?Collection
     {
         return $this->relations;
     }
 
-    public function setRelations(Collection $relations): void
+    public function setRelations(?Collection $relations): void
     {
         $this->relations = $relations;
     }
