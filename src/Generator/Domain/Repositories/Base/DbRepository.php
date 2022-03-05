@@ -10,6 +10,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Db\Capsule\Manager;
 use ZnLib\Db\Entities\SchemaEntity;
+use ZnLib\Db\Traits\EloquentTrait;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ColumnEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\RelationEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
@@ -17,7 +18,9 @@ use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
 class DbRepository
 {
 
-    private $capsule;
+    use EloquentTrait;
+
+//    private $capsule;
 
     public function __construct(Manager $capsule)
     {
@@ -29,18 +32,18 @@ class DbRepository
         return 'default';
     }
 
-    public function getConnection(): Connection
+    /*public function getConnection(): Connection
     {
         $connection = $this->capsule->getConnection($this->connectionName());
         return $connection;
-    }
+    }*/
 
-    protected function getSchema(): SchemaBuilder
+    /*protected function getSchema(): SchemaBuilder
     {
         $connection = $this->getConnection();
         $schema = $connection->getSchemaBuilder();
         return $schema;
-    }
+    }*/
 
     /*public function getCapsule(): Manager
     {

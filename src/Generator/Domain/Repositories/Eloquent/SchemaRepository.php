@@ -7,13 +7,15 @@ use Illuminate\Database\Schema\Builder as SchemaBuilder;
 use Illuminate\Support\Collection;
 use ZnLib\Db\Capsule\Manager;
 use ZnLib\Db\Enums\DbDriverEnum;
+use ZnLib\Db\Traits\EloquentTrait;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ColumnEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
 
 class SchemaRepository
 {
 
-    private $capsule;
+    use EloquentTrait;
+
     private $dbRepository;
 
     public function __construct(Manager $capsule)
@@ -35,11 +37,11 @@ class SchemaRepository
         return 'default';
     }
 
-    public function getConnection(): Connection
+    /*public function getConnection(): Connection
     {
         $connection = $this->capsule->getConnection($this->connectionName());
         return $connection;
-    }
+    }*/
 
     /*protected function getSchema(): SchemaBuilder
     {

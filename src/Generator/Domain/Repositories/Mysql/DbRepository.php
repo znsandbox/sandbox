@@ -15,6 +15,7 @@ use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Db\Capsule\Manager;
 use ZnLib\Db\Entities\SchemaEntity;
 use ZnLib\Db\Enums\DbDriverEnum;
+use ZnLib\Db\Traits\EloquentTrait;
 use ZnLib\Fixture\Domain\Entities\FixtureEntity;
 use ZnLib\Fixture\Domain\Helpers\StructHelper;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ColumnEntity;
@@ -24,7 +25,9 @@ use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
 class DbRepository
 {
 
-    private $capsule;
+    use EloquentTrait;
+
+//    private $capsule;
 
     public function __construct(Manager $capsule)
     {
@@ -36,7 +39,7 @@ class DbRepository
         return 'default';
     }
 
-    public function getConnection(): Connection
+    /*public function getConnection(): Connection
     {
         $connection = $this->capsule->getConnection($this->connectionName());
         return $connection;
@@ -57,7 +60,7 @@ class DbRepository
     public function getEntityClass(): string
     {
         return FixtureEntity::class;
-    }
+    }*/
 
     public static function allPostgresTables(ConnectionInterface $connection): Collection
     {
