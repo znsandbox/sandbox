@@ -20,7 +20,7 @@ class SchemaRepository
 
     public function __construct(Manager $capsule)
     {
-        $this->capsule = $capsule;
+        $this->setCapsule($capsule);
         $driver = $this->getConnection()->getDriverName();
         
         if ($driver == DbDriverEnum::SQLITE) {
