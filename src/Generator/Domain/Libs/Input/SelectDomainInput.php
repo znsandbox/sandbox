@@ -11,7 +11,7 @@ use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Services\BundleServiceInterface;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
-use ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent\SchemaRepository;
+use ZnLib\Db\Repositories\Eloquent\SchemaRepository;
 
 class SelectDomainInput extends BaseInput
 {

@@ -16,7 +16,7 @@ use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
 use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Services\BundleServiceInterface;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
-use ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent\SchemaRepository;
+use ZnLib\Db\Repositories\Eloquent\SchemaRepository;
 use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
 use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\FavoriteEntity;

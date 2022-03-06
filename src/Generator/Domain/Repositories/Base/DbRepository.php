@@ -6,16 +6,22 @@ use Illuminate\Database\Connection;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Schema\Builder as SchemaBuilder;
 use Illuminate\Support\Collection;
+use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Db\Capsule\Manager;
 use ZnLib\Db\Entities\SchemaEntity;
 use ZnLib\Db\Traits\EloquentTrait;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\ColumnEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\RelationEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
+use ZnLib\Db\Entities\ColumnEntity;
+use ZnLib\Db\Entities\RelationEntity;
+use ZnLib\Db\Entities\TableEntity;
 
-class DbRepository
+DeprecateHelper::softThrow();
+
+/**
+ * @deprecated
+ */
+abstract class DbRepository
 {
 
     use EloquentTrait;

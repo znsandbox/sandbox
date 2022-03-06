@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
 use Illuminate\Support\Collection;
 use ZnCore\Domain\Helpers\EntityHelper;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent\SchemaRepository;
+use ZnLib\Db\Entities\TableEntity;
+use ZnLib\Db\Repositories\Eloquent\SchemaRepository;
 
 class GeneratorService
 {

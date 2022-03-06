@@ -10,6 +10,7 @@ use Illuminate\Database\Schema\Builder as SchemaBuilder;
 use Illuminate\Database\Schema\MySqlBuilder;
 use Illuminate\Database\Schema\PostgresBuilder;
 use Illuminate\Support\Collection;
+use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Db\Capsule\Manager;
@@ -18,10 +19,15 @@ use ZnLib\Db\Enums\DbDriverEnum;
 use ZnLib\Db\Traits\EloquentTrait;
 use ZnLib\Fixture\Domain\Entities\FixtureEntity;
 use ZnLib\Fixture\Domain\Helpers\StructHelper;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\ColumnEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\RelationEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
+use ZnLib\Db\Entities\ColumnEntity;
+use ZnLib\Db\Entities\RelationEntity;
+use ZnLib\Db\Entities\TableEntity;
 
+DeprecateHelper::softThrow();
+
+/**
+ * @deprecated
+ */
 class DbRepository
 {
 

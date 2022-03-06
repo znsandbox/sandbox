@@ -5,12 +5,18 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Repositories\Eloquent;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Builder as SchemaBuilder;
 use Illuminate\Support\Collection;
+use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnLib\Db\Capsule\Manager;
 use ZnLib\Db\Enums\DbDriverEnum;
 use ZnLib\Db\Traits\EloquentTrait;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\ColumnEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\TableEntity;
+use ZnLib\Db\Entities\ColumnEntity;
+use ZnLib\Db\Entities\TableEntity;
 
+DeprecateHelper::softThrow();
+
+/**
+ * @deprecated
+ */
 class SchemaRepository
 {
 
