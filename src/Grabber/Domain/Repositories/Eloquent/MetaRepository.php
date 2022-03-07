@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Grabber\Domain\Repositories\Eloquent;
 
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
-use ZnLib\Db\Mappers\JsonMapper;
-use ZnLib\Db\Mappers\TimeMapper;
+use ZnDatabase\Base\Domain\Mappers\JsonMapper;
+use ZnDatabase\Base\Domain\Mappers\TimeMapper;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\MetaEntity;
 
 class MetaRepository extends BaseEloquentCrudRepository

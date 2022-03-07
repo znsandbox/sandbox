@@ -3,10 +3,10 @@
 namespace ZnSandbox\Sandbox\BlockChain\Domain\Repositories\Eloquent;
 
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
-use ZnLib\Db\Mappers\BinaryMapper;
-use ZnLib\Db\Mappers\GmpMapper;
-use ZnLib\Db\Mappers\JsonMapper;
-use ZnLib\Db\Mappers\TimeMapper;
+use ZnDatabase\Base\Domain\Mappers\BinaryMapper;
+use ZnDatabase\Base\Domain\Mappers\GmpMapper;
+use ZnDatabase\Base\Domain\Mappers\JsonMapper;
+use ZnDatabase\Base\Domain\Mappers\TimeMapper;
 use ZnSandbox\Sandbox\BlockChain\Domain\Entities\TransactionEntity;
 
 class TransactionRepository extends BaseEloquentCrudRepository

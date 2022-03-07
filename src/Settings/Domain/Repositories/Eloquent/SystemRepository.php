@@ -7,7 +7,7 @@ use ZnSandbox\Sandbox\Settings\Domain\Interfaces\Repositories\SystemRepositoryIn
 use Illuminate\Support\Collection;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Db\Base\BaseEloquentCrudRepository;
-use ZnLib\Db\Mappers\JsonMapper;
+use ZnDatabase\Base\Domain\Mappers\JsonMapper;
 
 class SystemRepository extends BaseEloquentCrudRepository implements SystemRepositoryInterface
 {

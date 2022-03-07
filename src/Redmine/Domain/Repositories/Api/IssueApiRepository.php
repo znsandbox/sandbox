@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Redmine\Domain\Repositories\Api;
 
 use Redmine\Api\AbstractApi;
-use ZnLib\Db\Mappers\PathMapper;
-use ZnLib\Db\Mappers\TimeMapper;
+use ZnDatabase\Base\Domain\Mappers\PathMapper;
+use ZnDatabase\Base\Domain\Mappers\TimeMapper;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\IssueApiEntity;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Mappers\IssueApiMapper;
