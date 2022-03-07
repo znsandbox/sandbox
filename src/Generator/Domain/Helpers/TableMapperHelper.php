@@ -8,7 +8,7 @@ use ZnSandbox\Sandbox\Generator\Domain\Entities\AttributeEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\EntityEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\RepositoryEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ServiceEntity;
-use ZnLib\Db\Entities\TableEntity;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
 
 class TableMapperHelper
 {

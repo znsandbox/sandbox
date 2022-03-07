@@ -7,9 +7,9 @@ use Illuminate\Support\Collection;
 use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
-use ZnLib\Db\Entities\ColumnEntity;
-use ZnLib\Db\Entities\RelationEntity;
-use ZnLib\Db\Entities\TableEntity;
+use ZnDatabase\Base\Domain\Entities\ColumnEntity;
+use ZnDatabase\Base\Domain\Entities\RelationEntity;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
 
 DeprecateHelper::softThrow();
 

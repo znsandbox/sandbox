@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Libs\TableAdapters;
 
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\RepositoryEntity;
-use ZnLib\Db\Entities\TableEntity;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
 
 class RepositoryAdapter extends BaseAdapter

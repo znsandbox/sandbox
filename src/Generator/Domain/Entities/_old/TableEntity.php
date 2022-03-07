@@ -9,7 +9,7 @@ DeprecateHelper::softThrow();
 /**
  * @deprecated
  */
-class TableEntity extends \ZnLib\Db\Entities\TableEntity
+class TableEntity extends \ZnDatabase\Base\Domain\Entities\TableEntity
 {
 
 }

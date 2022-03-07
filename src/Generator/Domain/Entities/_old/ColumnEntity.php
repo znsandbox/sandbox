@@ -8,9 +8,9 @@ DeprecateHelper::softThrow();
 
 /**
  * @deprecated
- * @see \ZnLib\Db\Entities\ColumnEntity
+ * @see \ZnDatabase\Base\Domain\Entities\ColumnEntity
  */
-class ColumnEntity extends \ZnLib\Db\Entities\ColumnEntity
+class ColumnEntity extends \ZnDatabase\Base\Domain\Entities\ColumnEntity
 {
 
 }

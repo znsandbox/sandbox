@@ -9,7 +9,7 @@ DeprecateHelper::softThrow();
 /**
  * @deprecated
  */
-class RelationEntity extends \ZnLib\Db\Entities\RelationEntity
+class RelationEntity extends \ZnDatabase\Base\Domain\Entities\RelationEntity
 {
 
 }

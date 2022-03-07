@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\AttributeEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\EntityEntity;
-use ZnLib\Db\Entities\TableEntity;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
 
 class EntityAdapter extends BaseAdapter

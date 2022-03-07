@@ -16,8 +16,8 @@ use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnLib\Fixture\Domain\Repositories\DbRepository;
 use ZnLib\Fixture\Domain\Repositories\FileRepository;
 use ZnLib\Fixture\Domain\Services\FixtureService;
-use ZnLib\Db\Entities\TableEntity;
-use ZnLib\Db\Repositories\Eloquent\SchemaRepository;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
+use ZnDatabase\Base\Domain\Repositories\Eloquent\SchemaRepository;
 use ZnUser\Rbac\Domain\Enums\RbacCacheEnum;
 
 class SynchronizeService extends BaseService implements SynchronizeServiceInterface

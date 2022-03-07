@@ -14,14 +14,14 @@ use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Db\Capsule\Manager;
-use ZnLib\Db\Entities\SchemaEntity;
+use ZnDatabase\Base\Domain\Entities\SchemaEntity;
 use ZnLib\Db\Enums\DbDriverEnum;
-use ZnLib\Db\Traits\EloquentTrait;
+use ZnDatabase\Eloquent\Domain\Traits\EloquentTrait;
 use ZnLib\Fixture\Domain\Entities\FixtureEntity;
 use ZnLib\Fixture\Domain\Helpers\StructHelper;
-use ZnLib\Db\Entities\ColumnEntity;
-use ZnLib\Db\Entities\RelationEntity;
-use ZnLib\Db\Entities\TableEntity;
+use ZnDatabase\Base\Domain\Entities\ColumnEntity;
+use ZnDatabase\Base\Domain\Entities\RelationEntity;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
 
 DeprecateHelper::softThrow();
 
@@ -77,7 +77,7 @@ class DbRepository
             // select * from pg_tables where schemaname='public';
             $tableNames = ArrayHelper::getColumn($tables, 'table_name');
             foreach ($tableNames as $tableName) {
-                $tableEntity = new \ZnLib\Db\Entities\TableEntity;
+                $tableEntity = new \ZnDatabase\Base\Domain\Entities\TableEntity;
                 $tableEntity->setName($tableName);
                 $tableEntity->setSchema($schemaEntity);
                 $tableCollection->add($tableEntity);

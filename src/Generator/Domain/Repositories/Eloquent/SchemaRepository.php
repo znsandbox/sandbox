@@ -8,9 +8,9 @@ use Illuminate\Support\Collection;
 use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnLib\Db\Capsule\Manager;
 use ZnLib\Db\Enums\DbDriverEnum;
-use ZnLib\Db\Traits\EloquentTrait;
-use ZnLib\Db\Entities\ColumnEntity;
-use ZnLib\Db\Entities\TableEntity;
+use ZnDatabase\Eloquent\Domain\Traits\EloquentTrait;
+use ZnDatabase\Base\Domain\Entities\ColumnEntity;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
 
 DeprecateHelper::softThrow();
 

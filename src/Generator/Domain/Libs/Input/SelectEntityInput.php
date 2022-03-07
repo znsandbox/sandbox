@@ -9,7 +9,7 @@ use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
-use ZnLib\Db\Repositories\Eloquent\SchemaRepository;
+use ZnDatabase\Base\Domain\Repositories\Eloquent\SchemaRepository;
 
 class SelectEntityInput extends BaseInput
 {

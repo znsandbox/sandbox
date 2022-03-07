@@ -10,7 +10,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Entities\Query\Where;
 use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
 use ZnCore\Domain\Libs\Query;
-use ZnLib\Db\Traits\MapperTrait;
+use ZnDatabase\Base\Domain\Traits\MapperTrait;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
 
 abstract class BaseApiRepository implements IssueApiRepositoryInterface
