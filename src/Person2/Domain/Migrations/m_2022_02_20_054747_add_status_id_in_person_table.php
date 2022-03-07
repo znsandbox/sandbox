@@ -4,7 +4,7 @@ namespace Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
 use ZnCore\Base\Enums\StatusEnum;
-use ZnLib\Migration\Domain\Base\BaseColumnMigration;
+use ZnDatabase\Migration\Domain\Base\BaseColumnMigration;
 
 class m_2022_02_20_054747_add_status_id_in_person_table extends BaseColumnMigration
 {
