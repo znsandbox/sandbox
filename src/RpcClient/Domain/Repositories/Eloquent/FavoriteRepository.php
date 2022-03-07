@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnDatabase\Base\Domain\Mappers\JsonMapper;
 use ZnDatabase\Base\Domain\Mappers\TimeMapper;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;

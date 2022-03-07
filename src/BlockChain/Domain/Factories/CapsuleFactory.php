@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\BlockChain\Domain\Factories;
 
-use ZnLib\Db\Capsule\Manager;
+use ZnDatabase\Eloquent\Domain\Capsule\Manager;
 use ZnDatabase\Eloquent\Domain\Factories\ManagerFactory;
 
 class CapsuleFactory

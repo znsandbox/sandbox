@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\I18n\Domain\Repositories\Eloquent;
 
 use ZnCore\Domain\Libs\Query;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Repositories\TranslateRepositoryInterface;
 

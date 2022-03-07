@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\BlockChain\Domain\Repositories\Eloquent;
 
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnDatabase\Base\Domain\Mappers\BinaryMapper;
 use ZnDatabase\Base\Domain\Mappers\GmpMapper;
 use ZnDatabase\Base\Domain\Mappers\JsonMapper;

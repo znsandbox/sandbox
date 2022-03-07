@@ -7,7 +7,7 @@ use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Libs\Query;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
 use ZnCore\Domain\Subscribers\UpdatedAtSubscriber;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnDatabase\Base\Domain\Mappers\JsonMapper;
 use ZnDatabase\Base\Domain\Mappers\TimeMapper;
 use ZnSandbox\Sandbox\Grabber\Domain\Entities\QueueEntity;

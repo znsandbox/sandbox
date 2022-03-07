@@ -6,7 +6,7 @@ use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Builder as SchemaBuilder;
 use Illuminate\Support\Collection;
 use ZnCore\Base\Helpers\DeprecateHelper;
-use ZnLib\Db\Capsule\Manager;
+use ZnDatabase\Eloquent\Domain\Capsule\Manager;
 use ZnDatabase\Base\Domain\Enums\DbDriverEnum;
 use ZnDatabase\Eloquent\Domain\Traits\EloquentTrait;
 use ZnDatabase\Base\Domain\Entities\ColumnEntity;

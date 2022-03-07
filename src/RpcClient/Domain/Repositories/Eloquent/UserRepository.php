@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Repositories\Eloquent;
 
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\UserEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\UserRepositoryInterface;
 

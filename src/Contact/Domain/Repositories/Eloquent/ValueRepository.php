@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\Contact\Domain\Entities\ValueEntity;
 use ZnSandbox\Sandbox\Contact\Domain\Interfaces\Repositories\ValueRepositoryInterface;
 use ZnBundle\Eav\Domain\Interfaces\Repositories\AttributeRepositoryInterface;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 
 class ValueRepository extends BaseEloquentCrudRepository implements ValueRepositoryInterface
 {

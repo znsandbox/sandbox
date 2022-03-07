@@ -10,7 +10,7 @@ use ZnBundle\User\Domain\Interfaces\Repositories\IdentityRepositoryInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnCore\Domain\Relations\relations\OneToManyRelation;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\ContactRepositoryInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;

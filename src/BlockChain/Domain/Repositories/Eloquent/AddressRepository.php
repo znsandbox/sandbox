@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\BlockChain\Domain\Repositories\Eloquent;
 
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\BlockChain\Domain\Entities\AddressEntity;
 
 class AddressRepository extends BaseEloquentCrudRepository

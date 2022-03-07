@@ -8,7 +8,7 @@ use ZnCore\Base\Libs\I18Next\Mappers\I18nMapper;
 use ZnCore\Contract\Mapper\Interfaces\MapperInterface;
 use ZnCore\Domain\Relations\relations\OneToManyRelation;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Geo\Domain\Entities\RegionEntity;
 use ZnSandbox\Sandbox\Geo\Domain\Interfaces\Repositories\RegionRepositoryInterface;
 

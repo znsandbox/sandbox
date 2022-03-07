@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\Eloquent;
 
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Repositories\DomainRepositoryInterface;
 

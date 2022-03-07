@@ -10,7 +10,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Libs\Query;
 use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Helpers\ConfParser;
 

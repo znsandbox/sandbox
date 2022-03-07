@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Geo\Domain\Repositories\Eloquent;
 
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Geo\Domain\Entities\CurrencyEntity;
 use ZnSandbox\Sandbox\Geo\Domain\Interfaces\Repositories\CurrencyRepositoryInterface;
 

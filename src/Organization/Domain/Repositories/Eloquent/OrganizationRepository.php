@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\Geo\Domain\Interfaces\Repositories\LocalityRepositoryInter
 use ZnCore\Base\Libs\I18Next\Mappers\I18nMapper;
 use ZnCore\Contract\Mapper\Interfaces\MapperInterface;
 use ZnCore\Domain\Relations\relations\OneToOneRelation;
-use ZnLib\Db\Base\BaseEloquentCrudRepository;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Organization\Domain\Entities\OrganizationEntity;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\OrganizationRepositoryInterface;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Repositories\TypeRepositoryInterface;
