@@ -15,7 +15,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Db\Capsule\Manager;
 use ZnDatabase\Base\Domain\Entities\SchemaEntity;
-use ZnLib\Db\Enums\DbDriverEnum;
+use ZnDatabase\Base\Domain\Enums\DbDriverEnum;
 use ZnDatabase\Eloquent\Domain\Traits\EloquentTrait;
 use ZnLib\Fixture\Domain\Entities\FixtureEntity;
 use ZnLib\Fixture\Domain\Helpers\StructHelper;

@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\BlockChain\Domain\Factories;
 
 use ZnLib\Db\Capsule\Manager;
-use ZnLib\Db\Factories\ManagerFactory;
+use ZnDatabase\Eloquent\Domain\Factories\ManagerFactory;
 
 class CapsuleFactory
 {
