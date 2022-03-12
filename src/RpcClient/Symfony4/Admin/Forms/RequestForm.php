@@ -152,7 +152,16 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
             null => 'guest'
         ];
         foreach ($collection as $entity) {
-            $options[$entity->getId()] = $entity->getLogin() ?? $entity->getDescription();
+            $title = '';
+            if($entity->getLogin()) {
+                $title .= $entity->getLogin();
+            }
+            if($entity->getDescription()) {
+                $title .= ' - ' . $entity->getDescription();
+            }
+            $title = trim($title, ' -');
+
+            $options[$entity->getId()] = $title;
         }
         return $options;
     }
