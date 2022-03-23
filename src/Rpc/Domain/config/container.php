@@ -6,9 +6,12 @@ return [
     'definitions' => [],
     'singletons' => [
         'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Services\\MethodServiceInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Services\\MethodService',
+
         'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Repositories\\MethodRepositoryInterface' => !EnvHelper::isDev()
-            ? 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Repositories\\Eloquent\\MethodRepository'
-            : 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Repositories\\File\\MethodRepository',
+            ? 'ZnLib\Rpc\Domain\Repositories\Eloquent\MethodRepository'
+            : 'ZnLib\Rpc\Domain\Repositories\File\MethodRepository',
+//            : 'ZnLib\Rpc\Domain\Repositories\ConfigManager\MethodRepository',
+        
         'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Services\\VersionHandlerServiceInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Services\\VersionHandlerService',
         'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Repositories\\VersionHandlerRepositoryInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Repositories\\Eloquent\\VersionHandlerRepository',
         'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\RpcController' => 'ZnSandbox\\Sandbox\\Rpc\\Symfony4\\Web\\Controllers\\RpcController',
