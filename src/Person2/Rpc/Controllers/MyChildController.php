@@ -51,6 +51,13 @@ class MyChildController extends BaseCrudRpcController
         parent::forgeWith($requestEntity, $query);
     }
 
+    public function persist(RpcRequestEntity $requestEntity): RpcResponseEntity
+    {
+        $params = $requestEntity->getParams();
+        $entity = $this->service->persistData($params);
+        return $this->serializeResult($entity);
+    }
+
     public function update(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
         $childPersonId = $requestEntity->getParamItem('id');

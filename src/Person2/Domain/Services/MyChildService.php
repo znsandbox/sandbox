@@ -75,6 +75,25 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
         $this->getEventDispatcher()->dispatch($event, EventEnum::AFTER_UPDATE_ENTITY);
     }
 
+    public function persistData(array $params)
+    {
+        $personEntity = EntityHelper::createEntity(PersonEntity::class, $params);
+        $this->getEntityManager()->persist($personEntity);
+
+        $parentPersonEntity = $this->myPersonService->one();
+
+        /** @var InheritanceEntity $inheritanceEntity */
+        $inheritanceEntity = $this->createEntity($params);
+        $inheritanceEntity->setParentPersonId($parentPersonEntity->getId());
+        $inheritanceEntity->setChildPersonId($personEntity->getId());
+        $inheritanceEntity->setParentPerson($parentPersonEntity);
+        $inheritanceEntity->setChildPerson($personEntity);
+
+        $this->persist($inheritanceEntity);
+
+        return $inheritanceEntity;
+    }
+
     public function create($data): EntityIdInterface
     {
         $myPersonId = $this->myPersonService->one()->getId();
