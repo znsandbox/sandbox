@@ -35,6 +35,16 @@ return [
         'status_id' => 100,
     ],
     [
+        'method_name' => 'child.persist',
+        'version' => '1',
+        'is_verify_eds' => false,
+        'is_verify_auth' => true,
+        'permission_name' => ChildPermissionEnum::CREATE,
+        'handler_class' => ChildController::class,
+        'handler_method' => 'persist',
+        'status_id' => 100,
+    ],
+    [
         'method_name' => 'child.update',
         'version' => '1',
         'is_verify_eds' => false,

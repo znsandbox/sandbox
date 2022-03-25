@@ -41,5 +41,12 @@ class ChildController extends BaseCrudRpcController
         return $this->getContainer()->get(MyChildSerializer::class);
     }
 
+    public function persist(RpcRequestEntity $requestEntity): RpcResponseEntity
+    {
+        $params = $requestEntity->getParams();
+        $entity = $this->service->persistData($params);
+        return $this->serializeResult($entity);
+    }
+
     // todo: реализовать валидацию на пустоту поля code
 }

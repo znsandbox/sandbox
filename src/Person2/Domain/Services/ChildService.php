@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
+use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Enums\EventEnum;
@@ -90,5 +91,29 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
         //$data['parent_person_id'] = $myPersonId;
         $data['child_person_id'] = $childEntity->getId();
         return parent::create($data);
+    }
+
+    public function persistData(array $params)
+    {
+        $personEntity = EntityHelper::createEntity(PersonEntity::class, $params);
+        $this->getEntityManager()->persist($personEntity);
+
+        /** @var InheritanceEntity $inheritanceEntity */
+        $query = new Query();
+        $query->where('child_person_id', $personEntity->getId());
+        try {
+            $inheritanceEntity = $this->getEntityManager()->one(InheritanceEntity::class, $query);
+        } catch (NotFoundException $e) {
+            $inheritanceEntity = $this->createEntity();
+            $inheritanceEntity->setChildPersonId($personEntity->getId());
+            if(!empty($params['parentPersonId'])) {
+                $inheritanceEntity->setParentPersonId($params['parentPersonId']);
+            }
+        }
+
+        $inheritanceEntity->setChildPerson($personEntity);
+
+        $this->persist($inheritanceEntity);
+        return $inheritanceEntity;
     }
 }

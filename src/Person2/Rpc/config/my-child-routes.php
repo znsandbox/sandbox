@@ -31,10 +31,10 @@ return [
         'is_verify_auth' => true,
         'permission_name' => MyChildPermissionEnum::CREATE,
         'handler_class' => MyChildController::class,
-        'handler_method' => 'persist',
+        'handler_method' => 'add',
         'status_id' => 100,
     ],
-    /*[
+    [
         'method_name' => 'myChild.persist',
         'version' => '1',
         'is_verify_eds' => false,
@@ -43,7 +43,7 @@ return [
         'handler_class' => MyChildController::class,
         'handler_method' => 'persist',
         'status_id' => 100,
-    ],*/
+    ],
     [
         'method_name' => 'myChild.update',
         'version' => '1',
