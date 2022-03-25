@@ -15,9 +15,9 @@ class UserFixtureHelper
             if (in_array($credential['type'], [CredentialTypeEnum::LOGIN, CredentialTypeEnum::EMAIL])) {
                 $identity = $identityCollection[$credential['identity_id']];
                 $collection[] = [
-                    'login' => $identity['username'] ?? $credential['credential'],
+                    'login' => $credential['credential'],
                     'password' => 'Wwwqqq111',
-                    'description' => null,
+                    'description' => $identity['username'] ?? null,
                 ];
             }
         }
