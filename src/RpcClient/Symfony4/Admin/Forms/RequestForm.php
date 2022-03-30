@@ -11,7 +11,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
+use ZnLib\Rpc\Domain\Exceptions\InternalJsonRpcErrorException;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
+use ZnSandbox\Sandbox\Rpc\Domain\Helpers\ErrorHelper;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\UserEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\UserServiceInterface;
 
@@ -105,6 +107,7 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
     public function getBody()
     {
         $decoded = json_decode($this->body);
+        $this->checkJson();
         $encoded = json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         return $decoded ? $encoded : '{}';
 //        return $this->body;
@@ -113,6 +116,7 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
     public function setBody($body): void
     {
         $decoded = json_decode($body);
+        $this->checkJson();
         $encoded = json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         $body = $decoded ? $encoded : '{}';
         $this->body = $body;
@@ -121,6 +125,7 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
     public function getMeta()
     {
         $decoded = json_decode($this->meta);
+        $this->checkJson();
         $encoded = json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         return $decoded ? $encoded : '{}';
         //return $this->meta;
@@ -129,9 +134,19 @@ class RequestForm implements ValidateEntityByMetadataInterface, BuildFormInterfa
     public function setMeta($meta): void
     {
         $decoded = json_decode($meta);
+        $this->checkJson();
         $encoded = json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         $meta = $decoded ? $encoded : '{}';
         $this->meta = $meta;
+    }
+
+    private function checkJson() {
+        $jsonErrorCode = json_last_error();
+        if ($jsonErrorCode) {
+            $errorDescription = ErrorHelper::descriptionFromJsonErrorCode($jsonErrorCode);
+            $message = "Invalid request. Parse JSON error! {$errorDescription}";
+            throw new InternalJsonRpcErrorException($message);
+        }
     }
 
     public function getDescription()
