@@ -47,6 +47,14 @@ class DocumentController extends BaseCrudRpcController
         return $this->serializeResult($result);
     }
 
+    public function p2p(RpcRequestEntity $requestEntity): RpcResponseEntity
+    {
+//        $fromAddress = $requestEntity->getParamItem('fromAddress');
+        $document = $requestEntity->getParamItem('document');
+        $result = $this->verifyDocument($document);
+        return $this->serializeResult($result);
+    }
+
     private function verifyDocument(string $document)
     {
         $documentEntity = BitcoinHelper::verifyDocument($document);
@@ -57,23 +65,37 @@ class DocumentController extends BaseCrudRpcController
             throw new \Exception('crypto: Bad JSON');
         }
         $data['fromAddress'] = $documentEntity->getPublic()->getAddress();
+        //$data['document'] = $documentEntity->getDocument();
 
-        /*if ($data['method'] == 'sendMessage') {
-            $event = new SocketEventEntity;
-            $event->setUserId($data['toAddress']);
-            $event->setName('messenger.newMessage');
-            $event->setData($data);
-            $this->socketDaemon->sendMessageToTcp($event);
-        } else*/if ($data['method'] == 'message') {
-            $event = new SocketEventEntity;
-            $event->setUserId($data['toAddress']);
-            // messenger.newMessage
-            $event->setName('cryptoMessage.p2p');
-            $event->setData($data);
-            $this->socketDaemon->sendMessageToTcp($event);
-        } else {
-            throw new \Exception('crypto: Unknown method');
-        }
+        $event = new SocketEventEntity;
+        $event->setUserId($data['toAddress']);
+        // messenger.newMessage
+        $event->setName('cryptoMessage.p2p');
+        $event->setData([
+            'document' => $documentEntity->getDocument(),
+        ]);
+//            $event->setData($data);
+        $this->socketDaemon->sendMessageToTcp($event);
+        
+//        /*if ($data['method'] == 'sendMessage') {
+//            $event = new SocketEventEntity;
+//            $event->setUserId($data['toAddress']);
+//            $event->setName('messenger.newMessage');
+//            $event->setData($data);
+//            $this->socketDaemon->sendMessageToTcp($event);
+//        } else*/if ($data['method'] == 'message') {
+//            $event = new SocketEventEntity;
+//            $event->setUserId($data['toAddress']);
+//            // messenger.newMessage
+//            $event->setName('cryptoMessage.p2p');
+//            $event->setData([
+//                'document' => $documentEntity->getDocument(),
+//            ]);
+////            $event->setData($data);
+//            $this->socketDaemon->sendMessageToTcp($event);
+//        } else {
+//            throw new \Exception('crypto: Unknown method');
+//        }
 
 
 //        return EntityHelper::toArray($documentEntity);

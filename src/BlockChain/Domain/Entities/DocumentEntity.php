@@ -17,41 +17,26 @@ class DocumentEntity
     
     protected $public = null;
 
-    /**
-     * @return null
-     */
-    public function getDocument()
+    public function getDocument(): ?string
     {
         return $this->document;
     }
 
-    /**
-     * @param null $document
-     */
-    public function setDocument($document): void
+    public function setDocument(?string $document): void
     {
         $this->document = $document;
     }
 
-    /**
-     * @return null
-     */
     public function getMessage()
     {
         return $this->message;
     }
 
-    /**
-     * @param null $message
-     */
     public function setMessage($message): void
     {
         $this->message = $message;
     }
 
-    /**
-     * @return null
-     */
     public function getSignature()
     {
         return $this->signature;
@@ -71,5 +56,4 @@ class DocumentEntity
     {
         $this->public = $public;
     }
-
 }
