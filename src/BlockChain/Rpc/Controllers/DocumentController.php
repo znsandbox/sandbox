@@ -2,33 +2,23 @@
 
 namespace ZnSandbox\Sandbox\BlockChain\Rpc\Controllers;
 
-use BitWasp\Bitcoin\Address\AddressCreator;
-use BitWasp\Bitcoin\Address\PayToPubKeyHashAddress;
-use BitWasp\Bitcoin\Bitcoin;
-use BitWasp\Bitcoin\Crypto\EcAdapter\EcSerializer;
-use BitWasp\Bitcoin\Crypto\EcAdapter\Serializer\Signature\CompactSignatureSerializerInterface;
-use BitWasp\Bitcoin\Key\Factory\PrivateKeyFactory;
-use BitWasp\Bitcoin\MessageSigner\MessageSigner;
-use BitWasp\Bitcoin\Serializer\MessageSigner\SignedMessageSerializer;
 use Psr\Container\ContainerInterface;
 use ZnCore\Base\Libs\Container\ContainerAwareTrait;
-use ZnCore\Domain\Helpers\EntityHelper;
-use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;
-use ZnLib\Rpc\Rpc\Serializers\SerializerInterface;
+use ZnLib\Socket\Domain\Entities\SocketEventEntity;
+use ZnLib\Socket\Domain\Libs\SocketDaemon;
 use ZnSandbox\Sandbox\BlockChain\Domain\Helper\BitcoinHelper;
+
 //use ZnSandbox\Sandbox\BlockChain\Domain\Libs\MessageSigner\MessageSigner;
-use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
-use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;
-use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
-use ZnSandbox\Sandbox\Person2\Rpc\Serializers\MyChildSerializer;
 
 class DocumentController extends BaseCrudRpcController
 {
 
     use ContainerAwareTrait;
+
+    private $socketDaemon;
 
     /*private $personService;
 
@@ -43,6 +33,12 @@ class DocumentController extends BaseCrudRpcController
         $this->setContainer($container);
     }*/
 
+    public function __construct(SocketDaemon $socketDaemon)
+    {
+//        parent::__construct($container);
+        $this->socketDaemon = $socketDaemon;
+    }
+
     public function send(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
 //        $fromAddress = $requestEntity->getParamItem('fromAddress');
@@ -51,17 +47,30 @@ class DocumentController extends BaseCrudRpcController
         return $this->serializeResult($result);
     }
 
-    private function verifyDocument(string $document) {
+    private function verifyDocument(string $document)
+    {
         $documentEntity = BitcoinHelper::verifyDocument($document);
 
         $data = json_decode($documentEntity->getMessage(), JSON_OBJECT_AS_ARRAY);
-        if(json_last_error()) {
+        if (json_last_error()) {
             $data = null;
             throw new \Exception('crypto: Bad JSON');
         }
+        $data['fromAddress'] = $documentEntity->getPublic()->getAddress();
 
-        if($data['method'] == 'sendMessage') {
-
+        /*if ($data['method'] == 'sendMessage') {
+            $event = new SocketEventEntity;
+            $event->setUserId($data['toAddress']);
+            $event->setName('messenger.newMessage');
+            $event->setData($data);
+            $this->socketDaemon->sendMessageToTcp($event);
+        } else*/if ($data['method'] == 'message') {
+            $event = new SocketEventEntity;
+            $event->setUserId($data['toAddress']);
+            // messenger.newMessage
+            $event->setName('cryptoMessage.p2p');
+            $event->setData($data);
+            $this->socketDaemon->sendMessageToTcp($event);
         } else {
             throw new \Exception('crypto: Unknown method');
         }
