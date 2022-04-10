@@ -16,10 +16,71 @@ use BitWasp\Bitcoin\Network\NetworkInterface;
 use BitWasp\Bitcoin\Script\WitnessProgram;
 use BitWasp\Bitcoin\Serializer\MessageSigner\SignedMessageSerializer;
 use BitWasp\Buffertools\Buffer;
+use ZnSandbox\Sandbox\BlockChain\Domain\Entities\DocumentEntity;
+use ZnSandbox\Sandbox\BlockChain\Domain\Entities\PublicEntity;
 
 class BitcoinHelper
 {
 
+    public static function verifyDocument(string $document): DocumentEntity
+    {
+        $pub = BitcoinHelper::extractPublicKey($document);
+        $fromAddress = BitcoinHelper::extractP2pkhAddressFromPublicKeyHash($pub->getPubKeyHash()->getBinary());
+
+        /*$privFactory = new PrivateKeyFactory();
+        $priv = $privFactory->fromWif('L4stU9ZoL9AXmxuerpTRE26Tbq5AQKFrBxT1sgoTAnxHywUumf41');
+        $publicKey = $priv->getPublicKey();
+        $pubKeyHash = $publicKey->getPubKeyHash();*/
+
+        $ec = Bitcoin::getEcAdapter();
+        $signer = new MessageSigner($ec);
+
+        /** @var CompactSignatureSerializerInterface $compactSigSerializer */
+        $compactSigSerializer = EcSerializer::getSerializer(CompactSignatureSerializerInterface::class);
+        $serializer = new SignedMessageSerializer($compactSigSerializer);
+
+        /*$document11 = '-----BEGIN BITCOIN SIGNED MESSAGE-----
+11111111111
+-----BEGIN SIGNATURE-----
+H68Jiv7qQdQ0Qu2RvKO8QUCbh1Jmq+6YgIGS/8gialBoDtcKF364efb/sx5xKqjx45hqcDuVQIDAn6bYKjf0vFc=
+-----END BITCOIN SIGNED MESSAGE-----';*/
+
+        $signedMessage = $serializer->parse($document);
+
+        $addrCreator = new AddressCreator();
+        /** @var PayToPubKeyHashAddress $payToPubKeyHashAddress */
+        $payToPubKeyHashAddress = $addrCreator->fromString($fromAddress);
+
+//        $pub = null;
+//        $pub = $signer->recoverPubKey($signedMessage, $payToPubKeyHashAddress);
+        $isVerify = $signer->verify($signedMessage, $payToPubKeyHashAddress);
+        if(!$isVerify) {
+            throw new \Exception('Signature not verified!');
+        }
+        
+        $documentEntity = new DocumentEntity();
+        $documentEntity->setDocument($document);
+        $documentEntity->setSignature($signedMessage->getCompactSignature());
+        $documentEntity->setMessage($signedMessage->getMessage());
+        
+        $publicEntity = new PublicEntity();
+        $publicEntity->setAddress($fromAddress);
+        $publicEntity->setPublicKey($pub->getBinary());
+        $publicEntity->setPublicHash($pub->getPubKeyHash()->getBinary());
+        $documentEntity->setPublic($publicEntity);
+        
+        return $documentEntity;
+        
+        /*return [
+            'address' => $documentEntity->getPublic()->getAddress(),
+            'data' => $data,
+//            'document' => $document,
+            'message' => $signedMessage->getMessage(),
+            'publicKey' => $pub->getHex(),
+            'isVerify' => $isVerify,
+        ];*/
+    }
+    
     public static function parseAddress(string $addressBase58)
     {
         $bitcoinECDSA = new BitcoinECDSA();

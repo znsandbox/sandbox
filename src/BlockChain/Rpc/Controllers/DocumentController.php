@@ -12,6 +12,7 @@ use BitWasp\Bitcoin\MessageSigner\MessageSigner;
 use BitWasp\Bitcoin\Serializer\MessageSigner\SignedMessageSerializer;
 use Psr\Container\ContainerInterface;
 use ZnCore\Base\Libs\Container\ContainerAwareTrait;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
@@ -51,52 +52,31 @@ class DocumentController extends BaseCrudRpcController
     }
 
     private function verifyDocument(string $document) {
-        $pub = BitcoinHelper::extractPublicKey($document);
-        $fromAddress = BitcoinHelper::extractP2pkhAddressFromPublicKeyHash($pub->getPubKeyHash()->getBinary());
+        $documentEntity = BitcoinHelper::verifyDocument($document);
 
-        /*$privFactory = new PrivateKeyFactory();
-        $priv = $privFactory->fromWif('L4stU9ZoL9AXmxuerpTRE26Tbq5AQKFrBxT1sgoTAnxHywUumf41');
-        $publicKey = $priv->getPublicKey();
-        $pubKeyHash = $publicKey->getPubKeyHash();*/
-
-        $ec = Bitcoin::getEcAdapter();
-        $signer = new MessageSigner($ec);
-
-        /** @var CompactSignatureSerializerInterface $compactSigSerializer */
-        $compactSigSerializer = EcSerializer::getSerializer(CompactSignatureSerializerInterface::class);
-        $serializer = new SignedMessageSerializer($compactSigSerializer);
-
-        /*$document11 = '-----BEGIN BITCOIN SIGNED MESSAGE-----
-11111111111
------BEGIN SIGNATURE-----
-H68Jiv7qQdQ0Qu2RvKO8QUCbh1Jmq+6YgIGS/8gialBoDtcKF364efb/sx5xKqjx45hqcDuVQIDAn6bYKjf0vFc=
------END BITCOIN SIGNED MESSAGE-----';*/
-
-        $signedMessage = $serializer->parse($document);
-
-        $addrCreator = new AddressCreator();
-        /** @var PayToPubKeyHashAddress $payToPubKeyHashAddress */
-        $payToPubKeyHashAddress = $addrCreator->fromString($fromAddress);
-
-//        $pub = null;
-//        $pub = $signer->recoverPubKey($signedMessage, $payToPubKeyHashAddress);
-        $isVerify = $signer->verify($signedMessage, $payToPubKeyHashAddress);
-        if(!$isVerify) {
-            throw new \Exception('Signature not verified!');
-        }
-
-        $data = json_decode($signedMessage->getMessage(), JSON_OBJECT_AS_ARRAY);
+        $data = json_decode($documentEntity->getMessage(), JSON_OBJECT_AS_ARRAY);
         if(json_last_error()) {
             $data = null;
+            throw new \Exception('crypto: Bad JSON');
         }
 
+        if($data['method'] == 'sendMessage') {
+
+        } else {
+            throw new \Exception('crypto: Unknown method');
+        }
+
+
+//        return EntityHelper::toArray($documentEntity);
         return [
-            'address' => $fromAddress,
             'data' => $data,
 //            'document' => $document,
-            'message' => $signedMessage->getMessage(),
-            'publicKey' => $pub->getHex(),
-            'isVerify' => $isVerify,
+            'message' => $documentEntity->getMessage(),
+
+            'address' => $documentEntity->getPublic()->getAddress(),
+            'publicKey' => bin2hex($documentEntity->getPublic()->getPublicKey()),
+            'publicHash' => bin2hex($documentEntity->getPublic()->getPublicHash()),
+            'isVerify' => true,
         ];
     }
 }
