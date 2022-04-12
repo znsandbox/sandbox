@@ -41,21 +41,21 @@ class DocumentController extends BaseCrudRpcController
 
     public function send(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
-//        $fromAddress = $requestEntity->getParamItem('fromAddress');
+        $fromAddress = $requestEntity->getParamItem('fromAddress');
         $document = $requestEntity->getParamItem('document');
-        $result = $this->verifyDocument($document);
+        $result = $this->verifyDocument($document, $toAddress);
         return $this->serializeResult($result);
     }
 
     public function p2p(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
-//        $fromAddress = $requestEntity->getParamItem('fromAddress');
         $document = $requestEntity->getParamItem('document');
-        $result = $this->verifyDocument($document);
+        $toAddress = $requestEntity->getParamItem('toAddress');
+        $result = $this->verifyDocument($document, $toAddress);
         return $this->serializeResult($result);
     }
 
-    private function verifyDocument(string $document)
+    private function verifyDocument(string $document, string $toAddress)
     {
         $documentEntity = BitcoinHelper::parse($document);
 
@@ -68,7 +68,7 @@ class DocumentController extends BaseCrudRpcController
         //$data['document'] = $documentEntity->getDocument();
 
         $event = new SocketEventEntity;
-        $event->setUserId($data['toAddress']);
+        $event->setUserId($toAddress);
         // messenger.newMessage
         $event->setName('cryptoMessage.p2p');
         $event->setData([
