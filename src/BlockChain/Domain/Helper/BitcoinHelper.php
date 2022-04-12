@@ -22,6 +22,29 @@ use ZnSandbox\Sandbox\BlockChain\Domain\Entities\PublicEntity;
 class BitcoinHelper
 {
 
+    public static function parse(string $document): DocumentEntity
+    {
+
+        /** @var CompactSignatureSerializerInterface $compactSigSerializer */
+        $compactSigSerializer = EcSerializer::getSerializer(CompactSignatureSerializerInterface::class);
+        $serializer = new SignedMessageSerializer($compactSigSerializer);
+
+        $signedMessage = $serializer->parse($document);
+        
+        $documentEntity = new DocumentEntity();
+        $documentEntity->setDocument($document);
+//        $documentEntity->setSignature($signedMessage->getCompactSignature());
+        $documentEntity->setMessage($signedMessage->getMessage());
+
+//        $publicEntity = new PublicEntity();
+//        $publicEntity->setAddress($fromAddress);
+//        $publicEntity->setPublicKey($pub->getBinary());
+//        $publicEntity->setPublicHash($pub->getPubKeyHash()->getBinary());
+//        $documentEntity->setPublic($publicEntity);
+
+        return $documentEntity;
+    }
+    
     public static function verifyDocument(string $document): DocumentEntity
     {
         $pub = BitcoinHelper::extractPublicKey($document);

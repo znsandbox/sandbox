@@ -57,14 +57,14 @@ class DocumentController extends BaseCrudRpcController
 
     private function verifyDocument(string $document)
     {
-        $documentEntity = BitcoinHelper::verifyDocument($document);
+        $documentEntity = BitcoinHelper::parse($document);
 
         $data = json_decode($documentEntity->getMessage(), JSON_OBJECT_AS_ARRAY);
         if (json_last_error()) {
             $data = null;
             throw new \Exception('crypto: Bad JSON');
         }
-        $data['fromAddress'] = $documentEntity->getPublic()->getAddress();
+//        $data['fromAddress'] = $documentEntity->getPublic()->getAddress();
         //$data['document'] = $documentEntity->getDocument();
 
         $event = new SocketEventEntity;
@@ -104,9 +104,9 @@ class DocumentController extends BaseCrudRpcController
 //            'document' => $document,
             'message' => $documentEntity->getMessage(),
 
-            'address' => $documentEntity->getPublic()->getAddress(),
-            'publicKey' => bin2hex($documentEntity->getPublic()->getPublicKey()),
-            'publicHash' => bin2hex($documentEntity->getPublic()->getPublicHash()),
+//            'address' => $documentEntity->getPublic()->getAddress(),
+//            'publicKey' => bin2hex($documentEntity->getPublic()->getPublicKey()),
+//            'publicHash' => bin2hex($documentEntity->getPublic()->getPublicHash()),
             'isVerify' => true,
         ];
     }
