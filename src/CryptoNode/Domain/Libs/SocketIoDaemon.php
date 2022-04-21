@@ -21,7 +21,7 @@ class SocketIoDaemon
     private $users = [];
     private $tcpWorker;
     private $wsWorker;
-    private $localUrl = 'tcp://127.0.0.1:1234';
+    private $localUrl = 'tcp://127.0.0.1:1235';
     private $connectionRepository;
     private $authService;
 
@@ -32,7 +32,7 @@ class SocketIoDaemon
         // массив для связи соединения пользователя и необходимого нам параметра
 
         // создаём ws-сервер, к которому будут подключаться все наши пользователи
-        $this->wsWorker = new Worker("websocket://0.0.0.0:8001");
+        $this->wsWorker = new Worker("websocket://0.0.0.0:8002");
         // создаём обработчик, который будет выполняться при запуске ws-сервера
         $this->wsWorker->onWorkerStart = [$this, 'onWsStart'];
         $this->wsWorker->onConnect = [$this, 'onWsConnect'];
