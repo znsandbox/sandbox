@@ -2,153 +2,96 @@
 
 namespace ZnSandbox\Sandbox\CryptoNode\Domain\Libs;
 
-use Workerman\Connection\ConnectionInterface;
-use Workerman\Worker;
-use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnCore\Base\Exceptions\NotFoundException;
-use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
-use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
-use ZnCore\Domain\Helpers\EntityHelper;
-use ZnLib\Socket\Domain\Entities\SocketEventEntity;
-use ZnLib\Socket\Domain\Enums\SocketEventEnum;
-use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;
-use Workerman\Protocols\Http\Request;
 use PHPSocketIO\SocketIO;
+use Workerman\Worker;
 
 class SocketIoDaemon
 {
 
-    private $users = [];
-    private $tcpWorker;
-    private $wsWorker;
-    private $localUrl = 'tcp://127.0.0.1:1235';
-    private $connectionRepository;
-    private $authService;
-
-    public function __construct(ConnectionRepository $connectionRepository, AuthServiceInterface $authService)
-    {
-        $this->authService = $authService;
-        $this->connectionRepository = $connectionRepository;
-        // массив для связи соединения пользователя и необходимого нам параметра
-
-        // создаём ws-сервер, к которому будут подключаться все наши пользователи
-        $this->wsWorker = new Worker("websocket://0.0.0.0:8002");
-        // создаём обработчик, который будет выполняться при запуске ws-сервера
-        $this->wsWorker->onWorkerStart = [$this, 'onWsStart'];
-        $this->wsWorker->onConnect = [$this, 'onWsConnect'];
-        $this->wsWorker->onClose = [$this, 'onWsClose'];
-        $this->wsWorker->onMessage = [$this, 'onWsMessage'];
-    }
-
-    public function sendMessageToTcp(SocketEventEntity $eventEntity)
-    {
-        // соединяемся с локальным tcp-сервером
-        try {
-            $instance = stream_socket_client($this->localUrl);
-            $serialized = serialize($eventEntity);
-            // отправляем сообщение
-            fwrite($instance, $serialized . "\n");
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
-    public function onWsStart()
-    {
-        // создаём локальный tcp-сервер, чтобы отправлять на него сообщения из кода нашего сайта
-        $this->tcpWorker = new Worker($this->localUrl);
-        // создаём обработчик сообщений, который будет срабатывать,
-        // когда на локальный tcp-сокет приходит сообщение
-        $this->tcpWorker->onMessage = [$this, 'onTcpMessage'];
-        $this->tcpWorker->listen();
-    }
-
-    protected function auth($params)//: int
-    {
-        /*$userId = intval($params['userId']);
-        if (!empty($userId)) {
-            return $userId;
-        }*/
-
-        $token = $params['token'] ?? null;
-        if (!empty($token)) {
-            /** @var IdentityEntityInterface $identityEntity */
-            $identityEntity = $this->authService->authenticationByToken($token);
-            return $identityEntity->getId();
-        }
-
-        throw new UnauthorizedException('Empty user id');
-    }
-
-    public function onWsConnect(ConnectionInterface $connection)
-    {
-        $connection->onWebSocketConnect = function ($connection) {
-            $userId = $this->auth($_GET);
-            // при подключении нового пользователя сохраняем get-параметр, который же сами и передали со страницы сайта
-            $this->connectionRepository->addConnection($userId, $connection);
-            // вместо get-параметра можно также использовать параметр из cookie, например $_COOKIE['PHPSESSID']
-
-            $event = new SocketEventEntity;
-            $event->setUserId($userId);
-            $event->setName(SocketEventEnum::CONNECT);
-            $event->setData([
-                'totalConnections' => $this->connectionRepository->countByUserId($userId),
-            ]);
-            $this->sendToWebSocket($event, $connection);
-        };
-    }
-
-    public function onWsClose(ConnectionInterface $connection)
-    {
-        $this->connectionRepository->remove($connection);
-    }
-
-    public function onWsMessage(ConnectionInterface $connection,  $jsonMessage)
-    {
-        $data = json_decode($jsonMessage, JSON_OBJECT_AS_ARRAY);
-
-        $event = new SocketEventEntity;
-        $event->setUserId($data['toAddress']);
-        // messenger.newMessage
-        $event->setName('cryptoMessage.p2p');
-        $event->setData([
-            'document' => $data['document'],
-        ]);
-//            $event->setData($data);
-        $this->sendMessageToTcp($event);
-        
-        
-        
-//        dump($data);
-        //$this->connectionRepository->remove($connection);
-    }
-
-    public function onTcpMessage(ConnectionInterface $connection, string $data)
-    {
-        /** @var SocketEventEntity $eventEntity */
-        $eventEntity = unserialize($data);
-        $userId = $eventEntity->getUserId();
-        // отправляем сообщение пользователю по userId
-        try {
-            $webconnections = $this->connectionRepository->allByUserId($userId);
-            foreach ($webconnections as $webconnection) {
-                $this->sendToWebSocket($eventEntity, $webconnection);
-                echo 'send '.hash('crc32b', $data).' to ' . $userId . PHP_EOL;
-            }
-        } catch (NotFoundException $e) {
-        }
-    }
-
     public function runAll()
     {
-        // Run worker
-        Worker::runAll();
+        $this->initSocket();
+        if (!defined('GLOBAL_START')) {
+            Worker::runAll();
+        }
     }
 
-    private function sendToWebSocket(SocketEventEntity $socketEventEntity, ConnectionInterface $connection)
+    protected function initSocket()
     {
-        $eventArray = EntityHelper::toArray($socketEventEntity);
-        $json = json_encode($eventArray);
-        $connection->send($json);
+        $io = new SocketIO(2020);
+        $io->on('connection', function ($socket) {
+            $socket->addedUser = false;
+            // when the client emits 'new message', this listens and executes
+            $socket->on('new message', function ($data) use ($socket) {
+                $this->writeln('new message');
+                // we tell the client to execute 'new message'
+                $socket->broadcast->emit('new message', array(
+                    'username' => $socket->username,
+                    'message' => $data
+                ));
+            });
+
+            // when the client emits 'add user', this listens and executes
+            $socket->on('add user', function ($username) use ($socket) {
+                $this->writeln('add user');
+                if ($socket->addedUser)
+                    return;
+                global $usernames, $numUsers;
+                // we store the username in the socket session for this client
+                $socket->username = $username;
+                ++$numUsers;
+                $socket->addedUser = true;
+                $socket->emit('login', array(
+                    'numUsers' => $numUsers
+                ));
+                // echo globally (all clients) that a person has connected
+                $socket->broadcast->emit('user joined', array(
+                    'username' => $socket->username,
+                    'numUsers' => $numUsers
+                ));
+            });
+
+            // when the client emits 'typing', we broadcast it to others
+            $socket->on('typing', function () use ($socket) {
+                $this->writeln('typing');
+                $socket->broadcast->emit('typing', array(
+                    'username' => $socket->username
+                ));
+            });
+
+            // when the client emits 'stop typing', we broadcast it to others
+            $socket->on('stop typing', function () use ($socket) {
+                $this->writeln('stop typing');
+                $socket->broadcast->emit('stop typing', array(
+                    'username' => $socket->username
+                ));
+            });
+
+            // when the user disconnects.. perform this
+            $socket->on('disconnect', function () use ($socket) {
+                $this->writeln('disconnect');
+                global $usernames, $numUsers;
+                if ($socket->addedUser) {
+                    --$numUsers;
+
+                    // echo globally that this client has left
+                    $socket->broadcast->emit('user left', array(
+                        'username' => $socket->username,
+                        'numUsers' => $numUsers
+                    ));
+                }
+            });
+
+        });
+    }
+
+    protected function writeln(string $line)
+    {
+        echo $this->write($line) . PHP_EOL;
+    }
+
+    protected function write(string $line)
+    {
+        echo $line;
     }
 }

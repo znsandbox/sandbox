@@ -8,7 +8,7 @@ use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
 use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
 use ZnSandbox\Sandbox\App\Libs\ZnCore;
 use ZnSandbox\Sandbox\CryptoNode\Domain\Apps\WebSocketApp;
-use ZnSandbox\Sandbox\CryptoNode\Domain\Libs\SocketDaemon;
+use ZnSandbox\Sandbox\CryptoNode\Domain\Libs\SocketIoDaemon as SocketDaemon;
 
 define('MICRO_TIME', microtime(true));
 
