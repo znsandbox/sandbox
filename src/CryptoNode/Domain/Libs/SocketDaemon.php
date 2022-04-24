@@ -13,9 +13,9 @@ use ZnLib\Socket\Domain\Entities\SocketEventEntity;
 use ZnLib\Socket\Domain\Enums\SocketEventEnum;
 use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;
 use Workerman\Protocols\Http\Request;
-use PHPSocketIO\SocketIO;
+//use PHPSocketIO\SocketIO;
 
-class SocketIoDaemon
+class SocketDaemon
 {
 
     private $users = [];
