@@ -1,2 +1,2 @@
 #!/bin/sh
-php socket start
+php socketio start
