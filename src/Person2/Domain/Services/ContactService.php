@@ -36,7 +36,7 @@ class ContactService extends BaseCrudService implements ContactServiceInterface
     public function allByPersonId(int $personId, Query $query = null): Collection
     {
         $query = $this->forgeQuery($query);
-        $query->where('person_id', $myPersonId);
+        $query->where('person_id', $personId);
         return $this->all($query);
     }
 

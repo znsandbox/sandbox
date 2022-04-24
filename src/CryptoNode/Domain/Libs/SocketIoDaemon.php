@@ -21,7 +21,7 @@ class SocketIoDaemon
     private $users = [];
     private $tcpWorker;
     private $wsWorker;
-    private $localUrl = 'tcp://127.0.0.1:1234';
+    private $localUrl = 'tcp://127.0.0.1:1235';
     private $connectionRepository;
     private $authService;
 
