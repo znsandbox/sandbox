@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
-use ZnSandbox\Sandbox\Grabber\Domain\Libs\Hasher;
 
 class TransactionEntity implements EntityIdInterface, ValidateEntityByMetadataInterface, UniqueInterface
 {
