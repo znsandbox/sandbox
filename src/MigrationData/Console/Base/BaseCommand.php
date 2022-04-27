@@ -2,12 +2,12 @@
 
 namespace ZnSandbox\Sandbox\MigrationData\Console\Base;
 
-use ZnSandbox\Sandbox\MigrationData\Domain\Libs\SourceProvider;
-use ZnSandbox\Sandbox\MigrationData\Domain\Libs\TargetProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Domain\Libs\Query;
+use ZnSandbox\Sandbox\MigrationData\Domain\Libs\SourceProvider;
+use ZnSandbox\Sandbox\MigrationData\Domain\Libs\TargetProvider;
 
 abstract class BaseCommand extends Command
 {
@@ -17,8 +17,8 @@ abstract class BaseCommand extends Command
     protected $limit = 500;
 
     abstract protected function forgeSourceQuery(): Query;
-
     abstract public function persist(object $entity): void;
+    abstract protected function configureProviders(SourceProvider $sourceProvider, TargetProvider $targetProvider): void;
 
     public function __construct(
         $name = null,
@@ -29,8 +29,7 @@ abstract class BaseCommand extends Command
         parent::__construct($name);
         $this->sourceProvider = $sourceProvider;
         $this->targetProvider = $targetProvider;
-
-        $this->configureProviders();
+        $this->configureAll();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -55,11 +54,11 @@ abstract class BaseCommand extends Command
         }
     }
 
-    protected function configureProviders()
+    protected function configureAll()
     {
         $this->sourceProvider->setQuery($this->forgeSourceQuery());
         $this->sourceProvider->setLimit($this->limit);
-
         $this->targetProvider->setPersistCallback([$this, 'persist']);
+        $this->configureProviders($this->sourceProvider, $this->targetProvider);
     }
 }
