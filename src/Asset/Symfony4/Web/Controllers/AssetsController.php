@@ -17,6 +17,7 @@ class AssetsController extends BaseWebController
     protected $baseUri = '/assets';
     protected $profiles = [
         'vendor' => __DIR__ . '/../../../dist/vendor',
+        'app' => __DIR__ . '/../../../dist/app',
     ];
 
     public function open(Request $request): Response
