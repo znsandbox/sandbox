@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
-use App\Person\Domain\Entities\PersonStrictEntity;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;

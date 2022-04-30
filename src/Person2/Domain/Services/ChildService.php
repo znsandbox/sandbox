@@ -71,7 +71,6 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
 
 //    public function persist(object $entity)
 //    {
-//        /** @var \App\Person\Domain\Entities\PersonEntity $entity */
 //        $myPersonId = $this->myPersonService->one()->getId();
 //        $childEntity = $this->personService->persist($entity);
 //
