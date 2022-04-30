@@ -32,7 +32,7 @@ abstract class BaseWebApp extends BaseApp
 
     public function import(): array
     {
-        return ['i18next', 'container', 'symfonyWeb'];
+        return ['i18next', 'container', 'rbac', 'symfonyWeb'];
     }
 
     protected function configDispatcher(EventDispatcherInterface $dispatcher): void

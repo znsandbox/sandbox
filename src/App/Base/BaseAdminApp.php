@@ -12,6 +12,6 @@ abstract class BaseAdminApp extends BaseWebApp
 
     public function import(): array
     {
-        return ['i18next', 'container', 'symfonyAdmin'];
+        return ['i18next', 'container', 'rbac', 'symfonyAdmin'];
     }
 }
