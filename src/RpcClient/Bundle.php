@@ -10,7 +10,7 @@ class Bundle extends BaseBundle
     public function deps(): array
     {
         return [
-            new \ZnSandbox\Sandbox\Rpc\Bundle(['all']),
+            new \ZnLib\Rpc\Bundle(['all']),
         ];
     }
 

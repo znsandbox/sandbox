@@ -13,7 +13,7 @@ use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnLib\Rpc\Domain\Exceptions\InternalJsonRpcErrorException;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
-use ZnSandbox\Sandbox\Rpc\Domain\Helpers\ErrorHelper;
+use ZnLib\Rpc\Domain\Helpers\ErrorHelper;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\UserEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\UserServiceInterface;
 

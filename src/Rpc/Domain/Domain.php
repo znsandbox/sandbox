@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain;
+namespace ZnLib\Rpc\Domain;
 
 use ZnCore\Domain\Interfaces\DomainInterface;
 

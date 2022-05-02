@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Enums;
+namespace ZnLib\Rpc\Domain\Enums;
 
 class RpcCryptoProviderStrategyEnum extends \ZnLib\Rpc\Domain\Enums\RpcCryptoProviderStrategyEnum
 {

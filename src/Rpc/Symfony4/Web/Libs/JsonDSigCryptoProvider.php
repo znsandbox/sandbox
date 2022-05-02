@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Symfony4\Web\Libs;
+namespace ZnLib\Rpc\Symfony4\Web\Libs;
 
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCrypt\Base\Domain\Enums\EncodingEnum;

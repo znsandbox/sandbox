@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Symfony4\Web\Libs;
+namespace ZnLib\Rpc\Symfony4\Web\Libs;
 
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;

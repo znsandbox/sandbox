@@ -1,8 +1,8 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Symfony4\Web\Controllers;
+namespace ZnLib\Rpc\Symfony4\Web\Controllers;
 
-use ZnSandbox\Sandbox\Rpc\Domain\Enums\Rbac\RpcDocPermissionEnum;
+use ZnLib\Rpc\Domain\Enums\Rbac\RpcDocPermissionEnum;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

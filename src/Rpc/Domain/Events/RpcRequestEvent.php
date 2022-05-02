@@ -1,8 +1,8 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Events;
+namespace ZnLib\Rpc\Domain\Events;
 
-use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
+use ZnLib\Rpc\Domain\Entities\MethodEntity;
 use Symfony\Contracts\EventDispatcher\Event;
 use ZnCore\Domain\Traits\Event\EventSkipHandleTrait;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;

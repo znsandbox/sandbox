@@ -1,11 +1,11 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Services;
+namespace ZnLib\Rpc\Domain\Services;
 
-use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\VersionHandlerServiceInterface;
+use ZnLib\Rpc\Domain\Interfaces\Services\VersionHandlerServiceInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Base\BaseCrudService;
-use ZnSandbox\Sandbox\Rpc\Domain\Entities\VersionHandlerEntity;
+use ZnLib\Rpc\Domain\Entities\VersionHandlerEntity;
 
 class VersionHandlerService extends \ZnLib\Rpc\Domain\Services\VersionHandlerService  // BaseCrudService implements VersionHandlerServiceInterface
 {

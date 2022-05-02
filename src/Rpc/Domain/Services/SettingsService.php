@@ -1,9 +1,9 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Services;
+namespace ZnLib\Rpc\Domain\Services;
 
 use ZnLib\Rpc\Domain\Entities\SettingsEntity;
-use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\SettingsServiceInterface;
+use ZnLib\Rpc\Domain\Interfaces\Services\SettingsServiceInterface;
 use ZnSandbox\Sandbox\Settings\Domain\Interfaces\Services\SystemServiceInterface;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Helpers\ValidationHelper;

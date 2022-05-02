@@ -1,7 +1,7 @@
 <?php
 
-use ZnSandbox\Sandbox\Rpc\Domain\Enums\Rbac\RpcSettingsPermissionEnum;
-use ZnSandbox\Sandbox\Rpc\Rpc\Controllers\SettingsController;
+use ZnLib\Rpc\Domain\Enums\Rbac\RpcSettingsPermissionEnum;
+use ZnLib\Rpc\Rpc\Controllers\SettingsController;
 
 return [
     [

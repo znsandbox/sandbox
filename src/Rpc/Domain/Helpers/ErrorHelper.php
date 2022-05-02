@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Helpers;
+namespace ZnLib\Rpc\Domain\Helpers;
 
 class ErrorHelper extends \ZnLib\Rpc\Domain\Helpers\ErrorHelper
 {

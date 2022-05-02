@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Events;
+namespace ZnLib\Rpc\Domain\Events;
 
 use Symfony\Contracts\EventDispatcher\Event;
 use ZnCore\Domain\Traits\Event\EventSkipHandleTrait;

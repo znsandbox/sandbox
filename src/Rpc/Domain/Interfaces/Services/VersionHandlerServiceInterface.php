@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services;
+namespace ZnLib\Rpc\Domain\Interfaces\Services;
 
 use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
 

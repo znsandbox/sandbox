@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Subscribers;
+namespace ZnLib\Rpc\Domain\Subscribers;
 
 class TimestampSubscriber extends \ZnLib\Rpc\Domain\Subscribers\TimestampSubscriber //implements EventSubscriberInterface
 {

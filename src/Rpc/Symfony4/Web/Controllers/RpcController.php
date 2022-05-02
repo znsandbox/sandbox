@@ -1,10 +1,10 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Symfony4\Web\Controllers;
+namespace ZnLib\Rpc\Symfony4\Web\Controllers;
 
 use ZnLib\Rpc\Symfony4\HttpKernel\RpcFramework;
-use ZnSandbox\Sandbox\Rpc\Domain\Helpers\ErrorHelper;
-use ZnSandbox\Sandbox\Rpc\Domain\Services\ProcedureService;
+use ZnLib\Rpc\Domain\Helpers\ErrorHelper;
+use ZnLib\Rpc\Domain\Services\ProcedureService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ use ZnLib\Rpc\Domain\Libs\RpcJsonResponse;
 
 /**
  * Class RpcController
- * @package ZnSandbox\Sandbox\Rpc\Symfony4\Web\Controllers
+ * @package ZnLib\Rpc\Symfony4\Web\Controllers
  * @deprecated
  * @see RpcFramework
  */

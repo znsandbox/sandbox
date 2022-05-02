@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Enums;
+namespace ZnLib\Rpc\Domain\Enums;
 
 class RpcEventEnum extends \ZnLib\Rpc\Domain\Enums\RpcEventEnum
 {

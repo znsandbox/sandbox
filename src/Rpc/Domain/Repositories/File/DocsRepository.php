@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Repositories\File;
+namespace ZnLib\Rpc\Domain\Repositories\File;
 
 use Illuminate\Support\Collection;
 use ZnCore\Base\Exceptions\NotFoundException;

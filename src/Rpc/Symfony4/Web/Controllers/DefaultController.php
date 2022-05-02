@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Symfony4\Web\Controllers;
+namespace ZnLib\Rpc\Symfony4\Web\Controllers;
 
 use App\Common\Enums\Rbac\CommonPermissionEnum;
 use Symfony\Component\HttpFoundation\Request;

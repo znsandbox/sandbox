@@ -1,12 +1,12 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Repositories\File;
+namespace ZnLib\Rpc\Domain\Repositories\File;
 
 use ZnCore\Domain\Base\Repositories\BaseFileCrudRepository;
 use ZnCore\Domain\Libs\Query;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
-use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
-use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Repositories\MethodRepositoryInterface;
+use ZnLib\Rpc\Domain\Entities\MethodEntity;
+use ZnLib\Rpc\Domain\Interfaces\Repositories\MethodRepositoryInterface;
 
 class MethodRepository extends \ZnLib\Rpc\Domain\Repositories\File\MethodRepository  //BaseFileCrudRepository implements MethodRepositoryInterface
 {

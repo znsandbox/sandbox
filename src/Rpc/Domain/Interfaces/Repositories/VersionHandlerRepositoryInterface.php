@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Repositories;
+namespace ZnLib\Rpc\Domain\Interfaces\Repositories;
 
 use ZnCore\Domain\Interfaces\Repository\CrudRepositoryInterface;
 

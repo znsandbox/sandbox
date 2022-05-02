@@ -1,8 +1,8 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Rpc\Controllers;
+namespace ZnLib\Rpc\Rpc\Controllers;
 
-use ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Services\SettingsServiceInterface;
+use ZnLib\Rpc\Domain\Interfaces\Services\SettingsServiceInterface;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Services;
+namespace ZnLib\Rpc\Domain\Services;
 
 class ProcedureService2 extends \ZnLib\Rpc\Domain\Services\ProcedureService2 // ProcedureService
 {

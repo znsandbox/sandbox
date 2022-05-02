@@ -5,23 +5,23 @@ use ZnCore\Base\Helpers\EnvHelper;
 return [
     'definitions' => [],
     'singletons' => [
-        'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Services\\MethodServiceInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Services\\MethodService',
+        'ZnLib\\Rpc\\Domain\\Interfaces\\Services\\MethodServiceInterface' => 'ZnLib\\Rpc\\Domain\\Services\\MethodService',
 
-        'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Repositories\\MethodRepositoryInterface' => !EnvHelper::isDev()
+        'ZnLib\\Rpc\\Domain\\Interfaces\\Repositories\\MethodRepositoryInterface' => !EnvHelper::isDev()
             ? 'ZnLib\Rpc\Domain\Repositories\Eloquent\MethodRepository'
             : 'ZnLib\Rpc\Domain\Repositories\File\MethodRepository',
 //            : 'ZnLib\Rpc\Domain\Repositories\ConfigManager\MethodRepository',
         
-        'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Services\\VersionHandlerServiceInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Services\\VersionHandlerService',
-        'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Repositories\\VersionHandlerRepositoryInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Repositories\\Eloquent\\VersionHandlerRepository',
-        'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\RpcController' => 'ZnSandbox\\Sandbox\\Rpc\\Symfony4\\Web\\Controllers\\RpcController',
-        'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\DocsController' => 'ZnSandbox\\Sandbox\\Rpc\\Symfony4\\Web\\Controllers\\DocsController',
-        'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\DefaultController' => 'ZnSandbox\\Sandbox\\Rpc\\Symfony4\\Web\\Controllers\\DefaultController',
-        'ZnLib\\Rpc\\Domain\\Interfaces\\Repositories\\DocsRepositoryInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Repositories\\File\\DocsRepository',
-        'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Services\\SettingsServiceInterface' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Services\\SettingsService',
+        'ZnLib\\Rpc\\Domain\\Interfaces\\Services\\VersionHandlerServiceInterface' => 'ZnLib\\Rpc\\Domain\\Services\\VersionHandlerService',
+        'ZnLib\\Rpc\\Domain\\Interfaces\\Repositories\\VersionHandlerRepositoryInterface' => 'ZnLib\\Rpc\\Domain\\Repositories\\Eloquent\\VersionHandlerRepository',
+        'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\RpcController' => 'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\RpcController',
+        'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\DocsController' => 'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\DocsController',
+        'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\DefaultController' => 'ZnLib\\Rpc\\Symfony4\\Web\\Controllers\\DefaultController',
+        'ZnLib\\Rpc\\Domain\\Interfaces\\Repositories\\DocsRepositoryInterface' => 'ZnLib\\Rpc\\Domain\\Repositories\\File\\DocsRepository',
+        'ZnLib\\Rpc\\Domain\\Interfaces\\Services\\SettingsServiceInterface' => 'ZnLib\\Rpc\\Domain\\Services\\SettingsService',
     ],
     'entities' => [
-        'ZnSandbox\\Sandbox\\Rpc\\Domain\\Entities\\MethodEntity' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Repositories\\MethodRepositoryInterface',
-        'ZnSandbox\\Sandbox\\Rpc\\Domain\\Entities\\VersionHandlerEntity' => 'ZnSandbox\\Sandbox\\Rpc\\Domain\\Interfaces\\Repositories\\VersionHandlerRepositoryInterface',
+        'ZnLib\\Rpc\\Domain\\Entities\\MethodEntity' => 'ZnLib\\Rpc\\Domain\\Interfaces\\Repositories\\MethodRepositoryInterface',
+        'ZnLib\\Rpc\\Domain\\Entities\\VersionHandlerEntity' => 'ZnLib\\Rpc\\Domain\\Interfaces\\Repositories\\VersionHandlerRepositoryInterface',
     ],
 ];

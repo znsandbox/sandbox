@@ -1,8 +1,8 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Rpc\Domain\Interfaces\Repositories;
+namespace ZnLib\Rpc\Domain\Interfaces\Repositories;
 
-use ZnSandbox\Sandbox\Rpc\Domain\Entities\MethodEntity;
+use ZnLib\Rpc\Domain\Entities\MethodEntity;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Domain\Interfaces\Repository\CrudRepositoryInterface;
 
