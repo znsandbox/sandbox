@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Organization\Widgets\CurrentOrganization;
 
 use App\Organization\Domain\Enums\Rbac\OrganizationOrganizationPermissionEnum;
-use ZnCore\Base\Exceptions\ForbiddenException;
+use ZnCore\Contract\User\Exceptions\ForbiddenException;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Web\Widgets\Base\BaseWidget2;
 use ZnSandbox\Sandbox\Organization\Domain\Interfaces\Services\OrganizationServiceInterface;

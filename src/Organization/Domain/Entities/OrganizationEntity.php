@@ -10,7 +10,7 @@ use ZnCore\Base\Libs\I18Next\Traits\LanguageTrait;
 use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
-use ZnCore\Domain\Interfaces\Entity\EntityIdInterface;
+use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 
 class OrganizationEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
 {
