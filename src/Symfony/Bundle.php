@@ -2,7 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Symfony;
 
+use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Libs\App\Base\BaseBundle;
+
+DeprecateHelper::hardThrow();
 
 class Bundle extends BaseBundle
 {

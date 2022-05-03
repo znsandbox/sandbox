@@ -20,18 +20,19 @@ use ZnBundle\User\Domain\Services\AuthService3;
 use ZnBundle\User\Domain\Subscribers\SymfonyAuthenticationIdentitySubscriber;
 
 return [
-	'definitions' => [
-	    
+    'definitions' => [
+
     ],
-	'singletons' => [
+    'singletons' => [
         'ZnBundle\Notify\Domain\Interfaces\Repositories\ToastrRepositoryInterface' => 'ZnBundle\Notify\Domain\Repositories\Symfony\ToastrRepository',
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\SwitchRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\SwitchRepository',
         'ZnBundle\\Language\\Domain\\Interfaces\\Repositories\\StorageRepositoryInterface' => 'ZnBundle\\Language\\Domain\\Repositories\\Symfony4\\StorageRepository',
 
+
         \Symfony\Component\HttpKernel\Controller\ControllerResolverInterface::class => \ZnLib\Web\Symfony4\HttpKernel\ControllerResolver::class,
         \Symfony\Component\Routing\Generator\UrlGeneratorInterface::class => \Symfony\Component\Routing\Generator\UrlGenerator::class,
 
-            TokenStorageInterface::class => function(ContainerInterface $container) {
+        TokenStorageInterface::class => function (ContainerInterface $container) {
             $session = $container->get(SessionInterface::class);
             return new SessionTokenStorage($session);
         },
@@ -44,14 +45,14 @@ return [
         CsrfTokenManagerInterface::class => CsrfTokenManager::class,
         RuntimeLoaderInterface::class => FactoryRuntimeLoader::class,
         FormFactoryInterface::class => FormFactory::class,
-        FormRegistryInterface::class => function(ContainerInterface $container) {
+        FormRegistryInterface::class => function (ContainerInterface $container) {
             $registry = new FormRegistry(
                 [$container->get(HttpFoundationExtension::class)],
                 $container->get(ResolvedFormTypeFactory::class)
             );
             return $registry;
         },
-        AuthServiceInterface::class => function(ContainerInterface $container) {
+        AuthServiceInterface::class => function (ContainerInterface $container) {
             /** @var AuthService3 $authService */
             $authService = $container->get(AuthService3::class);
             $authService->addSubscriber(SymfonyAuthenticationIdentitySubscriber::class);
@@ -65,8 +66,8 @@ return [
             ]);
             return $authService;
         },
-	],
-	'entities' => [
-		
-	],
+    ],
+    'entities' => [
+
+    ],
 ];
