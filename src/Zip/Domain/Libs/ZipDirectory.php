@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Zip\Domain\Libs;
 
 use Exception;
 use ZipArchive;
+use ZnCore\Base\Helpers\FindFileHelper;
 use ZnCore\Base\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 
@@ -12,7 +13,7 @@ class ZipDirectory
 
     public function createZipFromDirectory(string $directory, string $zipFileName = 'arch.zip')
     {
-        $files = FileHelper::scanDir($directory);
+        $files = FindFileHelper::scanDir($directory);
         $tmpDir = $this->getTmpDirectory();
         $zipFile = $tmpDir . '/' . $zipFileName;
         $zipArchive = $this->openZip($zipFile);

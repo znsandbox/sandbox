@@ -39,7 +39,7 @@ $attributes = [
         'label' => I18Next::t('storage', 'file.attribute.size'),
         'attributeName' => 'size',
         'value' => function(FileEntity $entity) {
-            return FileHelper::sizeFormat($entity->getSize());
+            return \ZnCore\Base\Helpers\FileSizeHelper::sizeFormat($entity->getSize());
         },
     ],
     [

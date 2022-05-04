@@ -2,12 +2,13 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Helpers;
 
+use ZnCore\Base\Helpers\FindFileHelper;
 use ZnCore\Domain\Interfaces\DomainInterface;
 
 class ConfParser {
 
     public static function readServerConfig(string $directory): array {
-        $files = \ZnCore\Base\Legacy\Yii\Helpers\FileHelper::scanDir($directory, ['only' => ['*.conf']]);
+        $files = FindFileHelper::scanDir($directory, ['only' => ['*.conf']]);
         $commonTagCollection = [];
         foreach ($files as $file) {
             $content = \ZnCore\Base\Legacy\Yii\Helpers\FileHelper::load($directory . '/' . $file);
