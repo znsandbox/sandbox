@@ -2,20 +2,18 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use phpDocumentor\Reflection\Types\This;
-use ZnCore\Base\Exceptions\DeprecatedException;
+use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Enums\EventEnum;
 use ZnCore\Domain\Events\EntityEvent;
-use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
+use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
-use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
-use ZnCore\Domain\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Person2\Domain\Subscribers\MyChildBehavior;
 
 class MyChildService extends BaseCrudService implements MyChildServiceInterface
