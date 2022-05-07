@@ -27,19 +27,6 @@ class m_2018_02_25_102260_create_person_contact_table extends BaseCreateTableMig
 
             $this->addForeign($table, 'identity_id', 'user_identity');
             $this->addForeign($table, 'type_id', 'person_contact_type');
-
-            /*$table
-                ->foreign('identity_id')
-                ->references('id')
-                ->on($this->encodeTableName('user_identity'))
-                ->onDelete(ForeignActionEnum::CASCADE)
-                ->onUpdate(ForeignActionEnum::CASCADE);
-            $table
-                ->foreign('type_id')
-                ->references('id')
-                ->on($this->encodeTableName('person_contact_type'))
-                ->onDelete(ForeignActionEnum::CASCADE)
-                ->onUpdate(ForeignActionEnum::CASCADE);*/
         };
     }
 }
