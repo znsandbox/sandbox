@@ -5,15 +5,15 @@ namespace ZnSandbox\Sandbox\App\Libs;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
-use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
+use ZnCore\Base\Libs\Container\Helpers\ContainerHelper;
 use ZnCore\Base\Libs\App\Interfaces\ConfigManagerInterface;
-use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
+use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnCore\Base\Libs\App\Libs\ConfigManager;
 use ZnCore\Base\Libs\App\Loaders\BundleLoader;
 use ZnCore\Base\Libs\App\Loaders\ConfigCollectionLoader;
 use ZnSandbox\Sandbox\App\Subscribers\ConfigureContainerSubscriber;
 use ZnCore\Base\Libs\App\Subscribers\ConfigureEntityManagerSubscriber;
-use ZnCore\Base\Libs\Container\ContainerAwareTrait;
+use ZnCore\Base\Libs\Container\Traits\ContainerAwareTrait;
 
 class ZnCore
 {

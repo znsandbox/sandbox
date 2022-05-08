@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\Container\ContainerAwareTrait;
+use ZnCore\Base\Libs\Container\Traits\ContainerAwareTrait;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Domain\Helpers\ValidationHelper;

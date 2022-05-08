@@ -10,7 +10,7 @@ use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Helpers\InstanceHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
-use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
+use ZnCore\Base\Libs\Container\Helpers\ContainerHelper;
 use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
 use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
