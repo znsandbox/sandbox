@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostGroupEntity;
@@ -33,7 +34,7 @@ class HostsRepository
     private function getIndexedCollection(): Collection
     {
         if(self::$collection == null) {
-            $hostsContent = FileHelper::load('/etc/hosts');
+            $hostsContent = FileStorageHelper::load('/etc/hosts');
             preg_match_all("/#\s*<([a-zA-Z_-]+)([^>]*)>([\s\S]+?)#\s*<\/([a-zA-Z_-]+)>/i", $hostsContent, $matches);
             $collection = [];
             $all = [];

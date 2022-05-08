@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Helpers;
 
+use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
 use ZnCore\Domain\Interfaces\DomainInterface;
 
@@ -11,7 +12,7 @@ class ConfParser {
         $files = FindFileHelper::scanDir($directory, ['only' => ['*.conf']]);
         $commonTagCollection = [];
         foreach ($files as $file) {
-            $content = \ZnCore\Base\Legacy\Yii\Helpers\FileHelper::load($directory . '/' . $file);
+            $content = FileStorageHelper::load($directory . '/' . $file);
             $tagCollection = self::parseConfig($content);
             $commonTagCollection = array_merge($commonTagCollection, $tagCollection);
         }

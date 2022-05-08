@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Application\Domain\Services;
 
+use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\EdsServiceInterface;
 use DateTime;
 use phpseclib\Crypt\RSA;
@@ -131,9 +132,9 @@ class EdsService extends BaseCrudService implements EdsServiceInterface
     }
 
     protected function loadCa(): KeyEntity {
-        $caPem = FileHelper::load($_ENV['PKI_CA_FILE']);
-        $caPrivateKeyPassword = FileHelper::load($_ENV['PKI_CA_PRIVATE_KEY_PASSWORD_FILE']);
-        $privateKeyPem = FileHelper::load($_ENV['PKI_CA_PRIVATE_KEY_FILE']);
+        $caPem = FileStorageHelper::load($_ENV['PKI_CA_FILE']);
+        $caPrivateKeyPassword = FileStorageHelper::load($_ENV['PKI_CA_PRIVATE_KEY_PASSWORD_FILE']);
+        $privateKeyPem = FileStorageHelper::load($_ENV['PKI_CA_PRIVATE_KEY_FILE']);
         $caKeyEntity = new KeyEntity();
         $caKeyEntity->setCertificate($caPem);
         $caKeyEntity->setPrivateKey($privateKeyPem);
