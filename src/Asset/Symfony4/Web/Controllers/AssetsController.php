@@ -9,6 +9,7 @@ use Symfony\Component\Mime\MimeTypes;
 use ZnCore\Base\Enums\Http\HttpHeaderEnum;
 use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Libs\FileSystem\Helpers\FilePathHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 
 class AssetsController extends BaseWebController
@@ -40,7 +41,7 @@ class AssetsController extends BaseWebController
     private function getMime($absoluteFilePath): string
     {
         $fileName = basename($absoluteFilePath);
-        $ext = FileHelper::fileExt($fileName);
+        $ext = FilePathHelper::fileExt($fileName);
         $mimeTypes = new MimeTypes();
         $mime = $mimeTypes->getMimeTypes($ext)[0] ?? 'application/octet-stream';
         return $mime;
