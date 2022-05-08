@@ -13,7 +13,7 @@ use ZnBundle\User\Symfony4\Web\Enums\WebUserEnum;
 use ZnCore\Contract\User\Exceptions\ForbiddenException;
 use ZnCore\Base\Exceptions\InvalidConfigException;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Base\Helpers\EnvHelper;
+use ZnCore\Base\Libs\App\Helpers\EnvHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnSandbox\Sandbox\App\Interfaces\ErrorControllerInterface;
 

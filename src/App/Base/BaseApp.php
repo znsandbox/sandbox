@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\App\Base;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
-use ZnCore\Base\Helpers\EnvHelper;
+use ZnCore\Base\Libs\App\Helpers\EnvHelper;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnCore\Base\Libs\Container\Traits\ContainerAttributeTrait;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
