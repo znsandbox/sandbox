@@ -3,20 +3,14 @@
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
-use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
-use ZnCore\Domain\Base\BaseService;
-use ZnCore\Domain\Helpers\EntityHelper;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnCore\Domain\Libs\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Domain\Enums\HttpHeaderEnum;
-use ZnLib\Rpc\Domain\Libs\RpcAuthProvider;
 use ZnLib\Rpc\Domain\Libs\RpcProvider;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ClientEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
@@ -71,7 +65,7 @@ class ClientService extends BaseService implements ClientServiceInterface
         $this->rpcProvider->prepareRequestEntity($rpcRequestEntity);
         return $rpcRequestEntity;
     }
-    
+
     private function send(RequestForm $form): RpcResponseEntity
     {
         $rpcRequestEntity = $this->formToRequestEntity($form);
@@ -81,19 +75,19 @@ class ClientService extends BaseService implements ClientServiceInterface
 
     private function saveToHistory(RequestForm $form, FavoriteEntity $favoriteEntitySource = null)
     {
-            /*$favoriteEntity1 = new FavoriteEntity();
-            $favoriteEntity1->setMethod($form->getMethod());
-            $favoriteEntity1->setBody(json_decode($form->getBody()));
-            $favoriteEntity1->setMeta(json_decode($form->getMeta()));
-            $favoriteEntity1->setDescription($form->getDescription());
-            $favoriteEntity1->setAuthBy($form->getAuthBy() ?: null);
-            $favoriteEntity1->setVersion($form->getVersion());
-            $this->generateUid($favoriteEntity1);
-            try {
-                $favoriteEntity = $this->getEntityManager()->oneByUnique($favoriteEntity1);
-            } catch (NotFoundException $e) {
-                $favoriteEntity = new FavoriteEntity();
-            }*/
+        /*$favoriteEntity1 = new FavoriteEntity();
+        $favoriteEntity1->setMethod($form->getMethod());
+        $favoriteEntity1->setBody(json_decode($form->getBody()));
+        $favoriteEntity1->setMeta(json_decode($form->getMeta()));
+        $favoriteEntity1->setDescription($form->getDescription());
+        $favoriteEntity1->setAuthBy($form->getAuthBy() ?: null);
+        $favoriteEntity1->setVersion($form->getVersion());
+        $this->generateUid($favoriteEntity1);
+        try {
+            $favoriteEntity = $this->getEntityManager()->oneByUnique($favoriteEntity1);
+        } catch (NotFoundException $e) {
+            $favoriteEntity = new FavoriteEntity();
+        }*/
 
 //            dd($favoriteEntity1);
 
@@ -119,7 +113,7 @@ class ClientService extends BaseService implements ClientServiceInterface
         }
 
         //$favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
-        if($isHas) {
+        if ($isHas) {
             //$favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());
         } else {
 
@@ -133,9 +127,9 @@ class ClientService extends BaseService implements ClientServiceInterface
             }
         }*/
 
-       /* if(!$favoriteEntitySource) {
-            $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
-        }*/
+        /* if(!$favoriteEntitySource) {
+             $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
+         }*/
         /*try {
             $f1 = $this->getEntityManager()->oneByUnique($favoriteEntity);
             $favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());

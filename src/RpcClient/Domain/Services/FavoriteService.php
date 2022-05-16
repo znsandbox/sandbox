@@ -5,15 +5,11 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Base\Libs\I18Next\Exceptions\NotFoundBundleException;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
-use ZnLib\Rpc\Domain\Libs\RpcAuthProvider;
-use ZnLib\Rpc\Domain\Libs\RpcProvider;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\FavoriteServiceInterface;
-use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\UserServiceInterface;
 
 /**
  * @method
@@ -42,7 +38,7 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
     {
         $favoriteEntity->setStatusId(StatusEnum::ENABLED);
         $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
-        if($favoriteEntity->getId()) {
+        if ($favoriteEntity->getId()) {
 
             /*try {
                 $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
@@ -57,7 +53,8 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
             try {
 //                $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
                 $favoriteEntity = $this->getRepository()->oneByUnique($favoriteEntity);
-            } catch (NotFoundException $e) {}
+            } catch (NotFoundException $e) {
+            }
 //            $this->getRepository()->update($favoriteEntity);
             $this->persist($favoriteEntity);
         }
