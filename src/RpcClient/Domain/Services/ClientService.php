@@ -31,7 +31,7 @@ class ClientService extends BaseService implements ClientServiceInterface
 
     private $rpcProvider;
     private $authService;
-    private $authProvider;
+//    private $authProvider;
     private $userService;
 
     public function __construct(
@@ -44,7 +44,7 @@ class ClientService extends BaseService implements ClientServiceInterface
         $this->setEntityManager($em);
         $this->rpcProvider = $rpcProvider;
         $this->authService = $authService;
-        $this->authProvider = new RpcAuthProvider($this->rpcProvider);
+//        $this->authProvider = new RpcAuthProvider($this->rpcProvider);
         $this->userService = $userService;
     }
 
@@ -65,7 +65,7 @@ class ClientService extends BaseService implements ClientServiceInterface
         if ($form->getAuthBy()) {
             /** @var UserEntity $userEntity */
             $userEntity = $this->userService->oneById($form->getAuthBy());
-            $authorizationToken = $this->authProvider->authBy($userEntity->getLogin(), $userEntity->getPassword());
+            $authorizationToken = $this->rpcProvider->authByLogin($userEntity->getLogin(), $userEntity->getPassword());
             $rpcRequestEntity->addMeta(HttpHeaderEnum::AUTHORIZATION, $authorizationToken);
         }
         $this->rpcProvider->prepareRequestEntity($rpcRequestEntity);
