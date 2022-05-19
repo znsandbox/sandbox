@@ -96,6 +96,9 @@ foreach ($historyCollection as $favoriteEntityItem) {
                 <a class="btn btn-primary" href="<?= $this->url('rpc-client/request/import-from-routes') ?>" role="button">
                     Import from routes
                 </a>
+                <a class="btn btn-primary" href="<?= $this->url('rpc-client/request/all-routes') ?>" role="button">
+                    Show all routes
+                </a>
             </div>
         </div>
 

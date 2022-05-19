@@ -2,20 +2,19 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Controllers;
 
-use Symfony\Bundle\FrameworkBundle\Test\TestBrowserToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
+use ZnLib\Rpc\Domain\Entities\MethodEntity;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
+use ZnLib\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
 use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
-use ZnLib\Rpc\Domain\Entities\MethodEntity;
-use ZnLib\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Enums\Rbac\RpcClientFavoritePermissionEnum;
 use ZnSandbox\Sandbox\RpcClient\Domain\Enums\Rbac\RpcClientHistoryPermissionEnum;
@@ -25,7 +24,6 @@ use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\ClientServiceInterfac
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\FavoriteServiceInterface;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\ImportForm;
 use ZnSandbox\Sandbox\RpcClient\Symfony4\Admin\Forms\RequestForm;
-use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
 
 class ClientController extends BaseWebController implements ControllerAccessInterface
 {
@@ -77,6 +75,9 @@ class ClientController extends BaseWebController implements ControllerAccessInte
             ],
             'importFromRoutes' => [
                 RpcClientFavoritePermissionEnum::CREATE,
+            ],
+            'allRoutes' => [
+                RpcClientFavoritePermissionEnum::ALL,
             ],
         ];
     }
@@ -181,20 +182,94 @@ class ClientController extends BaseWebController implements ControllerAccessInte
                     $favoriteEntity = new FavoriteEntity();
                     $methodEntity = $methodCollectionIndexed[$methodName];
                     $favoriteEntity->setMethod($methodName);
+                    $favoriteEntity->setDescription($methodEntity->getTitle());
                     if ($methodEntity->getIsVerifyAuth()) {
                         /** @todo: собрать коллекцию пользователей по имеи полномочия, назначить первого пользователя */
                         $favoriteEntity->setAuthBy(1);
                     }
-                    $this->favoriteService->addFavorite($favoriteEntity);
+                    $this->favoriteService->addHistory($favoriteEntity);
                 }
                 $this->getLayoutManager()->toastrSuccess('Import completed successfully!');
                 return $this->redirectToRoute('rpc-client/request');
             }
         }
 
+        $favCollection = [];
+        foreach ($methodCollectionIndexed as $methodEntity) {
+            if (in_array($methodEntity->getMethodName(), $missingMethodList)) {
+                $favEntity = new \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity();
+                $favEntity->setMethod($methodEntity->getMethodName());
+                $favEntity->setDescription($methodEntity->getTitle());
+                if ($methodEntity->getIsVerifyAuth()) {
+                    $favEntity->setAuthBy(1);
+                }
+                $favCollection[] = $favEntity;
+            }
+        }
+
         return $this->render('import-from-routes', [
             'missingMethodList' => $missingMethodList,
             'routeMethodList' => $routeMethodList,
+            'favCollection' => $favCollection,
+            'methodCollectionIndexed' => $methodCollectionIndexed,
+            'formRender' => $this->getFormManager()->createFormRender($buildForm),
+        ]);
+    }
+
+    public function allRoutes(Request $request): Response
+    {
+        /** @todo перенести в новый сервис */
+        $methodCollection = $this->methodService->all();
+        /** @var MethodEntity[] $methodCollectionIndexed */
+        $methodCollectionIndexed = EntityHelper::indexingCollection($methodCollection, 'methodName');
+        $routeMethodList = EntityHelper::getColumn($methodCollection, 'methodName');
+        $routeMethodList = array_values($routeMethodList);
+
+        $favoriteCollection = $this->favoriteService->allFavorite();
+        $favoriteCollectionIndexed = EntityHelper::indexingCollection($favoriteCollection, 'method');
+        $favoriteMethodList = EntityHelper::getColumn($favoriteCollection, 'method');
+        $favoriteMethodList = array_unique($favoriteMethodList);
+        $favoriteMethodList = array_values($favoriteMethodList);
+
+        $missingMethodList = array_diff($routeMethodList, $favoriteMethodList);
+
+        /** @var ImportForm $form */
+        $form = $this->createFormInstance(ImportForm::class);
+
+        $buildForm = $this->getFormManager()->buildForm($form, $request);
+        if ($buildForm->isSubmitted() && $buildForm->isValid()) {
+//            if ($missingMethodList) {
+//                foreach ($missingMethodList as $methodName) {
+//                    $favoriteEntity = new FavoriteEntity();
+//                    $methodEntity = $methodCollectionIndexed[$methodName];
+//                    $favoriteEntity->setMethod($methodName);
+//                    if ($methodEntity->getIsVerifyAuth()) {
+//                        /** @todo: собрать коллекцию пользователей по имеи полномочия, назначить первого пользователя */
+//                        $favoriteEntity->setAuthBy(1);
+//                    }
+//                    $this->favoriteService->addFavorite($favoriteEntity);
+//                }
+//                $this->getLayoutManager()->toastrSuccess('Import completed successfully!');
+//                return $this->redirectToRoute('rpc-client/request');
+//            }
+        }
+
+        $favCollection = [];
+        foreach ($methodCollectionIndexed as $methodEntity) {
+            $favEntity = new \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity();
+            $favEntity->setMethod($methodEntity->getMethodName());
+            $favEntity->setDescription($methodEntity->getTitle());
+            if ($methodEntity->getIsVerifyAuth()) {
+                $favEntity->setAuthBy(1);
+            }
+            $favCollection[] = $favEntity;
+        }
+
+        return $this->render('import-from-routes', [
+            'missingMethodList' => $missingMethodList,
+            'routeMethodList' => $routeMethodList,
+            'favCollection' => $favCollection,
+            'methodCollectionIndexed' => $methodCollectionIndexed,
             'formRender' => $this->getFormManager()->createFormRender($buildForm),
         ]);
     }

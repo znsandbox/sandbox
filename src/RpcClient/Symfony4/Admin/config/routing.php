@@ -16,6 +16,10 @@ return function (RoutingConfigurator $routes) {
         ->add('rpc-client/request/import-from-routes', '/rpc-client/request/import-from-routes')
         ->controller([ClientController::class, 'importFromRoutes'])
         ->methods(['GET', 'POST']);
+    $routes
+        ->add('rpc-client/request/all-routes', '/rpc-client/request/all-routes')
+        ->controller([ClientController::class, 'allRoutes'])
+        ->methods(['GET', 'POST']);
     
     //    RouteHelper::generateCrud($routes, ApplicationController::class, '/application/application');
 };

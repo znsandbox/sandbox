@@ -23,7 +23,7 @@ use ZnCore\Domain\Libs\DataProvider;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 
 
-/*$favCollection = [];
+$favCollection = [];
 foreach ($methodCollectionIndexed as $methodEntity) {
 //    if(in_array($methodEntity->getMethodName(), $missingMethodList) ) {
         $favEntity = new \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity();
@@ -34,7 +34,7 @@ foreach ($methodCollectionIndexed as $methodEntity) {
         }
         $favCollection[] = $favEntity;
 //    }
-}*/
+}
 $map = \ZnSandbox\Sandbox\RpcClient\Domain\Helpers\FavoriteHelper::generateFavoriteCollectionToMap($favCollection);
 
 /**
@@ -86,8 +86,20 @@ $map = \ZnSandbox\Sandbox\RpcClient\Domain\Helpers\FavoriteHelper::generateFavor
     </div>
 <?php endforeach; ?>
 
-<div class="form-group">
-    <?= $formRender->input('save', 'submit') ?>
-</div>
+
+ <?php if($missingMethodList): ?>
+     <ul>
+         <?php foreach ($missingMethodList as $methodName): ?>
+             <li><?= $methodName . ' (' . $methodCollectionIndexed[$methodName]->getTitle() . ')' ?></li>
+         <?php endforeach; ?>
+     </ul>
+     <div class="form-group">
+         <?= $formRender->input('save', 'submit') ?>
+     </div>
+ <?php else: ?>
+     <div class="alert alert-secondary" role="alert">
+         Method list is empty
+     </div>
+ <?php endif; ?>
 
 <?= $formRender->endFrom() ?>

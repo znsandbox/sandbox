@@ -9,7 +9,7 @@
 
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 
-$map = [];
+/*$map = [];
 foreach ($collection as $favoriteEntityItem) {
     $methodItems = explode('.', $favoriteEntityItem->getMethod());
     if(count($methodItems) > 1) {
@@ -19,13 +19,17 @@ foreach ($collection as $favoriteEntityItem) {
     }
     $map[$groupName][] = $favoriteEntityItem;
 }
-ksort($map);
+ksort($map);*/
+
+$map = \ZnSandbox\Sandbox\RpcClient\Domain\Helpers\FavoriteHelper::generateFavoriteCollectionToMap($collection);
 
 ?>
 
 <?php foreach ($map as $groupName => $favoriteEntityItems): ?>
 <?php sort($favoriteEntityItems); ?>
-<h5 class="mt-3"><?= $groupName ?></h5>
+<h5 class="mt-3">
+    <?= $groupName ?>
+</h5>
 <div class="list-group">
     <?php foreach ($favoriteEntityItems as $favoriteEntityItem): ?>
         <?= $this->renderFile(__DIR__ . '/item.php', [

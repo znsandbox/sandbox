@@ -61,6 +61,33 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
         //dd(EntityHelper::toArray($favoriteEntity));
     }
 
+    public function addHistory(FavoriteEntity $favoriteEntity)
+    {
+        $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
+        $favoriteEntity->setAuthorId($this->authService->getIdentity()->getId());
+        if ($favoriteEntity->getId()) {
+
+            /*try {
+                $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
+                //if($favoriteEntityUnique->getId() != $favoriteEntityUnique->getId()) {
+                    $this->getRepository()->deleteById($favoriteEntityUnique->getId());
+                //}
+            } catch (NotFoundException $e) {}*/
+
+            $this->persist($favoriteEntity);
+//            $this->getRepository()->update($favoriteEntity);
+        } else {
+            try {
+//                $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
+                $favoriteEntity = $this->getRepository()->oneByUnique($favoriteEntity);
+            } catch (NotFoundException $e) {
+            }
+//            $this->getRepository()->update($favoriteEntity);
+            $this->persist($favoriteEntity);
+        }
+        //dd(EntityHelper::toArray($favoriteEntity));
+    }
+
     public function allFavorite(Query $query = null)
     {
         $query = $this->forgeQuery($query);
