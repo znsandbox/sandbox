@@ -13,6 +13,8 @@ return [
         'handler_class' => MyChildController::class,
         'handler_method' => 'all',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myChild.oneById',
@@ -23,6 +25,8 @@ return [
         'handler_class' => MyChildController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myChild.create',
@@ -33,6 +37,8 @@ return [
         'handler_class' => MyChildController::class,
         'handler_method' => 'add',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myChild.persist',
@@ -43,6 +49,8 @@ return [
         'handler_class' => MyChildController::class,
         'handler_method' => 'persist',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myChild.update',
@@ -53,6 +61,8 @@ return [
         'handler_class' => MyChildController::class,
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myChild.delete',
@@ -63,5 +73,7 @@ return [
         'handler_class' => MyChildController::class,
         'handler_method' => 'delete',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

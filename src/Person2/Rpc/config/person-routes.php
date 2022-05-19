@@ -14,6 +14,8 @@ return [
         'handler_class' => ChildController::class,
         'handler_method' => 'all',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'person.oneById',
@@ -24,6 +26,8 @@ return [
         'handler_class' => ChildController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],*/
 
     [
@@ -35,6 +39,8 @@ return [
         'handler_class' => PersonController::class,
         'handler_method' => 'persist',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 
     /*[
@@ -46,6 +52,8 @@ return [
         'handler_class' => ChildController::class,
         'handler_method' => 'add',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'person.update',
@@ -56,6 +64,8 @@ return [
         'handler_class' => ChildController::class,
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'person.delete',
@@ -66,5 +76,7 @@ return [
         'handler_class' => ChildController::class,
         'handler_method' => 'delete',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],*/
 ];

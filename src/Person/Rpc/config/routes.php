@@ -13,6 +13,8 @@ return [
         'handler_class' => PersonController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'personContact.oneById',
@@ -23,6 +25,8 @@ return [
         'handler_class' => PersonController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'personAddress.oneById',
@@ -33,6 +37,8 @@ return [
         'handler_class' => PersonController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'personIdentityCard.oneById',
@@ -43,6 +49,8 @@ return [
         'handler_class' => PersonController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'personBirthCertificate.oneById',
@@ -53,6 +61,8 @@ return [
         'handler_class' => PersonController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'personPassport.oneById',
@@ -63,5 +73,7 @@ return [
         'handler_class' => PersonController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

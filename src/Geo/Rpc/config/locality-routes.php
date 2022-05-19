@@ -13,6 +13,8 @@ return [
         'handler_class' => LocalityController::class,
         'handler_method' => 'all',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoLocality.oneById',
@@ -23,6 +25,8 @@ return [
         'handler_class' => LocalityController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoLocality.create',
@@ -33,6 +37,8 @@ return [
         'handler_class' => LocalityController::class,
         'handler_method' => 'add',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoLocality.update',
@@ -43,6 +49,8 @@ return [
         'handler_class' => LocalityController::class,
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoLocality.delete',
@@ -53,5 +61,7 @@ return [
         'handler_class' => LocalityController::class,
         'handler_method' => 'delete',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

@@ -13,6 +13,8 @@ return [
         'handler_class' => MyContactController::class,
         'handler_method' => 'all',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myContact.oneById',
@@ -23,6 +25,8 @@ return [
         'handler_class' => MyContactController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myContact.create',
@@ -33,6 +37,8 @@ return [
         'handler_class' => MyContactController::class,
         'handler_method' => 'add',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myContact.createBatch',
@@ -43,6 +49,8 @@ return [
         'handler_class' => MyContactController::class,
         'handler_method' => 'createBatch',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myContact.update',
@@ -53,6 +61,8 @@ return [
         'handler_class' => MyContactController::class,
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myContact.delete',
@@ -63,5 +73,7 @@ return [
         'handler_class' => MyContactController::class,
         'handler_method' => 'delete',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

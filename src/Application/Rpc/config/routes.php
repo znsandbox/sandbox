@@ -10,6 +10,8 @@ return [
         'handler_class' => 'ZnSandbox\Sandbox\Application\Rpc\Controllers\ApplicationController',
         'handler_method' => 'all',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'application.oneById',
@@ -20,6 +22,8 @@ return [
         'handler_class' => 'ZnSandbox\Sandbox\Application\Rpc\Controllers\ApplicationController',
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'application.create',
@@ -30,6 +34,8 @@ return [
         'handler_class' => 'ZnSandbox\Sandbox\Application\Rpc\Controllers\ApplicationController',
         'handler_method' => 'add',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'application.update',
@@ -40,6 +46,8 @@ return [
         'handler_class' => 'ZnSandbox\Sandbox\Application\Rpc\Controllers\ApplicationController',
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'application.delete',
@@ -50,5 +58,7 @@ return [
         'handler_class' => 'ZnSandbox\Sandbox\Application\Rpc\Controllers\ApplicationController',
         'handler_method' => 'delete',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

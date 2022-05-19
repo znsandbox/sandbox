@@ -12,5 +12,7 @@ return [
         'handler_class' => \ZnSandbox\Sandbox\Person2\Rpc\Controllers\ContactTypeController::class,
         'handler_method' => 'all',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

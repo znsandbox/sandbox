@@ -13,6 +13,8 @@ return [
         'handler_class' => CountryController::class,
         'handler_method' => 'all',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoCountry.oneById',
@@ -23,6 +25,8 @@ return [
         'handler_class' => CountryController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoCountry.create',
@@ -33,6 +37,8 @@ return [
         'handler_class' => CountryController::class,
         'handler_method' => 'add',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoCountry.update',
@@ -43,6 +49,8 @@ return [
         'handler_class' => CountryController::class,
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'geoCountry.delete',
@@ -53,5 +61,7 @@ return [
         'handler_class' => CountryController::class,
         'handler_method' => 'delete',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

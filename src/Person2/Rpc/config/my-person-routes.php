@@ -13,6 +13,8 @@ return [
         'handler_class' => MyPersonController::class,
         'handler_method' => 'one',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'myPerson.update',
@@ -23,5 +25,7 @@ return [
         'handler_class' => MyPersonController::class,
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];

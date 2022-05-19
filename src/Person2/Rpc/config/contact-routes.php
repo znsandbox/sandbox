@@ -13,6 +13,8 @@ return [
         'handler_class' => ContactController::class,
         'handler_method' => 'allByPersonId',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'contact.oneById',
@@ -23,6 +25,8 @@ return [
         'handler_class' => ContactController::class,
         'handler_method' => 'oneById',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'contact.create',
@@ -33,6 +37,8 @@ return [
         'handler_class' => ContactController::class,
         'handler_method' => 'add',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'contact.update',
@@ -43,6 +49,8 @@ return [
         'handler_class' => ContactController::class,
         'handler_method' => 'update',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
     [
         'method_name' => 'contact.delete',
@@ -53,5 +61,7 @@ return [
         'handler_class' => ContactController::class,
         'handler_method' => 'delete',
         'status_id' => 100,
+        'title' => null,
+        'description' => null,
     ],
 ];
