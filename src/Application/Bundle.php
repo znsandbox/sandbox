@@ -42,4 +42,11 @@ class Bundle extends BaseBundle
             __DIR__ . '/Domain/config/container.php',
         ];
     }
+
+    public function rbac(): array
+    {
+        return [
+            __DIR__ . '/Domain/config/rbac.php',
+        ];
+    }
 }
