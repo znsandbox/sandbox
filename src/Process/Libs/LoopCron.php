@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Process\Libs;
 
 use ZnCore\Base\Enums\Measure\TimeEnum;
+use ZnSandbox\Sandbox\Process\Exceptions\LockedException;
 
 class LoopCron
 {
@@ -30,18 +31,20 @@ class LoopCron
         $this->callback = $callback;
     }
 
-    public function isStarted(): bool
+    protected function isStarted(): bool
     {
         return $this->isStarted || $this->locker->isLocked();
     }
 
-    public function setIsStarted(bool $isStarted): void
+    protected function setIsStarted(bool $isStarted): void
     {
-        if ($this->isStarted) {
-            throw new \Exception('Already runned in this process!');
-        }
-        if ($this->locker->isLocked()) {
-            throw new \Exception('Already runned in other process!');
+        if($isStarted) {
+            if ($this->isStarted) {
+                throw new LockedException('Already runned in this process!');
+            }
+            if ($this->locker->isLocked()) {
+                throw new LockedException('Already runned in other process!');
+            }
         }
         $this->isStarted = $isStarted;
     }
@@ -53,6 +56,7 @@ class LoopCron
             return;
         }
         $this->setIsStarted(true);
+        $this->locker->lock();
         $this->loop();
     }
 
@@ -67,6 +71,11 @@ class LoopCron
         $this->isPaused = true;
     }
 
+    public function tick(): void
+    {
+        $this->locker->touch();
+    }
+
     protected function loop(): void
     {
         while ($this->isStarted) {
@@ -77,11 +86,11 @@ class LoopCron
 
     protected function call(): void
     {
-        $this->locker->touch();
+        $this->tick();
         if ($this->isPaused) {
             return;
         }
         call_user_func($this->callback);
-        $this->locker->touch();
+        $this->tick();
     }
 }
