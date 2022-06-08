@@ -3,12 +3,15 @@
 namespace ZnSandbox\Sandbox\Process\Libs;
 
 use ZnCore\Base\Enums\Measure\TimeEnum;
+use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
 use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Base\Libs\Store\Helpers\StoreHelper;
 use ZnSandbox\Sandbox\Process\Exceptions\FileOpenException;
 use ZnSandbox\Sandbox\Process\Exceptions\FileWriteException;
 use ZnSandbox\Sandbox\Process\Exceptions\LockedException;
+
+DeprecateHelper::hardThrow();
 
 class LockProcess
 {
