@@ -4,6 +4,9 @@ namespace ZnSandbox\Sandbox\Process\Libs;
 
 use ZnCore\Base\Enums\Measure\TimeEnum;
 use ZnSandbox\Sandbox\Process\Exceptions\LockedException;
+use Symfony\Component\Lock\LockFactory;
+use Symfony\Component\Lock\Store\SemaphoreStore;
+
 
 class LoopCron
 {
@@ -18,6 +21,13 @@ class LoopCron
     public function __construct(string $name)
     {
         $this->name = $name;
+
+
+//        $store = new SemaphoreStore();
+//        $factory = new LockFactory($store);
+
+
+
         $this->locker = new LockProcess($name, $this->sleepIntervalMicrosecond);
     }
 

@@ -12,6 +12,7 @@ use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerLayoutInterface;
 use ZnLib\Web\View\View;
 use ZnLib\Web\Widgets\Alert\AlertWidget;
 use ZnLib\Web\Widgets\BreadcrumbWidget;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 class SetLayoutSubscriber implements EventSubscriberInterface
 {
@@ -33,7 +34,7 @@ class SetLayoutSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onKernelController(\Symfony\Component\HttpKernel\Event\ControllerEvent $event)
+    public function onKernelController(ControllerEvent $event)
     {
         $controller = $event->getController();
         list($controllerInstance, $actionName) = $controller;
