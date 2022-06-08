@@ -2,6 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Process\Libs;
 
+use ZnCore\Base\Helpers\DeprecateHelper;
+
+DeprecateHelper::hardThrow();
+
 class ProcessFix
 {
 
