@@ -92,7 +92,9 @@ class LoopCron
     {
         while ($this->isStarted) {
             $this->call();
-            usleep($this->sleepIntervalMicrosecond);
+            if($this->sleepIntervalMicrosecond !== null) {
+                usleep($this->sleepIntervalMicrosecond);
+            }
         }
     }
 
