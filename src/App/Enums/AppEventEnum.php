@@ -2,8 +2,6 @@
 
 namespace ZnSandbox\Sandbox\App\Enums;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-
 class AppEventEnum
 {
 
