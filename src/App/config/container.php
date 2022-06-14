@@ -33,7 +33,7 @@ return [
 //        Request::class => Request::class,
 //        RequestContext::class => RequestContext::class,
 //        RouteCollection::class => RouteCollection::class,
-        ContainerInterface::class => function () {
+        /*ContainerInterface::class => function () {
             return \ZnCore\Base\Libs\Container\Helpers\ContainerHelper::getContainer();
         },
         EntityManagerInterface::class => function (ContainerInterface $container) {
@@ -41,7 +41,7 @@ return [
 //            $eloquentOrm = $container->get(EloquentOrm::class);
 //            $em->addOrm($eloquentOrm);
             return $em;
-        },
+        },*/
         FileRepository::class => function () {
             return new FileRepository(DotEnv::get('ELOQUENT_CONFIG_FILE'));
         },

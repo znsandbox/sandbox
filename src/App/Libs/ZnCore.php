@@ -13,6 +13,8 @@ use ZnCore\Base\Libs\App\Loaders\BundleLoader;
 use ZnCore\Base\Libs\App\Loaders\ConfigCollectionLoader;
 use ZnCore\Base\Libs\Event\Interfaces\EventDispatcherConfiguratorInterface;
 use ZnCore\Base\Libs\Event\Libs\EventDispatcherConfigurator;
+use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Domain\Libs\EntityManager;
 use ZnSandbox\Sandbox\App\Subscribers\ConfigureContainerSubscriber;
 use ZnCore\Base\Libs\App\Subscribers\ConfigureEntityManagerSubscriber;
 use ZnCore\Base\Libs\Container\Traits\ContainerAwareTrait;
@@ -60,6 +62,15 @@ class ZnCore
         $containerConfigurator->singleton(ContainerConfiguratorInterface::class, function () use ($containerConfigurator) {
             return $containerConfigurator;
         });
+//        $containerConfigurator->singleton(EntityManagerInterface::class, EntityManager::class);
+        $containerConfigurator->singleton(EntityManagerInterface::class, function (ContainerInterface $container) {
+            $em = EntityManager::getInstance($container);
+//            $eloquentOrm = $container->get(EloquentOrm::class);
+//            $em->addOrm($eloquentOrm);
+            return $em;
+        });
+
+
         $containerConfigurator->singleton(EventDispatcherConfiguratorInterface::class, EventDispatcherConfigurator::class);
         $containerConfigurator->singleton(EventDispatcherInterface::class, EventDispatcher::class);
         $containerConfigurator->singleton(\Psr\EventDispatcher\EventDispatcherInterface::class, EventDispatcherInterface::class);
