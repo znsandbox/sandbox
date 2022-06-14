@@ -45,9 +45,9 @@ return [
         FileRepository::class => function () {
             return new FileRepository(DotEnv::get('ELOQUENT_CONFIG_FILE'));
         },
-        Manager::class => function () {
+        /*Manager::class => function () {
             return ManagerFactory::createManagerFromEnv();
-        },
+        },*/
         AdapterInterface::class => function (ContainerInterface $container) {
             if (EnvHelper::isTest() || EnvHelper::isDev()) {
                 $adapter = new \Symfony\Component\Cache\Adapter\ArrayAdapter();
