@@ -41,7 +41,7 @@ abstract class BaseApp implements AppInterface
         $this->setEventDispatcher($dispatcher);
         $this->containerConfigurator = $containerConfigurator;
         $this->znCore = $znCore;
-        defined('REQUEST_ID') OR define('REQUEST_ID', Uuid::v4()->toRfc4122());
+//        defined('REQUEST_ID') OR define('REQUEST_ID', Uuid::v4()->toRfc4122());
     }
 
     public function init(): void
