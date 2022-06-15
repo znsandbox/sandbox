@@ -26,37 +26,20 @@ class ZnCore
 
     use ContainerAwareTrait;
 
-    public static $isInited = false;
-
-    protected function checkInit() {
-        if(self::$isInited) {
-            throw new \Exception('ZnCore already inited!');
-        }
-    }
-
-    public static function isInited(): bool {
-        return self::$isInited;
-    }
-
-    public function init(): void
+    public function init(): ContainerInterface
     {
-        /*if(self::isInited()) {
-            return;
-        }*/
-
-
-//        self::checkInit();
-
         $container = $this->getContainer();
-        ContainerHelper::setContainer($container);
+        try {
+            ContainerHelper::setContainer($container);
+        } catch (ReadOnlyException $exception) {
+//            $container = ContainerHelper::getContainer();
+//            $this->setContainer($container);
+        }
 
-//        $containerConfigurator = $this->getContainerConfigurator();
         $containerConfigurator = new ContainerConfigurator($container);
         $this->configContainer($containerConfigurator);
 
-//        $this->addContainerConfig([$this, 'configContainer']);
-
-        //self::$isInited = true;
+        return $container;
     }
 
     public function addContainerConfig(callable $function) {
@@ -78,11 +61,6 @@ class ZnCore
         $config = $configCollectionLoader->loadMainConfig($appName);
     }
 
-    /*protected function getContainerConfigurator() {
-        return new ContainerConfigurator($container);
-//        return ContainerHelper::getContainerConfiguratorByContainer($this->getContainer());
-    }*/
-
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
     {
         $containerConfigurator->singleton(ContainerInterface::class, function () {
@@ -99,7 +77,6 @@ class ZnCore
             return $em;
         });
 
-
         $containerConfigurator->singleton(EventDispatcherConfiguratorInterface::class, EventDispatcherConfigurator::class);
         $containerConfigurator->singleton(EventDispatcherInterface::class, EventDispatcher::class);
         $containerConfigurator->singleton(\Psr\EventDispatcher\EventDispatcherInterface::class, EventDispatcherInterface::class);
@@ -107,8 +84,5 @@ class ZnCore
         $containerConfigurator->singleton(ZnCore::class, function () {
             return $this;
         });
-//        $containerConfigurator->singleton(\ZnLib\Web\View\Resources\Css::class, \ZnLib\Web\View\Resources\Css::class);
-//        $containerConfigurator->singleton(\ZnLib\Web\View\Resources\Js::class, \ZnLib\Web\View\Resources\Js::class);
-//        $containerConfigurator->singleton(\ZnLib\Web\View\View::class, \ZnLib\Web\View\View::class);
     }
 }
