@@ -11,6 +11,7 @@ use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnCore\Base\Libs\App\Libs\ConfigManager;
 use ZnCore\Base\Libs\App\Loaders\BundleLoader;
 use ZnCore\Base\Libs\App\Loaders\ConfigCollectionLoader;
+use ZnCore\Base\Libs\Container\Libs\ContainerConfigurator;
 use ZnCore\Base\Libs\Event\Interfaces\EventDispatcherConfiguratorInterface;
 use ZnCore\Base\Libs\Event\Libs\EventDispatcherConfigurator;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
@@ -26,15 +27,20 @@ class ZnCore
     
     public function init(): void
     {
-        ContainerHelper::setContainer($this->getContainer());
-        $this->addContainerConfig([$this, 'configContainer']);
-        
+        $container = $this->getContainer();
+        ContainerHelper::setContainer($container);
+
 //        $containerConfigurator = $this->getContainerConfigurator();
-//        $this->configContainer($containerConfigurator);
+        $containerConfigurator = new ContainerConfigurator($container);
+        $this->configContainer($containerConfigurator);
+
+//        $this->addContainerConfig([$this, 'configContainer']);
     }
 
     public function addContainerConfig(callable $function) {
-        $containerConfigurator = $this->getContainerConfigurator();
+        $container = $this->getContainer();
+        $containerConfigurator = new ContainerConfigurator($container);
+//        $containerConfigurator = $this->getContainerConfigurator();
         call_user_func($function, $containerConfigurator);
         //$function($containerConfigurator);
     }
@@ -51,7 +57,8 @@ class ZnCore
     }
 
     protected function getContainerConfigurator() {
-        return ContainerHelper::getContainerConfiguratorByContainer($this->getContainer());
+        return new ContainerConfigurator($container);
+//        return ContainerHelper::getContainerConfiguratorByContainer($this->getContainer());
     }
 
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
