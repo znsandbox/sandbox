@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\App\Libs;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use ZnCore\Base\Exceptions\ReadOnlyException;
 use ZnCore\Base\Libs\Container\Helpers\ContainerHelper;
 use ZnCore\Base\Libs\App\Interfaces\ConfigManagerInterface;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
@@ -24,9 +25,28 @@ class ZnCore
 {
 
     use ContainerAwareTrait;
-    
+
+    public static $isInited = false;
+
+    protected function checkInit() {
+        if(self::$isInited) {
+            throw new \Exception('ZnCore already inited!');
+        }
+    }
+
+    public static function isInited(): bool {
+        return self::$isInited;
+    }
+
     public function init(): void
     {
+        /*if(self::isInited()) {
+            return;
+        }*/
+
+
+//        self::checkInit();
+
         $container = $this->getContainer();
         ContainerHelper::setContainer($container);
 
@@ -35,6 +55,8 @@ class ZnCore
         $this->configContainer($containerConfigurator);
 
 //        $this->addContainerConfig([$this, 'configContainer']);
+
+        //self::$isInited = true;
     }
 
     public function addContainerConfig(callable $function) {
@@ -56,10 +78,10 @@ class ZnCore
         $config = $configCollectionLoader->loadMainConfig($appName);
     }
 
-    protected function getContainerConfigurator() {
+    /*protected function getContainerConfigurator() {
         return new ContainerConfigurator($container);
 //        return ContainerHelper::getContainerConfiguratorByContainer($this->getContainer());
-    }
+    }*/
 
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
     {
