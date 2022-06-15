@@ -10,6 +10,7 @@ use ZnCore\Base\Libs\App\Helpers\EnvHelper;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnCore\Base\Libs\Container\Traits\ContainerAttributeTrait;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
+use ZnCore\Base\Libs\Event\Interfaces\EventDispatcherConfiguratorInterface;
 use ZnCore\Base\Libs\Event\Traits\EventDispatcherTrait;
 use ZnSandbox\Sandbox\App\Enums\AppEventEnum;
 use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
@@ -83,6 +84,23 @@ abstract class BaseApp implements AppInterface
     protected function initDispatcher(): void
     {
         $this->configDispatcher($this->getEventDispatcher());
+
+        $eventDispatcherConfigurator = $this->getContainer()->get(EventDispatcherConfiguratorInterface::class);
+        $this->configDispatcher2($eventDispatcherConfigurator);
+    }
+
+    protected function configDispatcher2(EventDispatcherConfiguratorInterface $configurator): void {
+
+    }
+
+    /**
+     * @param EventDispatcherInterface $dispatcher
+     * @todo: переидти на метод configDispatcher2
+     * @deprecated
+     * @see configDispatcher2
+     */
+    protected function configDispatcher(EventDispatcherInterface $dispatcher): void {
+
     }
 
     protected function dispatchEvent(string $eventName): void {
