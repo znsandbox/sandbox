@@ -8,14 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnBundle\User\Symfony4\Web\Enums\WebUserEnum;
-use ZnCore\Contract\User\Exceptions\ForbiddenException;
 use ZnCore\Base\Exceptions\InvalidConfigException;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Libs\App\Helpers\EnvHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\VarDumper;
-use ZnCore\Domain\Helpers\EntityHelper;
+use ZnCore\Contract\User\Exceptions\ForbiddenException;
+use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnSandbox\Sandbox\App\Interfaces\ErrorControllerInterface;
 
@@ -90,7 +88,7 @@ class ErrorController extends BaseWebController implements ErrorControllerInterf
     private function unauthorized(Request $request, \Exception $exception): Response
     {
         $authUrl = $this->urlGenerator->generate('user/auth');
-        if($request->getRequestUri() == $authUrl) {
+        if ($request->getRequestUri() == $authUrl) {
             return $this->commonRender('Unauthorized', 'Unauthorized!', $exception);
         }
         $this->session->set(WebUserEnum::UNAUTHORIZED_URL_SESSION_KEY, $request->getRequestUri());
