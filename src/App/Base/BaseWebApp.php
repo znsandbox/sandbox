@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
+use ZnCore\Base\Libs\Event\Interfaces\EventDispatcherConfiguratorInterface;
 use ZnSandbox\Sandbox\App\Subscribers\ErrorHandleSubscriber;
 use ZnSandbox\Sandbox\App\Subscribers\FindRouteSubscriber;
 use ZnSandbox\Sandbox\App\Subscribers\WebDetectTestEnvSubscriber;
@@ -35,12 +36,10 @@ abstract class BaseWebApp extends BaseApp
         return ['i18next', 'container', 'rbac', 'symfonyWeb'];
     }
 
-    protected function configDispatcher(EventDispatcherInterface $dispatcher): void
+    protected function configDispatcher(EventDispatcherConfiguratorInterface $configurator): void
     {
-        $dispatcher->addSubscriber($this->container->get(FindRouteSubscriber::class));
-        $dispatcher->addSubscriber($this->container->get(WebFirewallSubscriber::class));
-        //$dispatcher->addSubscriber($this->container->get(UnauthorizedSubscriber::class));
-//        $dispatcher->addSubscriber($this->container->get(ErrorHandleSubscriber::class));
+        $configurator->addSubscriber(FindRouteSubscriber::class);
+        $configurator->addSubscriber(WebFirewallSubscriber::class);
     }
 
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void

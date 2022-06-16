@@ -85,23 +85,11 @@ abstract class BaseApp implements AppInterface
 
     protected function initDispatcher(): void
     {
-        $this->configDispatcher($this->getEventDispatcher());
-
         $eventDispatcherConfigurator = $this->getContainer()->get(EventDispatcherConfiguratorInterface::class);
-        $this->configDispatcher2($eventDispatcherConfigurator);
+        $this->configDispatcher($eventDispatcherConfigurator);
     }
 
-    protected function configDispatcher2(EventDispatcherConfiguratorInterface $configurator): void {
-
-    }
-
-    /**
-     * @param EventDispatcherInterface $dispatcher
-     * @todo: переидти на метод configDispatcher2
-     * @deprecated
-     * @see configDispatcher2
-     */
-    protected function configDispatcher(EventDispatcherInterface $dispatcher): void {
+    protected function configDispatcher(EventDispatcherConfiguratorInterface $configurator): void {
 
     }
 
