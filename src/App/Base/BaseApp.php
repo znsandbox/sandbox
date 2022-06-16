@@ -66,8 +66,10 @@ abstract class BaseApp implements AppInterface
 
     protected function initEnv(): void
     {
+        DotEnv::init(DotEnv::ROOT_PATH, $_ENV['APP_MODE']);
+
 //        EnvHelper::prepareTestEnv();
-        DotEnv::init();
+//        DotEnv::init();
         EnvHelper::setErrorVisibleFromEnv();
     }
 

@@ -18,10 +18,15 @@ class WebDetectTestEnvSubscriber implements EventSubscriberInterface
 
     public function onBeforeInitEnv(Event $event)
     {
-        global $_GET, $_SERVER;
-        $isWebTest = (isset($_SERVER['HTTP_ENV_NAME']) && $_SERVER['HTTP_ENV_NAME'] == 'test') || (isset($_GET['env']) && $_GET['env'] == 'test');
-        if ($isWebTest) {
+//$envDetector = new \ZnCore\Base\Libs\App\Libs\EnvDetector\WebEnvDetector();
+//$envDetector = new \ZnCore\Base\Libs\App\Libs\EnvDetector\ConsoleEnvDetector();
+        $envDetector = new \ZnCore\Base\Libs\App\Libs\EnvDetector\EnvDetector();
+        $isTest = $envDetector->isTest();
+//        global $_GET, $_SERVER;
+//        $isTest = (isset($_SERVER['HTTP_ENV_NAME']) && $_SERVER['HTTP_ENV_NAME'] == 'test') || (isset($_GET['env']) && $_GET['env'] == 'test');
+        if ($isTest) {
             $_ENV['APP_ENV'] = 'test';
         }
+        $_ENV['APP_MODE'] = $isTest ? 'test' : 'main';
     }
 }
