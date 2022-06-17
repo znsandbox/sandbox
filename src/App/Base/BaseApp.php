@@ -52,7 +52,7 @@ abstract class BaseApp implements AppInterface
         $this->initEnv();
         $this->dispatchEvent(AppEventEnum::AFTER_INIT_ENV);
 
-
+        $this->initVarDumper();
 
         $this->dispatchEvent(AppEventEnum::BEFORE_INIT_CONTAINER);
         $this->initContainer();
@@ -76,7 +76,7 @@ abstract class BaseApp implements AppInterface
         EnvHelper::setErrorVisibleFromEnv();
     }
 
-    protected static function initVarDumper()
+    protected function initVarDumper()
     {
         if(!class_exists(SymfonyDumperFacade::class)) {
             return;
