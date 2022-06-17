@@ -4,8 +4,10 @@ namespace ZnSandbox\Sandbox\App\Base;
 
 use Symfony\Component\ErrorHandler\ErrorRenderer\ErrorRendererInterface;
 use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
+use Symfony\Component\HttpKernel\Controller\ErrorController;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnCore\Base\Libs\Event\Interfaces\EventDispatcherConfiguratorInterface;
@@ -47,5 +49,7 @@ abstract class BaseWebApp extends BaseApp
         $containerConfigurator->singleton(HttpKernelInterface::class, HttpKernel::class);
         $containerConfigurator->bind(ErrorRendererInterface::class, HtmlErrorRenderer::class);
         $containerConfigurator->singleton(View::class, View::class);
+        $containerConfigurator->singleton(RouteCollection::class, RouteCollection::class);
+//        $containerConfigurator->singleton('error_controller', ErrorController::class);
     }
 }

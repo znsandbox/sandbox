@@ -15,6 +15,7 @@ use ZnCore\Base\Libs\Event\Traits\EventDispatcherTrait;
 use ZnSandbox\Sandbox\App\Enums\AppEventEnum;
 use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
 use ZnSandbox\Sandbox\App\Libs\ZnCore;
+use ZnTool\Dev\VarDumper\Facades\SymfonyDumperFacade;
 
 abstract class BaseApp implements AppInterface
 {
@@ -51,6 +52,8 @@ abstract class BaseApp implements AppInterface
         $this->initEnv();
         $this->dispatchEvent(AppEventEnum::AFTER_INIT_ENV);
 
+
+
         $this->dispatchEvent(AppEventEnum::BEFORE_INIT_CONTAINER);
         $this->initContainer();
         $this->dispatchEvent(AppEventEnum::AFTER_INIT_CONTAINER);
@@ -71,6 +74,16 @@ abstract class BaseApp implements AppInterface
 //        EnvHelper::prepareTestEnv();
 //        DotEnv::init();
         EnvHelper::setErrorVisibleFromEnv();
+    }
+
+    protected static function initVarDumper()
+    {
+        if(!class_exists(SymfonyDumperFacade::class)) {
+            return;
+        }
+        if (isset($_ENV['VAR_DUMPER_OUTPUT'])) {
+            SymfonyDumperFacade::dumpInConsole($_ENV['VAR_DUMPER_OUTPUT']);
+        }
     }
 
     protected function initContainer(): void
