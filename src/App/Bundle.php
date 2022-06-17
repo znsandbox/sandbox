@@ -11,6 +11,7 @@ class Bundle extends BaseBundle
     {
         return [
             __DIR__ . '/config/container.php',
+            __DIR__ . '/config/container-cache.php',
         ];
     }
 }

@@ -10,6 +10,9 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use ZnBundle\User\Symfony4\Web\Enums\WebUserEnum;
+use ZnCore\Base\Helpers\DeprecateHelper;
+
+DeprecateHelper::hardThrow();
 
 class UnauthorizedSubscriber implements EventSubscriberInterface
 {
