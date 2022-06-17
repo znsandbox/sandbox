@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+/*use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\App\Factories\ApplicationFactory;
 use ZnCore\Base\Libs\App\Factories\KernelFactory;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
@@ -20,4 +20,4 @@ $bundles = [
 $bundles = ArrayHelper::merge($bundles, include __DIR__ . '/../../../../' . DotEnv::get('BUNDLES_CONFIG_FILE'));
 $kernel = KernelFactory::createConsoleKernel($bundles);
 $application = ApplicationFactory::createConsole($kernel);
-$application->run();
+$application->run();*/
