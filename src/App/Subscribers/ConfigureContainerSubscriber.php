@@ -12,7 +12,7 @@ use ZnCore\Domain\Traits\EntityManagerTrait;
 class ConfigureContainerSubscriber implements EventSubscriberInterface
 {
 
-    use EntityManagerTrait;
+//    use EntityManagerTrait;
 
     private $containerConfigurator;
 
@@ -31,10 +31,10 @@ class ConfigureContainerSubscriber implements EventSubscriberInterface
     public function onAfterLoadConfig(LoadConfigEvent $event)
     {
         $config = $event->getConfig();
-        $container = $event->getKernel()->getContainer();
+//        $container = $event->getKernel()->getContainer();
         if (!empty($config['container'])) {
-//            ContainerHelper::configContainerFromArray($this->containerConfigurator, $config['container']);
+            ContainerHelper::configContainerFromArray($this->containerConfigurator, $config['container']);
         }
-        $event->setConfig($config);
+//        $event->setConfig($config);
     }
 }

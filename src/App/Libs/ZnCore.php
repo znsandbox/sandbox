@@ -17,8 +17,10 @@ use ZnCore\Base\Libs\Container\Libs\ContainerConfigurator;
 use ZnCore\Base\Libs\Container\Traits\ContainerAwareTrait;
 use ZnCore\Base\Libs\Event\Interfaces\EventDispatcherConfiguratorInterface;
 use ZnCore\Base\Libs\Event\Libs\EventDispatcherConfigurator;
+use ZnCore\Domain\Interfaces\Libs\EntityManagerConfiguratorInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnCore\Domain\Libs\EntityManager;
+use ZnCore\Domain\Libs\EntityManagerConfigurator;
 use ZnSandbox\Sandbox\App\Subscribers\ConfigureContainerSubscriber;
 
 class ZnCore
@@ -55,7 +57,7 @@ class ZnCore
         $bundleLoader = new BundleLoader($bundles, $import);
         /** @var ConfigCollectionLoader $configCollectionLoader */
         $configCollectionLoader = $this->getContainer()->get(ConfigCollectionLoader::class);
-        $configCollectionLoader->addSubscriber(ConfigureContainerSubscriber::class);
+//        $configCollectionLoader->addSubscriber(ConfigureContainerSubscriber::class);
         $configCollectionLoader->addSubscriber(ConfigureEntityManagerSubscriber::class);
         $configCollectionLoader->setLoader($bundleLoader);
         $config = $configCollectionLoader->loadMainConfig($appName);
@@ -76,6 +78,8 @@ class ZnCore
 //            $em->addOrm($eloquentOrm);
             return $em;
         });
+
+        $containerConfigurator->singleton(EntityManagerConfiguratorInterface::class, EntityManagerConfigurator::class);
 
         $containerConfigurator->singleton(EventDispatcherConfiguratorInterface::class, EventDispatcherConfigurator::class);
         $containerConfigurator->singleton(EventDispatcherInterface::class, EventDispatcher::class);
