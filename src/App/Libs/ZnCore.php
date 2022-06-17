@@ -58,7 +58,7 @@ class ZnCore
         /** @var ConfigCollectionLoader $configCollectionLoader */
         $configCollectionLoader = $this->getContainer()->get(ConfigCollectionLoader::class);
 //        $configCollectionLoader->addSubscriber(ConfigureContainerSubscriber::class);
-        $configCollectionLoader->addSubscriber(ConfigureEntityManagerSubscriber::class);
+//        $configCollectionLoader->addSubscriber(ConfigureEntityManagerSubscriber::class);
         $configCollectionLoader->setLoader($bundleLoader);
         $config = $configCollectionLoader->loadMainConfig($appName);
     }
