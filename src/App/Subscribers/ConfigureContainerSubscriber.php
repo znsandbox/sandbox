@@ -33,7 +33,7 @@ class ConfigureContainerSubscriber implements EventSubscriberInterface
         $config = $event->getConfig();
         $container = $event->getKernel()->getContainer();
         if (!empty($config['container'])) {
-            ContainerHelper::configContainerFromArray($this->containerConfigurator, $config['container']);
+//            ContainerHelper::configContainerFromArray($this->containerConfigurator, $config['container']);
         }
         $event->setConfig($config);
     }
