@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\App\Helpers\EnvHelper;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnCore\Base\Libs\Container\Traits\ContainerAttributeTrait;
@@ -25,12 +26,36 @@ abstract class BaseApp implements AppInterface
 
     private $containerConfigurator;
     private $znCore;
+    private $bundles = [];
+    private $import = [];
 
     abstract public function appName(): string;
 
-    abstract public function import(): array;
+    public function addBundles(array $bundles): void
+    {
+        $this->bundles = ArrayHelper::merge($this->bundles, $bundles);
+    }
 
-    abstract protected function bundles(): array;
+    protected function loadBundlesFromEnvPath(): void {
+        $bundles = [];
+        if (DotEnv::get('BUNDLES_CONFIG_FILE')) {
+            $bundles = include __DIR__ . '/../../../../../../' . DotEnv::get('BUNDLES_CONFIG_FILE');
+        }
+        $this->addBundles($bundles);
+    }
+
+    public function addImport(array $import): void
+    {
+        $this->import = ArrayHelper::merge($this->import, $import);
+    }
+
+    public function import(): array {
+        return $this->import;
+    }
+
+    protected function bundles(): array {
+        return $this->bundles;
+    }
 
     public function __construct(
         ContainerInterface $container,
