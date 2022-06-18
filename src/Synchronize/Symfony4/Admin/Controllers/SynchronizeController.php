@@ -5,15 +5,11 @@ namespace ZnSandbox\Sandbox\Synchronize\Symfony4\Admin\Controllers;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use ZnBundle\User\Domain\Enums\WebCookieEnum;
-use ZnCore\Base\Enums\Http\HttpMethodEnum;
 use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
 use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
-use ZnLib\Web\Symfony4\MicroApp\MicroApp;
-use ZnSandbox\Sandbox\Synchronize\Domain\Enums\Rbac\SynchronizeSynchronizePermissionEnum;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
 use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
 
