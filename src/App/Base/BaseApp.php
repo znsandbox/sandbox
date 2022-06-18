@@ -52,8 +52,6 @@ abstract class BaseApp implements AppInterface
         $this->initEnv();
         $this->dispatchEvent(AppEventEnum::AFTER_INIT_ENV);
 
-        $this->initVarDumper();
-
         $this->dispatchEvent(AppEventEnum::BEFORE_INIT_CONTAINER);
         $this->initContainer();
         $this->dispatchEvent(AppEventEnum::AFTER_INIT_CONTAINER);
@@ -70,20 +68,9 @@ abstract class BaseApp implements AppInterface
     protected function initEnv(): void
     {
         DotEnv::init(DotEnv::ROOT_PATH, $_ENV['APP_MODE']);
-
 //        EnvHelper::prepareTestEnv();
 //        DotEnv::init();
         EnvHelper::setErrorVisibleFromEnv();
-    }
-
-    protected function initVarDumper()
-    {
-        if(!class_exists(SymfonyDumperFacade::class)) {
-            return;
-        }
-        if (isset($_ENV['VAR_DUMPER_OUTPUT'])) {
-            SymfonyDumperFacade::dumpInConsole($_ENV['VAR_DUMPER_OUTPUT']);
-        }
     }
 
     protected function initContainer(): void

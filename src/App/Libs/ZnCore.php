@@ -33,8 +33,6 @@ class ZnCore
         try {
             ContainerHelper::setContainer($container);
         } catch (ReadOnlyException $exception) {
-//            $container = ContainerHelper::getContainer();
-//            $this->setContainer($container);
         }
         try {
             I18Next::setContainer($container);
@@ -46,14 +44,6 @@ class ZnCore
 
         return $container;
     }
-
-    /*public function addContainerConfig(callable $function) {
-        $container = $this->getContainer();
-        $containerConfigurator = new ContainerConfigurator($container);
-//        $containerConfigurator = $this->getContainerConfigurator();
-        call_user_func($function, $containerConfigurator);
-        //$function($containerConfigurator);
-    }*/
 
     public function loadBundles(array $bundles, array $import, string $appName): void
     {
