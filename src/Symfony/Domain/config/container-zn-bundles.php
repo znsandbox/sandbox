@@ -1,5 +1,9 @@
 <?php
 
+use ZnCore\Base\Helpers\DeprecateHelper;
+
+DeprecateHelper::hardThrow();
+
 return [
     'singletons' => [
         'ZnBundle\Notify\Domain\Interfaces\Repositories\ToastrRepositoryInterface' => 'ZnBundle\Notify\Domain\Repositories\Symfony\ToastrRepository',

@@ -18,6 +18,9 @@ use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
+use ZnCore\Base\Helpers\DeprecateHelper;
+
+DeprecateHelper::hardThrow();
 
 return [
     'definitions' => [
