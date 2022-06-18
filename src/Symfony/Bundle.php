@@ -2,12 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Symfony;
 
-use ZnCore\Base\Helpers\DeprecateHelper;
 use ZnCore\Base\Libs\App\Base\BaseBundle;
 
-DeprecateHelper::hardThrow();
-
-class NewBundle extends BaseBundle
+class Bundle extends BaseBundle
 {
 
     public function deps(): array
