@@ -26,7 +26,7 @@ abstract class BaseApp implements AppInterface
 
     private $containerConfigurator;
     private $znCore;
-    private $bundles = [];
+    protected $bundles = [];
     private $import = [];
 
     abstract public function appName(): string;
