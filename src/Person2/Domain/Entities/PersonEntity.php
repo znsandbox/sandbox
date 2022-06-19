@@ -7,8 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
 use ZnCore\Base\Enums\StatusEnum;
-use ZnCore\Base\Libs\Text\Helpers\StringHelper;
+
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Libs\Text\Helpers\TextHelper;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
@@ -142,7 +143,7 @@ class PersonEntity implements ValidateEntityByMetadataInterface, UniqueInterface
             $this->getLastName() . ' ' .
             $this->getFirstName() . ' ' .
             $this->getMiddleName();
-        $parentFio = StringHelper::removeDoubleSpace($parentFio);
+        $parentFio = TextHelper::removeDoubleSpace($parentFio);
         $parentFio = trim($parentFio);
         return $parentFio;
     }

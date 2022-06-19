@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person\Domain\Services;
 
+use ZnCore\Base\Libs\Text\Helpers\TextHelper;
 use ZnSandbox\Sandbox\Person\Domain\Interfaces\Services\PersonServiceInterface;
 use ZnBundle\Eav\Domain\Entities\DynamicEntity;
 use ZnBundle\Eav\Domain\Forms\DynamicForm;
@@ -11,7 +12,7 @@ use ZnBundle\User\Domain\Entities\IdentityEntity;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnBundle\User\Domain\Interfaces\Services\IdentityServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Base\Libs\Text\Helpers\StringHelper;
+
 use ZnCore\Domain\Base\BaseService;
 use ZnCore\Domain\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Helpers\EntityHelper;
@@ -122,9 +123,9 @@ class PersonService extends BaseService implements PersonServiceInterface
         $birthDay =
             $iinEntity->getBirthday()->getYear()
             . '-' .
-            StringHelper::fill($iinEntity->getBirthday()->getMonth(), 2, '0', 'before')
+            TextHelper::fill($iinEntity->getBirthday()->getMonth(), 2, '0', 'before')
             . '-' .
-            StringHelper::fill($iinEntity->getBirthday()->getDay(), 2, '0', 'before');
+            TextHelper::fill($iinEntity->getBirthday()->getDay(), 2, '0', 'before');
         $birthDayValue = EntityHelper::getValue($form, 'birthDate');
         if ($birthDay != $birthDayValue) {
             $exception = new UnprocessibleEntityException();

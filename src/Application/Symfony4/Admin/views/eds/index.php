@@ -6,10 +6,11 @@
  * @var $baseUri string
  */
 
+use ZnCore\Base\Libs\Text\Helpers\TextHelper;
 use ZnSandbox\Sandbox\Application\Domain\Entities\ApiKeyEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnCore\Base\Libs\Text\Helpers\StringHelper;
+
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Libs\DataProvider;
@@ -26,7 +27,7 @@ $attributes = [
         'label' => I18Next::t('core', 'main.attribute.value'),
 //        'attributeName' => 'value',
         'value' => function(ApiKeyEntity $apiKeyEntity) {
-            return StringHelper::mask($apiKeyEntity->getValue(), 3);
+            return TextHelper::mask($apiKeyEntity->getValue(), 3);
         },
         'formatter' => [
             'class' => LinkFormatter::class,
