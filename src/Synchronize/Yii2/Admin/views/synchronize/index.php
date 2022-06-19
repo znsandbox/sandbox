@@ -7,7 +7,7 @@
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 use Illuminate\Support\Collection;
 use yii\helpers\Url;
-use ZnCore\Base\Helpers\StringHelper;
+use ZnCore\Base\Libs\Text\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 

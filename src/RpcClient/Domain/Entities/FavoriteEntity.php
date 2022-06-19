@@ -105,7 +105,7 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
     public function getUid()
     {
         if(empty($this->uid)) {
-            $this->uid = \ZnCore\Base\Helpers\StringHelper::genUuid();
+            $this->uid = \ZnCore\Base\Libs\Text\Helpers\StringHelper::genUuid();
         }
         return $this->uid;
     }

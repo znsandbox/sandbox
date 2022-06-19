@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Office\Domain\Services;
 
-use ZnCore\Base\Helpers\StringHelper;
-use ZnCore\Base\Helpers\TemplateHelper;
+use ZnCore\Base\Libs\Text\Helpers\StringHelper;
+use ZnCore\Base\Libs\Text\Helpers\TemplateHelper;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnSandbox\Sandbox\Office\Domain\Entities\DocXEntity;

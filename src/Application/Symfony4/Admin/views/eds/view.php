@@ -7,7 +7,7 @@
  */
 
 use ZnSandbox\Sandbox\Application\Domain\Entities\ApiKeyEntity;
-use ZnCore\Base\Helpers\StringHelper;
+use ZnCore\Base\Libs\Text\Helpers\StringHelper;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Helpers\ActionHelper;

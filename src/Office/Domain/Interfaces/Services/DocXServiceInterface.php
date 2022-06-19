@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Office\Domain\Interfaces\Services;
 
-use ZnCore\Base\Helpers\StringHelper;
+use ZnCore\Base\Libs\Text\Helpers\StringHelper;
 use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
 use ZnSandbox\Sandbox\Office\Domain\Entities\DocXEntity;
 

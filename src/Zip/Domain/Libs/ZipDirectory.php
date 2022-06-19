@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Zip\Domain\Libs;
 
 use Exception;
 use ZipArchive;
-use ZnCore\Base\Helpers\StringHelper;
+use ZnCore\Base\Libs\Text\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
 
