@@ -2,13 +2,14 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Entities;
 
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Helpers\Helper;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
-use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
 use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
 
@@ -104,8 +105,8 @@ class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterfa
 
     public function getUid()
     {
-        if(empty($this->uid)) {
-            $this->uid = \ZnCore\Base\Libs\Text\Helpers\StringHelper::genUuid();
+        if (empty($this->uid)) {
+            $this->uid = Uuid::v4()->toRfc4122();
         }
         return $this->uid;
     }

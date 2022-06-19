@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Zip\Domain\Libs;
 
 use Exception;
+use Symfony\Component\Uid\Uuid;
 use ZipArchive;
-use ZnCore\Base\Libs\Text\Helpers\StringHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
 
@@ -38,7 +38,7 @@ class ZipDirectory
 
     private function getTmpDirectory(): string
     {
-        $tmpDir = sys_get_temp_dir() . '/' . StringHelper::genUuid();
+        $tmpDir = sys_get_temp_dir() . '/' . Uuid::v4()->toRfc4122();
         FileHelper::createDirectory($tmpDir);
         return $tmpDir;
     }
