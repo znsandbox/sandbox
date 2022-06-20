@@ -8,12 +8,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Domain\Constraints\Enum;
-use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
 
-class ApiKeyEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface, BuildFormInterface
+class ApiKeyEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface, BuildFormInterface
 {
 
     private $id = null;

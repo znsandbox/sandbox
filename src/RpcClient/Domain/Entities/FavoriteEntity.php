@@ -11,9 +11,9 @@ use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnCore\Domain\Constraints\Enum;
 use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
-use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 
-class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
+class FavoriteEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
 {
 
     private $id = null;

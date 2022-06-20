@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Redmine\Domain\Services;
 
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Services\UserServiceInterface;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\UserRepositoryInterface;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\UserEntity;

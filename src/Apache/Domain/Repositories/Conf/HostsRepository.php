@@ -7,7 +7,7 @@ use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
-use ZnCore\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostGroupEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;

@@ -5,11 +5,11 @@ namespace ZnSandbox\Sandbox\Layout\Domain\Entities;
 use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
-use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 
-class MenuEntity implements ValidateEntityByMetadataInterface, EntityIdInterface
+class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
 {
 
     private $id = null;

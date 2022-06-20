@@ -4,11 +4,11 @@ namespace ZnSandbox\Sandbox\Bundle\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 
-class BundleEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
+class BundleEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
 {
 
     private $id = null;

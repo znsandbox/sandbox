@@ -7,8 +7,8 @@ use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
 use Symfony\Component\HttpFoundation\Request;
 use ZnCore\Base\Helpers\EnumHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Html;
-use ZnCore\Domain\Helpers\EntityHelper;
-use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
+use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnLib\Web\Widgets\Base\BaseWidget2;
 
 class FilterWidget extends BaseWidget2
@@ -31,7 +31,7 @@ class FilterWidget extends BaseWidget2
     private $filterModel;
     private $enumClass;
 
-    public function __construct(string $enumClass, ValidateEntityByMetadataInterface $filterModel, Request $request = null)
+    public function __construct(string $enumClass, ValidationByMetadataInterface $filterModel, Request $request = null)
     {
         $this->request = Request::createFromGlobals();
         $this->enumClass = $enumClass;

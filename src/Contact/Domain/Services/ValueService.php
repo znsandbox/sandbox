@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Contact\Domain\Services;
 
 use ZnSandbox\Sandbox\Contact\Domain\Interfaces\Services\ValueServiceInterface;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Contact\Domain\Interfaces\Repositories\ValueRepositoryInterface;
 use ZnCore\Domain\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Contact\Domain\Entities\ValueEntity;

@@ -15,7 +15,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Base\Libs\I18Next\Exceptions\NotFoundBundleException;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Base\BaseCrudService;
-use ZnCore\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Domain\Libs\Query;
 use ZnLib\Web\Widgets\Interfaces\MenuInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;

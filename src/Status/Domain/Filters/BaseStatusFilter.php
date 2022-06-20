@@ -7,10 +7,10 @@ use ZnSandbox\Sandbox\Status\Domain\Enums\StatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Helpers\EnumHelper;
-use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnSandbox\Sandbox\Status\Domain\Helpers\StatusFilterHelper;
 
-abstract class BaseStatusFilter implements ValidateEntityByMetadataInterface
+abstract class BaseStatusFilter implements ValidationByMetadataInterface
 {
 
     /*protected $statusId = StatusEnum::ENABLED;

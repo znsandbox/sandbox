@@ -6,13 +6,13 @@ use App\Card\Domain\Events\PersistEvent;
 use ZnCore\Base\Libs\Event\Traits\EventDispatcherTrait;
 use ZnCore\Domain\Enums\EventEnum;
 use ZnCore\Domain\Events\EntityEvent;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
-use ZnCore\Domain\Traits\EntityManagerTrait;
+use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Base\Libs\EntityManager\Traits\EntityManagerAwareTrait;
 
 class TargetProvider
 {
 
-    use EntityManagerTrait;
+    use EntityManagerAwareTrait;
     use EventDispatcherTrait;
 
     private $persistCallback;

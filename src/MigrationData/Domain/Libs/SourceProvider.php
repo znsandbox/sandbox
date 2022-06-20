@@ -4,14 +4,14 @@ namespace ZnSandbox\Sandbox\MigrationData\Domain\Libs;
 
 use Illuminate\Support\Enumerable;
 use ZnCore\Base\Libs\Event\Traits\EventDispatcherTrait;
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Libs\Query;
-use ZnCore\Domain\Traits\EntityManagerTrait;
+use ZnCore\Base\Libs\EntityManager\Traits\EntityManagerAwareTrait;
 
 class SourceProvider
 {
 
-    use EntityManagerTrait;
+    use EntityManagerAwareTrait;
     use EventDispatcherTrait;
 
     private $query;

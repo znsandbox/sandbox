@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Rpc\Serializers;
 
-use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
+use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnLib\Rpc\Rpc\Serializers\DefaultSerializer;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
 

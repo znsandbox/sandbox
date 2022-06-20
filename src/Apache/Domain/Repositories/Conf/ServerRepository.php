@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Tests\Fixtures\StdClassDecorator;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
-use ZnCore\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Domain\Libs\Query;
 use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;

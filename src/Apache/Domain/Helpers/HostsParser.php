@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Helpers;
 
-use ZnCore\Domain\Helpers\EntityHelper;
+use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Domain\Interfaces\DomainInterface;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
 
