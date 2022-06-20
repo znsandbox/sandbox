@@ -2,9 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Ip\Domain\Services;
 
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Domain\Helpers\FilterHelper;
-use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\Ip\Domain\Helpers\IpHelper;
 use ZnSandbox\Sandbox\Ip\Domain\Repositories\Api\HostInfoRepository;
 
@@ -54,10 +51,10 @@ class DomainService
 
             if (empty($ip)) {
                 $res['unknown'][] = $domain;
-            /*} elseif (!empty(array_intersect($rr['ourIpList'], $ip))) {
-                $res['our'][] = $domain;
-                //dd($domainInfo);
-                $dd[$domain]['isOur'] = true;*/
+                /*} elseif (!empty(array_intersect($rr['ourIpList'], $ip))) {
+                    $res['our'][] = $domain;
+                    //dd($domainInfo);
+                    $dd[$domain]['isOur'] = true;*/
             } else {
                 $res['their'][] = $domain;
             }
@@ -82,7 +79,7 @@ class DomainService
         usort($dd, function ($value1, $value2) {
             $val1 = ($value1['company'] ?? '');
             $val2 = ($value2['company'] ?? '');
-            if($val1 == $val2) {
+            if ($val1 == $val2) {
                 return 0;
             }
             return $val1 < $val2 ? 1 : -1;
