@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Status\Domain\Filters;
 
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Domain\Constraints\Enum;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
 use ZnSandbox\Sandbox\Status\Domain\Enums\StatusEnum;
 
 class StatusFilter implements ValidateEntityByMetadataInterface

@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
-use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 
 class RepositoryEntity extends ClassEntity implements ValidateEntityByMetadataInterface, UniqueInterface

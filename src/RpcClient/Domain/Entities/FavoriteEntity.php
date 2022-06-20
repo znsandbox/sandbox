@@ -10,8 +10,8 @@ use ZnCore\Base\Helpers\Helper;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnCore\Domain\Constraints\Enum;
-use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
 
 class FavoriteEntity implements ValidateEntityByMetadataInterface, UniqueInterface, EntityIdInterface
 {

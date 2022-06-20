@@ -6,7 +6,7 @@ use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnCore\Domain\Base\BaseService;
-use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
 use ZnCore\Domain\Interfaces\Libs\EntityManagerInterface;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;

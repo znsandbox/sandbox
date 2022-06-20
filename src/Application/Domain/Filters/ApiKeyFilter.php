@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Application\Domain\Filters;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
 
 class ApiKeyFilter implements ValidateEntityByMetadataInterface
 {

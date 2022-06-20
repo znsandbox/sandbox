@@ -11,8 +11,8 @@ use ZnBundle\Eav\Domain\Enums\AttributeTypeEnum;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Helpers\EnumHelper;
 use ZnCore\Domain\Constraints\Enum;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
-use ZnCore\Domain\Interfaces\Entity\UniqueInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
 

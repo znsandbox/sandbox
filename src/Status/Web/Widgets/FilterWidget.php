@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use ZnCore\Base\Helpers\EnumHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Html;
 use ZnCore\Domain\Helpers\EntityHelper;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
 use ZnLib\Web\Widgets\Base\BaseWidget2;
 
 class FilterWidget extends BaseWidget2

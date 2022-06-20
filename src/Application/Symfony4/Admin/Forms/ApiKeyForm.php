@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Eav\Domain\Enums\AttributeTypeEnum;
 use ZnCore\Base\Helpers\EnumHelper;
-use ZnCore\Domain\Interfaces\Entity\ValidateEntityByMetadataInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\ValidateEntityByMetadataInterface;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
 
 class ApiKeyForm implements ValidateEntityByMetadataInterface, BuildFormInterface
