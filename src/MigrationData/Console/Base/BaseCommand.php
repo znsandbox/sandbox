@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\MigrationData\Console\Base;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use ZnCore\Domain\Libs\Query;
+use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\MigrationData\Domain\Libs\SourceProvider;
 use ZnSandbox\Sandbox\MigrationData\Domain\Libs\TargetProvider;
 

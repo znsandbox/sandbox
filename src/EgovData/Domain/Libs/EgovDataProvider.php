@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\EgovData\Domain\Libs;
 
 use Illuminate\Support\Collection;
-use ZnCore\Domain\Entities\Query\Where;
-use ZnCore\Domain\Libs\Query;
+use ZnCore\Base\Libs\Query\Entities\Where;
+use ZnCore\Base\Libs\Query\Entities\Query;
 
 class EgovDataProvider
 {

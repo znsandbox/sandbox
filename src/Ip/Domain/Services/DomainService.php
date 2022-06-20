@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Ip\Domain\Services;
 
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\FilterHelper;
-use ZnCore\Domain\Libs\Query;
+use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\Ip\Domain\Helpers\IpHelper;
 use ZnSandbox\Sandbox\Ip\Domain\Repositories\Api\HostInfoRepository;
 

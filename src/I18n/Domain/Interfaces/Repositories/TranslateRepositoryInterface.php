@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\I18n\Domain\Interfaces\Repositories;
 
 use ZnCore\Domain\Interfaces\Repository\CrudRepositoryInterface;
-use ZnCore\Domain\Libs\Query;
+use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 
 interface TranslateRepositoryInterface extends CrudRepositoryInterface

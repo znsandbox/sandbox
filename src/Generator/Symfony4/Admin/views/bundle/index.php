@@ -12,7 +12,7 @@
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
-use ZnCore\Domain\Libs\DataProvider;
+use ZnCore\Base\Libs\DataProvider\Libs\DataProvider;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ApiKeyEntity;
 
 //dd($this->translate('core', 'action.send'));
