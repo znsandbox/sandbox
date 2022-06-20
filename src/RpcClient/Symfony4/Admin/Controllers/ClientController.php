@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\MethodEntity;
@@ -160,13 +161,13 @@ class ClientController extends BaseWebController implements ControllerAccessInte
         /** @todo перенести в новый сервис */
         $methodCollection = $this->methodService->all();
         /** @var MethodEntity[] $methodCollectionIndexed */
-        $methodCollectionIndexed = EntityHelper::indexingCollection($methodCollection, 'methodName');
-        $routeMethodList = EntityHelper::getColumn($methodCollection, 'methodName');
+        $methodCollectionIndexed = CollectionHelper::indexing($methodCollection, 'methodName');
+        $routeMethodList = CollectionHelper::getColumn($methodCollection, 'methodName');
         $routeMethodList = array_values($routeMethodList);
 
         $favoriteCollection = $this->favoriteService->allFavorite();
-        $favoriteCollectionIndexed = EntityHelper::indexingCollection($favoriteCollection, 'method');
-        $favoriteMethodList = EntityHelper::getColumn($favoriteCollection, 'method');
+        $favoriteCollectionIndexed = CollectionHelper::indexing($favoriteCollection, 'method');
+        $favoriteMethodList = CollectionHelper::getColumn($favoriteCollection, 'method');
         $favoriteMethodList = array_unique($favoriteMethodList);
         $favoriteMethodList = array_values($favoriteMethodList);
 
@@ -221,13 +222,13 @@ class ClientController extends BaseWebController implements ControllerAccessInte
         /** @todo перенести в новый сервис */
         $methodCollection = $this->methodService->all();
         /** @var MethodEntity[] $methodCollectionIndexed */
-        $methodCollectionIndexed = EntityHelper::indexingCollection($methodCollection, 'methodName');
-        $routeMethodList = EntityHelper::getColumn($methodCollection, 'methodName');
+        $methodCollectionIndexed = CollectionHelper::indexing($methodCollection, 'methodName');
+        $routeMethodList = CollectionHelper::getColumn($methodCollection, 'methodName');
         $routeMethodList = array_values($routeMethodList);
 
         $favoriteCollection = $this->favoriteService->allFavorite();
-        $favoriteCollectionIndexed = EntityHelper::indexingCollection($favoriteCollection, 'method');
-        $favoriteMethodList = EntityHelper::getColumn($favoriteCollection, 'method');
+        $favoriteCollectionIndexed = CollectionHelper::indexing($favoriteCollection, 'method');
+        $favoriteMethodList = CollectionHelper::getColumn($favoriteCollection, 'method');
         $favoriteMethodList = array_unique($favoriteMethodList);
         $favoriteMethodList = array_values($favoriteMethodList);
 

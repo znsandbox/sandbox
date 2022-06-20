@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Services;
 
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffAttributeEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffConfigEntity;
@@ -55,7 +56,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
     private function getFromDb(string $name, array $uniqueAttributes = null): array
     {
         $data = $this->dbRepository->loadData($name);
-        $data = EntityHelper::collectionToArray($data);
+        $data = CollectionHelper::toArray($data);
         if ($uniqueAttributes) {
             $data = $this->indexingArray($data, $uniqueAttributes);
         }
@@ -162,7 +163,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
         $this->ff($tableCollection, $result);
         dd($result);*/
 
-        return EntityHelper::createEntityCollection(DiffConfigEntity::class, $config);
+        return CollectionHelper::create(DiffConfigEntity::class, $config);
     }
 
     private function ff($tableCollection, &$result = []) {

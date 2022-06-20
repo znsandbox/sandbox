@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
@@ -97,7 +98,7 @@ class BundleController extends BaseWebController implements ControllerAccessInte
 
         }
         $tableCollection = $this->schemaRepository->allTables();
-        $tableList = EntityHelper::getColumn($tableCollection, 'name');
+        $tableList = CollectionHelper::getColumn($tableCollection, 'name');
         $entityNames = [];
         foreach ($tableList as $tableName) {
             $bundleName = TableMapperHelper::extractDomainNameFromTable($tableName);

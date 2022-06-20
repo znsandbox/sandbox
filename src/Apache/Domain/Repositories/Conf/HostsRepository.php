@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
@@ -47,7 +48,7 @@ class HostsRepository
                     $collection[$host['host']] = $host;
                 }
             }
-            self::$collection = EntityHelper::createEntityCollection(HostEntity::class, $collection);
+            self::$collection = CollectionHelper::create(HostEntity::class, $collection);
         }
         return self::$collection;
     }

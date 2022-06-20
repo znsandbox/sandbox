@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Libs\Input;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
@@ -37,7 +38,7 @@ class SelectEntityInput extends BaseInput
     public function run(): array
     {
         $tableCollection = $this->schemaRepository->allTables();
-        $tableList = EntityHelper::getColumn($tableCollection, 'name');
+        $tableList = CollectionHelper::getColumn($tableCollection, 'name');
         $entityNames = [];
         foreach ($tableList as $tableName) {
             $bundleName = TableMapperHelper::extractDomainNameFromTable($tableName);

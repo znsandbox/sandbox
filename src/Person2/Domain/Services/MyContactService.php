@@ -6,6 +6,7 @@ use ZnBundle\Eav\Domain\Entities\AttributeEntity;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Person\Domain\Interfaces\Repositories\ContactRepositoryInterface;
 use ZnCore\Base\Exceptions\AlreadyExistsException;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\Service\Base\BaseCrudService;
 use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
@@ -58,7 +59,7 @@ class MyContactService extends ContactService implements MyContactServiceInterfa
     public function createBatch($data): void
     {
         $typeCollection = $this->contactTypeService->all();
-        $typeCollection = EntityHelper::indexingCollection($typeCollection, 'name');
+        $typeCollection = CollectionHelper::indexing($typeCollection, 'name');
         foreach ($data as $name => $values) {
             /** @var AttributeEntity $typeEntity */
             $typeEntity = $typeCollection[$name];

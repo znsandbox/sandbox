@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\Tests\Fixtures\StdClassDecorator;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
@@ -43,7 +44,7 @@ class ServerRepository
         $commonTagCollection = ConfParser::readServerConfig($this->directory);
         $commonTagCollection = ArrayHelper::index($commonTagCollection, 'config.ServerName');
         /** @var Collection | ServerEntity[] $collection */
-        $collection = EntityHelper::createEntityCollection(ServerEntity::class, $commonTagCollection);
+        $collection = CollectionHelper::create(ServerEntity::class, $commonTagCollection);
         foreach ($collection as $serverEntity) {
             try {
                 $serverEntity->setHosts($this->hostsRepository->oneByName($serverEntity->getServerName()));

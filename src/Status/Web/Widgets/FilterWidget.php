@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Status\Web\Widgets;
 
 use Illuminate\Support\Collection;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
 use Symfony\Component\HttpFoundation\Request;
 use ZnCore\Base\Libs\Enum\Helpers\EnumHelper;
@@ -71,7 +72,7 @@ class FilterWidget extends BaseWidget2
     {
         /** @var EnumEntity[] | Collection $collection */
         $items = EnumHelper::getItems($this->enumClass);
-        $collection = EntityHelper::createEntityCollection(EnumEntity::class, $items);
+        $collection = CollectionHelper::create(EnumEntity::class, $items);
         return $collection;
     }
 

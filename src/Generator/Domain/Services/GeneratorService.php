@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
 use Illuminate\Support\Collection;
+use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnDatabase\Base\Domain\Repositories\Eloquent\SchemaRepository;
@@ -20,7 +21,7 @@ class GeneratorService
     public function allTables()
     {
         $tableCollection = $this->schemaRepository->allTables();
-        return EntityHelper::getColumn($tableCollection, 'name');
+        return CollectionHelper::getColumn($tableCollection, 'name');
     }
 
     /**
