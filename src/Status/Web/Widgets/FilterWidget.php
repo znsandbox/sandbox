@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Status\Web\Widgets;
 use Illuminate\Support\Collection;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
 use Symfony\Component\HttpFoundation\Request;
-use ZnCore\Base\Helpers\EnumHelper;
+use ZnCore\Base\Libs\Enum\Helpers\EnumHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Html;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;

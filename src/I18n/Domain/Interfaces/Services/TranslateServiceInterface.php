@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services;
 
 use Illuminate\Support\Collection;
-use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnCore\Base\Libs\Service\Interfaces\CrudServiceInterface;
 use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 

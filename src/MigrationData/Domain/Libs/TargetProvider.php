@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\MigrationData\Domain\Libs;
 
 use App\Card\Domain\Events\PersistEvent;
-use ZnCore\Base\Libs\Event\Traits\EventDispatcherTrait;
+use ZnCore\Base\Libs\EventDispatcher\Traits\EventDispatcherTrait;
 use ZnCore\Domain\Enums\EventEnum;
 use ZnCore\Domain\Events\EntityEvent;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;

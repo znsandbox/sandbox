@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Services;
 
-use ZnCore\Domain\Interfaces\Service\CrudServiceInterface;
+use ZnCore\Base\Libs\Service\Interfaces\CrudServiceInterface;
 
 interface StatusServiceInterface extends CrudServiceInterface
 {

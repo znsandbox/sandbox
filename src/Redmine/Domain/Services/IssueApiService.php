@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Services;
 
-use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Base\Libs\Service\Base\BaseCrudService;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\IssueApiEntity;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;

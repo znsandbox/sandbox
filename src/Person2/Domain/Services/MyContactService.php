@@ -6,7 +6,7 @@ use ZnBundle\Eav\Domain\Entities\AttributeEntity;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Person\Domain\Interfaces\Repositories\ContactRepositoryInterface;
 use ZnCore\Base\Exceptions\AlreadyExistsException;
-use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Base\Libs\Service\Base\BaseCrudService;
 use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;

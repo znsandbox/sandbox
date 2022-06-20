@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Bundle\Domain\Services;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Services\BundleServiceInterface;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Repositories\BundleRepositoryInterface;
-use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Base\Libs\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
 
 /**

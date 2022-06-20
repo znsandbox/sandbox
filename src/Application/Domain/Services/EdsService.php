@@ -12,7 +12,7 @@ use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\EdsRepositoryInterface;
-use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Base\Libs\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Application\Domain\Entities\EdsEntity;
 use ZnCrypt\Base\Domain\Exceptions\CertificateExpiredException;
 use ZnCrypt\Base\Domain\Exceptions\FailCertificateSignatureException;

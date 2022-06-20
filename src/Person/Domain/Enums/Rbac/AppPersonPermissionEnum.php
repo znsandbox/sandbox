@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person\Domain\Enums\Rbac;
 
-use ZnCore\Contract\Enum\Interfaces\GetLabelsInterface;
+use ZnCore\Base\Libs\Enum\Interfaces\GetLabelsInterface;
 
 class AppPersonPermissionEnum implements GetLabelsInterface
 {

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories;
 
-use ZnCore\Domain\Interfaces\Repository\CrudRepositoryInterface;
+use ZnCore\Base\Libs\Repository\Interfaces\CrudRepositoryInterface;
 
 interface FavoriteRepositoryInterface extends CrudRepositoryInterface
 {

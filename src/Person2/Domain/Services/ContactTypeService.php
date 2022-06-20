@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use ZnBundle\Eav\Domain\Entities\EntityAttributeEntity;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityAttributeServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
-use ZnCore\Domain\Base\BaseCrudService;
+use ZnCore\Base\Libs\Service\Base\BaseCrudService;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\ContactTypeEntity;

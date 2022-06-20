@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Domain\Base\BaseService;
+use ZnCore\Base\Libs\Service\Base\BaseService;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Base\Libs\Query\Entities\Query;

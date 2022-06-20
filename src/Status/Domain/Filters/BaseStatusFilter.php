@@ -2,11 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Status\Domain\Filters;
 
-use ZnCore\Domain\Constraints\Enum;
+use ZnCore\Base\Libs\Enum\Constraints\Enum;
 use ZnSandbox\Sandbox\Status\Domain\Enums\StatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Base\Helpers\EnumHelper;
+use ZnCore\Base\Libs\Enum\Helpers\EnumHelper;
 use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnSandbox\Sandbox\Status\Domain\Helpers\StatusFilterHelper;
 
