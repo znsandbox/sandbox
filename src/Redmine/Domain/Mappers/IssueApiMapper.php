@@ -12,55 +12,55 @@ use ZnSandbox\Sandbox\Redmine\Domain\Entities\UserEntity;
 class IssueApiMapper implements MapperInterface
 {
 
-    public function encode($data)
+    public function encode($entityAttributes)
     {
-        return $data;
+        return $entityAttributes;
     }
 
-    public function decode($row)
+    public function decode($rowAttributes)
     {
-        if (!empty($row['project'])) {
+        if (!empty($rowAttributes['project'])) {
             $projectEntity = new ProjectEntity();
-            $projectEntity->setId($row['project']['id']);
-            $projectEntity->setName($row['project']['name']);
-            $row['project'] = $projectEntity;
+            $projectEntity->setId($rowAttributes['project']['id']);
+            $projectEntity->setName($rowAttributes['project']['name']);
+            $rowAttributes['project'] = $projectEntity;
         }
 
-        if (!empty($row['tracker'])) {
+        if (!empty($rowAttributes['tracker'])) {
             $projectEntity = new TrackerEntity();
-            $projectEntity->setId($row['tracker']['id']);
-            $projectEntity->setName($row['tracker']['name']);
-            $row['tracker'] = $projectEntity;
+            $projectEntity->setId($rowAttributes['tracker']['id']);
+            $projectEntity->setName($rowAttributes['tracker']['name']);
+            $rowAttributes['tracker'] = $projectEntity;
         }
 
-        if (!empty($row['status'])) {
+        if (!empty($rowAttributes['status'])) {
             $projectEntity = new StatusEntity();
-            $projectEntity->setId($row['status']['id']);
-            $projectEntity->setName($row['status']['name']);
-            $row['status'] = $projectEntity;
+            $projectEntity->setId($rowAttributes['status']['id']);
+            $projectEntity->setName($rowAttributes['status']['name']);
+            $rowAttributes['status'] = $projectEntity;
         }
 
-        if (!empty($row['priority'])) {
+        if (!empty($rowAttributes['priority'])) {
             $projectEntity = new PriorityEntity();
-            $projectEntity->setId($row['priority']['id']);
-            $projectEntity->setName($row['priority']['name']);
-            $row['priority'] = $projectEntity;
+            $projectEntity->setId($rowAttributes['priority']['id']);
+            $projectEntity->setName($rowAttributes['priority']['name']);
+            $rowAttributes['priority'] = $projectEntity;
         }
 
-        if (!empty($row['author'])) {
+        if (!empty($rowAttributes['author'])) {
             $projectEntity = new UserEntity();
-            $projectEntity->setId($row['author']['id']);
-            $projectEntity->setName($row['author']['name']);
-            $row['author'] = $projectEntity;
+            $projectEntity->setId($rowAttributes['author']['id']);
+            $projectEntity->setName($rowAttributes['author']['name']);
+            $rowAttributes['author'] = $projectEntity;
         }
 
-        if (!empty($row['assigned_to'])) {
+        if (!empty($rowAttributes['assigned_to'])) {
             $projectEntity = new UserEntity();
-            $projectEntity->setId($row['assigned_to']['id']);
-            $projectEntity->setName($row['assigned_to']['name']);
-            $row['assigned'] = $projectEntity;
+            $projectEntity->setId($rowAttributes['assigned_to']['id']);
+            $projectEntity->setName($rowAttributes['assigned_to']['name']);
+            $rowAttributes['assigned'] = $projectEntity;
         }
 
-        return $row;
+        return $rowAttributes;
     }
 }
