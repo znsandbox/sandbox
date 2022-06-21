@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Layout\Domain\Services;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -46,7 +47,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         return $this->all();
     }
 
-    public function all(Query $query = null)
+    public function all(Query $query = null): Enumerable
     {
         /** @var MenuEntity[] $collection */
         $collection = parent::all($query);

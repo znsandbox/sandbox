@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Repositories\Api;
 
+use Illuminate\Support\Enumerable;
 use Redmine\Api\AbstractApi;
 use Redmine\Client;
 use ZnCore\Base\Exceptions\InvalidMethodParameterException;
@@ -71,7 +72,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
         return ArrayHelper::getValue($this->cache, $hash);
     }
 
-    public function all(Query $query = null)
+    public function all(Query $query = null): Enumerable
     {
         $array = $this->getCache($query);
         if (!$array) {

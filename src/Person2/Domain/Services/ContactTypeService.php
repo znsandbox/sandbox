@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
 use ZnBundle\Eav\Domain\Entities\EntityAttributeEntity;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityAttributeServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
@@ -37,7 +38,7 @@ class ContactTypeService extends BaseCrudService implements ContactTypeServiceIn
         return ContactTypeEntity::class;
     }
 
-    public function all(Query $query = null)
+    public function all(Query $query = null): Enumerable
     {
         $query = new Query;
         $query->where('entity_id', $this->entityId);

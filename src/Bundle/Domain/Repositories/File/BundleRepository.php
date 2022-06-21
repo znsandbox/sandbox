@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\File;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
 use ZnCore\Base\Exceptions\NotFoundException;
 use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Helpers\InstanceHelper;
@@ -55,7 +56,7 @@ class BundleRepository implements BundleRepositoryInterface
         // TODO: Implement deleteByCondition() method.
     }
 
-    public function all(Query $query = null)
+    public function all(Query $query = null): Enumerable
     {
         $bundleInstanceArray = $this->configManager->get('bundles');
         $bundleCollection = new Collection();
