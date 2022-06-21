@@ -13,7 +13,7 @@ use ZnCore\Base\Libs\Enum\Helpers\EnumHelper;
 use ZnCore\Base\Libs\Enum\Constraints\Enum;
 use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
-use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
 
 class ApplicationEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface, BuildFormInterface

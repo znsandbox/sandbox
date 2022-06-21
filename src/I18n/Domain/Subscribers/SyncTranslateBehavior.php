@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\I18n\Domain\Subscribers;
 
 use App\Workshop\Domain\Entities\CategoryEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Libs\Domain\Enums\EventEnum;
 use ZnCore\Base\Libs\Domain\Events\EntityEvent;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;

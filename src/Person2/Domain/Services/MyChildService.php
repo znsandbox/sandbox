@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Libs\Service\Base\BaseCrudService;
 use ZnCore\Base\Libs\Domain\Enums\EventEnum;
 use ZnCore\Base\Libs\Domain\Events\EntityEvent;

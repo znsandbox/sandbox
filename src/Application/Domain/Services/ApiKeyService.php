@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Application\Domain\Services;
 
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\ApiKeyServiceInterface;
 use ZnCore\Base\Libs\Text\Libs\RandomString;
-use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\ApiKeyRepositoryInterface;
 use ZnCore\Base\Libs\Service\Base\BaseCrudService;

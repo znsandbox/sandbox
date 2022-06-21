@@ -8,7 +8,7 @@ use ZnCore\Base\Helpers\ClassHelper;
 use ZnCore\Base\Helpers\InstanceHelper;
 use ZnCore\Base\Libs\ConfigManager\Interfaces\ConfigManagerInterface;
 use ZnCore\Base\Libs\Domain\Interfaces\DomainInterface;
-use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;

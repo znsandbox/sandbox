@@ -8,7 +8,7 @@ use ZnCore\Base\Libs\Service\Base\BaseService;
 use ZnCore\Base\Libs\Domain\Enums\EventEnum;
 use ZnCore\Base\Libs\Domain\Events\EntityEvent;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
-use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
+use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Base\Libs\Query\Entities\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\ChildEntity;
