@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Layout\Domain;
 
-use ZnCore\Domain\Interfaces\DomainInterface;
+use ZnCore\Base\Libs\Domain\Interfaces\DomainInterface;
 
 class Domain implements DomainInterface
 {

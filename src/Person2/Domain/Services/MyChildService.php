@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use ZnCore\Contract\Domain\Interfaces\Entities\EntityIdInterface;
 use ZnCore\Base\Libs\Service\Base\BaseCrudService;
-use ZnCore\Domain\Enums\EventEnum;
-use ZnCore\Domain\Events\EntityEvent;
+use ZnCore\Base\Libs\Domain\Enums\EventEnum;
+use ZnCore\Base\Libs\Domain\Events\EntityEvent;
 use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Base\Libs\Query\Entities\Query;

@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Apache\Domain\Helpers;
 
 use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
-use ZnCore\Domain\Interfaces\DomainInterface;
+use ZnCore\Base\Libs\Domain\Interfaces\DomainInterface;
 
 class ConfParser {
 
