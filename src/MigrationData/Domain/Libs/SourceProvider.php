@@ -76,7 +76,7 @@ class SourceProvider
         $query = $this->getQuery();
         $query->page($page);
         $query->perPage($this->getLimit());
-        return $this->getEntityManager()->all($entityClass, $query);
+        return $this->getEntityManager()->getRepository($entityClass)->all($query);
     }
 
     public function getNextCollection(): Enumerable
@@ -93,6 +93,6 @@ class SourceProvider
     {
         $entityClass = $this->getEntityClass();
         $query = $this->getQuery();
-        return $this->getEntityManager()->count($entityClass, $query);
+        return $this->getEntityManager()->getRepository($entityClass)->count($query);
     }
 }

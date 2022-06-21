@@ -101,7 +101,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
         $query = new Query();
         $query->where('child_person_id', $personEntity->getId());
         try {
-            $inheritanceEntity = $this->getEntityManager()->one(InheritanceEntity::class, $query);
+            $inheritanceEntity = $this->getEntityManager()->getRepository(InheritanceEntity::class)->one($query);
         } catch (NotFoundException $e) {
             $inheritanceEntity = $this->createEntity();
             $inheritanceEntity->setChildPersonId($personEntity->getId());
