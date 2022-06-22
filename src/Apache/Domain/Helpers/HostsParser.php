@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Helpers;
 
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
-use ZnCore\Base\Libs\Domain\Interfaces\DomainInterface;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\Domain\Interfaces\DomainInterface;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
 
 class HostsParser {

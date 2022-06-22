@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Repositories\Eloquent;
 
-use ZnCore\Base\Libs\Relation\Libs\Types\OneToOneRelation;
+use ZnCore\Domain\Relation\Libs\Types\OneToOneRelation;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\InheritanceRepositoryInterface;

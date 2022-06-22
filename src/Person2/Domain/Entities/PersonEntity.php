@@ -12,9 +12,9 @@ use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\Text\Helpers\TextHelper;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Base\Libs\Enum\Constraints\Enum;
-use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
+use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
 use ZnUser\Rbac\Domain\Entities\ItemEntity;
 
 class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface

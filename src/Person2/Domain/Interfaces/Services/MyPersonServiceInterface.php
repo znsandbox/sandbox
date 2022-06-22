@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services;
 
-use ZnCore\Base\Libs\Query\Entities\Query;
+use ZnCore\Domain\Query\Entities\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 
 interface MyPersonServiceInterface

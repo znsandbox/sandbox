@@ -9,8 +9,8 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Enums\StatusEnum;
 use ZnCore\Base\Libs\Enum\Constraints\Enum;
 use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Base\Libs\Entity\Interfaces\UniqueInterface;
-use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
+use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
 
 class ApiKeyEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface, BuildFormInterface

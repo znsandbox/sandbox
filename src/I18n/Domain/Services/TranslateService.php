@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\I18n\Domain\Services;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Libs\Service\Base\BaseService;
-use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Base\Libs\Query\Entities\Query;
+use ZnCore\Domain\Service\Base\BaseService;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\Query\Entities\Query;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Repositories\TranslateRepositoryInterface;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services\TranslateServiceInterface;

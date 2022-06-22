@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Office\Domain\Interfaces\Services;
 
 
-use ZnCore\Base\Libs\Service\Interfaces\CrudServiceInterface;
+use ZnCore\Domain\Service\Interfaces\CrudServiceInterface;
 use ZnSandbox\Sandbox\Office\Domain\Entities\DocXEntity;
 
 interface DocXServiceInterface extends CrudServiceInterface

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Contact\Domain\Interfaces\Repositories;
 
-use ZnCore\Base\Libs\Repository\Interfaces\RepositoryInterface;
+use ZnCore\Domain\Repository\Interfaces\RepositoryInterface;
 
 interface ValueRepositoryInterface extends RepositoryInterface
 {

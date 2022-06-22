@@ -8,10 +8,10 @@ use Redmine\Client;
 use ZnCore\Base\Exceptions\InvalidMethodParameterException;
 use ZnCore\Base\Exceptions\NotSupportedException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\Query\Entities\Where;
-use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Base\Libs\Query\Entities\Query;
-use ZnCore\Base\Libs\Repository\Traits\MapperTrait;
+use ZnCore\Domain\Query\Entities\Where;
+use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Domain\Query\Entities\Query;
+use ZnCore\Domain\Repository\Traits\MapperTrait;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
 
 abstract class BaseApiRepository implements IssueApiRepositoryInterface

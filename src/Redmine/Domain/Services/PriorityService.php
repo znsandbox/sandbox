@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Redmine\Domain\Services;
 
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Services\PriorityServiceInterface;
-use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\PriorityRepositoryInterface;
-use ZnCore\Base\Libs\Service\Base\BaseCrudService;
+use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\PriorityEntity;
 
 /**

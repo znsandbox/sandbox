@@ -3,10 +3,10 @@
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Libs\Relation\Libs\Types\OneToOneRelation;
+use ZnCore\Domain\Relation\Libs\Types\OneToOneRelation;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
-use ZnCore\Base\Libs\Repository\Mappers\JsonMapper;
-use ZnCore\Base\Libs\Repository\Mappers\TimeMapper;
+use ZnCore\Domain\Repository\Mappers\JsonMapper;
+use ZnCore\Domain\Repository\Mappers\TimeMapper;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\FavoriteRepositoryInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\UserRepositoryInterface;

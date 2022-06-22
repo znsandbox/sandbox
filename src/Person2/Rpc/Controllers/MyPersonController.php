@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
-use ZnCore\Base\Libs\Query\Entities\Query;
+use ZnCore\Domain\Query\Entities\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseRpcController;

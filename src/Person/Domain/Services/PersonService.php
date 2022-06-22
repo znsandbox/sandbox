@@ -13,9 +13,9 @@ use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnBundle\User\Domain\Interfaces\Services\IdentityServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
 
-use ZnCore\Base\Libs\Service\Base\BaseService;
+use ZnCore\Domain\Service\Base\BaseService;
 use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnKaz\Iin\Domain\Helpers\IinParser;
 
 class PersonService extends BaseService implements PersonServiceInterface

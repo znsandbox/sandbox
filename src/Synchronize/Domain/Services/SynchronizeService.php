@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Services;
 
-use ZnCore\Base\Libs\Entity\Helpers\CollectionHelper;
+use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffAttributeEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffConfigEntity;
@@ -11,9 +11,9 @@ use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceI
 use Illuminate\Support\Collection;
 use Symfony\Contracts\Cache\CacheInterface;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\Service\Base\BaseService;
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
-use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\Service\Base\BaseService;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnDatabase\Fixture\Domain\Repositories\DbRepository;
 use ZnDatabase\Fixture\Domain\Repositories\FileRepository;
 use ZnDatabase\Fixture\Domain\Services\FixtureService;

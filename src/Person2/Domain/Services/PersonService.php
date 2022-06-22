@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Base\Libs\Service\Base\BaseCrudService;
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
-use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;

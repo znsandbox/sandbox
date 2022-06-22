@@ -5,10 +5,10 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Subscribers;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use ZnCore\Base\Exceptions\ReadOnlyException;
 use ZnCore\Contract\User\Exceptions\ForbiddenException;
-use ZnCore\Base\Libs\Domain\Enums\EventEnum;
-use ZnCore\Base\Libs\Domain\Events\EntityEvent;
-use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Base\Libs\EntityManager\Traits\EntityManagerAwareTrait;
+use ZnCore\Domain\Domain\Enums\EventEnum;
+use ZnCore\Domain\Domain\Events\EntityEvent;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\EntityManager\Traits\EntityManagerAwareTrait;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 

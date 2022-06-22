@@ -12,7 +12,7 @@ use ZnSandbox\Sandbox\Asset\Domain\Entities\FileEntity;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
-use ZnCore\Base\Libs\DataProvider\Libs\DataProvider;
+use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnLib\Web\Widgets\Collection\CollectionWidget;
 use ZnLib\Web\Widgets\Format\Formatters\ActionFormatter;
 use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;

@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Services;
 
-use ZnCore\Base\Libs\Query\Entities\Query;
-use ZnCore\Base\Libs\Repository\Traits\RepositoryAwareTrait;
+use ZnCore\Domain\Query\Entities\Query;
+use ZnCore\Domain\Repository\Traits\RepositoryAwareTrait;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf\HostsRepository;
 use ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf\ServerRepository;

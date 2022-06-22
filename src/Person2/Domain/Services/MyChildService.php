@@ -2,13 +2,13 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnCore\Base\Libs\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Base\Libs\Service\Base\BaseCrudService;
-use ZnCore\Base\Libs\Domain\Enums\EventEnum;
-use ZnCore\Base\Libs\Domain\Events\EntityEvent;
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
-use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Base\Libs\Query\Entities\Query;
+use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnCore\Domain\Domain\Enums\EventEnum;
+use ZnCore\Domain\Domain\Events\EntityEvent;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\Query\Entities\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;

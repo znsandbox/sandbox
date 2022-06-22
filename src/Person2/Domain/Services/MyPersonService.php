@@ -4,10 +4,10 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Base\Libs\Service\Base\BaseService;
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
-use ZnCore\Base\Libs\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Base\Libs\Query\Entities\Query;
+use ZnCore\Domain\Service\Base\BaseService;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\Query\Entities\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\InheritanceRepositoryInterface;

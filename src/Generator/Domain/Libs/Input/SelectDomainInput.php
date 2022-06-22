@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Libs\Input;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
