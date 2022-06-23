@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Layout\Domain\Repositories\File;
 
 use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Repositories\MenuRepositoryInterface;
-use ZnCore\Base\Libs\Store\Base\BaseFileCrudRepository;
+use ZnCore\Base\Store\Base\BaseFileCrudRepository;
 
 class MenuRepository extends BaseFileCrudRepository implements MenuRepositoryInterface
 {

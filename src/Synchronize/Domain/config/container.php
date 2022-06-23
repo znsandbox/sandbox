@@ -1,8 +1,8 @@
 <?php
 
 use Psr\Container\ContainerInterface;
-use ZnCore\Base\Libs\DotEnv\Domain\Libs\DotEnv;
-use ZnCore\Base\Libs\Store\StoreFile;
+use ZnCore\Base\DotEnv\Domain\Libs\DotEnv;
+use ZnCore\Base\Store\StoreFile;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
 use ZnSandbox\Sandbox\Synchronize\Domain\Services\SynchronizeService;
 

@@ -6,10 +6,10 @@ use Illuminate\Support\Collection;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
 use Symfony\Component\HttpFoundation\Request;
-use ZnCore\Base\Libs\Enum\Helpers\EnumHelper;
+use ZnCore\Base\Enum\Helpers\EnumHelper;
 use ZnLib\Web\Helpers\Html;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnLib\Web\Widgets\Base\BaseWidget2;
 
 class FilterWidget extends BaseWidget2

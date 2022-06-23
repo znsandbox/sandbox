@@ -6,14 +6,14 @@ use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
-use ZnCore\Base\Libs\Status\Enums\StatusEnum;
+use ZnCore\Base\Status\Enums\StatusEnum;
 
-use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\Text\Helpers\TextHelper;
+use ZnCore\Base\Arr\Helpers\ArrayHelper;
+use ZnCore\Base\Text\Helpers\TextHelper;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
-use ZnCore\Base\Libs\Enum\Constraints\Enum;
+use ZnCore\Base\Enum\Constraints\Enum;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
 use ZnUser\Rbac\Domain\Entities\ItemEntity;
 

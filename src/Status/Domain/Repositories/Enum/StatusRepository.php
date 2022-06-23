@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Status\Domain\Repositories\Enum;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
 use ZnSandbox\Sandbox\Status\Domain\Enums\StatusEnum;
 use ZnSandbox\Sandbox\Status\Domain\Interfaces\Repositories\StatusRepositoryInterface;
-use ZnCore\Base\Libs\Enum\Base\BaseEnumCrudRepository;
+use ZnCore\Base\Enum\Base\BaseEnumCrudRepository;
 
 class StatusRepository extends BaseEnumCrudRepository implements StatusRepositoryInterface
 {

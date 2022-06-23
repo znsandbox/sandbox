@@ -6,9 +6,9 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\MimeTypes;
-use ZnCore\Base\Libs\FileSystem\Helpers\FilePathHelper;
-use ZnCore\Base\Libs\Http\Enums\HttpHeaderEnum;
-use ZnCore\Base\Libs\Http\Enums\HttpStatusCodeEnum;
+use ZnCore\Base\FileSystem\Helpers\FilePathHelper;
+use ZnCore\Base\Http\Enums\HttpHeaderEnum;
+use ZnCore\Base\Http\Enums\HttpStatusCodeEnum;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 
 class AssetsController extends BaseWebController

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnCore\Base\Libs\Scenario\Interfaces;
+namespace ZnCore\Base\Scenario\Interfaces;
 
 interface RunInterface
 {

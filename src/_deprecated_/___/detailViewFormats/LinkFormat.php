@@ -2,9 +2,9 @@
 
 namespace ZnLib\Web\Yii2\Widgets\detailViewFormats;
 
-use ZnCore\Base\Libs\ArrayTools\Base\BaseCollection;
+use ZnCore\Base\ArrayTools\Base\BaseCollection;
 use ZnLib\Web\Yii2\Widgets\helpers\WidgetHelper;
-use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
+use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnLib\Web\Helpers\Html;
 
 class LinkFormat {

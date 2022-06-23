@@ -1,8 +1,8 @@
 <?php
 
-namespace ZnCore\Base\Libs\Scenario\Base;
+namespace ZnCore\Base\Scenario\Base;
 
-use ZnCore\Base\Libs\Scenario\Collections\ScenarioCollection;
+use ZnCore\Base\Scenario\Collections\ScenarioCollection;
 
 abstract class BaseGroupScenario extends BaseScenario
 {

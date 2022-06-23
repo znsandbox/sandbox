@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnCore\Base\Libs\Scenario\Exceptions;
+namespace ZnCore\Base\Scenario\Exceptions;
 
 use Exception;
 

@@ -4,11 +4,11 @@ namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\Container\Traits\ContainerAwareTrait;
-use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;
+use ZnCore\Base\Arr\Helpers\ArrayHelper;
+use ZnCore\Base\Container\Traits\ContainerAwareTrait;
+use ZnCore\Base\Validation\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Base\Libs\Validation\Helpers\ValidationHelper;
+use ZnCore\Base\Validation\Helpers\ValidationHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;

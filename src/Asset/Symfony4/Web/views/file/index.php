@@ -9,7 +9,7 @@
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use ZnLib\Web\Helpers\Url;
-use ZnCore\Base\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\I18Next\Facades\I18Next;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnLib\Web\Widgets\Collection\CollectionWidget;
 use ZnLib\Web\Widgets\Format\Formatters\ActionFormatter;
@@ -38,7 +38,7 @@ $attributes = [
         'label' => I18Next::t('storage', 'file.attribute.size'),
         'attributeName' => 'size',
         'value' => function (FileEntity $entity) {
-            return \ZnCore\Base\Libs\FileSystem\Helpers\FileSizeHelper::sizeFormat($entity->getSize());
+            return \ZnCore\Base\FileSystem\Helpers\FileSizeHelper::sizeFormat($entity->getSize());
         },
     ],
     [

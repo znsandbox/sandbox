@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
+use ZnCore\Base\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;

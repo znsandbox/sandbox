@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Helpers;
 
-use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
-use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
+use ZnCore\Base\FileSystem\Helpers\FileStorageHelper;
+use ZnCore\Base\FileSystem\Helpers\FindFileHelper;
 use ZnCore\Domain\Domain\Interfaces\DomainInterface;
 
 class ConfParser {

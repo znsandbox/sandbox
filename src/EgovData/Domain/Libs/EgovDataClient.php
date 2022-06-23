@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\EgovData\Domain\Libs;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
-use ZnCore\Base\Libs\DotEnv\Domain\Libs\DotEnv;
+use ZnCore\Base\DotEnv\Domain\Libs\DotEnv;
 
 class EgovDataClient
 {

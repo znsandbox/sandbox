@@ -7,7 +7,7 @@
  */
 
 use ZnLib\Web\Helpers\Html;
-use ZnCore\Base\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\I18Next\Facades\I18Next;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Helpers\ActionHelper;
 use ZnLib\Web\View\View;
@@ -37,7 +37,7 @@ $attributes = [
         'label' => I18Next::t('storage', 'file.attribute.size'),
         //'attributeName' => 'size',
         'value' => function (FileEntity $entity) {
-            return \ZnCore\Base\Libs\FileSystem\Helpers\FileSizeHelper::sizeFormat($entity->getSize());
+            return \ZnCore\Base\FileSystem\Helpers\FileSizeHelper::sizeFormat($entity->getSize());
         },
     ],
     [

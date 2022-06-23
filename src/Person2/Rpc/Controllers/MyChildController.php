@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
 use Psr\Container\ContainerInterface;
-use ZnCore\Base\Libs\Container\Traits\ContainerAwareTrait;
+use ZnCore\Base\Container\Traits\ContainerAwareTrait;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;

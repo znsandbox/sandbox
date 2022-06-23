@@ -8,8 +8,8 @@ use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 use Illuminate\Support\Collection;
 use yii\helpers\Url;
 
-use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Arr\Helpers\ArrayHelper;
+use ZnCore\Base\I18Next\Facades\I18Next;
 
 $this->title = I18Next::t('synchronize', 'synchronize.title');
 

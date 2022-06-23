@@ -1,12 +1,12 @@
 <?php
 
-namespace ZnCore\Base\Libs\Scenario\Collections;
+namespace ZnCore\Base\Scenario\Collections;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Libs\Instance\Helpers\ClassHelper;
-use ZnCore\Base\Libs\ReadOnly\Helpers\ReadOnlyHelper;
-use ZnCore\Base\Libs\Scenario\Base\BaseScenario;
-use ZnCore\Base\Libs\Scenario\Exceptions\StopException;
+use ZnCore\Base\Instance\Helpers\ClassHelper;
+use ZnCore\Base\ReadOnly\Helpers\ReadOnlyHelper;
+use ZnCore\Base\Scenario\Base\BaseScenario;
+use ZnCore\Base\Scenario\Exceptions\StopException;
 
 class ScenarioCollection extends Collection
 {

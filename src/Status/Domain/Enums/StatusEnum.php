@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Status\Domain\Enums;
 
-use ZnCore\Base\Libs\Enum\Interfaces\GetLabelsInterface;
-use ZnCore\Base\Libs\I18Next\Facades\I18Next;
+use ZnCore\Base\Enum\Interfaces\GetLabelsInterface;
+use ZnCore\Base\I18Next\Facades\I18Next;
 
 class StatusEnum implements GetLabelsInterface
 {

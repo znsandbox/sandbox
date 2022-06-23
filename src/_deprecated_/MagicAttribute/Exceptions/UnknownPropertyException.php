@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnCore\Base\Libs\MagicAttribute\Exceptions;
+namespace ZnCore\Base\MagicAttribute\Exceptions;
 
 use Exception;
 

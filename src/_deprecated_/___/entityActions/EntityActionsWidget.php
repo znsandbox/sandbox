@@ -7,7 +7,7 @@ use yii\base\Widget;
 use ZnLib\Web\Yii2\Widgets\entityActions\actions\BaseAction;
 use ZnLib\Web\Yii2\Widgets\entityActions\actions\DeleteAction;
 use ZnLib\Web\Yii2\Widgets\entityActions\actions\UpdateAction;
-use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
+use ZnCore\Base\Arr\Helpers\ArrayHelper;
 
 class EntityActionsWidget extends Widget {
 	

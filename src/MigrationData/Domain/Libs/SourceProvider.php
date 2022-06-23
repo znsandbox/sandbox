@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\MigrationData\Domain\Libs;
 
 use Illuminate\Support\Enumerable;
-use ZnCore\Base\Libs\EventDispatcher\Traits\EventDispatcherTrait;
+use ZnCore\Base\EventDispatcher\Traits\EventDispatcherTrait;
 use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnCore\Domain\EntityManager\Traits\EntityManagerAwareTrait;

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ZipArchive;
 
-use ZnCore\Base\Libs\Text\Helpers\TemplateHelper;
+use ZnCore\Base\Text\Helpers\TemplateHelper;
 
 class DocX
 {

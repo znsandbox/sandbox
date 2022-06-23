@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person\Domain\Services;
 
-use ZnCore\Base\Libs\Text\Helpers\TextHelper;
+use ZnCore\Base\Text\Helpers\TextHelper;
 use ZnSandbox\Sandbox\Person\Domain\Interfaces\Services\PersonServiceInterface;
 use ZnBundle\Eav\Domain\Entities\DynamicEntity;
 use ZnBundle\Eav\Domain\Forms\DynamicForm;
@@ -14,7 +14,7 @@ use ZnBundle\User\Domain\Interfaces\Services\IdentityServiceInterface;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 
 use ZnCore\Domain\Service\Base\BaseService;
-use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;
+use ZnCore\Base\Validation\Exceptions\UnprocessibleEntityException;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnKaz\Iin\Domain\Helpers\IinParser;
 

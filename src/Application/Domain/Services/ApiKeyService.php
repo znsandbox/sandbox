@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Application\Domain\Services;
 
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\ApiKeyServiceInterface;
-use ZnCore\Base\Libs\Text\Libs\RandomString;
+use ZnCore\Base\Text\Libs\RandomString;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\ApiKeyRepositoryInterface;

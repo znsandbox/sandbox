@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Base\Libs\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 

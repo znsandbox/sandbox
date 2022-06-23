@@ -1,8 +1,8 @@
 <?php
 
-namespace ZnCore\Base\Libs\Scenario\Base;
+namespace ZnCore\Base\Scenario\Base;
 
-use ZnCore\Base\Libs\Scenario\Interfaces\RunInterface;
+use ZnCore\Base\Scenario\Interfaces\RunInterface;
 
 abstract class BaseScenario implements RunInterface
 {

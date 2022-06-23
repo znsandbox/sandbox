@@ -3,7 +3,7 @@
 namespace Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
-use ZnCore\Base\Libs\Status\Enums\StatusEnum;
+use ZnCore\Base\Status\Enums\StatusEnum;
 use ZnDatabase\Migration\Domain\Base\BaseCreateTableMigration;
 
 class m_2021_06_29_103236_create_eds_table extends BaseCreateTableMigration

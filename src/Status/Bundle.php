@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Status;
 
-use ZnCore\Base\Libs\App\Base\BaseBundle;
+use ZnCore\Base\App\Base\BaseBundle;
 
 class Bundle extends BaseBundle
 {
