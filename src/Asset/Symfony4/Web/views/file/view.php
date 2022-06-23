@@ -6,6 +6,7 @@
  * @var $entity EntityIdInterface
  */
 
+use ZnCore\Base\Byte\Helpers\ByteSizeFormatHelper;
 use ZnLib\Web\Helpers\Html;
 use ZnCore\Base\I18Next\Facades\I18Next;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
@@ -37,7 +38,7 @@ $attributes = [
         'label' => I18Next::t('storage', 'file.attribute.size'),
         //'attributeName' => 'size',
         'value' => function (FileEntity $entity) {
-            return \ZnCore\Base\FileSystem\Helpers\FileSizeHelper::sizeFormat($entity->getSize());
+            return ByteSizeFormatHelper::sizeFormat($entity->getSize());
         },
     ],
     [

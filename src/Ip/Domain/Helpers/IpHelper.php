@@ -9,31 +9,9 @@ class IpHelper
     {
         $collection = [];
         foreach ($domains as $domain) {
-            $collection[] = IpHelper::getIpBydomain($domain);
+            $collection[] = \ZnCore\Base\Http\Helpers\IpHelper::getIpByUrl($domain);
         }
         return $collection;
-    }
-
-    public static function getIpBydomain(string $domain)
-    {
-        $item = [
-            'domain' => $domain,
-            'ip' => [],
-        ];
-//        $domain = self::cleanUrl($domain);
-        $url = parse_url($domain);
-        if(empty($ipList)) {
-            $url = parse_url('https://' . $domain);
-        }
-        $ipList = gethostbynamel($url['host']);
-
-        if(is_array($ipList)) {
-            foreach($ipList as $ip) {
-                $item['ip'][] = $ip;
-            }
-        }
-
-        return $item;
     }
 
     public static function to2DomainLevel($item) {
