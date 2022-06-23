@@ -10,7 +10,7 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnCore\Base\Legacy\Yii\Helpers\Url;
+use ZnLib\Web\Helpers\Url;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnLib\Web\Widgets\Collection\CollectionWidget;
@@ -23,7 +23,7 @@ $attributes = [
         'attributeName' => 'ServerName',
         'format' => 'html',
         'value' => function (\ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity $serverEntity) {
-            return \ZnCore\Base\Legacy\Yii\Helpers\Html::a($serverEntity->getServerName(), 'http://' . $serverEntity->getServerName(), ['target' => '_blank']);
+            return \ZnLib\Web\Helpers\Html::a($serverEntity->getServerName(), 'http://' . $serverEntity->getServerName(), ['target' => '_blank']);
         },
     ],
     [

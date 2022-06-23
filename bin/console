@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-/*use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+/*use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\App\Factories\ApplicationFactory;
 use ZnCore\Base\Libs\App\Factories\KernelFactory;
 use ZnCore\Base\Libs\DotEnv\Domain\Libs\DotEnv;

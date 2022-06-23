@@ -2,7 +2,7 @@
 
 namespace ZnLib\Web\Yii2\Widgets\detailViewFormats;
 
-use ZnCore\Base\Legacy\Yii\Helpers\Html;
+use ZnLib\Web\Helpers\Html;
 
 class ListFormat {
 	

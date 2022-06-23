@@ -49,7 +49,7 @@ $attributes = [
         ]) ?>
 
         <div class="float-left111">
-            <a type="primary" class=" btn  btn-primary" href="<?= \ZnCore\Base\Legacy\Yii\Helpers\Url::to(['/application/api-key', 'filter[application_id]' => $entity->getId()]) ?>" title="View Key list" icon="fa fa fa-edit"><i class="fa fa fa-edit"></i> View Key list</a>
+            <a type="primary" class=" btn  btn-primary" href="<?= \ZnLib\Web\Helpers\Url::to(['/application/api-key', 'filter[application_id]' => $entity->getId()]) ?>" title="View Key list" icon="fa fa fa-edit"><i class="fa fa fa-edit"></i> View Key list</a>
             <?= ActionHelper::generateUpdateAction($entity, $baseUri, ActionHelper::TYPE_BUTTON) ?>
             <?= ActionHelper::generateDeleteAction($entity, $baseUri, ActionHelper::TYPE_BUTTON) ?>
         </div>

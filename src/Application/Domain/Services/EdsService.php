@@ -2,25 +2,20 @@
 
 namespace ZnSandbox\Sandbox\Application\Domain\Services;
 
-use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
-use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\EdsServiceInterface;
 use DateTime;
-use phpseclib\Crypt\RSA;
 use phpseclib\File\X509;
-use ZnCore\Domain\Entity\Exceptions\NotFoundException;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
-use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\EdsRepositoryInterface;
 use ZnCore\Domain\Service\Base\BaseCrudService;
-use ZnSandbox\Sandbox\Application\Domain\Entities\EdsEntity;
 use ZnCrypt\Base\Domain\Exceptions\CertificateExpiredException;
 use ZnCrypt\Base\Domain\Exceptions\FailCertificateSignatureException;
-use ZnCrypt\Base\Domain\Exceptions\FailSignatureException;
-use ZnCrypt\Base\Domain\Exceptions\InvalidDigestException;
 use ZnCrypt\Pki\X509\Domain\Helpers\X509Helper;
 use ZnCrypt\Pki\XmlDSig\Domain\Entities\KeyEntity;
 use ZnCrypt\Pki\XmlDSig\Domain\Libs\Signature;
+use ZnSandbox\Sandbox\Application\Domain\Entities\EdsEntity;
+use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\EdsRepositoryInterface;
+use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\EdsServiceInterface;
 
 /**
  * @method EdsRepositoryInterface getRepository()
@@ -33,10 +28,11 @@ class EdsService extends BaseCrudService implements EdsServiceInterface
         $this->setEntityManager($em);
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return EdsEntity::class;
     }
+
     public function create($data): EntityIdInterface
     {
         $caKeyEntity = $this->loadCa();
@@ -93,7 +89,7 @@ class EdsService extends BaseCrudService implements EdsServiceInterface
             throw new CertificateExpiredException();
         }
 
-       // dd($verifyEntity);
+        // dd($verifyEntity);
 
         //dd($_ENV['PKI_CA_FILE']);
 
@@ -111,7 +107,7 @@ class EdsService extends BaseCrudService implements EdsServiceInterface
 //        $certificateEntity = X509Helper::certArrayToEntity($certArray);
 //        dd($certificateEntity);
         $subject = X509Helper::getAssoc1($certArray['tbsCertificate']['subject']['rdnSequence']);
-       // $extensions = X509Helper::getAssocExt($certArray['tbsCertificate']['extensions']);
+        // $extensions = X509Helper::getAssocExt($certArray['tbsCertificate']['extensions']);
         //dd($subject);
 
         /** @var EdsEntity $edsEntity */
@@ -131,7 +127,8 @@ class EdsService extends BaseCrudService implements EdsServiceInterface
         return $edsEntity;
     }
 
-    protected function loadCa(): KeyEntity {
+    protected function loadCa(): KeyEntity
+    {
         $caPem = FileStorageHelper::load($_ENV['PKI_CA_FILE']);
         $caPrivateKeyPassword = FileStorageHelper::load($_ENV['PKI_CA_PRIVATE_KEY_PASSWORD_FILE']);
         $privateKeyPem = FileStorageHelper::load($_ENV['PKI_CA_PRIVATE_KEY_FILE']);
@@ -142,7 +139,8 @@ class EdsService extends BaseCrudService implements EdsServiceInterface
         return $caKeyEntity;
     }
 
-    private function generateCertificateByCsr($certificateRequestPem) {
+    private function generateCertificateByCsr($certificateRequestPem)
+    {
         $caKeyEntity = $this->loadCa();
 
         $privateKeyResource = [$caKeyEntity->getPrivateKey(), $caKeyEntity->getPrivateKeyPassword()];

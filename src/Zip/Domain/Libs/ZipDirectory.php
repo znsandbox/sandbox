@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Zip\Domain\Libs;
 use Exception;
 use Symfony\Component\Uid\Uuid;
 use ZipArchive;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
+use ZnCore\Base\Libs\FileSystem\Helpers\FileHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
 
 class ZipDirectory

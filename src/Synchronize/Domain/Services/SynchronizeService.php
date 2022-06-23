@@ -10,7 +10,7 @@ use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffItemEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
 use Illuminate\Support\Collection;
 use Symfony\Contracts\Cache\CacheInterface;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Service\Base\BaseService;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;

@@ -3,15 +3,10 @@
 namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
 use Illuminate\Support\Collection;
-use Symfony\Component\DependencyInjection\Tests\Fixtures\StdClassDecorator;
+use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Domain\Query\Entities\Query;
 use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
-use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Helpers\ConfParser;
 
@@ -48,7 +43,8 @@ class ServerRepository
         foreach ($collection as $serverEntity) {
             try {
                 $serverEntity->setHosts($this->hostsRepository->oneByName($serverEntity->getServerName()));
-            } catch (NotFoundException $e) {}
+            } catch (NotFoundException $e) {
+            }
         }
         return $collection;
     }

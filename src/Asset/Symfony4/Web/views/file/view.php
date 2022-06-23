@@ -6,17 +6,14 @@
  * @var $entity EntityIdInterface
  */
 
-use ZnSandbox\Sandbox\Asset\Domain\Entities\FileEntity;
-use ZnCore\Base\Libs\Status\Enums\StatusEnum;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\Html;
+use ZnLib\Web\Helpers\Html;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Helpers\ActionHelper;
 use ZnLib\Web\View\View;
 use ZnLib\Web\Widgets\Detail\DetailWidget;
-use ZnLib\Web\Widgets\Format\Formatters\EnumFormatter;
 use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;
+use ZnSandbox\Sandbox\Asset\Domain\Entities\FileEntity;
 
 $attributes = [
     [

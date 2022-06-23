@@ -3,16 +3,11 @@
 namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
 use Illuminate\Support\Collection;
-use ZnCore\Domain\Entity\Exceptions\NotFoundException;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
-use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FileStorageHelper;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\Entity\Exceptions\NotFoundException;
+use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
-use ZnSandbox\Sandbox\Apache\Domain\Entities\HostGroupEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;
-use ZnSandbox\Sandbox\Apache\Domain\Helpers\ConfParser;
 use ZnSandbox\Sandbox\Apache\Domain\Helpers\HostsParser;
 
 class HostsRepository
@@ -34,7 +29,7 @@ class HostsRepository
      */
     private function getIndexedCollection(): Collection
     {
-        if(self::$collection == null) {
+        if (self::$collection == null) {
             $hostsContent = FileStorageHelper::load('/etc/hosts');
             preg_match_all("/#\s*<([a-zA-Z_-]+)([^>]*)>([\s\S]+?)#\s*<\/([a-zA-Z_-]+)>/i", $hostsContent, $matches);
             $collection = [];

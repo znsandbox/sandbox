@@ -11,7 +11,7 @@ use ZnSandbox\Sandbox\Application\Domain\Entities\ApiKeyEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 
-use ZnCore\Base\Legacy\Yii\Helpers\Url;
+use ZnLib\Web\Helpers\Url;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnLib\Web\Widgets\Collection\CollectionWidget;

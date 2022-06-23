@@ -6,10 +6,9 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\MimeTypes;
+use ZnCore\Base\Libs\FileSystem\Helpers\FilePathHelper;
 use ZnCore\Base\Libs\Http\Enums\HttpHeaderEnum;
 use ZnCore\Base\Libs\Http\Enums\HttpStatusCodeEnum;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
-use ZnCore\Base\Libs\FileSystem\Helpers\FilePathHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 
 class AssetsController extends BaseWebController
@@ -27,7 +26,7 @@ class AssetsController extends BaseWebController
         $filePath = str_replace($this->baseUri, '', $uri);
         $filePath = trim($filePath, '/');
         $absoluteFilePath = $this->getAbsoluteFilePath($filePath);
-        if(!file_exists($absoluteFilePath)) {
+        if (!file_exists($absoluteFilePath)) {
             $response = new Response();
             $response->setStatusCode(HttpStatusCodeEnum::NOT_FOUND);
         } else {

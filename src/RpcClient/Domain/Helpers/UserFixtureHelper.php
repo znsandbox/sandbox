@@ -9,7 +9,7 @@ class UserFixtureHelper
 
     public static function generate($identityCollection, $credentialCollection): array
     {
-        $identityCollection = \ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper::index($identityCollection, 'id');
+        $identityCollection = \ZnCore\Base\Libs\Arr\Helpers\ArrayHelper::index($identityCollection, 'id');
         $collection = [];
         foreach ($credentialCollection as $credential) {
             if (in_array($credential['type'], [CredentialTypeEnum::LOGIN, CredentialTypeEnum::EMAIL])) {
