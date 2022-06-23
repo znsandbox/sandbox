@@ -3,8 +3,8 @@
 namespace ZnCore\Base\Libs\Scenario\Collections;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Helpers\ClassHelper;
-use ZnCore\Base\Helpers\Helper;
+use ZnCore\Base\Libs\Instance\Helpers\ClassHelper;
+use ZnCore\Base\Libs\ReadOnly\Helpers\ReadOnlyHelper;
 use ZnCore\Base\Libs\Scenario\Base\BaseScenario;
 use ZnCore\Base\Libs\Scenario\Exceptions\StopException;
 

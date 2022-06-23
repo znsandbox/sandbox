@@ -7,7 +7,7 @@ use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\EdsServiceInterface
 use DateTime;
 use phpseclib\Crypt\RSA;
 use phpseclib\File\X509;
-use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;

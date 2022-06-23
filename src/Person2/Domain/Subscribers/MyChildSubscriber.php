@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Person2\Domain\Subscribers;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use ZnCore\Base\Exceptions\ReadOnlyException;
+use ZnCore\Base\Libs\ReadOnly\Exceptions\ReadOnlyException;
 use ZnCore\Contract\User\Exceptions\ForbiddenException;
 use ZnCore\Domain\Domain\Enums\EventEnum;
 use ZnCore\Domain\Domain\Events\EntityEvent;

@@ -7,7 +7,7 @@
  */
 
 use ZnSandbox\Sandbox\Asset\Domain\Entities\FileEntity;
-use ZnCore\Base\Enums\StatusEnum;
+use ZnCore\Base\Libs\Status\Enums\StatusEnum;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Html;
 use ZnCore\Base\Libs\I18Next\Facades\I18Next;

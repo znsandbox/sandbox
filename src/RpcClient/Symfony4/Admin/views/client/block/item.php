@@ -20,7 +20,7 @@ $isActive = $favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem-
         <?php
 
 
-        $lifeTimeLimitNew = \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_DAY;
+        $lifeTimeLimitNew = \ZnCore\Base\Libs\Measure\Enums\TimeEnum::SECOND_PER_DAY;
         $lifeTimeLimitPartNew = $lifeTimeLimitNew / 3;
         $lifeTimeNew = time() - $favoriteEntityItem->getCreatedAt()->getTimestamp();
         $isNew = $lifeTimeNew < $lifeTimeLimitNew;
@@ -39,13 +39,13 @@ $isActive = $favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem-
 
             $lifeTimeUpd = time() - $favoriteEntityItem->getUpdatedAt()->getTimestamp();
             //dump($favoriteEntityItem->getUpdatedAt()->getTimestamp());
-            $isUpd = $lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_DAY;
+            $isUpd = $lifeTimeUpd < \ZnCore\Base\Libs\Measure\Enums\TimeEnum::SECOND_PER_DAY;
             $colorUpd = '#ffc107';
-            if($lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 1) {
+            if($lifeTimeUpd < \ZnCore\Base\Libs\Measure\Enums\TimeEnum::SECOND_PER_HOUR * 8 * 1) {
                 $colorUpd = '#ffc107';
-            } elseif($lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 2) {
+            } elseif($lifeTimeUpd < \ZnCore\Base\Libs\Measure\Enums\TimeEnum::SECOND_PER_HOUR * 8 * 2) {
                 $colorUpd = 'rgba(255,193,7,0.66)';
-            } elseif($lifeTimeUpd < \ZnCore\Base\Enums\Measure\TimeEnum::SECOND_PER_HOUR * 8 * 3) {
+            } elseif($lifeTimeUpd < \ZnCore\Base\Libs\Measure\Enums\TimeEnum::SECOND_PER_HOUR * 8 * 3) {
                 $colorUpd = 'rgba(255,193,7,0.45)';
             }
         }

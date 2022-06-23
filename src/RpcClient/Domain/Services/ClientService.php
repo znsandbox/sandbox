@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Service\Base\BaseService;
 use ZnCore\Domain\Entity\Interfaces\UniqueInterface;

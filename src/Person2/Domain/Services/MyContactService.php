@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 use ZnBundle\Eav\Domain\Entities\AttributeEntity;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Person\Domain\Interfaces\Repositories\ContactRepositoryInterface;
-use ZnCore\Base\Exceptions\AlreadyExistsException;
+use ZnCore\Domain\Entity\Exceptions\AlreadyExistsException;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnCore\Base\Libs\Validation\Exceptions\UnprocessibleEntityException;

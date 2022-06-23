@@ -5,8 +5,8 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Entities;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Base\Enums\StatusEnum;
-use ZnCore\Base\Helpers\Helper;
+use ZnCore\Base\Libs\Status\Enums\StatusEnum;
+use ZnCore\Base\Libs\ReadOnly\Helpers\ReadOnlyHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\StringHelper;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Libs\Enum\Constraints\Enum;
@@ -99,7 +99,7 @@ class FavoriteEntity implements ValidationByMetadataInterface, UniqueInterface, 
 
     public function setUid($value): void
     {
-        Helper::checkReadOnly($this->uid, $value);
+        ReadOnlyHelper::checkAttribute($this->uid, $value);
         $this->uid = $value;
     }
 

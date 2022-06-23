@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\File;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
-use ZnCore\Base\Exceptions\NotFoundException;
-use ZnCore\Base\Helpers\ClassHelper;
-use ZnCore\Base\Helpers\InstanceHelper;
+use ZnCore\Domain\Entity\Exceptions\NotFoundException;
+use ZnCore\Base\Libs\Instance\Helpers\ClassHelper;
+use ZnCore\Base\Libs\Instance\Helpers\InstanceHelper;
 use ZnCore\Base\Libs\ConfigManager\Interfaces\ConfigManagerInterface;
 use ZnCore\Domain\Domain\Interfaces\DomainInterface;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;

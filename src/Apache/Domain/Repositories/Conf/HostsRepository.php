@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
 use Illuminate\Support\Collection;
-use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;

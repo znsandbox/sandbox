@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Tests\rest\Messenger;
 
-use ZnCore\Base\Enums\Http\HttpStatusCodeEnum;
+use ZnCore\Base\Libs\Http\Enums\HttpStatusCodeEnum;
 use ZnTool\Test\Base\BaseRestApiTest;
 
 class ChatControllerTest extends BaseRestApiTest
