@@ -12,7 +12,7 @@ use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\EntityManager\Traits\EntityManagerAwareTrait;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services\TranslateServiceInterface;
 
-class SyncTranslateBehavior implements EventSubscriberInterface
+class SyncTranslateSubscriber implements EventSubscriberInterface
 {
 
     use EntityManagerAwareTrait;

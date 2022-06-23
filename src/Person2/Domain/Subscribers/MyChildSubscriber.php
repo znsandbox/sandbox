@@ -12,7 +12,7 @@ use ZnCore\Domain\EntityManager\Traits\EntityManagerAwareTrait;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 
-class MyChildBehavior implements EventSubscriberInterface
+class MyChildSubscriber implements EventSubscriberInterface
 {
 
     use EntityManagerAwareTrait;

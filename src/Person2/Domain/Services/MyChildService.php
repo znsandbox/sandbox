@@ -14,7 +14,7 @@ use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyChildServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\PersonServiceInterface;
-use ZnSandbox\Sandbox\Person2\Domain\Subscribers\MyChildBehavior;
+use ZnSandbox\Sandbox\Person2\Domain\Subscribers\MyChildSubscriber;
 
 class MyChildService extends BaseCrudService implements MyChildServiceInterface
 {
@@ -41,7 +41,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
     public function subscribes(): array
     {
         return [
-            MyChildBehavior::class,
+            MyChildSubscriber::class,
         ];
     }
 
