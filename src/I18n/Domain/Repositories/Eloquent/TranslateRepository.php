@@ -21,7 +21,7 @@ class TranslateRepository extends BaseEloquentCrudRepository implements Translat
         return TranslateEntity::class;
     }
 
-    public function relations2()
+    public function relations()
     {
         return [
             [

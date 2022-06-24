@@ -21,7 +21,7 @@ class ApiKeyRepository extends BaseEloquentCrudRepository implements ApiKeyRepos
     {
         return ApiKeyEntity::class;
     }
-    public function relations2()
+    public function relations()
     {
         return [
             [

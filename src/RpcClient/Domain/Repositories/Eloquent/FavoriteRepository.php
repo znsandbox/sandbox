@@ -35,7 +35,7 @@ class FavoriteRepository extends BaseEloquentCrudRepository implements FavoriteR
         ];
     }
 
-    public function relations2()
+    public function relations()
     {
         return [
             [

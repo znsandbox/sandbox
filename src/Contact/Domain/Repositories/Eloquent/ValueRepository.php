@@ -21,7 +21,7 @@ class ValueRepository extends BaseEloquentCrudRepository implements ValueReposit
         return ValueEntity::class;
     }
 
-    public function relations2()
+    public function relations()
     {
         return [
             [

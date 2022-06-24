@@ -21,7 +21,7 @@ class InheritanceRepository extends BaseEloquentCrudRepository implements Inheri
         return InheritanceEntity::class;
     }
 
-    public function relations2()
+    public function relations()
     {
         return [
             [

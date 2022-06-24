@@ -35,7 +35,7 @@ class PersonRepository extends BaseEloquentCrudRepository implements PersonRepos
         return $this->one($query);
     }
 
-    public function relations2()
+    public function relations()
     {
         return [
             [
