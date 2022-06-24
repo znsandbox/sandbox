@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Contact;
 
-use ZnCore\Base\App\Base\BaseBundle;
+use ZnCore\Base\Bundle\Base\BaseBundle;
 
 class Bundle extends BaseBundle
 {
