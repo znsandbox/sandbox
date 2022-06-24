@@ -11,13 +11,13 @@ use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Query\Entities\Where;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Query\Entities\Query;
-use ZnCore\Domain\Repository\Traits\MapperTrait;
+use ZnCore\Domain\Repository\Traits\RepositoryMapperTrait;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
 
 abstract class BaseApiRepository implements IssueApiRepositoryInterface
 {
 
-    use MapperTrait;
+    use RepositoryMapperTrait;
 
     private $client;
     private $cache = [];
