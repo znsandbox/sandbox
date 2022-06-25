@@ -9,7 +9,7 @@ class IpHelper
     {
         $collection = [];
         foreach ($domains as $domain) {
-            $collection[] = \ZnCore\Base\Http\Helpers\IpHelper::getIpByUrl($domain);
+            $collection[] = \ZnLib\Components\Http\Helpers\IpHelper::getIpByUrl($domain);
         }
         return $collection;
     }

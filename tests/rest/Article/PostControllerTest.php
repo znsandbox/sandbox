@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Tests\rest\Article;
 
-use ZnCore\Base\Http\Enums\HttpMethodEnum;
-use ZnCore\Base\Http\Enums\HttpStatusCodeEnum;
+use ZnLib\Components\Http\Enums\HttpMethodEnum;
+use ZnLib\Components\Http\Enums\HttpStatusCodeEnum;
 use ZnTool\Test\Base\BaseRestApiTest;
 use ZnTool\Test\Helpers\RestHelper;
 use ZnLib\Rest\Helpers\RestResponseHelper;

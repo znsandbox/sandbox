@@ -2,7 +2,7 @@
 
 use Psr\Container\ContainerInterface;
 use ZnCore\Base\DotEnv\Domain\Libs\DotEnv;
-use ZnCore\Base\Store\StoreFile;
+use ZnLib\Components\Store\StoreFile;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
 use ZnSandbox\Sandbox\Synchronize\Domain\Services\SynchronizeService;
 

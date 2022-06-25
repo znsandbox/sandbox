@@ -9,7 +9,7 @@ use ZnCrypt\Base\Domain\Libs\Encoders\CollectionEncoder;
 use ZnCrypt\Base\Domain\Libs\Encoders\EncoderInterface;
 use ZnCrypt\Base\Domain\Libs\Encoders\GzEncoder;
 use ZnCrypt\Base\Domain\Libs\Encoders\JsonEncoder;
-use ZnCore\Base\Http\Enums\HttpStatusCodeEnum;
+use ZnLib\Components\Http\Enums\HttpStatusCodeEnum;
 use ZnLib\Rest\Helpers\RestResponseHelper;
 use ZnCrypt\Tunnel\Domain\Transports\ProtoHttpTransport;
 use ZnCrypt\Tunnel\Domain\Libs\ProtoClient;

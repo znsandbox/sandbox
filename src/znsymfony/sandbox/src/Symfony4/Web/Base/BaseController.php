@@ -3,7 +3,7 @@
 namespace ZnSymfony\Sandbox\Symfony4\Web\Base;
 
 use Symfony\Component\HttpFoundation\Response;
-use ZnCore\Base\Format\Encoders\XmlEncoder;
+use ZnLib\Components\Format\Encoders\XmlEncoder;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;

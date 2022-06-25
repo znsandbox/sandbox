@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
-use ZnCore\Base\Status\Enums\StatusEnum;
+use ZnLib\Components\Status\Enums\StatusEnum;
 
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Base\Text\Helpers\TextHelper;
