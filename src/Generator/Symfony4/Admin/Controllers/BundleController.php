@@ -13,7 +13,7 @@ use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Enums\RpcErrorCodeEnum;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
-use ZnLib\Web\Symfony4\MicroApp\Libs\FormManager;
+use ZnLib\Web\Components\Form\Libs\FormManager;
 use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Services\BundleServiceInterface;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;

@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Eav\Domain\Enums\AttributeTypeEnum;
 use ZnCore\Base\Enum\Helpers\EnumHelper;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
+use ZnLib\Web\Components\Form\Interfaces\BuildFormInterface;
 
 class ApiKeyForm implements ValidationByMetadataInterface, BuildFormInterface
 {

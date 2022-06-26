@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnLib\Rpc\Domain\Exceptions\InternalJsonRpcErrorException;
-use ZnLib\Web\Symfony4\MicroApp\Interfaces\BuildFormInterface;
+use ZnLib\Web\Components\Form\Interfaces\BuildFormInterface;
 use ZnLib\Rpc\Domain\Helpers\ErrorHelper;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\UserEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\UserServiceInterface;
