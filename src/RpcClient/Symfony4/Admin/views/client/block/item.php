@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var $this \ZnLib\Web\View\View
+ * @var $this \ZnLib\Web\Components\View\Libs\View
  * @var $baseUri string
  * @var $favoriteEntity \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity | null
  * @var $favoriteEntityItem \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity

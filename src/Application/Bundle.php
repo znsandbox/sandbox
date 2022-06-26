@@ -21,13 +21,13 @@ class Bundle extends BaseBundle
         ];
     }
 
-    public function i18next(): array
+    /*public function i18next(): array
     {
         return [
            // 'app' => 'common/i18next/__lng__/__ns__.json',
             'web' => 'vendor/znlib/web/src/i18next/__lng__/__ns__.json',
         ];
-    }
+    }*/
 
     public function migration(): array
     {

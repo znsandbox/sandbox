@@ -10,10 +10,10 @@ use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnLib\Web\Symfony4\MicroApp\Helpers\ActionHelper;
-use ZnLib\Web\View\View;
-use ZnLib\Web\Widgets\Detail\DetailWidget;
-use ZnLib\Web\Widgets\Format\Formatters\EnumFormatter;
-use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;
+use ZnLib\Web\Components\View\Libs\View;
+use ZnLib\Web\Components\Widget\Widgets\Detail\DetailWidget;
+use ZnLib\Web\Components\Widget\Widgets\Format\Formatters\EnumFormatter;
+use ZnLib\Web\Components\Widget\Widgets\Format\Formatters\LinkFormatter;
 
 $attributes = [
     [

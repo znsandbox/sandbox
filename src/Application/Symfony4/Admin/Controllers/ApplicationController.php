@@ -9,7 +9,7 @@ use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
 use ZnLib\Web\Helpers\Url;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
-use ZnLib\Web\Widgets\BreadcrumbWidget;
+use ZnLib\Web\Components\Widget\Widgets\BreadcrumbWidget;
 
 class ApplicationController extends BaseWebCrudController implements ControllerAccessInterface
 {

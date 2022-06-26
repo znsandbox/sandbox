@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var $this \ZnLib\Web\View\View
+ * @var $this \ZnLib\Web\Components\View\Libs\View
  * @var $formView FormView|AbstractType[]
  * @var $dataProvider DataProvider
  * @var $collection \Illuminate\Support\Collection | \ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity[]
@@ -13,9 +13,9 @@ use Symfony\Component\Form\FormView;
 use ZnLib\Web\Helpers\Url;
 use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
-use ZnLib\Web\Widgets\Collection\CollectionWidget;
-use ZnLib\Web\Widgets\Format\Formatters\ActionFormatter;
-use ZnLib\Web\Widgets\Format\Formatters\LinkFormatter;
+use ZnLib\Web\Components\Widget\Widgets\Collection\CollectionWidget;
+use ZnLib\Web\Components\Widget\Widgets\Format\Formatters\ActionFormatter;
+use ZnLib\Web\Components\Widget\Widgets\Format\Formatters\LinkFormatter;
 
 $attributes = [
     [

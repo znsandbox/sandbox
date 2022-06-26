@@ -15,7 +15,7 @@ use ZnCore\Base\Validation\Exceptions\UnprocessibleEntityException;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Components\Form\Traits\ControllerFormTrait;
-use ZnLib\Web\Widgets\BreadcrumbWidget;
+use ZnLib\Web\Components\Widget\Widgets\BreadcrumbWidget;
 
 class PersonController extends BaseWebController implements ControllerAccessInterface
 {

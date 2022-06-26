@@ -3,8 +3,8 @@
 use ZnSymfony\Sandbox\Symfony4\Web\Helpers\ModuleHelper;
 use ZnCore\Base\Text\Helpers\Inflector;
 use ZnBundle\Language\Symfony4\Widgets\Language\LanguageWidget;
-use ZnLib\Web\View\View;
-use ZnLib\Web\Widgets\UserNavbarMenu\UserNavbarMenuWidget;
+use ZnLib\Web\Components\View\Libs\View;
+use ZnLib\Web\Components\Widget\Widgets\UserNavbarMenu\UserNavbarMenuWidget;
 
 $modules = ModuleHelper::getModules();
 $currentModule = ModuleHelper::getCurrentModule();

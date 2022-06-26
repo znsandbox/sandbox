@@ -12,7 +12,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Eav\Domain\Entities\EntityEntity;
 use ZnBundle\Eav\Symfony4\Widgets\DynamicForm\DynamicFormWidget;
 use ZnLib\Web\Helpers\Url;
-use ZnLib\Web\Widgets\Tab\TabWidget;
+use ZnLib\Web\Components\Widget\Widgets\Tab\TabWidget;
 
 /** @var CsrfTokenManagerInterface $tokenManager */
 //$tokenManager = ContainerHelper::getContainer()->get(CsrfTokenManagerInterface::class);

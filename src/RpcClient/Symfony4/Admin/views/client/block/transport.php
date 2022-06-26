@@ -2,7 +2,7 @@
 
 
 /**
- * @var $this \ZnLib\Web\View\View
+ * @var $this \ZnLib\Web\Components\View\Libs\View
  * @var $rpcResponseEntity \ZnLib\Rpc\Domain\Entities\RpcResponseEntity
  * @var $rpcRequestEntity \ZnLib\Rpc\Domain\Entities\RpcRequestEntity
  */

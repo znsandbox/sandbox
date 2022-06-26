@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnCore\Base\Container\Helpers\ContainerHelper;
 use ZnLib\Web\Components\Form\Libs\FormRender;
-use ZnLib\Web\View\View;
+use ZnLib\Web\Components\View\Libs\View;
 
 /** @var CsrfTokenManagerInterface $tokenManager */
 $tokenManager = ContainerHelper::getContainer()->get(CsrfTokenManagerInterface::class);

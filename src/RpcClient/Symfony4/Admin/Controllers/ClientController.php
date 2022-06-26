@@ -15,7 +15,7 @@ use ZnLib\Rpc\Domain\Interfaces\Services\MethodServiceInterface;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Symfony4\MicroApp\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Components\Form\Libs\FormManager;
-use ZnLib\Web\Symfony4\MicroApp\Libs\LayoutManager;
+use ZnLib\Web\Components\Layout\Libs\LayoutManager;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Enums\Rbac\RpcClientFavoritePermissionEnum;
 use ZnSandbox\Sandbox\RpcClient\Domain\Enums\Rbac\RpcClientHistoryPermissionEnum;

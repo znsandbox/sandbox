@@ -18,7 +18,7 @@ use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnCore\Domain\Query\Entities\Query;
-use ZnLib\Web\Widgets\Interfaces\MenuInterface;
+use ZnLib\Web\Components\Widget\Widgets\Interfaces\MenuInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Repositories\MenuRepositoryInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Services\MenuServiceInterface;

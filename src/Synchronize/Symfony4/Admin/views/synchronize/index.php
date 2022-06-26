@@ -2,7 +2,7 @@
 
 /**
  * @var Collection | DiffCollectionEntity[] $diffCollection
- * @var \ZnLib\Web\View\View $this
+ * @var \ZnLib\Web\Components\View\Libs\View $this
  */
 
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
