@@ -5,7 +5,7 @@
  * @var $formRender FormRender
  */
 
-use ZnLib\Web\Components\Form\Libs\FormRender;
+use ZnLib\Web\Form\Libs\FormRender;
 
 //$formRender->addFormOption('autocomplete', 'off');
 

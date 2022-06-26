@@ -5,7 +5,7 @@ namespace ZnLib\Web\Yii2\Widgets;
 use yii\base\Widget;
 use ZnYii\Base\Helpers\Debug;
 use ZnLib\Components\Time\Enums\TimeEnum;
-use ZnLib\Web\Components\Html\Helpers\Html;
+use ZnLib\Web\Html\Helpers\Html;
 
 class RequestRunTime extends Widget {
 	

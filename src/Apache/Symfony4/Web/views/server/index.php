@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var $this \ZnLib\Web\Components\View\Libs\View
+ * @var $this \ZnLib\Web\View\Libs\View
  * @var $formView FormView|AbstractType[]
  * @var $dataProvider DataProvider
  * @var $collection \Illuminate\Support\Collection | \ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity[]
@@ -10,12 +10,12 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnLib\Web\Components\Url\Helpers\Url;
+use ZnLib\Web\Url\Helpers\Url;
 use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
-use ZnLib\Web\Components\TwBootstrap\Widgets\Collection\CollectionWidget;
-use ZnLib\Web\Components\TwBootstrap\Widgets\Format\Formatters\ActionFormatter;
-use ZnLib\Web\Components\TwBootstrap\Widgets\Format\Formatters\LinkFormatter;
+use ZnLib\Web\TwBootstrap\Widgets\Collection\CollectionWidget;
+use ZnLib\Web\TwBootstrap\Widgets\Format\Formatters\ActionFormatter;
+use ZnLib\Web\TwBootstrap\Widgets\Format\Formatters\LinkFormatter;
 
 $attributes = [
     [
@@ -23,7 +23,7 @@ $attributes = [
         'attributeName' => 'ServerName',
         'format' => 'html',
         'value' => function (\ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity $serverEntity) {
-            return \ZnLib\Web\Components\Html\Helpers\Html::a($serverEntity->getServerName(), 'http://' . $serverEntity->getServerName(), ['target' => '_blank']);
+            return \ZnLib\Web\Html\Helpers\Html::a($serverEntity->getServerName(), 'http://' . $serverEntity->getServerName(), ['target' => '_blank']);
         },
     ],
     [

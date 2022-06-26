@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @var $this \ZnLib\Web\Components\View\Libs\View
+ * @var $this \ZnLib\Web\View\Libs\View
  * @var $formView FormView|AbstractType[]
- * @var $formRender \ZnLib\Web\Components\Form\Libs\FormRender
+ * @var $formRender \ZnLib\Web\Form\Libs\FormRender
  * @var $dataProvider DataProvider
  * @var $baseUri string
  * @var $bundleCollection \Illuminate\Support\Collection | \ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity[]
@@ -11,7 +11,7 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnLib\Web\Components\Url\Helpers\Url;
+use ZnLib\Web\Url\Helpers\Url;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ApiKeyEntity;
 

@@ -3,7 +3,7 @@
 namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 
 use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Components\Url\Helpers\Url;
+use ZnLib\Web\Url\Helpers\Url;
 
 class UrlHelper
 {

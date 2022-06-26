@@ -2,7 +2,7 @@
 
 namespace ZnLib\Web\Yii2\Widgets\detailViewFormats;
 
-use ZnLib\Web\Components\Html\Helpers\Html;
+use ZnLib\Web\Html\Helpers\Html;
 
 class BooleanFormat {
 	

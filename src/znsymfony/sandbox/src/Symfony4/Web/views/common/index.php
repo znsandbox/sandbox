@@ -9,7 +9,7 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnLib\Web\Components\View\Libs\View;
+use ZnLib\Web\View\Libs\View;
 
 ?>
 

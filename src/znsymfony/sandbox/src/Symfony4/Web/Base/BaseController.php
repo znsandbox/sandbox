@@ -6,9 +6,9 @@ use Symfony\Component\HttpFoundation\Response;
 use ZnLib\Components\Format\Encoders\XmlEncoder;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnLib\Web\Components\Controller\BaseWebController;
-use ZnLib\Web\Components\TwBootstrap\Widgets\TabContent\TabContentWidget;
-use ZnLib\Web\Components\TwBootstrap\Widgets\Table\TableWidget;
+use ZnLib\Web\Controller\Base\BaseWebController;
+use ZnLib\Web\TwBootstrap\Widgets\TabContent\TabContentWidget;
+use ZnLib\Web\TwBootstrap\Widgets\Table\TableWidget;
 
 abstract class BaseController extends BaseWebController
 {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var $this \ZnLib\Web\Components\View\Libs\View
+ * @var $this \ZnLib\Web\View\Libs\View
  * @var $baseUri string
  * @var $favoriteEntity \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity | null
  * @var $favoriteEntityItem \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity
@@ -13,7 +13,7 @@ $isActive = $favoriteEntity && ($favoriteEntity->getId() == $favoriteEntityItem-
 
 ?>
 
-<a href="<?= \ZnLib\Web\Components\Url\Helpers\Url::to([$baseUri, 'id' => $favoriteEntityItem->getId()]) ?>"
+<a href="<?= \ZnLib\Web\Url\Helpers\Url::to([$baseUri, 'id' => $favoriteEntityItem->getId()]) ?>"
    style="border: 1px solid rgba(0,0,0,.125) !important; padding: 0.3rem 0.7rem;"
    class="list-group-item list-group-item-action <?= $isActive ? 'active' : '' ?>">
     <div class="d-flex w-100 justify-content-between">

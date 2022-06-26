@@ -4,7 +4,7 @@ namespace ZnLib\Web\Yii2\Widgets\entityActions\actions;
 
 use yii\helpers\Url;
 use ZnLib\Web\Yii2\Widgets\helpers\WidgetHelper;
-use ZnLib\Web\Components\Html\Helpers\Html;
+use ZnLib\Web\Html\Helpers\Html;
 use ZnBundle\Language\Yii2\Helpers\LangHelper;
 
 class BaseAction {

@@ -6,10 +6,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ZnLib\Components\Http\Enums\HttpStatusCodeEnum;
-use ZnLib\Web\Components\Controller\BaseWebController;
-use ZnLib\Web\Components\Controller\Interfaces\ControllerAccessInterface;
-use ZnLib\Web\Components\Form\Libs\FormManager;
-use ZnLib\Web\Components\Layout\Libs\LayoutManager;
+use ZnLib\Web\Controller\Base\BaseWebController;
+use ZnLib\Web\Controller\Interfaces\ControllerAccessInterface;
+use ZnLib\Web\Form\Libs\FormManager;
+use ZnLib\Web\Layout\Libs\LayoutManager;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
 use ZnUser\Rbac\Domain\Enums\Rbac\ExtraPermissionEnum;
 
