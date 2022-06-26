@@ -7,9 +7,9 @@
 
 use ZnSymfony\Sandbox\Symfony4\Web\Helpers\UrlHelper;
 use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Url\Helpers\Url;
+use ZnLib\Web\Html\Helpers\Url;
 
-$currentUri = Url::getBaseUrl();
+$currentUri = \ZnLib\Components\Http\Helpers\UrlHelper::requestUri();
 
 ?>
 

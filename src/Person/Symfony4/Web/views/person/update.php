@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Eav\Domain\Entities\EntityEntity;
 use ZnBundle\Eav\Symfony4\Widgets\DynamicForm\DynamicFormWidget;
-use ZnLib\Web\Url\Helpers\Url;
+use ZnLib\Web\Html\Helpers\Url;
 use ZnLib\Web\TwBootstrap\Widgets\Tab\TabWidget;
 
 /** @var CsrfTokenManagerInterface $tokenManager */

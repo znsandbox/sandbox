@@ -17,7 +17,7 @@ use ZnCore\Domain\Query\Entities\Query;
 use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnLib\Components\I18Next\Exceptions\NotFoundBundleException;
 use ZnLib\Components\I18Next\Facades\I18Next;
-use ZnLib\Web\Url\Helpers\Url;
+use ZnLib\Web\Html\Helpers\Url;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\MenuInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Repositories\MenuRepositoryInterface;

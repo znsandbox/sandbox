@@ -1,10 +1,10 @@
 <?php
 
 use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Url\Helpers\Url;
+use ZnLib\Components\Http\Helpers\UrlHelper;
 use ZnLib\Web\TwBootstrap\Widgets\Breadcrumb\BreadcrumbWidget;
 
-$currentUri = Url::getBaseUrl();
+$currentUri = UrlHelper::requestUri();
 $uri = trim($currentUri, '/');
 
 if($uri) {

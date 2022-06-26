@@ -4,11 +4,11 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 
 use ReflectionClass;
 use ReflectionMethod;
-use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Url\Helpers\Url;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Base\Composer\Helpers\ComposerHelper;
 use ZnCore\Base\FileSystem\Helpers\FindFileHelper;
+use ZnCore\Base\Text\Helpers\Inflector;
+use ZnLib\Components\Http\Helpers\UrlHelper;
 use ZnLib\Web\Controller\Base\BaseWebController;
 
 class ModuleHelper
@@ -29,7 +29,7 @@ class ModuleHelper
 
     public static function getCurrentModule(): string
     {
-        $currentUri = Url::getBaseUrl();
+        $currentUri = UrlHelper::requestUri();
         return explode('/', $currentUri)[1];
     }
 

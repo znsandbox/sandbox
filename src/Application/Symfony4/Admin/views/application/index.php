@@ -8,7 +8,7 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnLib\Web\Url\Helpers\Url;
+use ZnLib\Web\Html\Helpers\Url;
 use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnLib\Web\TwBootstrap\Widgets\Collection\CollectionWidget;

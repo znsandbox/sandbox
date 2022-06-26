@@ -3,14 +3,15 @@
 namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 
 use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Url\Helpers\Url;
+use ZnLib\Web\Html\Helpers\Url;
+use ;
 
 class UrlHelper
 {
 
     public static function getSector(string $sectorIndex): ?string
     {
-        $currentUri = Url::getBaseUrl();
+        $currentUri = \ZnLib\Components\Http\Helpers\UrlHelper::requestUri();
         $currentUriArr = explode('/', trim($currentUri, '/'));
         $currentModule = $currentUriArr[$sectorIndex] ?? null;
         return $currentModule;
