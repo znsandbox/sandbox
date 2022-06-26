@@ -7,8 +7,8 @@ use ZnLib\Components\Format\Encoders\XmlEncoder;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnLib\Web\Components\Controller\BaseWebController;
-use ZnLib\Web\Components\Widget\Widgets\TabContent\TabContentWidget;
-use ZnLib\Web\Components\Widget\Widgets\Table\TableWidget;
+use ZnLib\Web\Components\TwBootstrap\Widgets\TabContent\TabContentWidget;
+use ZnLib\Web\Components\TwBootstrap\Widgets\Table\TableWidget;
 
 abstract class BaseController extends BaseWebController
 {
