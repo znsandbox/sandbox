@@ -2,7 +2,7 @@
 
 use ZnCore\Base\Text\Helpers\Inflector;
 use ZnLib\Web\Components\Url\Helpers\Url;
-use ZnLib\Web\Components\Widget\Widgets\BreadcrumbWidget;
+use ZnLib\Web\Components\TwBootstrap\Widgets\Breadcrumb\BreadcrumbWidget;
 
 $currentUri = Url::getBaseUrl();
 $uri = trim($currentUri, '/');

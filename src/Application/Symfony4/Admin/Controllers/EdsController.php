@@ -15,7 +15,7 @@ use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
 use ZnLib\Web\Components\Url\Helpers\Url;
 use ZnLib\Web\Components\Controller\BaseWebCrudController;
 use ZnLib\Web\Components\Controller\Interfaces\ControllerAccessInterface;
-use ZnLib\Web\Components\Widget\Widgets\BreadcrumbWidget;
+use ZnLib\Web\Components\TwBootstrap\Widgets\Breadcrumb\BreadcrumbWidget;
 
 class EdsController extends BaseWebCrudController implements ControllerAccessInterface
 {
