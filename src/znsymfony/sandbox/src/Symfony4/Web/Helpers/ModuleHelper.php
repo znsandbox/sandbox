@@ -5,11 +5,11 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 use ReflectionClass;
 use ReflectionMethod;
 use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Helpers\Url;
+use ZnLib\Web\Components\Url\Helpers\Url;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Base\Composer\Helpers\ComposerHelper;
 use ZnCore\Base\FileSystem\Helpers\FindFileHelper;
-use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
+use ZnLib\Web\Components\Controller\BaseWebController;
 
 class ModuleHelper
 {

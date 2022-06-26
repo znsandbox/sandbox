@@ -9,7 +9,7 @@ use Symfony\Component\Mime\MimeTypes;
 use ZnCore\Base\FileSystem\Helpers\FilePathHelper;
 use ZnLib\Components\Http\Enums\HttpHeaderEnum;
 use ZnLib\Components\Http\Enums\HttpStatusCodeEnum;
-use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
+use ZnLib\Web\Components\Controller\BaseWebController;
 
 class AssetsController extends BaseWebController
 {

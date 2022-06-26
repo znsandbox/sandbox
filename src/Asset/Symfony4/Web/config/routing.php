@@ -2,7 +2,7 @@
 
 use ZnSandbox\Sandbox\Asset\Symfony4\Web\Controllers\AssetsController;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
-use ZnLib\Web\Symfony4\MicroApp\Helpers\RouteHelper;
+use ZnLib\Web\Components\Controller\Helpers\RouteHelper;
 
 return function (RoutingConfigurator $routes) {
     $routes

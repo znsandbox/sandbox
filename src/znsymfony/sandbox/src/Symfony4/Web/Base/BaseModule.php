@@ -8,7 +8,7 @@ use App\Dashboard\Controllers\DashboardController;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-abstract class BaseModule extends \ZnLib\Web\Symfony4\MicroApp\BaseModule
+abstract class BaseModule extends \ZnLib\Web\Components\Controller\BaseModule
 {
 
     abstract public function getNamespace(): string;

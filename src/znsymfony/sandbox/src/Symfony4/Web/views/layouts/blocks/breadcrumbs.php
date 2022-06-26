@@ -1,7 +1,7 @@
 <?php
 
 use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Helpers\Url;
+use ZnLib\Web\Components\Url\Helpers\Url;
 use ZnLib\Web\Components\Widget\Widgets\BreadcrumbWidget;
 
 $currentUri = Url::getBaseUrl();

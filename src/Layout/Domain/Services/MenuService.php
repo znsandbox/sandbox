@@ -8,17 +8,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Yii;
-use ZnCore\Contract\User\Exceptions\UnauthorizedException;
-use ZnCore\Contract\User\Exceptions\ForbiddenException;
 use ZnCore\Base\Instance\Helpers\ClassHelper;
 use ZnCore\Base\Text\Helpers\Inflector;
-use ZnLib\Web\Helpers\Url;
-use ZnLib\Components\I18Next\Exceptions\NotFoundBundleException;
-use ZnLib\Components\I18Next\Facades\I18Next;
-use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnCore\Contract\User\Exceptions\ForbiddenException;
+use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnCore\Domain\Query\Entities\Query;
-use ZnLib\Web\Components\Widget\Widgets\Interfaces\MenuInterface;
+use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnLib\Components\I18Next\Exceptions\NotFoundBundleException;
+use ZnLib\Components\I18Next\Facades\I18Next;
+use ZnLib\Web\Components\Url\Helpers\Url;
+use ZnSandbox\Sandbox\Layout\Domain\Interfaces\MenuInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Entities\MenuEntity;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Repositories\MenuRepositoryInterface;
 use ZnSandbox\Sandbox\Layout\Domain\Interfaces\Services\MenuServiceInterface;
@@ -59,7 +59,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
 
     private function getRoute(): string
     {
-        if(class_exists(Yii::class)) {
+        if (class_exists(Yii::class)) {
             $action = Yii::$app->requestedAction;
             $route = $action->controller->module->id . '/' . $action->controller->id;
             return $route;
@@ -72,7 +72,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
 
     private function generateUrl(string $route, array $params = []): string
     {
-        if($this->urlGenerator instanceof UrlGeneratorInterface) {
+        if ($this->urlGenerator instanceof UrlGeneratorInterface) {
             return $this->urlGenerator->generate($route, $params);
             try {
 

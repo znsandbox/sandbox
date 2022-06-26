@@ -5,7 +5,7 @@ namespace ZnLib\Web\Yii2\Widgets\detailViewFormats;
 use ZnCore\Base\ArrayTools\Base\BaseCollection;
 use ZnLib\Web\Yii2\Widgets\helpers\WidgetHelper;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
-use ZnLib\Web\Helpers\Html;
+use ZnLib\Web\Components\Html\Helpers\Html;
 
 class LinkFormat {
 	

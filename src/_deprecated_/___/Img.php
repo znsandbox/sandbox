@@ -3,7 +3,7 @@
 namespace ZnLib\Web\Yii2\Widgets;
 
 use yii\base\Widget;
-use ZnLib\Web\Helpers\Html;
+use ZnLib\Web\Components\Html\Helpers\Html;
 
 class Img extends Widget
 {

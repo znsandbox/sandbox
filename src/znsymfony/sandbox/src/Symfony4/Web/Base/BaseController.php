@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use ZnLib\Components\Format\Encoders\XmlEncoder;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
+use ZnLib\Web\Components\Controller\BaseWebController;
 use ZnLib\Web\Components\Widget\Widgets\TabContent\TabContentWidget;
 use ZnLib\Web\Components\Widget\Widgets\Table\TableWidget;
 

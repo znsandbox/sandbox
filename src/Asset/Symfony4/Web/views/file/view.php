@@ -7,10 +7,10 @@
  */
 
 use ZnLib\Components\Byte\Helpers\ByteSizeFormatHelper;
-use ZnLib\Web\Helpers\Html;
+use ZnLib\Web\Components\Html\Helpers\Html;
 use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
-use ZnLib\Web\Symfony4\MicroApp\Helpers\ActionHelper;
+use ZnLib\Web\Components\Controller\Helpers\ActionHelper;
 use ZnLib\Web\Components\View\Libs\View;
 use ZnLib\Web\Components\Widget\Widgets\Detail\DetailWidget;
 use ZnLib\Web\Components\Widget\Widgets\Format\Formatters\LinkFormatter;

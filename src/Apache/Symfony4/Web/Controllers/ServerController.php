@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Apache\Symfony4\Web\Controllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
-use ZnLib\Web\Symfony4\MicroApp\BaseWebCrudController;
+use ZnLib\Web\Components\Controller\BaseWebController;
+use ZnLib\Web\Components\Controller\BaseWebCrudController;
 use ZnSandbox\Sandbox\Apache\Domain\Services\ServerService;
 
 class ServerController extends BaseWebCrudController

@@ -7,7 +7,7 @@ use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
 use Symfony\Component\HttpFoundation\Request;
 use ZnCore\Base\Enum\Helpers\EnumHelper;
-use ZnLib\Web\Helpers\Html;
+use ZnLib\Web\Components\Html\Helpers\Html;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnLib\Web\Components\Widget\Base\BaseWidget2;

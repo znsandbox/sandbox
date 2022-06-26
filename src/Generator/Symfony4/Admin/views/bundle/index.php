@@ -11,7 +11,7 @@
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
-use ZnLib\Web\Helpers\Url;
+use ZnLib\Web\Components\Url\Helpers\Url;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\ApiKeyEntity;
 

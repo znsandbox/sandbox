@@ -9,8 +9,8 @@
 use ZnSymfony\Sandbox\Symfony4\Web\Helpers\ModuleHelper;
 use ZnCore\Base\Text\Helpers\Inflector;
 use ZnLib\Web\Components\Asset\Assets\AppAsset;
-use ZnLib\Web\Components\Widget\Widgets\Script\ScriptWidget;
-use ZnLib\Web\Components\Widget\Widgets\Style\StyleWidget;
+use ZnLib\Web\Components\Layout\Widgets\Script\ScriptWidget;
+use ZnLib\Web\Components\Layout\Widgets\Style\StyleWidget;
 use ZnLib\Web\Components\View\Libs\View;
 use ZnLib\Web\Components\Widget\Widgets\Toastr\ToastrWidget;
 
