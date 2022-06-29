@@ -4,12 +4,12 @@ namespace ZnSandbox\Sandbox\Office\Domain\Services;
 
 
 use ZnCore\Base\Text\Helpers\TemplateHelper;
-use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Office\Domain\Entities\DocXEntity;
 use ZnSandbox\Sandbox\Office\Domain\Enums\AttributeEnum;
 use ZnSandbox\Sandbox\Office\Domain\Interfaces\Services\DocXServiceInterface;
-use ZnSandbox\Sandbox\Office\Domain\Libs\Zip;
+use ZnLib\Components\Zip\Libs\Zip;
 
 /**
  * @method
@@ -23,7 +23,7 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
         $this->setEntityManager($em);
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return DocXEntity::class;
     }
@@ -40,13 +40,14 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
         return $props;
     }*/
 
-    private function saveFiles($zip, string $dir, $files) {
+    private function saveFiles($zip, string $dir, $files)
+    {
         foreach ($files as $file => $content) {
             $zip->writeFile($dir . '/' . $file, $content);
         }
     }
 
-    public function oneByFileName(string $fileName) : DocXEntity
+    public function oneByFileName(string $fileName): DocXEntity
     {
         $zip = new Zip($fileName);
         $fileList = $zip->files();
@@ -60,7 +61,8 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
         return $docXEntity;
     }
 
-    public function createByFileName(string $fileName, DocXEntity $docXEntity) {
+    public function createByFileName(string $fileName, DocXEntity $docXEntity)
+    {
         $zip = new Zip($fileName);
         $this->saveFiles($zip, AttributeEnum::PROPS, $docXEntity->getProps());
         $this->saveFiles($zip, AttributeEnum::RELS, $docXEntity->getRels());
@@ -69,19 +71,22 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
         $zip->close();
     }
 
-    public function renderEntity(DocXEntity $docXEntity, array $params = []): void {
+    public function renderEntity(DocXEntity $docXEntity, array $params = []): void
+    {
         $word = $docXEntity->getWord();
         $word['document.xml'] = TemplateHelper::render($word['document.xml'], $params, '{{', '}}');
         $docXEntity->setWord($word);
     }
 
-    public function render(string $temlateFile, array $params = []): DocXEntity {
+    public function render(string $temlateFile, array $params = []): DocXEntity
+    {
         $docXEntity = $this->oneByFileName($temlateFile);
         $this->renderEntity($docXEntity, $params);
         return $docXEntity;
     }
 
-    public function renderToFile(string $temlateFile, $resultFile, array $params = []): void {
+    public function renderToFile(string $temlateFile, $resultFile, array $params = []): void
+    {
         $docXEntity = $this->render($temlateFile, $params);
         $this->createByFileName($resultFile, $docXEntity);
     }
