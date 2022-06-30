@@ -33,6 +33,6 @@ class SystemRepository extends BaseEloquentCrudRepository implements SystemRepos
     {
         $query = Query::forge();
         $query->where('name', $name);
-        return $this->all($query);
+        return $this->findAll($query);
     }
 }

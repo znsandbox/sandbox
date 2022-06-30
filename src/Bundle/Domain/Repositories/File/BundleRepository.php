@@ -111,7 +111,7 @@ class BundleRepository implements BundleRepositoryInterface
 
     public function oneById($id, Query $query = null): EntityIdInterface
     {
-        $collection = $this->all();
+        $collection = $this->findAll();
         foreach ($collection as $bundleEntity) {
             if($bundleEntity->getId() == $id) {
                 return $bundleEntity;

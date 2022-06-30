@@ -44,13 +44,13 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
     public function allByFileName(string $fileName): Collection
     {
         $this->getRepository()->setFileName($fileName);
-        return $this->all();
+        return $this->findAll();
     }
 
     public function findAll(Query $query = null): Enumerable
     {
         /** @var MenuEntity[] $collection */
-        $collection = parent::all($query);
+        $collection = parent::findAll($query);
         foreach ($collection as $menuEntity) {
             $this->prepareEntity($menuEntity);
         }

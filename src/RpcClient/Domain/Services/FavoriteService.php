@@ -96,7 +96,7 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
         ]);
         $query->with(['auth']);
         $query->where('status_id', StatusEnum::ENABLED);
-        return parent::all($query);
+        return parent::findAll($query);
     }
 
     public function clearHistory()
@@ -117,6 +117,6 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
         $query->with(['auth']);
         $query->where('status_id', StatusEnum::WAIT_APPROVING);
         $query->where('author_id', $this->authService->getIdentity()->getId());
-        return parent::all($query);
+        return parent::findAll($query);
     }
 }

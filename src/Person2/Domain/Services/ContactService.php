@@ -37,7 +37,7 @@ class ContactService extends BaseCrudService implements ContactServiceInterface
     {
         $query = $this->forgeQuery($query);
         $query->where('person_id', $personId);
-        return $this->all($query);
+        return $this->findAll($query);
     }
 
 }
