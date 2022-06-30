@@ -84,7 +84,7 @@ class ClientService extends BaseService implements ClientServiceInterface
         $favoriteEntity1->setVersion($form->getVersion());
         $this->generateUid($favoriteEntity1);
         try {
-            $favoriteEntity = $this->getEntityManager()->oneByUnique($favoriteEntity1);
+            $favoriteEntity = $this->getEntityManager()->findOneByUnique($favoriteEntity1);
         } catch (NotFoundException $e) {
             $favoriteEntity = new FavoriteEntity();
         }*/
@@ -103,7 +103,7 @@ class ClientService extends BaseService implements ClientServiceInterface
         //$this->generateUid($favoriteEntity);
 
         try {
-            $favoriteEntityUnique = $this->getEntityManager()->oneByUnique($favoriteEntity);
+            $favoriteEntityUnique = $this->getEntityManager()->findOneByUnique($favoriteEntity);
             $favoriteEntity = $favoriteEntityUnique;
 //            $favoriteEntity->setStatusId($favoriteEntityUnique->getId());
 //            dd($favoriteEntity);
@@ -131,7 +131,7 @@ class ClientService extends BaseService implements ClientServiceInterface
              $favoriteEntity->setStatusId(StatusEnum::WAIT_APPROVING);
          }*/
         /*try {
-            $f1 = $this->getEntityManager()->oneByUnique($favoriteEntity);
+            $f1 = $this->getEntityManager()->findOneByUnique($favoriteEntity);
             $favoriteEntity->setStatusId($favoriteEntitySource->getStatusId());
             $favoriteEntity->setId($f1->getId());
         } catch (NotFoundException $e) {
@@ -142,9 +142,9 @@ class ClientService extends BaseService implements ClientServiceInterface
         $this->getEntityManager()->persist($favoriteEntity);
     }
 
-    public function oneByUnique(UniqueInterface $entity): EntityIdInterface
+    public function findOneByUnique(UniqueInterface $entity): EntityIdInterface
     {
-        return $this->getEntityManager()->oneByUnique($entity);
+        return $this->getEntityManager()->findOneByUnique($entity);
     }
 
     /*public function generateUid(FavoriteEntity $favoriteEntity)

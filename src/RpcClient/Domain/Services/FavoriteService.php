@@ -41,7 +41,7 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
         if ($favoriteEntity->getId()) {
 
             /*try {
-                $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
+                $favoriteEntityUnique = $this->getRepository()->findOneByUnique($favoriteEntity);
                 //if($favoriteEntityUnique->getId() != $favoriteEntityUnique->getId()) {
                     $this->getRepository()->deleteById($favoriteEntityUnique->getId());
                 //}
@@ -51,8 +51,8 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
 //            $this->getRepository()->update($favoriteEntity);
         } else {
             try {
-//                $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
-                $favoriteEntity = $this->getRepository()->oneByUnique($favoriteEntity);
+//                $favoriteEntityUnique = $this->getRepository()->findOneByUnique($favoriteEntity);
+                $favoriteEntity = $this->getRepository()->findOneByUnique($favoriteEntity);
             } catch (NotFoundException $e) {
             }
 //            $this->getRepository()->update($favoriteEntity);
@@ -68,7 +68,7 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
         if ($favoriteEntity->getId()) {
 
             /*try {
-                $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
+                $favoriteEntityUnique = $this->getRepository()->findOneByUnique($favoriteEntity);
                 //if($favoriteEntityUnique->getId() != $favoriteEntityUnique->getId()) {
                     $this->getRepository()->deleteById($favoriteEntityUnique->getId());
                 //}
@@ -78,8 +78,8 @@ class FavoriteService extends BaseCrudService implements FavoriteServiceInterfac
 //            $this->getRepository()->update($favoriteEntity);
         } else {
             try {
-//                $favoriteEntityUnique = $this->getRepository()->oneByUnique($favoriteEntity);
-                $favoriteEntity = $this->getRepository()->oneByUnique($favoriteEntity);
+//                $favoriteEntityUnique = $this->getRepository()->findOneByUnique($favoriteEntity);
+                $favoriteEntity = $this->getRepository()->findOneByUnique($favoriteEntity);
             } catch (NotFoundException $e) {
             }
 //            $this->getRepository()->update($favoriteEntity);

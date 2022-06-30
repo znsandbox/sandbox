@@ -29,7 +29,7 @@ class PersonService extends BaseCrudService implements PersonServiceInterface
     public function persist(object $entity)
     {
         try {
-            $uniqueEntity = $this->getEntityManager()->oneByUnique($entity);
+            $uniqueEntity = $this->getEntityManager()->findOneByUnique($entity);
             EntityHelper::setAttributesFromObject($uniqueEntity, $entity);
         } catch (NotFoundException $e) {}
         parent::persist($entity);
