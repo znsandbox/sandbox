@@ -58,7 +58,7 @@ class MyContactService extends ContactService implements MyContactServiceInterfa
 
     public function createBatch($data): void
     {
-        $typeCollection = $this->contactTypeService->all();
+        $typeCollection = $this->contactTypeService->findAll();
         $typeCollection = CollectionHelper::indexing($typeCollection, 'name');
         foreach ($data as $name => $values) {
             /** @var AttributeEntity $typeEntity */

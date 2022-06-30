@@ -39,7 +39,7 @@ class SelectDomainInput extends BaseInput
     public function run(): DomainEntity
     {
         /** @var BundleEntity[] $bundleCollection */
-        $bundleCollection = $this->bundleService->all();
+        $bundleCollection = $this->bundleService->findAll();
         $domainCollection = [];
         $domainCollectionNamespaces = [];
         foreach ($bundleCollection as $bundleEntity) {

@@ -82,7 +82,7 @@ class EdsForm implements ValidationByMetadataInterface, BuildFormInterface
 
     public function getApplicationOptions(): array
     {
-        $collection = $this->_applicationService->all();
+        $collection = $this->_applicationService->findAll();
         $options = [];
         foreach ($collection as $entity) {
             $options[$entity->getId()] = $entity->getTitle();

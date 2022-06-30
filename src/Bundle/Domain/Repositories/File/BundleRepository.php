@@ -56,7 +56,7 @@ class BundleRepository implements BundleRepositoryInterface
         // TODO: Implement deleteByCondition() method.
     }
 
-    public function all(Query $query = null): Enumerable
+    public function findAll(Query $query = null): Enumerable
     {
         $bundleInstanceArray = $this->configManager->get('bundles');
         $bundleCollection = new Collection();

@@ -68,7 +68,7 @@ class MyChildController extends BaseCrudRpcController
         $this->personService->updateById($childPersonId, $data);
 
         /** @var InheritanceEntity $inheritanceEntity */
-        $inheritanceEntity = $this->service->all((new Query())->where('child_person_id', $childPersonId))->first();
+        $inheritanceEntity = $this->service->findAll((new Query())->where('child_person_id', $childPersonId))->first();
         return $this->serializeResult($inheritanceEntity);
     }
 

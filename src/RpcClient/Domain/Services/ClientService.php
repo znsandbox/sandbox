@@ -58,7 +58,7 @@ class ClientService extends BaseService implements ClientServiceInterface
         //$rpcRequestEntity->setVersion($form->getVersion());
         if ($form->getAuthBy()) {
             /** @var UserEntity $userEntity */
-            $userEntity = $this->userService->oneById($form->getAuthBy());
+            $userEntity = $this->userService->findOneById($form->getAuthBy());
             $authorizationToken = $this->rpcProvider->authByLogin($userEntity->getLogin(), $userEntity->getPassword());
             $rpcRequestEntity->addMeta(HttpHeaderEnum::AUTHORIZATION, $authorizationToken);
         }

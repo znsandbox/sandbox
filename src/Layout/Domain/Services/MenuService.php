@@ -47,7 +47,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         return $this->all();
     }
 
-    public function all(Query $query = null): Enumerable
+    public function findAll(Query $query = null): Enumerable
     {
         /** @var MenuEntity[] $collection */
         $collection = parent::all($query);

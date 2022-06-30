@@ -72,7 +72,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
         return ArrayHelper::getValue($this->cache, $hash);
     }
 
-    public function all(Query $query = null): Enumerable
+    public function findAll(Query $query = null): Enumerable
     {
         $array = $this->getCache($query);
         if (!$array) {

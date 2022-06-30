@@ -22,7 +22,7 @@ class PersonController extends BaseCrudRpcController
         $entityName = explode('.', $rpcMethod)[0];
         $id = $requestEntity->getParamItem('id');
 
-        $entity = $this->service->oneById($entityName, $id);
+        $entity = $this->service->findOneById($entityName, $id);
         $data = EntityHelper::toArray($entity);
 
         $response = new RpcResponseEntity();

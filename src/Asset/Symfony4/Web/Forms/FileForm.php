@@ -81,7 +81,7 @@ class FileForm implements ValidationByMetadataInterface, BuildFormInterface
 
     public function getServiceOptions(): array
     {
-        $collection = $this->_serviceService->all();
+        $collection = $this->_serviceService->findAll();
         $options = [];
         foreach ($collection as $entity) {
             $options[$entity->getId()] = $entity->getTitle();

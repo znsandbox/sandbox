@@ -61,7 +61,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
 
     public function updateById($id, $data)
     {
-        $childEntity = $this->personService->oneById($id);
+        $childEntity = $this->personService->findOneById($id);
 
         $event = new EntityEvent($childEntity);
         $this->getEventDispatcher()->dispatch($event, EventEnum::BEFORE_UPDATE_ENTITY);

@@ -38,14 +38,14 @@ class ContactTypeService extends BaseCrudService implements ContactTypeServiceIn
         return ContactTypeEntity::class;
     }
 
-    public function all(Query $query = null): Enumerable
+    public function findAll(Query $query = null): Enumerable
     {
         $query = new Query;
         $query->where('entity_id', $this->entityId);
         $query->with([
             'attribute',
         ]);
-        $attributeCollection = $this->entityAttributeService->all($query);
+        $attributeCollection = $this->entityAttributeService->findAll($query);
         $collection = new Collection();
         /** @var EntityAttributeEntity $attributeTieEntity */
         foreach ($attributeCollection as $attributeTieEntity) {

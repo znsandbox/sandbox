@@ -100,7 +100,7 @@ class PersonService extends BaseService implements PersonServiceInterface
     private function updateIdentity(DynamicForm $form, int $recordId)
     {
         /** @var IdentityEntity $identityEntity */
-        $identityEntity = $this->identityService->oneById($recordId);
+        $identityEntity = $this->identityService->findOneById($recordId);
         $firstName = EntityHelper::getValue($form, 'firstName');
         $lastName = EntityHelper::getValue($form, 'lastName');
         $fullName = $firstName . ' ' . $lastName;

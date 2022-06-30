@@ -22,7 +22,7 @@ class ServerService
         $this->hostsRepository = $hostsRepository;
     }
 
-    public function all()
+    public function findAll()
     {
         return $this->getRepository()->all2();
     }

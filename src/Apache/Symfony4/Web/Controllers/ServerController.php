@@ -24,7 +24,7 @@ class ServerController extends BaseWebCrudController
 
     public function index(Request $request): Response
     {
-        $collection = $this->serverService->all();
+        $collection = $this->serverService->findAll();
         return $this->render('index', [
             'collection' => $collection,
             'baseUri' => $this->baseUri,

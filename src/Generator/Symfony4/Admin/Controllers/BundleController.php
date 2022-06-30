@@ -81,7 +81,7 @@ class BundleController extends BaseWebController implements ControllerAccessInte
 
     public function index(Request $request): Response
     {
-        $bundleCollection = $this->bundleService->all();
+        $bundleCollection = $this->bundleService->findAll();
         //dd($bundleCollection);
         return $this->render('index', [
             'bundleCollection' => $bundleCollection,
@@ -91,7 +91,7 @@ class BundleController extends BaseWebController implements ControllerAccessInte
     public function view(Request $request): Response
     {
         $id = $request->query->get('id');
-        $bundleEntity = $this->bundleService->oneById($id);
+        $bundleEntity = $this->bundleService->findOneById($id);
 //dd($bundleEntity);
 
         if($bundleEntity->getDomain()) {

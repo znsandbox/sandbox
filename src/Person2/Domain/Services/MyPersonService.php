@@ -53,12 +53,12 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
     public function isMyChild($id)
     {
         $parentEntityId = $this->one()->getId();
-        $childEntityId = $this->personRepository->oneById($id)->getId();
+        $childEntityId = $this->personRepository->findOneById($id)->getId();
 
         $query = new Query();
         $query->where('parent_person_id', $parentEntityId);
         $query->where('child_person_id', $childEntityId);
-        $childrenEntity = $this->inheritanceRepository->all($query);
+        $childrenEntity = $this->inheritanceRepository->findAll($query);
 
         if ($childrenEntity->count() > 0) {
             return true;

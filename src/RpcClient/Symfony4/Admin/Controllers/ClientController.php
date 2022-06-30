@@ -91,7 +91,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
 
         if ($id) {
             /** @var FavoriteEntity $favoriteEntity */
-            $favoriteEntity = $this->favoriteService->oneById($id);
+            $favoriteEntity = $this->favoriteService->findOneById($id);
         } else {
             $favoriteEntity = new FavoriteEntity();
         }
@@ -118,7 +118,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
                 }
             } elseif ($action == 'persist') {
                 if ($id) {
-                    $favoriteEntity = $this->favoriteService->oneById($id);
+                    $favoriteEntity = $this->favoriteService->findOneById($id);
                 }
                 $favoriteEntity = FavoriteHelper::formToEntity($form, $favoriteEntity);
                 $this->favoriteService->addFavorite($favoriteEntity);
@@ -159,7 +159,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     public function importFromRoutes(Request $request): Response
     {
         /** @todo перенести в новый сервис */
-        $methodCollection = $this->methodService->all();
+        $methodCollection = $this->methodService->findAll();
         /** @var MethodEntity[] $methodCollectionIndexed */
         $methodCollectionIndexed = CollectionHelper::indexing($methodCollection, 'methodName');
         $routeMethodList = CollectionHelper::getColumn($methodCollection, 'methodName');
@@ -220,7 +220,7 @@ class ClientController extends BaseWebController implements ControllerAccessInte
     public function allRoutes(Request $request): Response
     {
         /** @todo перенести в новый сервис */
-        $methodCollection = $this->methodService->all();
+        $methodCollection = $this->methodService->findAll();
         /** @var MethodEntity[] $methodCollectionIndexed */
         $methodCollectionIndexed = CollectionHelper::indexing($methodCollection, 'methodName');
         $routeMethodList = CollectionHelper::getColumn($methodCollection, 'methodName');

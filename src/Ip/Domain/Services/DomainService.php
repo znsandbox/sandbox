@@ -27,7 +27,7 @@ class DomainService
         return $rr;
     }
 
-    public function all(array $rr)
+    public function findAll(array $rr)
     {
         $domains = $this->clearDomainList($rr['domains']);
         $dd = $this->hostInfoRepository->getIpByDomainList($domains);
