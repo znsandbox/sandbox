@@ -35,7 +35,7 @@ class ServerController extends BaseWebCrudController
     {
         dd($request);
         $name = $request->query->get('id');
-        $entity = $this->serverService->oneByName($name);
+        $entity = $this->serverService->findOneByName($name);
         return $this->render('view', [
             'entity' => $entity,
         ]);

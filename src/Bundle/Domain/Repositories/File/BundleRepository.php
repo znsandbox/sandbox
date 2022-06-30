@@ -109,7 +109,7 @@ class BundleRepository implements BundleRepositoryInterface
         // TODO: Implement count() method.
     }
 
-    public function oneById($id, Query $query = null): EntityIdInterface
+    public function findOneById($id, Query $query = null): EntityIdInterface
     {
         $collection = $this->findAll();
         foreach ($collection as $bundleEntity) {

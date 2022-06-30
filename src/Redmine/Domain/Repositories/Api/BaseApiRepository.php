@@ -94,7 +94,7 @@ abstract class BaseApiRepository implements IssueApiRepositoryInterface
         return $array['total_count'];
     }
 
-    public function oneById($id, Query $query = null): EntityIdInterface
+    public function findOneById($id, Query $query = null): EntityIdInterface
     {
         if(empty($id)) {
             throw (new InvalidMethodParameterException('Empty ID'))

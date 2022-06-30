@@ -41,7 +41,7 @@ class PersonService extends BaseService implements PersonServiceInterface
 
     protected function idFromName(string $entityName): int
     {
-        $entityEntity = $this->entityService->oneByName($entityName);
+        $entityEntity = $this->entityService->findOneByName($entityName);
         return $entityEntity->getId();
     }
 
@@ -49,14 +49,14 @@ class PersonService extends BaseService implements PersonServiceInterface
     {
         $identityId = $this->authService->getIdentity()->getId();
         try {
-            $entity = $this->oneById($entityName, $identityId);
+            $entity = $this->findOneById($entityName, $identityId);
         } catch (NotFoundException $e) {
             $entity = $this->entityService->createEntityById($this->idFromName($entityName));
         }
         return $entity;
     }
 
-    public function oneById(string $entityName, int $id): DynamicEntity
+    public function findOneById(string $entityName, int $id): DynamicEntity
     {
         return $this->valueService->oneRecord($this->idFromName($entityName), $id);
     }

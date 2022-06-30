@@ -51,7 +51,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
 
     public function deleteById($id)
     {
-        $this->oneById($id);
+        $this->findOneById($id);
         parent::deleteById($id);
     }*/
 

@@ -22,7 +22,7 @@ class ServerRepository
         $this->hostsRepository = $hostsRepository;
     }
 
-    public function oneByName(string $name)
+    public function findOneByName(string $name)
     {
         $collection = $this->getIndexedCollection();
         if (!$collection->has($name)) {
@@ -42,7 +42,7 @@ class ServerRepository
         $collection = CollectionHelper::create(ServerEntity::class, $commonTagCollection);
         foreach ($collection as $serverEntity) {
             try {
-                $serverEntity->setHosts($this->hostsRepository->oneByName($serverEntity->getServerName()));
+                $serverEntity->setHosts($this->hostsRepository->findOneByName($serverEntity->getServerName()));
             } catch (NotFoundException $e) {
             }
         }

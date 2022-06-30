@@ -27,10 +27,10 @@ class ServerService
         return $this->getRepository()->all2();
     }
 
-    public function oneByName(string $name): ServerEntity
+    public function findOneByName(string $name): ServerEntity
     {
         /** @var ServerEntity $serverEntity */
-        $serverEntity = $this->getRepository()->oneByName($name);
+        $serverEntity = $this->getRepository()->findOneByName($name);
         return $serverEntity;
     }
 }

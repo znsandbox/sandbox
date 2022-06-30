@@ -15,7 +15,7 @@ class HostsRepository
 
     private static $collection = null;
 
-    public function oneByName(string $name)
+    public function findOneByName(string $name)
     {
         $collection = $this->getIndexedCollection();
         if (!$collection->has($name)) {

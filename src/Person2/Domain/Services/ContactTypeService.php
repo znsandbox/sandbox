@@ -29,7 +29,7 @@ class ContactTypeService extends BaseCrudService implements ContactTypeServiceIn
         $this->setEntityManager($em);
         $this->entityAttributeService = $entityAttributeService;
 
-        $entity = $eavEntityService->oneByName('personContact');
+        $entity = $eavEntityService->findOneByName('personContact');
         $this->entityId = $entity->getId();
     }
 
