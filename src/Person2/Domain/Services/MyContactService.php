@@ -46,13 +46,13 @@ class MyContactService extends ContactService implements MyContactServiceInterfa
 
     public function deleteById($id)
     {
-        $this->oneById($id);
+        $this->findOneById($id);
         parent::deleteById($id);
     }
 
     public function updateById($id, $data)
     {
-        $this->oneById($id);
+        $this->findOneById($id);
         return parent::updateById($id, $data);
     }
 
