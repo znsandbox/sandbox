@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\EgovData\Domain\Libs;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
 use ZnCore\Domain\Query\Entities\Where;
 use ZnCore\Domain\Query\Entities\Query;
 
@@ -21,7 +22,7 @@ class EgovDataProvider
         $this->datasetVersion = $datasetVersion;
     }
 
-    public function all(Query $query): Collection
+    public function findAll(Query $query): Enumerable
     {
         $params = $this->forgeParamsFromQuery($query);
         $data = $this->client->request('api/' . $this->apiVersion . '/' . $this->datasetName . '/' . $this->datasetVersion, $params);
