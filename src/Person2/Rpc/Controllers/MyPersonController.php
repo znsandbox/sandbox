@@ -38,7 +38,7 @@ class MyPersonController extends BaseRpcController
     {
         $query = new Query();
         $this->forgeWith($requestEntity, $query);
-        $personEntity = $this->service->one($query);
+        $personEntity = $this->service->findOne($query);
         return $this->serializeResult($personEntity);
     }
 

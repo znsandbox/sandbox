@@ -48,7 +48,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
     protected function forgeQuery(Query $query = null)
     {
         $query = parent::forgeQuery($query);
-        $myPersonId = $this->myPersonService->one()->getId();
+        $myPersonId = $this->myPersonService->findOne()->getId();
         $query->where('parent_person_id', $myPersonId);
         return $query;
     }
@@ -78,7 +78,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
         $personEntity = EntityHelper::createEntity(PersonEntity::class, $params);
         $this->getEntityManager()->persist($personEntity);
 
-        $parentPersonEntity = $this->myPersonService->one();
+        $parentPersonEntity = $this->myPersonService->findOne();
 
         /** @var InheritanceEntity $inheritanceEntity */
         $inheritanceEntity = $this->createEntity($params);
@@ -94,7 +94,7 @@ class MyChildService extends BaseCrudService implements MyChildServiceInterface
 
     public function create($data): EntityIdInterface
     {
-        $myPersonId = $this->myPersonService->one()->getId();
+        $myPersonId = $this->myPersonService->findOne()->getId();
         $childEntity = $this->personService->create($data);
         $data['parent_person_id'] = $myPersonId;
         $data['child_person_id'] = $childEntity->getId();

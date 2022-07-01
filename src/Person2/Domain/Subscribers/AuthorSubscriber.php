@@ -42,7 +42,7 @@ class AuthorSubscriber implements EventSubscriberInterface
     public function onCreateComment(EntityEvent $event)
     {
         $entity = $event->getEntity();
-        $personId = $this->myPersonService->one()->getId();
+        $personId = $this->myPersonService->findOne()->getId();
         //$identityId = $this->authService->getIdentity()->getId();
         EntityHelper::setAttribute($entity, $this->attribute, $personId);
         try {

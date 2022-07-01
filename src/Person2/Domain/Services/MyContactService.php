@@ -39,7 +39,7 @@ class MyContactService extends ContactService implements MyContactServiceInterfa
     protected function forgeQuery(Query $query = null)
     {
         $query = parent::forgeQuery($query);
-        $myPersonId = $this->myPersonService->one()->getId();
+        $myPersonId = $this->myPersonService->findOne()->getId();
         $query->where('person_id', $myPersonId);
         return $query;
     }
@@ -86,7 +86,7 @@ class MyContactService extends ContactService implements MyContactServiceInterfa
 
     public function create($data): EntityIdInterface
     {
-        $myPersonId = $this->myPersonService->one()->getId();
+        $myPersonId = $this->myPersonService->findOne()->getId();
         $data['person_id'] = $myPersonId;
         return parent::create($data);
     }

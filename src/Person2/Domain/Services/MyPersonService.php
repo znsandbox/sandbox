@@ -33,7 +33,7 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
         $this->inheritanceRepository = $inheritanceRepository;
     }
 
-    public function one(Query $query = null): PersonEntity
+    public function findOne(Query $query = null): PersonEntity
     {
         $identityId = $this->authService->getIdentity()->getId();
         return $this->personRepository->oneByIdentityId($identityId, $query);
@@ -44,7 +44,7 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
         if(isset($data['id'])) {
             //unset($data['id']);
         }
-        $personEntity = $this->one();
+        $personEntity = $this->findOne();
         //dump($personEntity);
         EntityHelper::setAttributes($personEntity, $data);
         $this->getEntityManager()->update($personEntity);
@@ -52,7 +52,7 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
 
     public function isMyChild($id)
     {
-        $parentEntityId = $this->one()->getId();
+        $parentEntityId = $this->findOne()->getId();
         $childEntityId = $this->personRepository->findOneById($id)->getId();
 
         $query = new Query();

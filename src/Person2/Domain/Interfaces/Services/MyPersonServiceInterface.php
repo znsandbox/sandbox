@@ -10,7 +10,7 @@ interface MyPersonServiceInterface
 
     public function update(array $data): void;
 
-    public function one(Query $query = null): PersonEntity;
+    public function findOne(Query $query = null): PersonEntity;
 
     public function isMyChild($id);
 }

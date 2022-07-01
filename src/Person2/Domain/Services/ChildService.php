@@ -44,7 +44,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
     /*protected function forgeQuery(Query $query = null)
     {
         $query = parent::forgeQuery($query);
-        $myPersonId = $this->myPersonService->one()->getId();
+        $myPersonId = $this->myPersonService->findOne()->getId();
         $query->where('parent_person_id', $myPersonId);
         return $query;
     }
@@ -71,7 +71,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
 
 //    public function persist(object $entity)
 //    {
-//        $myPersonId = $this->myPersonService->one()->getId();
+//        $myPersonId = $this->myPersonService->findOne()->getId();
 //        $childEntity = $this->personService->persist($entity);
 //
 //        $inheritanceEntity = new InheritanceEntity();
@@ -85,7 +85,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
 
     public function create($data): EntityIdInterface
     {
-        $myPersonId = $this->myPersonService->one()->getId();
+        $myPersonId = $this->myPersonService->findOne()->getId();
         $childEntity = $this->personService->create($data);
         //$data['parent_person_id'] = $myPersonId;
         $data['child_person_id'] = $childEntity->getId();
@@ -101,7 +101,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
         $query = new Query();
         $query->where('child_person_id', $personEntity->getId());
         try {
-            $inheritanceEntity = $this->getEntityManager()->getRepository(InheritanceEntity::class)->one($query);
+            $inheritanceEntity = $this->getEntityManager()->getRepository(InheritanceEntity::class)->findOne($query);
         } catch (NotFoundException $e) {
             $inheritanceEntity = $this->createEntity();
             $inheritanceEntity->setChildPersonId($personEntity->getId());
