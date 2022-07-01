@@ -33,7 +33,7 @@ class TranslateRepository extends BaseEloquentCrudRepository implements Translat
         ];
     }
 
-    public function oneByEntity(int $entityTypeId, int $entityId, int $languageId, Query $query = null): TranslateEntity
+    public function findOneByEntity(int $entityTypeId, int $entityId, int $languageId, Query $query = null): TranslateEntity
     {
         $query = $this->forgeQuery($query);
         $query->where('entity_type_id', $entityTypeId);

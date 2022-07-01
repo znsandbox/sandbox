@@ -16,7 +16,7 @@ class PersonController extends BaseCrudRpcController
         $this->service = $personService;
     }
 
-    public function oneById(RpcRequestEntity $requestEntity): RpcResponseEntity
+    public function findOneById(RpcRequestEntity $requestEntity): RpcResponseEntity
     {
         $rpcMethod = $requestEntity->getMethod();
         $entityName = explode('.', $rpcMethod)[0];

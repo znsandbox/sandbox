@@ -26,9 +26,9 @@ class TranslateService extends BaseService implements TranslateServiceInterface
         return TranslateEntity::class;
     }
 
-    public function oneByEntity(int $entityTypeId, int $entityId, int $languageId, Query $query = null): TranslateEntity
+    public function findOneByEntity(int $entityTypeId, int $entityId, int $languageId, Query $query = null): TranslateEntity
     {
-        return $this->getRepository()->oneByEntity($entityTypeId, $entityId, $languageId, $query);
+        return $this->getRepository()->findOneByEntity($entityTypeId, $entityId, $languageId, $query);
     }
 
     public function removeByUnique(int $entityTypeId, int $entityId): void

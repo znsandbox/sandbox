@@ -45,7 +45,7 @@ class PersonService extends BaseService implements PersonServiceInterface
         return $entityEntity->getId();
     }
 
-    public function oneByAuth(string $entityName): DynamicEntity
+    public function findOneByAuth(string $entityName): DynamicEntity
     {
         $identityId = $this->authService->getIdentity()->getId();
         try {

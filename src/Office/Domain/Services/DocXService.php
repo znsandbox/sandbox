@@ -47,7 +47,7 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
         }
     }
 
-    public function oneByFileName(string $fileName): DocXEntity
+    public function findOneByFileName(string $fileName): DocXEntity
     {
         $zip = new Zip($fileName);
         $fileList = $zip->files();
@@ -80,7 +80,7 @@ class DocXService extends BaseCrudService implements DocXServiceInterface
 
     public function render(string $temlateFile, array $params = []): DocXEntity
     {
-        $docXEntity = $this->oneByFileName($temlateFile);
+        $docXEntity = $this->findOneByFileName($temlateFile);
         $this->renderEntity($docXEntity, $params);
         return $docXEntity;
     }

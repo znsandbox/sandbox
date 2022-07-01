@@ -36,7 +36,7 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
     public function findOne(Query $query = null): PersonEntity
     {
         $identityId = $this->authService->getIdentity()->getId();
-        return $this->personRepository->oneByIdentityId($identityId, $query);
+        return $this->personRepository->findOneByIdentityId($identityId, $query);
     }
 
     public function update(array $data): void

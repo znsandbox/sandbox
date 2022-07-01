@@ -9,7 +9,7 @@ use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
 interface PersonRepositoryInterface
 {
 
-    public function oneByIdentityId(int $identityId, Query $query = null): PersonEntity;
+    public function findOneByIdentityId(int $identityId, Query $query = null): PersonEntity;
 
 }
 

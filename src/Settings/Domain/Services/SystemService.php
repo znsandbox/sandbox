@@ -71,7 +71,7 @@ class SystemService extends BaseCrudService implements SystemServiceInterface
 //    {
 //        try {
 //            /** @var SystemEntity $systemEntity */
-//            $systemEntity = $this->getRepository()->oneByEntityId($id);
+//            $systemEntity = $this->getRepository()->findOneByEntityId($id);
 //            $value = $systemEntity->getValue();
 //        } catch (NotFoundException $exception) {
 //            $entity = $this->entityService->normalize($id);

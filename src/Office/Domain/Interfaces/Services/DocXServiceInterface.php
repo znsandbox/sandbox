@@ -9,7 +9,7 @@ use ZnSandbox\Sandbox\Office\Domain\Entities\DocXEntity;
 interface DocXServiceInterface extends CrudServiceInterface
 {
 
-    public function oneByFileName(string $fileName) : DocXEntity;
+    public function findOneByFileName(string $fileName) : DocXEntity;
 
     public function createByFileName(string $fileName, DocXEntity $docXEntity);
 

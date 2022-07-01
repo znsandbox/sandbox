@@ -63,7 +63,7 @@ class PersonController extends BaseWebController implements ControllerAccessInte
         $entityCollection = $this->entityService->allByCategoryId(1);
         $defaultName = $entityCollection->first()->getName();
         $name = $request->query->get('entity', $defaultName);
-        $personEntity = $this->service->oneByAuth($name);
+        $personEntity = $this->service->findOneByAuth($name);
         $form = $this->service->createForm($name, $personEntity->toArray());
         $buildForm = $this->buildForm($form, $request);
         if ($buildForm->isSubmitted() /*&& $buildForm->isValid()*/) {
