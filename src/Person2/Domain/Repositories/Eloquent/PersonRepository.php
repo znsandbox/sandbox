@@ -32,7 +32,7 @@ class PersonRepository extends BaseEloquentCrudRepository implements PersonRepos
     {
         $query = Query::forge($query);
         $query->where('identity_id', $identityId);
-        return $this->one($query);
+        return $this->findOne($query);
     }
 
     public function relations()

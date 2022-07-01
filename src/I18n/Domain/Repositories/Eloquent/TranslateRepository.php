@@ -39,6 +39,6 @@ class TranslateRepository extends BaseEloquentCrudRepository implements Translat
         $query->where('entity_type_id', $entityTypeId);
         $query->where('entity_id', $entityId);
         $query->where('language_id', $languageId);
-        return $this->one($query);
+        return $this->findOne($query);
     }
 }
