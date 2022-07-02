@@ -6,7 +6,7 @@ use ZnBundle\Eav\Domain\Interfaces\Repositories\EnumRepositoryInterface;
 use ZnBundle\Eav\Domain\Interfaces\Repositories\MeasureRepositoryInterface;
 use ZnBundle\Eav\Domain\Interfaces\Repositories\ValidationRepositoryInterface;
 use ZnBundle\Reference\Domain\Interfaces\Repositories\ItemRepositoryInterface;
-use ZnBundle\User\Domain\Interfaces\Repositories\IdentityRepositoryInterface;
+use ZnUser\Identity\Domain\Interfaces\Repositories\IdentityRepositoryInterface;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnCore\Domain\Relation\Libs\Types\OneToManyRelation;
 use ZnCore\Domain\Relation\Libs\Types\OneToOneRelation;
