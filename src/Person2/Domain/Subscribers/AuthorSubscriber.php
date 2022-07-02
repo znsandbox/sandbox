@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Subscribers;
 use App\News\Domain\Entities\CommentEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use ZnCore\Contract\User\Exceptions\UnauthorizedException;
-use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Domain\Domain\Enums\EventEnum;
 use ZnCore\Domain\Domain\Events\EntityEvent;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;

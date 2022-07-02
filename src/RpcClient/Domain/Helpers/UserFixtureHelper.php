@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Helpers;
 
-use ZnBundle\User\Domain\Enums\CredentialTypeEnum;
+use ZnUser\Authentication\Domain\Enums\CredentialTypeEnum;
 
 class UserFixtureHelper
 {

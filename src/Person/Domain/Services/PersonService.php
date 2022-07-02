@@ -9,7 +9,7 @@ use ZnBundle\Eav\Domain\Forms\DynamicForm;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\ValueServiceInterface;
 use ZnUser\Identity\Domain\Entities\IdentityEntity;
-use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnUser\Identity\Domain\Interfaces\Services\IdentityServiceInterface;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 
