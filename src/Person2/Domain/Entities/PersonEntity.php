@@ -6,18 +6,17 @@ use Illuminate\Support\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
-use ZnLib\Components\Status\Enums\StatusEnum;
-
-use ZnCore\Base\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\Text\Helpers\TextHelper;
-use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Base\Enum\Constraints\Enum;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Base\Text\Helpers\TextHelper;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
+use ZnCore\Contract\User\Interfaces\Entities\PersonEntityInterface;
+use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
+use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnUser\Rbac\Domain\Entities\ItemEntity;
 
-class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
+class PersonEntity implements PersonEntityInterface, ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
 {
 
     protected $id = null;
@@ -71,14 +70,14 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
 //        $metadata->addPropertyConstraint('attributes', new Assert\NotBlank);
     }
 
-    public function unique() : array
+    public function unique(): array
     {
         return [
             ['code']
         ];
     }
 
-    public function setId($value) : void
+    public function setId($value): void
     {
         $this->id = $value;
     }
@@ -88,7 +87,7 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return $this->id;
     }
 
-    public function setCode($value) : void
+    public function setCode($value): void
     {
         $this->code = $value;
     }
@@ -98,7 +97,7 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return trim($this->code) ? $this->code : null;
     }
 
-    public function setIdentityId($value) : void
+    public function setIdentityId($value): void
     {
         $this->identityId = $value;
     }
@@ -108,7 +107,7 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return $this->identityId;
     }
 
-    public function setFirstName($value) : void
+    public function setFirstName($value): void
     {
         $this->firstName = $value;
     }
@@ -118,7 +117,7 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return $this->firstName;
     }
 
-    public function setMiddleName($value) : void
+    public function setMiddleName($value): void
     {
         $this->middleName = $value;
     }
@@ -128,7 +127,7 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return $this->middleName;
     }
 
-    public function setLastName($value) : void
+    public function setLastName($value): void
     {
         $this->lastName = $value;
     }
@@ -138,7 +137,8 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return $this->lastName;
     }
 
-    public function getTitle(): string{
+    public function getTitle(): string
+    {
         $parentFio =
             $this->getLastName() . ' ' .
             $this->getFirstName() . ' ' .
@@ -148,7 +148,7 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return $parentFio;
     }
 
-    public function setBirthday($value) : void
+    public function setBirthday($value): void
     {
         if ($value) {
             $date = new \DateTime($value);
@@ -161,7 +161,7 @@ class PersonEntity implements ValidationByMetadataInterface, UniqueInterface, En
         return $this->birthday;
     }
 
-    public function setSexId($value) : void
+    public function setSexId($value): void
     {
         $this->sexId = $value;
     }
