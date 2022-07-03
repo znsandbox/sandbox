@@ -5,7 +5,7 @@
  */
 
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use yii\helpers\Url;
 
 use ZnCore\Base\Arr\Helpers\ArrayHelper;

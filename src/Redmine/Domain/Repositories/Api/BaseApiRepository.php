@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Repositories\Api;
 
-use Illuminate\Support\Enumerable;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use Redmine\Api\AbstractApi;
 use Redmine\Client;
 use ZnCore\Contract\Common\Exceptions\InvalidMethodParameterException;

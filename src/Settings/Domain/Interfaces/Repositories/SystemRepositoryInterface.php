@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Settings\Domain\Interfaces\Repositories;
 
 use ZnSandbox\Sandbox\Settings\Domain\Entities\SystemEntity;
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Repository\Interfaces\CrudRepositoryInterface;
 
 interface SystemRepositoryInterface extends CrudRepositoryInterface

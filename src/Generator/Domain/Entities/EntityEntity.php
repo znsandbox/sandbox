@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Status\Web\Widgets;
 
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
 use Symfony\Component\HttpFoundation\Request;

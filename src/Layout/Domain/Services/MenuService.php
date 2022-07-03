@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Layout\Domain\Services;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Enumerable;
+use ZnCore\Domain\Collection\Libs\Collection;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

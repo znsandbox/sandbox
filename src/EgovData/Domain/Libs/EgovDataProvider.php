@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\EgovData\Domain\Libs;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Enumerable;
+use ZnCore\Domain\Collection\Libs\Collection;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Query\Entities\Where;
 use ZnCore\Domain\Query\Entities\Query;
 

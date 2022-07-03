@@ -2,7 +2,7 @@
 
 namespace ZnCore\Base\Scenario\Collections;
 
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Base\Instance\Helpers\ClassHelper;
 use ZnLib\Components\ReadOnly\Helpers\ReadOnlyHelper;
 use ZnCore\Base\Scenario\Base\BaseScenario;

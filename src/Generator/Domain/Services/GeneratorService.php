@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnDatabase\Base\Domain\Entities\TableEntity;

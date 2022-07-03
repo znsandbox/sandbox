@@ -8,7 +8,7 @@ use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffConfigEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffItemEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Contracts\Cache\CacheInterface;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Service\Base\BaseService;

@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\File;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Enumerable;
+use ZnCore\Domain\Collection\Libs\Collection;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 use ZnCore\Base\Instance\Helpers\ClassHelper;
 use ZnCore\Base\Instance\Helpers\InstanceHelper;

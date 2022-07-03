@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Repositories\Eloquent;
 
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Relation\Libs\Types\OneToOneRelation;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnCore\Domain\Repository\Mappers\JsonMapper;

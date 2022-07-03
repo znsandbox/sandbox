@@ -6,7 +6,7 @@
  */
 
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnLib\Components\I18Next\Facades\I18Next;

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Entities;
 
-use Illuminate\Support\Collection;
+use ZnCore\Domain\Collection\Libs\Collection;
 
 class DiffCollectionEntity
 {
