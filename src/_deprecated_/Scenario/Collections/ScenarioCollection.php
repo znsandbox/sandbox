@@ -51,7 +51,7 @@ class ScenarioCollection extends Collection
     public function runAll($data = null, object $event = null)
     {
         /** @var BaseScenario[] $filterCollection */
-        $filterCollection = $this->all();
+        $filterCollection = $this->toArray();
         if (empty($filterCollection)) {
             return $data;
         }
