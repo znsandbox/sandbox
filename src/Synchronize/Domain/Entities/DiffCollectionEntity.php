@@ -120,7 +120,7 @@ class DiffCollectionEntity
     }
 
     /**
-     * @return Collection | DiffItemEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffItemEntity[]
      */
     public function getDiff()
     {

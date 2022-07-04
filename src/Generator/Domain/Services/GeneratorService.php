@@ -26,7 +26,7 @@ class GeneratorService
 
     /**
      * @param $tableList
-     * @return Collection | TableEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | TableEntity[]
      */
     public function getStructure(array $tableList): Collection
     {

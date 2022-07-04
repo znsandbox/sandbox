@@ -11,7 +11,7 @@ interface SystemRepositoryInterface extends CrudRepositoryInterface
 
     /**
      * @param string $name
-     * @return Collection | SystemEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | SystemEntity[]
      */
     public function allByName(string $name): Collection;
 }

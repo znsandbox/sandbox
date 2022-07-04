@@ -54,7 +54,7 @@ class DiffItemEntity
     }
 
     /**
-     * @return Collection | DiffAttributeEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffAttributeEntity[]
      */
     public function getAttributes(): Collection
     {

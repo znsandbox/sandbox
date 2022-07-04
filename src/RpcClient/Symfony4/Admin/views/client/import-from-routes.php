@@ -9,9 +9,9 @@
  * @var $rpcResponseEntity \ZnLib\Rpc\Domain\Entities\RpcResponseEntity
  * @var $rpcRequestEntity \ZnLib\Rpc\Domain\Entities\RpcRequestEntity
  * @var $favoriteEntity \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity | null
- * @var $favoriteCollection \ZnCore\Domain\Collection\Libs\Collection | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
- * @var $historyCollection \ZnCore\Domain\Collection\Libs\Collection | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
- * @var $methodCollectionIndexed \ZnCore\Domain\Collection\Libs\Collection | \ZnLib\Rpc\Domain\Entities\MethodEntity[]
+ * @var $favoriteCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
+ * @var $historyCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
+ * @var $methodCollectionIndexed \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnLib\Rpc\Domain\Entities\MethodEntity[]
  * @var $routeMethodList array | string[]
  * @var $missingMethodList array | string[]
  */

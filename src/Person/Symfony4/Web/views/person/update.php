@@ -2,7 +2,7 @@
 
 /**
  * @var $formView FormView|AbstractType[]
- * @var $entityCollection Collection | EntityEntity[]
+ * @var $entityCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | EntityEntity[]
  */
 
 use ZnCore\Domain\Collection\Libs\Collection;

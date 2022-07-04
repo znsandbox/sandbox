@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var Collection | DiffCollectionEntity[] $diffCollection
+ * @var \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffCollectionEntity[] $diffCollection
  */
 
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;

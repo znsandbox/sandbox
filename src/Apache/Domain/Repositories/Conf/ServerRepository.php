@@ -32,13 +32,13 @@ class ServerRepository
     }
 
     /**
-     * @return Collection | ServerEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | ServerEntity[]
      */
     private function getIndexedCollection(): Collection
     {
         $commonTagCollection = ConfParser::readServerConfig($this->directory);
         $commonTagCollection = ArrayHelper::index($commonTagCollection, 'config.ServerName');
-        /** @var Collection | ServerEntity[] $collection */
+        /** @var \ZnCore\Domain\Collection\Interfaces\Enumerable | ServerEntity[] $collection */
         $collection = CollectionHelper::create(ServerEntity::class, $commonTagCollection);
         foreach ($collection as $serverEntity) {
             try {

@@ -149,7 +149,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
     }
 
     /**
-     * @return Collection | DiffConfigEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffConfigEntity[]
      */
     public function config(): Collection
     {

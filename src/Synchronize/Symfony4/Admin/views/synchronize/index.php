@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var Collection | DiffCollectionEntity[] $diffCollection
+ * @var \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffCollectionEntity[] $diffCollection
  * @var \ZnLib\Web\View\Libs\View $this
  */
 

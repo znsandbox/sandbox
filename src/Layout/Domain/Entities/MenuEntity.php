@@ -219,7 +219,7 @@ class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
     }
 
     /**
-     * @return Collection | MenuEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | MenuEntity[]
      */
     public function getItems()
     {

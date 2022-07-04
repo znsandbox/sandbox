@@ -20,7 +20,7 @@ class ArrayValidationHelper
 {
 
     /**
-     * @return array | Collection | ValidationErrorEntity[]
+     * @return array | \ZnCore\Domain\Collection\Interfaces\Enumerable | ValidationErrorEntity[]
      */
     public static function validate($data): Collection
     {
@@ -49,7 +49,7 @@ class ArrayValidationHelper
 
     /**
      * @param array | ConstraintViolationList[] $violations
-     * @return  array | Collection | ValidationErrorEntity[]
+     * @return  array | \ZnCore\Domain\Collection\Interfaces\Enumerable | ValidationErrorEntity[]
      */
     private static function prepareUnprocessible(array $violations): Collection
     {

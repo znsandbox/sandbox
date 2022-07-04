@@ -25,7 +25,7 @@ class HostsRepository
     }
 
     /**
-     * @return Collection | ServerEntity[]
+     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | ServerEntity[]
      */
     private function getIndexedCollection(): Collection
     {
