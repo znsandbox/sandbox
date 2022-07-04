@@ -4,7 +4,7 @@ namespace ZnCore\Base\Validation\Helpers;
 
 use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use ZnCore\Domain\Entity\Factories\PropertyAccess;
 use Symfony\Component\Validator\ConstraintViolationList;
 use ZnCore\Base\Develop\Helpers\DeprecateHelper;
 use ZnCore\Base\Validation\Entities\ValidationErrorEntity;
