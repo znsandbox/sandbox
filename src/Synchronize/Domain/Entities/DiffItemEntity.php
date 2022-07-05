@@ -55,14 +55,14 @@ class DiffItemEntity
     }
 
     /**
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffAttributeEntity[]
+     * @return Enumerable | DiffAttributeEntity[]
      */
     public function getAttributes(): Enumerable
     {
         return $this->attributes;
     }
 
-    public function setAttributes(Collection $attributes): void
+    public function setAttributes(Enumerable $attributes): void
     {
         $this->attributes = $attributes;
     }

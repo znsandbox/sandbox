@@ -42,7 +42,7 @@ class EntityEntity extends ClassEntity implements ValidationByMetadataInterface,
         $this->name = $name;
     }
 
-    public function setAttributes(Collection $value) : void
+    public function setAttributes(Enumerable $value) : void
     {
         $this->attributes = $value;
     }

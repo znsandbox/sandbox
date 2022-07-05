@@ -9,9 +9,9 @@
  * @var $rpcResponseEntity \ZnLib\Rpc\Domain\Entities\RpcResponseEntity
  * @var $rpcRequestEntity \ZnLib\Rpc\Domain\Entities\RpcRequestEntity
  * @var $favoriteEntity \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity | null
- * @var $favoriteCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
- * @var $historyCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
- * @var $methodCollectionIndexed \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnLib\Rpc\Domain\Entities\MethodEntity[]
+ * @var $favoriteCollection Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
+ * @var $historyCollection Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
+ * @var $methodCollectionIndexed Enumerable | \ZnLib\Rpc\Domain\Entities\MethodEntity[]
  * @var $routeMethodList array | string[]
  * @var $missingMethodList array | string[]
  */
@@ -21,6 +21,7 @@ use Symfony\Component\Form\FormView;
 use ZnLib\Web\Html\Helpers\Url;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 
 
 $favCollection = [];

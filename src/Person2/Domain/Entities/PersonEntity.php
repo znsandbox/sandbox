@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -201,12 +202,12 @@ class PersonEntity implements PersonEntityInterface, ValidationByMetadataInterfa
         return ArrayHelper::getValue($this->attributes, $name);
     }*/
 
-    public function getContacts(): ?Collection
+    public function getContacts(): ?Enumerable
     {
         return $this->contacts;
     }
 
-    public function setContacts(?Collection $contacts): void
+    public function setContacts(?Enumerable $contacts): void
     {
         $this->contacts = $contacts;
     }

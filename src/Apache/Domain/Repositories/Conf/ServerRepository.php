@@ -39,7 +39,7 @@ class ServerRepository
     {
         $commonTagCollection = ConfParser::readServerConfig($this->directory);
         $commonTagCollection = ArrayHelper::index($commonTagCollection, 'config.ServerName');
-        /** @var \ZnCore\Domain\Collection\Interfaces\Enumerable | ServerEntity[] $collection */
+        /** @var Enumerable | ServerEntity[] $collection */
         $collection = CollectionHelper::create(ServerEntity::class, $commonTagCollection);
         foreach ($collection as $serverEntity) {
             try {
