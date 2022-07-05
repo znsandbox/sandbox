@@ -2,26 +2,17 @@
 
 namespace ZnSandbox\Sandbox\Generator\Commands;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use ZnCore\Base\Instance\Helpers\ClassHelper;
-use ZnCore\Base\Instance\Helpers\InstanceHelper;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\Text\Helpers\Inflector;
-use ZnCore\Base\Container\Helpers\ContainerHelper;
-use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
+use ZnCore\Base\Instance\Helpers\ClassHelper;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnDatabase\Base\Domain\Entities\TableEntity;
-use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
+use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Services\BundleServiceInterface;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\AttributeEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\ClassEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\EntityEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Entities\ServiceEntity;
-use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
 use ZnSandbox\Sandbox\Generator\Domain\Libs\Input\SelectClassesInput;
 use ZnSandbox\Sandbox\Generator\Domain\Libs\Input\SelectDomainInput;
 use ZnSandbox\Sandbox\Generator\Domain\Libs\Input\SelectEntityInput;
@@ -73,11 +64,10 @@ class GenerateCommand extends Command
         }
 
 
-
         /*$inputInstance = ClassHelper::createObject(SelectDomainInput::class, $params);
         $inputInstance->run();
         $params = ArrayHelper::merge($params, $inputInstance->getResult());*/
-       // $domainEntity = $params['domainEntity'];
+        // $domainEntity = $params['domainEntity'];
 
 
 //dd($params);
@@ -119,7 +109,7 @@ class GenerateCommand extends Command
 
         foreach ($structure as $tableEntity) {
             foreach ($params['classes'] as $adapterName) {
-                if(in_array($adapterName, $params['classes'])) {
+                if (in_array($adapterName, $params['classes'])) {
                     /** @var BaseAdapter $adapterInstance */
                     $adapterInstance = ClassHelper::createObject($adapterDefinitions[$adapterName]);
                     $entityEntity = $adapterInstance->run($params['domainEntity'], $tableEntity);

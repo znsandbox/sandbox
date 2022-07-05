@@ -2,11 +2,9 @@
 
 namespace ZnCore\Base\Scenario\Collections;
 
-use ZnCore\Domain\Collection\Libs\Collection;
-use ZnCore\Base\Instance\Helpers\ClassHelper;
-use ZnLib\Components\ReadOnly\Helpers\ReadOnlyHelper;
 use ZnCore\Base\Scenario\Base\BaseScenario;
 use ZnCore\Base\Scenario\Exceptions\StopException;
+use ZnCore\Domain\Collection\Libs\Collection;
 
 class ScenarioCollection extends Collection
 {
@@ -55,7 +53,7 @@ class ScenarioCollection extends Collection
         if (empty($filterCollection)) {
             return $data;
         }
-        $event = ! empty($event) ? $event : $this->event;
+        $event = !empty($event) ? $event : $this->event;
         foreach ($filterCollection as $filterInstance) {
             $data = $this->runOne($filterInstance, $data, $event);
         }

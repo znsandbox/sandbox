@@ -2,8 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
@@ -12,6 +10,7 @@ use ZnCore\Base\Text\Helpers\TextHelper;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Contract\User\Interfaces\Entities\PersonEntityInterface;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
 use ZnLib\Components\Status\Enums\StatusEnum;

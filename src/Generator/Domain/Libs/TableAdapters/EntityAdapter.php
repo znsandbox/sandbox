@@ -3,16 +3,17 @@
 namespace ZnSandbox\Sandbox\Generator\Domain\Libs\TableAdapters;
 
 use ZnCore\Domain\Collection\Libs\Collection;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\AttributeEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\EntityEntity;
-use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Helpers\TableMapperHelper;
 
 class EntityAdapter extends BaseAdapter
 {
 
-    public function run(DomainEntity $domainEntity, TableEntity $tableEntity): EntityEntity {
+    public function run(DomainEntity $domainEntity, TableEntity $tableEntity): EntityEntity
+    {
         $entityEntity = new EntityEntity();
         $entityEntity->setName(TableMapperHelper::extractEntityNameFromTable($tableEntity->getName()));
         $entityEntity->setDomain($domainEntity);

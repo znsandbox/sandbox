@@ -2,13 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Layout\Domain\Entities;
 
-use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Domain\Entity\Helpers\CollectionHelper;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Domain\Entity\Helpers\CollectionHelper;
+use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 
 class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
 {
@@ -107,7 +105,7 @@ class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
 
     public function getModule()
     {
-        if(empty($this->module) && !empty($this->route)) {
+        if (empty($this->module) && !empty($this->route)) {
             $arr = explode('/', $this->route);
             return $arr[0] ?? null;
         }
@@ -121,7 +119,7 @@ class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
 
     public function getController()
     {
-        if(empty($this->controller) && !empty($this->route)) {
+        if (empty($this->controller) && !empty($this->route)) {
             $arr = explode('/', $this->route);
             return $arr[1] ?? null;
         }
@@ -228,7 +226,7 @@ class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
 
     public function setItems($items): void
     {
-        if(is_array($items)) {
+        if (is_array($items)) {
             $items = CollectionHelper::create(MenuEntity::class, $items);
         }
         $this->items = $items;

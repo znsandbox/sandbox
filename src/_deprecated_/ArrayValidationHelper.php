@@ -2,13 +2,13 @@
 
 namespace ZnCore\Base\Validation\Helpers;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-use ZnCore\Domain\Entity\Factories\PropertyAccess;
 use Symfony\Component\Validator\ConstraintViolationList;
 use ZnCore\Base\Develop\Helpers\DeprecateHelper;
 use ZnCore\Base\Validation\Entities\ValidationErrorEntity;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Domain\Collection\Libs\Collection;
+use ZnCore\Domain\Entity\Factories\PropertyAccess;
 
 DeprecateHelper::softThrow('ValidateEntityInterface');
 

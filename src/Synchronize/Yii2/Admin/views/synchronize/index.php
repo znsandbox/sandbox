@@ -4,12 +4,10 @@
  * @var \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffCollectionEntity[] $diffCollection
  */
 
-use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
-use ZnCore\Domain\Collection\Libs\Collection;
 use yii\helpers\Url;
-
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnLib\Components\I18Next\Facades\I18Next;
+use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 
 $this->title = I18Next::t('synchronize', 'synchronize.title');
 

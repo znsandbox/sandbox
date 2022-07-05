@@ -2,13 +2,13 @@
 
 namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\File;
 
-use ZnCore\Domain\Collection\Libs\Collection;
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Entity\Exceptions\NotFoundException;
+use ZnCore\Base\ConfigManager\Interfaces\ConfigManagerInterface;
 use ZnCore\Base\Instance\Helpers\ClassHelper;
 use ZnCore\Base\Instance\Helpers\InstanceHelper;
-use ZnCore\Base\ConfigManager\Interfaces\ConfigManagerInterface;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Domain\Interfaces\DomainInterface;
+use ZnCore\Domain\Entity\Exceptions\NotFoundException;
 use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
@@ -66,14 +66,14 @@ class BundleRepository implements BundleRepositoryInterface
             $bundleNamespace = ClassHelper::getNamespace($bundleClass);
             $domainEntity = $this->getDomain($bundleNamespace);
 
-            if(method_exists($bundleInstance, 'getName')) {
+            if (method_exists($bundleInstance, 'getName')) {
                 $bundleName = $bundleInstance->getName();
-            } elseif($domainEntity !== null) {
+            } elseif ($domainEntity !== null) {
                 $bundleName = $domainEntity->getName();
             }
             $bundleEntity = new BundleEntity();
             $bundleEntity->setClassName($bundleClass);
-            if(isset($bundleName)) {
+            if (isset($bundleName)) {
                 $bundleEntity->setName($bundleName);
             }
             $bundleEntity->setNamespace($bundleNamespace);
@@ -83,7 +83,8 @@ class BundleRepository implements BundleRepositoryInterface
         return $bundleCollection;
     }
 
-    private function extractBundleName() {
+    private function extractBundleName()
+    {
 
     }
 
@@ -113,7 +114,7 @@ class BundleRepository implements BundleRepositoryInterface
     {
         $collection = $this->findAll();
         foreach ($collection as $bundleEntity) {
-            if($bundleEntity->getId() == $id) {
+            if ($bundleEntity->getId() == $id) {
                 return $bundleEntity;
             }
         }

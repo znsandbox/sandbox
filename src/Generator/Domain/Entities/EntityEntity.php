@@ -2,11 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 
@@ -27,7 +26,7 @@ class EntityEntity extends ClassEntity implements ValidationByMetadataInterface,
         $metadata->addPropertyConstraint('domain', new Assert\NotBlank);
     }
 
-    public function unique() : array
+    public function unique(): array
     {
         return [];
     }
@@ -42,7 +41,7 @@ class EntityEntity extends ClassEntity implements ValidationByMetadataInterface,
         $this->name = $name;
     }
 
-    public function setAttributes(Enumerable $value) : void
+    public function setAttributes(Enumerable $value): void
     {
         $this->attributes = $value;
     }
@@ -52,7 +51,7 @@ class EntityEntity extends ClassEntity implements ValidationByMetadataInterface,
         return $this->attributes;
     }
 
-    public function setDomain(DomainEntity $value) : void
+    public function setDomain(DomainEntity $value): void
     {
         $this->domain = $value;
     }

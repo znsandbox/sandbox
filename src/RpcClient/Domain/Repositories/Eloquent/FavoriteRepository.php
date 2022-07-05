@@ -2,11 +2,10 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Repositories\Eloquent;
 
-use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Relation\Libs\Types\OneToOneRelation;
-use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnCore\Domain\Repository\Mappers\JsonMapper;
 use ZnCore\Domain\Repository\Mappers\TimeMapper;
+use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\FavoriteRepositoryInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\UserRepositoryInterface;
@@ -14,12 +13,12 @@ use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\UserRepositoryInt
 class FavoriteRepository extends BaseEloquentCrudRepository implements FavoriteRepositoryInterface
 {
 
-    public function tableName() : string
+    public function tableName(): string
     {
         return 'rpc_client_favorite';
     }
 
-    public function getEntityClass() : string
+    public function getEntityClass(): string
     {
         return FavoriteEntity::class;
     }

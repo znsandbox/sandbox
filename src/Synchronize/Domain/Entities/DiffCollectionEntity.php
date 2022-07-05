@@ -2,8 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Entities;
 
-use ZnCore\Domain\Collection\Libs\Collection;
-
 class DiffCollectionEntity
 {
 

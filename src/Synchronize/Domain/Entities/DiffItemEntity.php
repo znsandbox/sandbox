@@ -3,7 +3,6 @@
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Entities;
 
 use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Collection\Libs\Collection;
 
 class DiffItemEntity
 {

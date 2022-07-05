@@ -2,25 +2,24 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Services;
 
+use Symfony\Contracts\Cache\CacheInterface;
+use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
+use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Domain\Service\Base\BaseService;
+use ZnDatabase\Base\Domain\Entities\TableEntity;
+use ZnDatabase\Base\Domain\Repositories\Eloquent\SchemaRepository;
+use ZnDatabase\Fixture\Domain\Repositories\DbRepository;
+use ZnDatabase\Fixture\Domain\Repositories\FileRepository;
+use ZnDatabase\Fixture\Domain\Services\FixtureService;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffAttributeEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffConfigEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffItemEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Interfaces\Services\SynchronizeServiceInterface;
-use ZnCore\Domain\Collection\Libs\Collection;
-use Symfony\Contracts\Cache\CacheInterface;
-use ZnCore\Base\Arr\Helpers\ArrayHelper;
-use ZnCore\Domain\Service\Base\BaseService;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
-use ZnDatabase\Fixture\Domain\Repositories\DbRepository;
-use ZnDatabase\Fixture\Domain\Repositories\FileRepository;
-use ZnDatabase\Fixture\Domain\Services\FixtureService;
-use ZnDatabase\Base\Domain\Entities\TableEntity;
-use ZnDatabase\Base\Domain\Repositories\Eloquent\SchemaRepository;
-use ZnUser\Rbac\Domain\Enums\RbacCacheEnum;
 
 class SynchronizeService extends BaseService implements SynchronizeServiceInterface
 {
@@ -90,10 +89,11 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
         return $array;
     }
 
-    private function allByIndexes(array $indexes, $data) {
+    private function allByIndexes(array $indexes, $data)
+    {
         $result = [];
         foreach ($data as $index => $row) {
-            if(in_array($index, $indexes)) {
+            if (in_array($index, $indexes)) {
                 $result[$index] = $row;
             }
         }
@@ -120,7 +120,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
             $entityFromFixtureAttributes = EntityHelper::toArray($fixtureData[$index]);
             $entityFromDbAttributes = EntityHelper::toArray($dbData[$index]);
 
-            if($updateAttributes) {
+            if ($updateAttributes) {
                 $entityFromFixtureAttributes = ArrayHelper::extractByKeys($entityFromFixtureAttributes, $updateAttributes);
                 $entityFromDbAttributes = ArrayHelper::extractByKeys($entityFromDbAttributes, $updateAttributes);
             }
@@ -167,17 +167,18 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
         return CollectionHelper::create(DiffConfigEntity::class, $config);
     }
 
-    private function ff($tableCollection, &$result = []) {
+    private function ff($tableCollection, &$result = [])
+    {
         foreach ($tableCollection as $tableEntity) {
-            if( ! $tableEntity->getRelations()->isEmpty()) {
+            if (!$tableEntity->getRelations()->isEmpty()) {
                 foreach ($tableEntity->getRelations() as $relationEntity) {
-                    if(!in_array($relationEntity->getTableName(), $result)) {
+                    if (!in_array($relationEntity->getTableName(), $result)) {
                         $tableCollection1 = $this->schemaRepository->allTablesByName([$relationEntity->getTableName()]);
                         //dd($tableCollection1);
-                         $this->ff($tableCollection1, $result);
+                        $this->ff($tableCollection1, $result);
                         // dd($tableCollection1);
                         $tableName = $relationEntity->getTableName();
-                        if(!in_array($tableName, $result)) {
+                        if (!in_array($tableName, $result)) {
                             $result[] = $tableName;
                         }
                     }
@@ -225,7 +226,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
             if ($diffCollectionEntity->getForInsertIndexes()) {
                 foreach ($diffCollectionEntity->getForInsertIndexes() as $index) {
                     $fixtureRow = $fixtureData[$index];
-                    if($diffConfigEntity->getUpdateAttributes() && !in_array('id', $diffConfigEntity->getUpdateAttributes())) {
+                    if ($diffConfigEntity->getUpdateAttributes() && !in_array('id', $diffConfigEntity->getUpdateAttributes())) {
                         unset($fixtureRow['id']);
                     }
                     (clone $queryBuilder)->insert($fixtureRow);

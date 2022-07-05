@@ -5,7 +5,6 @@
  * @var $entityCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | EntityEntity[]
  */
 
-use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
@@ -42,7 +41,7 @@ foreach ($entityCollection as $entityEntity) {
 
 ?>
 
-<br/>
+    <br/>
 
 <?= DynamicFormWidget::widget([
     'formView' => $formView,
