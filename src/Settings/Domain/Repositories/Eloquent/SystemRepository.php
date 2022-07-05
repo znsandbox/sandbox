@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Settings\Domain\Repositories\Eloquent;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnSandbox\Sandbox\Settings\Domain\Entities\SystemEntity;
 use ZnSandbox\Sandbox\Settings\Domain\Interfaces\Repositories\SystemRepositoryInterface;
 use ZnCore\Domain\Collection\Libs\Collection;
@@ -29,7 +30,7 @@ class SystemRepository extends BaseEloquentCrudRepository implements SystemRepos
         ];
     }
 
-    public function allByName(string $name): Collection
+    public function allByName(string $name): Enumerable
     {
         $query = Query::forge();
         $query->where('name', $name);

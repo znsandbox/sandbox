@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\I18n\Domain\Services;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Service\Base\BaseService;
 use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
@@ -50,7 +51,7 @@ class TranslateService extends BaseService implements TranslateServiceInterface
         return $translateEntity;
     }
 
-    public function batchPersist(int $entityTypeId, int $entityId, array $values): Collection
+    public function batchPersist(int $entityTypeId, int $entityId, array $values): Enumerable
     {
         $collection = new Collection();
         foreach ($values as $languageId => $value) {

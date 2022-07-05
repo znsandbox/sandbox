@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Entities;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 
 class DiffItemEntity
@@ -56,7 +57,7 @@ class DiffItemEntity
     /**
      * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffAttributeEntity[]
      */
-    public function getAttributes(): Collection
+    public function getAttributes(): Enumerable
     {
         return $this->attributes;
     }

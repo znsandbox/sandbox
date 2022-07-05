@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnBundle\Eav\Domain\Interfaces\Services\CategoryServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
@@ -33,7 +34,7 @@ class ContactService extends BaseCrudService implements ContactServiceInterface
         return ContactEntity::class;
     }
 
-    public function allByPersonId(int $personId, Query $query = null): Collection
+    public function allByPersonId(int $personId, Query $query = null): Enumerable
     {
         $query = $this->forgeQuery($query);
         $query->where('person_id', $personId);

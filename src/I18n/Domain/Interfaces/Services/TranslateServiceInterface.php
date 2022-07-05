@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Service\Interfaces\CrudServiceInterface;
 use ZnCore\Domain\Query\Entities\Query;
@@ -16,5 +17,5 @@ interface TranslateServiceInterface
 
     public function persist(int $entityTypeId, int $entityId, int $languageId, string $value): TranslateEntity;
 
-    public function batchPersist(int $entityTypeId, int $entityId, array $values): Collection;
+    public function batchPersist(int $entityTypeId, int $entityId, array $values): Enumerable;
 }

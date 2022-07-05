@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
@@ -32,9 +33,9 @@ class ServerRepository
     }
 
     /**
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | ServerEntity[]
+     * @return Enumerable | ServerEntity[]
      */
-    private function getIndexedCollection(): Collection
+    private function getIndexedCollection(): Enumerable
     {
         $commonTagCollection = ConfParser::readServerConfig($this->directory);
         $commonTagCollection = ArrayHelper::index($commonTagCollection, 'config.ServerName');
@@ -84,7 +85,7 @@ class ServerRepository
         return $links;
     }
 
-    function all2(): Collection
+    function all2(): Enumerable
     {
         return $this->getIndexedCollection();
     }

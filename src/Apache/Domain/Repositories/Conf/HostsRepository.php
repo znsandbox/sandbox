@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Base\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
@@ -25,9 +26,9 @@ class HostsRepository
     }
 
     /**
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | ServerEntity[]
+     * @return Enumerable | ServerEntity[]
      */
-    private function getIndexedCollection(): Collection
+    private function getIndexedCollection(): Enumerable
     {
         if (self::$collection == null) {
             $hostsContent = FileStorageHelper::load('/etc/hosts');
@@ -48,7 +49,7 @@ class HostsRepository
         return self::$collection;
     }
 
-    function all(): Collection
+    function all(): Enumerable
     {
         $commonTagCollection = $this->getIndexedCollection();
         return $commonTagCollection;

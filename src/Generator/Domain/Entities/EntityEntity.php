@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -46,7 +47,7 @@ class EntityEntity extends ClassEntity implements ValidationByMetadataInterface,
         $this->attributes = $value;
     }
 
-    public function getAttributes(): Collection
+    public function getAttributes(): Enumerable
     {
         return $this->attributes;
     }

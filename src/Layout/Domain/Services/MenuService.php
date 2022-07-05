@@ -41,7 +41,7 @@ class MenuService extends BaseCrudService implements MenuServiceInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function allByFileName(string $fileName): Collection
+    public function allByFileName(string $fileName): Enumerable
     {
         $this->getRepository()->setFileName($fileName);
         return $this->findAll();

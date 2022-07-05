@@ -2,6 +2,7 @@
 
 namespace ZnCore\Base\Validation\Helpers;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use ZnCore\Domain\Entity\Factories\PropertyAccess;
@@ -20,9 +21,9 @@ class ArrayValidationHelper
 {
 
     /**
-     * @return array | \ZnCore\Domain\Collection\Interfaces\Enumerable | ValidationErrorEntity[]
+     * @return array | Enumerable | ValidationErrorEntity[]
      */
-    public static function validate($data): Collection
+    public static function validate($data): Enumerable
     {
         $rules = $data->validationRules();
         return self::validateByRulesArray($data, $rules);
@@ -49,9 +50,9 @@ class ArrayValidationHelper
 
     /**
      * @param array | ConstraintViolationList[] $violations
-     * @return  array | \ZnCore\Domain\Collection\Interfaces\Enumerable | ValidationErrorEntity[]
+     * @return  array | Enumerable | ValidationErrorEntity[]
      */
-    private static function prepareUnprocessible(array $violations): Collection
+    private static function prepareUnprocessible(array $violations): Enumerable
     {
         $collection = new Collection;
         foreach ($violations as $name => $violationList) {

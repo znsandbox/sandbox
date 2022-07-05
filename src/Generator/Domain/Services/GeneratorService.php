@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
@@ -26,9 +27,9 @@ class GeneratorService
 
     /**
      * @param $tableList
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | TableEntity[]
+     * @return Enumerable | TableEntity[]
      */
-    public function getStructure(array $tableList): Collection
+    public function getStructure(array $tableList): Enumerable
     {
         $tableCollection = $this->schemaRepository->allTablesByName($tableList);
         return $tableCollection;

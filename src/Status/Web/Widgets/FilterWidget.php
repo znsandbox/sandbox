@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Status\Web\Widgets;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;
@@ -68,9 +69,9 @@ class FilterWidget extends BaseWidget2
         return Html::tag($this->itemTagName, $link, $this->itemTagOptions);
     }
 
-    private function getItemCollection(): Collection
+    private function getItemCollection(): Enumerable
     {
-        /** @var EnumEntity[] | Collection $collection */
+        /** @var EnumEntity[] | Enumerable $collection */
         $items = EnumHelper::getItems($this->enumClass);
         $collection = CollectionHelper::create(EnumEntity::class, $items);
         return $collection;

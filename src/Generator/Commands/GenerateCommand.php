@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Commands;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Collection\Libs\Collection;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -169,7 +170,7 @@ class GenerateCommand extends Command
         return 0;
     }
 
-    private function getStructureTables(DomainEntity $domainEntity, array $selectedEntities): Collection
+    private function getStructureTables(DomainEntity $domainEntity, array $selectedEntities): Enumerable
     {
         $selectedTables = [];
         foreach ($selectedEntities as $entityName) {

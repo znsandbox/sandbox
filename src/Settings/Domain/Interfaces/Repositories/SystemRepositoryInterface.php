@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Settings\Domain\Interfaces\Repositories;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnSandbox\Sandbox\Settings\Domain\Entities\SystemEntity;
 use ZnCore\Domain\Collection\Libs\Collection;
 use ZnCore\Domain\Repository\Interfaces\CrudRepositoryInterface;
@@ -11,7 +12,7 @@ interface SystemRepositoryInterface extends CrudRepositoryInterface
 
     /**
      * @param string $name
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | SystemEntity[]
+     * @return Enumerable | SystemEntity[]
      */
-    public function allByName(string $name): Collection;
+    public function allByName(string $name): Enumerable;
 }

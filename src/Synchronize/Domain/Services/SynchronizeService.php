@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Services;
 
+use ZnCore\Domain\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Entity\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffAttributeEntity;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
@@ -149,9 +150,9 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
     }
 
     /**
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffConfigEntity[]
+     * @return Enumerable | DiffConfigEntity[]
      */
-    public function config(): Collection
+    public function config(): Enumerable
     {
         $config = $this->config;
 
@@ -187,7 +188,7 @@ class SynchronizeService extends BaseService implements SynchronizeServiceInterf
         }
     }
 
-    public function diff(): Collection
+    public function diff(): Enumerable
     {
         $configCollection = $this->config();
         $resultCollection = new Collection();
