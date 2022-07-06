@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\File;
 
-use ZnCore\Base\ConfigManager\Interfaces\ConfigManagerInterface;
+use ZnCore\ConfigManager\Interfaces\ConfigManagerInterface;
 use ZnCore\Instance\Helpers\ClassHelper;
 use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnCore\Collection\Interfaces\Enumerable;
