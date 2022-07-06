@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Layout\Domain\Helpers;
 
 use Yii;
 use yii\helpers\Url;
-use ZnLib\Components\I18Next\Facades\I18Next;
+use ZnLib\I18Next\Facades\I18Next;
 
 class MenuHelper
 {

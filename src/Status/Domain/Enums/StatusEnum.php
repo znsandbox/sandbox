@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Status\Domain\Enums;
 
 use ZnCore\Enum\Interfaces\GetLabelsInterface;
-use ZnLib\Components\I18Next\Facades\I18Next;
+use ZnLib\I18Next\Facades\I18Next;
 
 class StatusEnum implements GetLabelsInterface
 {
