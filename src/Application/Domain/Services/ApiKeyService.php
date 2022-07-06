@@ -7,7 +7,7 @@ use ZnCore\Text\Libs\RandomString;
 use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\ApiKeyRepositoryInterface;
-use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnCore\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Application\Domain\Entities\ApiKeyEntity;
 
 /**

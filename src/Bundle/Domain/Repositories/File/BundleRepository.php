@@ -3,14 +3,14 @@
 namespace ZnSandbox\Sandbox\Bundle\Domain\Repositories\File;
 
 use ZnCore\Base\ConfigManager\Interfaces\ConfigManagerInterface;
-use ZnCore\Base\Instance\Helpers\ClassHelper;
-use ZnCore\Base\Instance\Helpers\InstanceHelper;
+use ZnCore\Instance\Helpers\ClassHelper;
+use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Collection\Libs\Collection;
 use ZnCore\Domain\Domain\Interfaces\DomainInterface;
 use ZnCore\Entity\Exceptions\NotFoundException;
 use ZnCore\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Domain\Query\Entities\Query;
+use ZnCore\Query\Entities\Query;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Interfaces\Repositories\BundleRepositoryInterface;

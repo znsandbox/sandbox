@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Status\Web\Widgets;
 
 use Symfony\Component\HttpFoundation\Request;
-use ZnCore\Base\Enum\Helpers\EnumHelper;
+use ZnCore\Enum\Helpers\EnumHelper;
 use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Entity\Helpers\CollectionHelper;

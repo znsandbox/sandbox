@@ -7,7 +7,7 @@ use phpseclib\File\X509;
 use ZnCore\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnCore\Service\Base\BaseCrudService;
 use ZnCrypt\Base\Domain\Exceptions\CertificateExpiredException;
 use ZnCrypt\Base\Domain\Exceptions\FailCertificateSignatureException;
 use ZnCrypt\Pki\X509\Domain\Helpers\X509Helper;

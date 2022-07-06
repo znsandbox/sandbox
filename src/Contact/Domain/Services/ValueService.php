@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Contact\Domain\Services;
 use ZnSandbox\Sandbox\Contact\Domain\Interfaces\Services\ValueServiceInterface;
 use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Contact\Domain\Interfaces\Repositories\ValueRepositoryInterface;
-use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnCore\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Contact\Domain\Entities\ValueEntity;
 
 /**

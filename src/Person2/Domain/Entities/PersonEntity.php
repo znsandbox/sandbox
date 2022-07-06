@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
-use ZnCore\Base\Enum\Constraints\Enum;
+use ZnCore\Enum\Constraints\Enum;
 use ZnCore\Text\Helpers\TextHelper;
 use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;

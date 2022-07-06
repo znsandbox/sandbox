@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Services\UserServiceInterface;
 use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\UserRepositoryInterface;
-use ZnCore\Domain\Service\Base\BaseCrudService;
+use ZnCore\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\UserEntity;
 
 /**

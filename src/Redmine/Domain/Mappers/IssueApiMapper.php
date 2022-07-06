@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Mappers;
 
-use ZnCore\Domain\Repository\Interfaces\MapperInterface;
+use ZnCore\Repository\Interfaces\MapperInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\PriorityEntity;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\ProjectEntity;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\StatusEntity;

@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\MigrationData\Domain\Libs;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\EventDispatcher\Traits\EventDispatcherTrait;
 use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Domain\Query\Entities\Query;
+use ZnCore\Query\Entities\Query;
 use ZnCore\EntityManager\Traits\EntityManagerAwareTrait;
 
 class SourceProvider

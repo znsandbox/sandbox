@@ -5,7 +5,7 @@
  */
 
 use yii\helpers\Url;
-use ZnCore\Base\Arr\Helpers\ArrayHelper;
+use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnLib\Components\I18Next\Facades\I18Next;
 use ZnSandbox\Sandbox\Synchronize\Domain\Entities\DiffCollectionEntity;
 

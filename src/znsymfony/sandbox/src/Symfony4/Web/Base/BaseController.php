@@ -4,7 +4,7 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Base;
 
 use Symfony\Component\HttpFoundation\Response;
 use ZnLib\Components\Format\Encoders\XmlEncoder;
-use ZnCore\Base\Arr\Helpers\ArrayHelper;
+use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnCore\Entity\Helpers\EntityHelper;
 use ZnLib\Web\Controller\Base\BaseWebController;
 use ZnLib\Web\TwBootstrap\Widgets\TabContent\TabContentWidget;
