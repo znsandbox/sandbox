@@ -41,7 +41,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
         return InheritanceEntity::class;
     }
 
-    /*protected function forgeQuery(Query $query = null)
+    /*protected function forgeQuery(Query $query = null): Query
     {
         $query = parent::forgeQuery($query);
         $myPersonId = $this->myPersonService->findOne()->getId();

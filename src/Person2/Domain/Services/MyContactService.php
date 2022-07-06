@@ -36,7 +36,7 @@ class MyContactService extends ContactService implements MyContactServiceInterfa
         $this->myPersonService = $myPersonService;
     }
 
-    protected function forgeQuery(Query $query = null)
+    protected function forgeQuery(Query $query = null): Query
     {
         $query = parent::forgeQuery($query);
         $myPersonId = $this->myPersonService->findOne()->getId();
