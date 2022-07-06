@@ -2,7 +2,7 @@
 
 namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 
-use ZnCore\Base\Text\Helpers\Inflector;
+use ZnCore\Text\Helpers\Inflector;
 use ZnLib\Web\Html\Helpers\Url;
 use ;
 

@@ -2,16 +2,16 @@
 <?php
 
 /*use ZnCore\Base\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\App\Factories\ApplicationFactory;
-use ZnCore\Base\App\Factories\KernelFactory;
-use ZnCore\Base\DotEnv\Domain\Libs\DotEnv;
+use ZnCore\App\Factories\ApplicationFactory;
+use ZnCore\App\Factories\KernelFactory;
+use ZnCore\DotEnv\Domain\Libs\DotEnv;
 
 require __DIR__ . '/../../../autoload.php';
 
 DotEnv::init();
 
 $bundles = [
-    new \ZnCore\Base\App\Bundle(['all']),
+    new \ZnCore\App\Bundle(['all']),
     new \ZnTool\Package\Bundle(['all']),
     new \ZnSandbox\Sandbox\Bundle\Bundle(['all']),
     new \ZnSandbox\Sandbox\Generator\Bundle(['all']),

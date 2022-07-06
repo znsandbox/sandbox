@@ -7,7 +7,7 @@ use ZnSandbox\Sandbox\Settings\Domain\Interfaces\Repositories\SystemRepositoryIn
 use ZnSandbox\Sandbox\Settings\Domain\Interfaces\Services\SystemServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnCore\Domain\Service\Base\BaseCrudService;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 
 /**
  * @method SystemRepositoryInterface getRepository()

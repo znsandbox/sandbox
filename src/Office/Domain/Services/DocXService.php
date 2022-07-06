@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Office\Domain\Services;
 
 
-use ZnCore\Base\Text\Helpers\TemplateHelper;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Text\Helpers\TemplateHelper;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Office\Domain\Entities\DocXEntity;
 use ZnSandbox\Sandbox\Office\Domain\Enums\AttributeEnum;

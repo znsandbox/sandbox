@@ -3,11 +3,11 @@
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 
 use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnCore\Domain\Entity\Exceptions\NotFoundException;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Entity\Exceptions\NotFoundException;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Service\Base\BaseService;
-use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Entity\Interfaces\UniqueInterface;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Domain\Enums\HttpHeaderEnum;

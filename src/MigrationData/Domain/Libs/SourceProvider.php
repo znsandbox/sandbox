@@ -2,11 +2,11 @@
 
 namespace ZnSandbox\Sandbox\MigrationData\Domain\Libs;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Base\EventDispatcher\Traits\EventDispatcherTrait;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Collection\Interfaces\Enumerable;
+use ZnCore\EventDispatcher\Traits\EventDispatcherTrait;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Query\Entities\Query;
-use ZnCore\Domain\EntityManager\Traits\EntityManagerAwareTrait;
+use ZnCore\EntityManager\Traits\EntityManagerAwareTrait;
 
 class SourceProvider
 {

@@ -21,7 +21,7 @@ use Symfony\Component\Form\FormView;
 use ZnLib\Web\Html\Helpers\Url;
 use ZnCore\Domain\DataProvider\Libs\DataProvider;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Collection\Interfaces\Enumerable;
 
 
 $favCollection = [];

@@ -4,11 +4,11 @@ namespace ZnSandbox\Sandbox\Synchronize\Domain\Services;
 
 use Symfony\Contracts\Cache\CacheInterface;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Collection\Libs\Collection;
-use ZnCore\Domain\Entity\Helpers\CollectionHelper;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Collection\Interfaces\Enumerable;
+use ZnCore\Collection\Libs\Collection;
+use ZnCore\Entity\Helpers\CollectionHelper;
+use ZnCore\Entity\Helpers\EntityHelper;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Service\Base\BaseService;
 use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnDatabase\Base\Domain\Repositories\Eloquent\SchemaRepository;

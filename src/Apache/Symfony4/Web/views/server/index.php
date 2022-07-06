@@ -4,7 +4,7 @@
  * @var $this \ZnLib\Web\View\Libs\View
  * @var $formView FormView|AbstractType[]
  * @var $dataProvider DataProvider
- * @var $collection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity[]
+ * @var $collection \ZnCore\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity[]
  * @var $baseUri string
  */
 

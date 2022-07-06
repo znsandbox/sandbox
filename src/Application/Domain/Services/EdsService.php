@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Application\Domain\Services;
 
 use DateTime;
 use phpseclib\File\X509;
-use ZnCore\Base\FileSystem\Helpers\FileStorageHelper;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\FileSystem\Helpers\FileStorageHelper;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnCrypt\Base\Domain\Exceptions\CertificateExpiredException;
 use ZnCrypt\Base\Domain\Exceptions\FailCertificateSignatureException;

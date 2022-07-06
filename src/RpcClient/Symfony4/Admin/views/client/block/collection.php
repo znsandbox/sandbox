@@ -4,7 +4,7 @@
  * @var $this \ZnLib\Web\View\Libs\View
  * @var $baseUri string
  * @var $favoriteEntity \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity | null
- * @var $collection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
+ * @var $collection \ZnCore\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
  */
 
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;

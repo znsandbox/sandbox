@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Synchronize\Domain\Entities;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Collection\Interfaces\Enumerable;
 
 class DiffItemEntity
 {

@@ -4,10 +4,10 @@ namespace ZnSandbox\Sandbox\Status\Web\Widgets;
 
 use Symfony\Component\HttpFoundation\Request;
 use ZnCore\Base\Enum\Helpers\EnumHelper;
-use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Entity\Helpers\CollectionHelper;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Collection\Interfaces\Enumerable;
+use ZnCore\Entity\Helpers\CollectionHelper;
+use ZnCore\Entity\Helpers\EntityHelper;
 use ZnLib\Web\Html\Helpers\Html;
 use ZnLib\Web\Widget\Base\BaseWidget2;
 use ZnSandbox\Sandbox\Status\Domain\Entities\EnumEntity;

@@ -7,7 +7,7 @@
  * @var $rpcRequestEntity \ZnLib\Rpc\Domain\Entities\RpcRequestEntity
  */
 
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Entity\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Encoders\RequestEncoder;
 use ZnLib\Rpc\Domain\Encoders\ResponseEncoder;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;

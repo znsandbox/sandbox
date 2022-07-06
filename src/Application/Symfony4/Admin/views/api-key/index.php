@@ -6,7 +6,7 @@
  * @var $baseUri string
  */
 
-use ZnCore\Base\Text\Helpers\TextHelper;
+use ZnCore\Text\Helpers\TextHelper;
 use ZnSandbox\Sandbox\Application\Domain\Entities\ApiKeyEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;

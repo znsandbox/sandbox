@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Tests\rest\Proto;
 
-use ZnCore\Domain\Collection\Libs\Collection;
+use ZnCore\Collection\Libs\Collection;
 use ZnCrypt\Base\Domain\Libs\Encoders\AesEncoder;
 use ZnCrypt\Base\Domain\Libs\Encoders\Base64Encoder;
 use ZnCrypt\Base\Domain\Libs\Encoders\CollectionEncoder;

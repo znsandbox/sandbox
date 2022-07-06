@@ -7,11 +7,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnLib\Components\ReadOnly\Helpers\ReadOnlyHelper;
-use ZnCore\Base\Text\Helpers\StringHelper;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Text\Helpers\StringHelper;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Base\Enum\Constraints\Enum;
-use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
-use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Entity\Interfaces\UniqueInterface;
+use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
 
 class FavoriteEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
 {

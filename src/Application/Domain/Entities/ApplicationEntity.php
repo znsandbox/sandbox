@@ -11,9 +11,9 @@ use ZnBundle\Eav\Domain\Enums\AttributeTypeEnum;
 use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnCore\Base\Enum\Helpers\EnumHelper;
 use ZnCore\Base\Enum\Constraints\Enum;
-use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Entity\Interfaces\UniqueInterface;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnLib\Web\Form\Interfaces\BuildFormInterface;
 
 class ApplicationEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface, BuildFormInterface

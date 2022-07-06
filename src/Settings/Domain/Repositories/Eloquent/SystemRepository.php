@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Settings\Domain\Repositories\Eloquent;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnCore\Domain\Repository\Mappers\JsonMapper;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;

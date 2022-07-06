@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Office\Domain\Libs;
 
 use App\Common\Base\BaseController;
-use ZnCore\Base\Text\Helpers\TemplateHelper;
+use ZnCore\Text\Helpers\TemplateHelper;
 
 class DocX
 {

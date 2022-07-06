@@ -2,14 +2,14 @@
 
 namespace ZnSandbox\Sandbox\Redmine\Domain\Repositories\Api;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Collection\Interfaces\Enumerable;
 use Redmine\Api\AbstractApi;
 use Redmine\Client;
 use ZnCore\Contract\Common\Exceptions\InvalidMethodParameterException;
 use ZnCore\Contract\Common\Exceptions\NotSupportedException;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Query\Entities\Where;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnCore\Domain\Repository\Traits\RepositoryMapperTrait;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffCollectionEntity[] $diffCollection
+ * @var \ZnCore\Collection\Interfaces\Enumerable | DiffCollectionEntity[] $diffCollection
  */
 
 use yii\helpers\Url;

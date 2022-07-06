@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Domain\Entity\Interfaces\UniqueInterface;
+use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Entity\Interfaces\UniqueInterface;
 
 class ClassEntity implements ValidationByMetadataInterface, UniqueInterface
 {

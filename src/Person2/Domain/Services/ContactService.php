@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Collection\Interfaces\Enumerable;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\ContactEntity;

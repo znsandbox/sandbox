@@ -4,7 +4,7 @@ namespace ZnCore\Base\Scenario\Collections;
 
 use ZnCore\Base\Scenario\Base\BaseScenario;
 use ZnCore\Base\Scenario\Exceptions\StopException;
-use ZnCore\Domain\Collection\Libs\Collection;
+use ZnCore\Collection\Libs\Collection;
 
 class ScenarioCollection extends Collection
 {

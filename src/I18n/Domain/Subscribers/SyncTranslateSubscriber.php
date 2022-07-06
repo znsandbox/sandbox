@@ -4,12 +4,12 @@ namespace ZnSandbox\Sandbox\I18n\Domain\Subscribers;
 
 use App\Workshop\Domain\Entities\CategoryEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Domain\Domain\Enums\EventEnum;
 use ZnCore\Domain\Domain\Events\EntityEvent;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Domain\EntityManager\Traits\EntityManagerAwareTrait;
+use ZnCore\Entity\Helpers\EntityHelper;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\EntityManager\Traits\EntityManagerAwareTrait;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services\TranslateServiceInterface;
 
 class SyncTranslateSubscriber implements EventSubscriberInterface

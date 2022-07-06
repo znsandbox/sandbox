@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Person2\Rpc\Controllers;
 
 use Symfony\Component\Validator\Constraints\NotBlank;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\Validation\Exceptions\UnprocessibleEntityException;
-use ZnCore\Base\Validation\Helpers\ValidationHelper;
+use ZnCore\Validation\Exceptions\UnprocessibleEntityException;
+use ZnCore\Validation\Helpers\ValidationHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;

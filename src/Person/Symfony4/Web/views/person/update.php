@@ -2,7 +2,7 @@
 
 /**
  * @var $formView FormView|AbstractType[]
- * @var $entityCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | EntityEntity[]
+ * @var $entityCollection \ZnCore\Collection\Interfaces\Enumerable | EntityEntity[]
  */
 
 use Symfony\Component\Form\AbstractType;

@@ -2,14 +2,14 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnCore\Domain\Entity\Exceptions\NotFoundException;
+use ZnCore\Entity\Exceptions\NotFoundException;
 use ZnCore\Domain\Service\Base\BaseCrudService;
 use ZnCore\Domain\Service\Base\BaseService;
 use ZnCore\Domain\Domain\Enums\EventEnum;
 use ZnCore\Domain\Domain\Events\EntityEvent;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Entity\Helpers\EntityHelper;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\ChildEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;

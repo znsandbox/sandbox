@@ -9,8 +9,8 @@
  * @var $rpcResponseEntity \ZnLib\Rpc\Domain\Entities\RpcResponseEntity
  * @var $rpcRequestEntity \ZnLib\Rpc\Domain\Entities\RpcRequestEntity
  * @var $favoriteEntity \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity | null
- * @var $favoriteCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
- * @var $historyCollection \ZnCore\Domain\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
+ * @var $favoriteCollection \ZnCore\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
+ * @var $historyCollection \ZnCore\Collection\Interfaces\Enumerable | \ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity[]
  */
 
 use Symfony\Component\Form\AbstractType;

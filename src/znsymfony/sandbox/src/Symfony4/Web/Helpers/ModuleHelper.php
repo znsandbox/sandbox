@@ -6,8 +6,8 @@ use ReflectionClass;
 use ReflectionMethod;
 use ZnCore\Base\Arr\Helpers\ArrayHelper;
 use ZnCore\Base\Composer\Helpers\ComposerHelper;
-use ZnCore\Base\FileSystem\Helpers\FindFileHelper;
-use ZnCore\Base\Text\Helpers\Inflector;
+use ZnCore\FileSystem\Helpers\FindFileHelper;
+use ZnCore\Text\Helpers\Inflector;
 use ZnLib\Components\Http\Helpers\UrlHelper;
 use ZnLib\Web\Controller\Base\BaseWebController;
 

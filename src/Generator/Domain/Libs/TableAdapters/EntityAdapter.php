@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Generator\Domain\Libs\TableAdapters;
 
-use ZnCore\Domain\Collection\Libs\Collection;
+use ZnCore\Collection\Libs\Collection;
 use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 use ZnSandbox\Sandbox\Generator\Domain\Entities\AttributeEntity;

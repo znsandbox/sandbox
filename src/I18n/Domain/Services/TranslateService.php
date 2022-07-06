@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\I18n\Domain\Services;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
-use ZnCore\Domain\Collection\Libs\Collection;
-use ZnCore\Domain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnCore\Collection\Interfaces\Enumerable;
+use ZnCore\Collection\Libs\Collection;
+use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnCore\Domain\Service\Base\BaseService;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;

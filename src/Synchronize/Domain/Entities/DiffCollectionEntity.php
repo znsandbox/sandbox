@@ -118,7 +118,7 @@ class DiffCollectionEntity
     }
 
     /**
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | DiffItemEntity[]
+     * @return \ZnCore\Collection\Interfaces\Enumerable | DiffItemEntity[]
      */
     public function getDiff()
     {

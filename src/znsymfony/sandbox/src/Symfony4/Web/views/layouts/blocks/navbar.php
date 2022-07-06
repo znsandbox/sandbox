@@ -1,7 +1,7 @@
 <?php
 
 use ZnSymfony\Sandbox\Symfony4\Web\Helpers\ModuleHelper;
-use ZnCore\Base\Text\Helpers\Inflector;
+use ZnCore\Text\Helpers\Inflector;
 use ZnBundle\Language\Symfony4\Widgets\Language\LanguageWidget;
 use ZnLib\Web\View\Libs\View;
 use ZnLib\Web\TwBootstrap\Widgets\UserNavbarMenu\UserNavbarMenuWidget;

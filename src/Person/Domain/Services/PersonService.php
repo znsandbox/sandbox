@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person\Domain\Services;
 
-use ZnCore\Base\Text\Helpers\TextHelper;
+use ZnCore\Text\Helpers\TextHelper;
 use ZnSandbox\Sandbox\Person\Domain\Interfaces\Services\PersonServiceInterface;
 use ZnBundle\Eav\Domain\Entities\DynamicEntity;
 use ZnBundle\Eav\Domain\Forms\DynamicForm;
@@ -11,11 +11,11 @@ use ZnBundle\Eav\Domain\Interfaces\Services\ValueServiceInterface;
 use ZnUser\Identity\Domain\Entities\IdentityEntity;
 use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnUser\Identity\Domain\Interfaces\Services\IdentityServiceInterface;
-use ZnCore\Domain\Entity\Exceptions\NotFoundException;
+use ZnCore\Entity\Exceptions\NotFoundException;
 
 use ZnCore\Domain\Service\Base\BaseService;
-use ZnCore\Base\Validation\Exceptions\UnprocessibleEntityException;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
+use ZnCore\Validation\Exceptions\UnprocessibleEntityException;
+use ZnCore\Entity\Helpers\EntityHelper;
 use ZnKaz\Iin\Domain\Helpers\IinParser;
 
 class PersonService extends BaseService implements PersonServiceInterface

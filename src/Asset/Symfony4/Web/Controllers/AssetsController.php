@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\MimeTypes;
-use ZnCore\Base\FileSystem\Helpers\FilePathHelper;
+use ZnCore\FileSystem\Helpers\FilePathHelper;
 use ZnLib\Components\Http\Enums\HttpHeaderEnum;
 use ZnLib\Components\Http\Enums\HttpStatusCodeEnum;
 use ZnLib\Web\Controller\Base\BaseWebController;

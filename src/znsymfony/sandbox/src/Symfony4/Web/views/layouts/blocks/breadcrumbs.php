@@ -1,6 +1,6 @@
 <?php
 
-use ZnCore\Base\Text\Helpers\Inflector;
+use ZnCore\Text\Helpers\Inflector;
 use ZnLib\Components\Http\Helpers\UrlHelper;
 use ZnLib\Web\TwBootstrap\Widgets\Breadcrumb\BreadcrumbWidget;
 

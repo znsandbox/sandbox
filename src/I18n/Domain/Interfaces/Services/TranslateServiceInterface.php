@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services;
 
-use ZnCore\Domain\Collection\Interfaces\Enumerable;
+use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Domain\Query\Entities\Query;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 

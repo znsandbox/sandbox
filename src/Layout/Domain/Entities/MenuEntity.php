@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Layout\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Base\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Domain\Entity\Helpers\CollectionHelper;
-use ZnCore\Domain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Entity\Helpers\CollectionHelper;
+use ZnCore\Entity\Interfaces\EntityIdInterface;
 
 class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
 {
@@ -217,7 +217,7 @@ class MenuEntity implements ValidationByMetadataInterface, EntityIdInterface
     }
 
     /**
-     * @return \ZnCore\Domain\Collection\Interfaces\Enumerable | MenuEntity[]
+     * @return \ZnCore\Collection\Interfaces\Enumerable | MenuEntity[]
      */
     public function getItems()
     {

@@ -4,7 +4,7 @@ namespace ZnCore\Base\Helpers;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface as SymfonyContainerAwareInterface;
-use ZnCore\Base\Container\Interfaces\ContainerAwareInterface;
+use ZnCore\Container\Interfaces\ContainerAwareInterface;
 
 DeprecateHelper::hardThrow();
 
