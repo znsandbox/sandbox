@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Apache\Domain\Helpers;
 
 use ZnCore\Entity\Helpers\EntityHelper;
-use ZnCore\Domain\Interfaces\DomainInterface;
+use ZnDomain\Domain\Interfaces\DomainInterface;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
 
 class HostsParser {

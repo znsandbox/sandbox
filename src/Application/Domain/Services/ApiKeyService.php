@@ -5,9 +5,9 @@ namespace ZnSandbox\Sandbox\Application\Domain\Services;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\ApiKeyServiceInterface;
 use ZnCore\Text\Libs\RandomString;
 use ZnCore\Entity\Interfaces\EntityIdInterface;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\ApiKeyRepositoryInterface;
-use ZnCore\Service\Base\BaseCrudService;
+use ZnDomain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Application\Domain\Entities\ApiKeyEntity;
 
 /**

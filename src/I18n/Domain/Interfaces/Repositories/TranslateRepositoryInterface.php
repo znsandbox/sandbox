@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\I18n\Domain\Interfaces\Repositories;
 
-use ZnCore\Repository\Interfaces\CrudRepositoryInterface;
+use ZnDomain\Repository\Interfaces\CrudRepositoryInterface;
 use ZnCore\Query\Entities\Query;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 

@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Layout\Domain\Interfaces\Services;
 
-use ZnCore\Service\Interfaces\CrudServiceInterface;
+use ZnDomain\Service\Interfaces\CrudServiceInterface;
 
 interface MenuServiceInterface extends CrudServiceInterface
 {

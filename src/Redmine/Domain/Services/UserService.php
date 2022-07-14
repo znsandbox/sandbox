@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Redmine\Domain\Services;
 
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Services\UserServiceInterface;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\UserRepositoryInterface;
-use ZnCore\Service\Base\BaseCrudService;
+use ZnDomain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\UserEntity;
 
 /**

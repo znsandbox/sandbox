@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Settings\Domain\Repositories\Eloquent;
 
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Query\Entities\Query;
-use ZnCore\Repository\Mappers\JsonMapper;
+use ZnDomain\Repository\Mappers\JsonMapper;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Settings\Domain\Entities\SystemEntity;
 use ZnSandbox\Sandbox\Settings\Domain\Interfaces\Repositories\SystemRepositoryInterface;

@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Application\Domain\Services;
 
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Services\ApplicationServiceInterface;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\ApplicationRepositoryInterface;
-use ZnCore\Service\Base\BaseCrudService;
+use ZnDomain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Application\Domain\Entities\ApplicationEntity;
 
 /**

@@ -4,10 +4,10 @@ namespace ZnSandbox\Sandbox\MigrationData\Domain\Libs;
 
 use App\Card\Domain\Events\PersistEvent;
 use ZnCore\EventDispatcher\Traits\EventDispatcherTrait;
-use ZnCore\Domain\Enums\EventEnum;
-use ZnCore\Domain\Events\EntityEvent;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\EntityManager\Traits\EntityManagerAwareTrait;
+use ZnDomain\Domain\Enums\EventEnum;
+use ZnDomain\Domain\Events\EntityEvent;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Traits\EntityManagerAwareTrait;
 
 class TargetProvider
 {

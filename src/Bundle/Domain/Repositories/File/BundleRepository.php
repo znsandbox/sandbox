@@ -7,7 +7,7 @@ use ZnCore\Instance\Helpers\ClassHelper;
 use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Collection\Libs\Collection;
-use ZnCore\Domain\Interfaces\DomainInterface;
+use ZnDomain\Domain\Interfaces\DomainInterface;
 use ZnCore\Entity\Exceptions\NotFoundException;
 use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Query\Entities\Query;

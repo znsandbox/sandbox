@@ -19,7 +19,7 @@
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use ZnLib\Web\Html\Helpers\Url;
-use ZnCore\DataProvider\Libs\DataProvider;
+use ZnDomain\DataProvider\Libs\DataProvider;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\ApiKeyEntity;
 
 

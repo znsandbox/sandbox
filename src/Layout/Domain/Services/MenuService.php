@@ -13,7 +13,7 @@ use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Entity\Helpers\EntityHelper;
 use ZnCore\Query\Entities\Query;
-use ZnCore\Service\Base\BaseCrudService;
+use ZnDomain\Service\Base\BaseCrudService;
 use ZnLib\I18Next\Exceptions\NotFoundBundleException;
 use ZnLib\I18Next\Facades\I18Next;
 use ZnLib\Web\Html\Helpers\Url;

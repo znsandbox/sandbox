@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Person\Domain\Services;
 
 use ZnSandbox\Sandbox\Person\Domain\Interfaces\Services\InheritanceServiceInterface;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Person\Domain\Interfaces\Repositories\InheritanceRepositoryInterface;
-use ZnCore\Service\Base\BaseCrudService;
+use ZnDomain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Person\Domain\Entities\InheritanceEntity;
 
 /**

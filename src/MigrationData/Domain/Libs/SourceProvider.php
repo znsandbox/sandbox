@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\MigrationData\Domain\Libs;
 
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\EventDispatcher\Traits\EventDispatcherTrait;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Query\Entities\Query;
-use ZnCore\EntityManager\Traits\EntityManagerAwareTrait;
+use ZnDomain\EntityManager\Traits\EntityManagerAwareTrait;
 
 class SourceProvider
 {

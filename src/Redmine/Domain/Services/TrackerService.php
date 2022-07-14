@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Redmine\Domain\Services;
 
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Services\TrackerServiceInterface;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\TrackerRepositoryInterface;
-use ZnCore\Service\Base\BaseCrudService;
+use ZnDomain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Redmine\Domain\Entities\TrackerEntity;
 
 /**

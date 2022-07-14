@@ -13,7 +13,7 @@ use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnUser\Identity\Domain\Interfaces\Services\IdentityServiceInterface;
 use ZnCore\Entity\Exceptions\NotFoundException;
 
-use ZnCore\Service\Base\BaseService;
+use ZnDomain\Service\Base\BaseService;
 use ZnCore\Validation\Exceptions\UnprocessibleEntityException;
 use ZnCore\Entity\Helpers\EntityHelper;
 use ZnKaz\Iin\Domain\Helpers\IinParser;

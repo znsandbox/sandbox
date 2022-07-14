@@ -3,11 +3,11 @@
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use ZnCore\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Service\Base\BaseCrudService;
-use ZnCore\Domain\Enums\EventEnum;
-use ZnCore\Domain\Events\EntityEvent;
+use ZnDomain\Service\Base\BaseCrudService;
+use ZnDomain\Domain\Enums\EventEnum;
+use ZnDomain\Domain\Events\EntityEvent;
 use ZnCore\Entity\Helpers\EntityHelper;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnCore\Query\Entities\Query;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;

@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use ZnBundle\Reference\Domain\Entities\ItemEntity;
-use ZnCore\Service\Base\BaseCrudService;
-use ZnCore\EntityManager\Interfaces\EntityManagerInterface;
+use ZnDomain\Service\Base\BaseCrudService;
+use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\SexEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\SexRepositoryInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\SexServiceInterface;

@@ -11,7 +11,7 @@ use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnCore\Query\Entities\Where;
 use ZnCore\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Query\Entities\Query;
-use ZnCore\Repository\Traits\RepositoryMapperTrait;
+use ZnDomain\Repository\Traits\RepositoryMapperTrait;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
 
 abstract class BaseApiRepository implements IssueApiRepositoryInterface

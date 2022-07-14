@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Application\Domain\Repositories\Eloquent;
 
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\ApplicationRepositoryInterface;
 use ZnBundle\Eav\Domain\Interfaces\Repositories\AttributeRepositoryInterface;
-use ZnCore\Relation\Libs\Types\OneToOneRelation;
+use ZnDomain\Relation\Libs\Types\OneToOneRelation;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\Application\Domain\Entities\ApiKeyEntity;
 use ZnSandbox\Sandbox\Application\Domain\Interfaces\Repositories\ApiKeyRepositoryInterface;

@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\RpcClient\Domain\Repositories\Eloquent;
 
-use ZnCore\Relation\Libs\Types\OneToOneRelation;
-use ZnCore\Repository\Mappers\JsonMapper;
-use ZnCore\Repository\Mappers\TimeMapper;
+use ZnDomain\Relation\Libs\Types\OneToOneRelation;
+use ZnDomain\Repository\Mappers\JsonMapper;
+use ZnDomain\Repository\Mappers\TimeMapper;
 use ZnDatabase\Eloquent\Domain\Base\BaseEloquentCrudRepository;
 use ZnSandbox\Sandbox\RpcClient\Domain\Entities\FavoriteEntity;
 use ZnSandbox\Sandbox\RpcClient\Domain\Interfaces\Repositories\FavoriteRepositoryInterface;
