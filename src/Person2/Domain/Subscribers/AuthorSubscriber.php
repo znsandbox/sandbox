@@ -42,7 +42,7 @@ class AuthorSubscriber implements EventSubscriberInterface
         $entity = $event->getEntity();
         $personId = $this->myPersonService->findOne()->getId();
         //$identityId = $this->authService->getIdentity()->getId();
-        PropertyHelper::setAttribute($entity, $this->attribute, $personId);
+        PropertyHelper::setValue($entity, $this->attribute, $personId);
         try {
 
         } catch (UnauthorizedException $e) {
