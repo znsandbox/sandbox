@@ -8,7 +8,7 @@ use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Collection\Libs\Collection;
 use ZnDomain\Domain\Interfaces\DomainInterface;
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use ZnDomain\Entity\Interfaces\EntityIdInterface;
 use ZnDomain\Query\Entities\Query;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\BundleEntity;

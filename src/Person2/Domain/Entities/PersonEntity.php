@@ -8,6 +8,7 @@ use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Contract\User\Interfaces\Entities\PersonEntityInterface;
+use ZnDomain\Entity\Interfaces\EntityIdInterface;
 use ZnDomain\Сomponents\Constraints\Enum;
 use ZnCore\Text\Helpers\TextHelper;
 use ZnDomain\Entity\Interfaces\UniqueInterface;
@@ -15,7 +16,7 @@ use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
 use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnUser\Rbac\Domain\Entities\ItemEntity;
 
-class PersonEntity implements PersonEntityInterface, ValidationByMetadataInterface, UniqueInterface
+class PersonEntity implements PersonEntityInterface, EntityIdInterface, ValidationByMetadataInterface, UniqueInterface
 {
 
     protected $id = null;

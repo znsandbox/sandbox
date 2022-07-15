@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
 use ZnCore\FileSystem\Helpers\FileStorageHelper;
 use ZnCore\Collection\Interfaces\Enumerable;
-use ZnDomain\Entity\Exceptions\NotFoundException;
-use ZnDomain\Entity\Helpers\CollectionHelper;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
+use ZnCore\Collection\Helpers\CollectionHelper;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\HostEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Helpers\HostsParser;

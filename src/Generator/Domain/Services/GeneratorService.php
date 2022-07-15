@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Generator\Domain\Services;
 
 use ZnCore\Collection\Interfaces\Enumerable;
-use ZnDomain\Entity\Helpers\CollectionHelper;
+use ZnCore\Collection\Helpers\CollectionHelper;
 use ZnDatabase\Base\Domain\Entities\TableEntity;
 use ZnDatabase\Base\Domain\Repositories\Eloquent\SchemaRepository;
 

@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 use ZnCore\Code\Helpers\PropertyHelper;
 use ZnDomain\Domain\Enums\EventEnum;
 use ZnDomain\Domain\Events\EntityEvent;
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnDomain\Entity\Interfaces\EntityIdInterface;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;

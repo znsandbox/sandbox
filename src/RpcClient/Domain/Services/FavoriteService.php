@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\RpcClient\Domain\Services;
 
 use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnLib\Components\Status\Enums\StatusEnum;
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use ZnDomain\Service\Base\BaseCrudService;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnDomain\Query\Entities\Query;

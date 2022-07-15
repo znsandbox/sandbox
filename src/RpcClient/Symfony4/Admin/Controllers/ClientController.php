@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use ZnLib\Components\Status\Enums\StatusEnum;
-use ZnDomain\Entity\Helpers\CollectionHelper;
+use ZnCore\Collection\Helpers\CollectionHelper;
 use ZnDomain\Validator\Exceptions\UnprocessibleEntityException;
 use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\MethodEntity;

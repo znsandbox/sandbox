@@ -6,7 +6,7 @@ use Symfony\Contracts\Cache\CacheInterface;
 use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Collection\Libs\Collection;
-use ZnDomain\Entity\Helpers\CollectionHelper;
+use ZnCore\Collection\Helpers\CollectionHelper;
 use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnDomain\Service\Base\BaseService;

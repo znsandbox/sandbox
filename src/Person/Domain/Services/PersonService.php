@@ -8,7 +8,7 @@ use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\ValueServiceInterface;
 use ZnCore\Code\Helpers\PropertyHelper;
 use ZnCore\Text\Helpers\TextHelper;
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnDomain\Service\Base\BaseService;
 use ZnDomain\Validator\Exceptions\UnprocessibleEntityException;

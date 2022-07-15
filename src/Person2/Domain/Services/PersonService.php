@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use ZnDomain\Service\Base\BaseCrudService;
 use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
