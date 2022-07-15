@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
 use ZnCore\Collection\Interfaces\Enumerable;
-use ZnCore\Entity\Interfaces\UniqueInterface;
+use ZnDomain\Entity\Interfaces\UniqueInterface;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 
 class EntityEntity extends ClassEntity implements ValidationByMetadataInterface, UniqueInterface

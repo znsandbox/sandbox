@@ -11,11 +11,11 @@ use ZnBundle\Eav\Domain\Interfaces\Services\ValueServiceInterface;
 use ZnUser\Identity\Domain\Entities\IdentityEntity;
 use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnUser\Identity\Domain\Interfaces\Services\IdentityServiceInterface;
-use ZnCore\Entity\Exceptions\NotFoundException;
+use ZnDomain\Entity\Exceptions\NotFoundException;
 
 use ZnDomain\Service\Base\BaseService;
-use ZnCore\Validation\Exceptions\UnprocessibleEntityException;
-use ZnCore\Entity\Helpers\EntityHelper;
+use ZnDomain\Validator\Exceptions\UnprocessibleEntityException;
+use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnKaz\Iin\Domain\Helpers\IinParser;
 
 class PersonService extends BaseService implements PersonServiceInterface

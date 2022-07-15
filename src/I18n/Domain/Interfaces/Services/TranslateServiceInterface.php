@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services;
 
 use ZnCore\Collection\Interfaces\Enumerable;
-use ZnCore\Query\Entities\Query;
+use ZnDomain\Query\Entities\Query;
 use ZnSandbox\Sandbox\I18n\Domain\Entities\TranslateEntity;
 
 interface TranslateServiceInterface

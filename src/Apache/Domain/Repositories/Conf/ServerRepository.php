@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Apache\Domain\Repositories\Conf;
 
 use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnCore\Collection\Interfaces\Enumerable;
-use ZnCore\Entity\Exceptions\NotFoundException;
-use ZnCore\Entity\Helpers\CollectionHelper;
+use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnDomain\Entity\Helpers\CollectionHelper;
 use ZnCrypt\Base\Domain\Enums\HashAlgoEnum;
 use ZnSandbox\Sandbox\Apache\Domain\Entities\ServerEntity;
 use ZnSandbox\Sandbox\Apache\Domain\Helpers\ConfParser;

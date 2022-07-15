@@ -8,10 +8,10 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnLib\Components\ReadOnly\Helpers\ReadOnlyHelper;
 use ZnCore\Text\Helpers\StringHelper;
-use ZnCore\Entity\Interfaces\EntityIdInterface;
+use ZnDomain\Entity\Interfaces\EntityIdInterface;
 use ZnCore\Enum\Constraints\Enum;
-use ZnCore\Entity\Interfaces\UniqueInterface;
-use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
+use ZnDomain\Entity\Interfaces\UniqueInterface;
+use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
 
 class FavoriteEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
 {

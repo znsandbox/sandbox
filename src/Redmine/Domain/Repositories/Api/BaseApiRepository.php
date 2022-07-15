@@ -8,9 +8,9 @@ use Redmine\Client;
 use ZnCore\Contract\Common\Exceptions\InvalidMethodParameterException;
 use ZnCore\Contract\Common\Exceptions\NotSupportedException;
 use ZnCore\Arr\Helpers\ArrayHelper;
-use ZnCore\Query\Entities\Where;
-use ZnCore\Entity\Interfaces\EntityIdInterface;
-use ZnCore\Query\Entities\Query;
+use ZnDomain\Query\Entities\Where;
+use ZnDomain\Entity\Interfaces\EntityIdInterface;
+use ZnDomain\Query\Entities\Query;
 use ZnDomain\Repository\Traits\RepositoryMapperTrait;
 use ZnSandbox\Sandbox\Redmine\Domain\Interfaces\Repositories\IssueApiRepositoryInterface;
 

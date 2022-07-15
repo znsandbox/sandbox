@@ -4,8 +4,8 @@ namespace ZnSandbox\Sandbox\Generator\Domain\Entities;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Entity\Interfaces\UniqueInterface;
+use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
+use ZnDomain\Entity\Interfaces\UniqueInterface;
 use ZnSandbox\Sandbox\Bundle\Domain\Entities\DomainEntity;
 
 class ServiceEntity extends ClassEntity implements ValidationByMetadataInterface, UniqueInterface

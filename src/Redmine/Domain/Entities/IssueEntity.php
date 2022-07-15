@@ -5,9 +5,9 @@ namespace ZnSandbox\Sandbox\Redmine\Domain\Entities;
 use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
-use ZnCore\Validation\Interfaces\ValidationByMetadataInterface;
-use ZnCore\Entity\Interfaces\UniqueInterface;
-use ZnCore\Entity\Interfaces\EntityIdInterface;
+use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
+use ZnDomain\Entity\Interfaces\UniqueInterface;
+use ZnDomain\Entity\Interfaces\EntityIdInterface;
 
 class IssueEntity implements ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
 {

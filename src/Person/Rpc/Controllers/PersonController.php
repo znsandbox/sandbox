@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Person\Rpc\Controllers;
 
 use ZnSandbox\Sandbox\Person\Domain\Interfaces\Services\PersonServiceInterface;
-use ZnCore\Entity\Helpers\EntityHelper;
+use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnLib\Rpc\Domain\Entities\RpcRequestEntity;
 use ZnLib\Rpc\Domain\Entities\RpcResponseEntity;
 use ZnLib\Rpc\Rpc\Base\BaseCrudRpcController;

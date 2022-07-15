@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
-use ZnCore\Query\Entities\Query;
+use ZnDomain\Query\Entities\Query;
 use ZnDomain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\ContactEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\ContactServiceInterface;

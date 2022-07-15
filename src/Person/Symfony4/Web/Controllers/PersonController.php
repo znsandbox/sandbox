@@ -11,7 +11,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Notify\Domain\Interfaces\Services\ToastrServiceInterface;
 use ZnLib\Web\Html\Helpers\Url;
-use ZnCore\Validation\Exceptions\UnprocessibleEntityException;
+use ZnDomain\Validator\Exceptions\UnprocessibleEntityException;
 use ZnLib\Web\Controller\Base\BaseWebController;
 use ZnLib\Web\Controller\Interfaces\ControllerAccessInterface;
 use ZnLib\Web\Form\Traits\ControllerFormTrait;
