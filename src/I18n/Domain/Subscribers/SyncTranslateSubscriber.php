@@ -4,10 +4,10 @@ namespace ZnSandbox\Sandbox\I18n\Domain\Subscribers;
 
 use App\Workshop\Domain\Entities\CategoryEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use ZnDomain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Code\Helpers\PropertyHelper;
 use ZnDomain\Domain\Enums\EventEnum;
 use ZnDomain\Domain\Events\EntityEvent;
-use ZnDomain\Entity\Helpers\EntityHelper;
+use ZnDomain\Entity\Interfaces\EntityIdInterface;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnDomain\EntityManager\Traits\EntityManagerAwareTrait;
 use ZnSandbox\Sandbox\I18n\Domain\Interfaces\Services\TranslateServiceInterface;
@@ -42,7 +42,7 @@ class SyncTranslateSubscriber implements EventSubscriberInterface
     public function onAfterUpdateOrCreate(EntityEvent $event)
     {
         $entity = $event->getEntity();
-        $i18nArray = EntityHelper::getValue($entity, $this->attribute);
+        $i18nArray = PropertyHelper::getValue($entity, $this->attribute);
         $entityTypeId = $this->getTypeId($entity);
         $this->translateService->batchPersist($entityTypeId, $entity->getId(), $i18nArray);
     }

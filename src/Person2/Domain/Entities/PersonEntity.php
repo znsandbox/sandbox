@@ -5,18 +5,17 @@ namespace ZnSandbox\Sandbox\Person2\Domain\Entities;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
-use ZnCore\Enum\Constraints\Enum;
-use ZnCore\Text\Helpers\TextHelper;
-use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
+use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Contract\User\Interfaces\Entities\PersonEntityInterface;
-use ZnCore\Collection\Interfaces\Enumerable;
-use ZnDomain\Entity\Interfaces\EntityIdInterface;
+use ZnCore\Enum\Constraints\Enum;
+use ZnCore\Text\Helpers\TextHelper;
 use ZnDomain\Entity\Interfaces\UniqueInterface;
+use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
 use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnUser\Rbac\Domain\Entities\ItemEntity;
 
-class PersonEntity implements PersonEntityInterface, ValidationByMetadataInterface, UniqueInterface, EntityIdInterface
+class PersonEntity implements PersonEntityInterface, ValidationByMetadataInterface, UniqueInterface
 {
 
     protected $id = null;

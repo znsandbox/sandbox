@@ -2,15 +2,15 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnDomain\Entity\Exceptions\NotFoundException;
-use ZnDomain\Service\Base\BaseCrudService;
-use ZnDomain\Service\Base\BaseService;
+use ZnCore\Code\Helpers\PropertyHelper;
 use ZnDomain\Domain\Enums\EventEnum;
 use ZnDomain\Domain\Events\EntityEvent;
+use ZnDomain\Entity\Exceptions\NotFoundException;
 use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnDomain\Entity\Interfaces\EntityIdInterface;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnDomain\Query\Entities\Query;
+use ZnDomain\Service\Base\BaseCrudService;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\ChildEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\InheritanceEntity;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
@@ -62,7 +62,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
         $event = new EntityEvent($childEntity);
         $this->getEventDispatcher()->dispatch($event, EventEnum::BEFORE_UPDATE_ENTITY);
 
-        EntityHelper::setAttributes($childEntity, $data);
+        PropertyHelper::setAttributes($childEntity, $data);
         $this->getEntityManager()->persist($childEntity);
 
         $event = new EntityEvent($childEntity);
@@ -105,7 +105,7 @@ class ChildService extends BaseCrudService implements ChildServiceInterface
         } catch (NotFoundException $e) {
             $inheritanceEntity = $this->createEntity();
             $inheritanceEntity->setChildPersonId($personEntity->getId());
-            if(!empty($params['parentPersonId'])) {
+            if (!empty($params['parentPersonId'])) {
                 $inheritanceEntity->setParentPersonId($params['parentPersonId']);
             }
         }

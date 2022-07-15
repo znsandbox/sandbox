@@ -2,13 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Subscribers;
 
-use App\News\Domain\Entities\CommentEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use ZnCore\Code\Helpers\PropertyHelper;
 use ZnCore\Contract\User\Exceptions\UnauthorizedException;
-use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnDomain\Domain\Enums\EventEnum;
 use ZnDomain\Domain\Events\EntityEvent;
-use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
 
 class AuthorSubscriber implements EventSubscriberInterface
@@ -44,7 +42,7 @@ class AuthorSubscriber implements EventSubscriberInterface
         $entity = $event->getEntity();
         $personId = $this->myPersonService->findOne()->getId();
         //$identityId = $this->authService->getIdentity()->getId();
-        EntityHelper::setAttribute($entity, $this->attribute, $personId);
+        PropertyHelper::setAttribute($entity, $this->attribute, $personId);
         try {
 
         } catch (UnauthorizedException $e) {

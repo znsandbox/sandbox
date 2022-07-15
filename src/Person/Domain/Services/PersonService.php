@@ -2,21 +2,21 @@
 
 namespace ZnSandbox\Sandbox\Person\Domain\Services;
 
-use ZnCore\Text\Helpers\TextHelper;
-use ZnSandbox\Sandbox\Person\Domain\Interfaces\Services\PersonServiceInterface;
 use ZnBundle\Eav\Domain\Entities\DynamicEntity;
 use ZnBundle\Eav\Domain\Forms\DynamicForm;
 use ZnBundle\Eav\Domain\Interfaces\Services\EntityServiceInterface;
 use ZnBundle\Eav\Domain\Interfaces\Services\ValueServiceInterface;
-use ZnUser\Identity\Domain\Entities\IdentityEntity;
-use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnUser\Identity\Domain\Interfaces\Services\IdentityServiceInterface;
+use ZnCore\Code\Helpers\PropertyHelper;
+use ZnCore\Text\Helpers\TextHelper;
 use ZnDomain\Entity\Exceptions\NotFoundException;
-
+use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnDomain\Service\Base\BaseService;
 use ZnDomain\Validator\Exceptions\UnprocessibleEntityException;
-use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnKaz\Iin\Domain\Helpers\IinParser;
+use ZnSandbox\Sandbox\Person\Domain\Interfaces\Services\PersonServiceInterface;
+use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnUser\Identity\Domain\Entities\IdentityEntity;
+use ZnUser\Identity\Domain\Interfaces\Services\IdentityServiceInterface;
 
 class PersonService extends BaseService implements PersonServiceInterface
 {
@@ -65,7 +65,7 @@ class PersonService extends BaseService implements PersonServiceInterface
     {
         $dynamicForm = $this->entityService->createFormById($this->idFromName($entityName));
         if ($attributes) {
-            EntityHelper::setAttributes($dynamicForm, $attributes);
+            PropertyHelper::setAttributes($dynamicForm, $attributes);
         }
         return $dynamicForm;
     }
@@ -82,7 +82,7 @@ class PersonService extends BaseService implements PersonServiceInterface
             $this->validateBirthDate($form);
         }
         $dynamicEntity = $this->entityService->createEntityById($this->idFromName($entityName));
-        EntityHelper::setAttributes($dynamicEntity, $form->toArray());
+        PropertyHelper::setAttributes($dynamicEntity, $form->toArray());
         $dynamicEntity->setId($recordId);
 
         $this->entityService->validateEntity($dynamicEntity);
@@ -101,8 +101,8 @@ class PersonService extends BaseService implements PersonServiceInterface
     {
         /** @var IdentityEntity $identityEntity */
         $identityEntity = $this->identityService->findOneById($recordId);
-        $firstName = EntityHelper::getValue($form, 'firstName');
-        $lastName = EntityHelper::getValue($form, 'lastName');
+        $firstName = PropertyHelper::getValue($form, 'firstName');
+        $lastName = PropertyHelper::getValue($form, 'lastName');
         $fullName = $firstName . ' ' . $lastName;
         $identityEntity->setUsername($fullName);
         $this->identityService->updateById($identityEntity->getId(), EntityHelper::toArray($identityEntity));
@@ -112,7 +112,7 @@ class PersonService extends BaseService implements PersonServiceInterface
 
     private function validateBirthDate(DynamicForm $form)
     {
-        $iinValue = EntityHelper::getValue($form, 'iin');
+        $iinValue = PropertyHelper::getValue($form, 'iin');
         try {
             $iinEntity = IinParser::parse($iinValue);
         } catch (\Exception $e) {
@@ -126,7 +126,7 @@ class PersonService extends BaseService implements PersonServiceInterface
             TextHelper::fill($iinEntity->getBirthday()->getMonth(), 2, '0', 'before')
             . '-' .
             TextHelper::fill($iinEntity->getBirthday()->getDay(), 2, '0', 'before');
-        $birthDayValue = EntityHelper::getValue($form, 'birthDate');
+        $birthDayValue = PropertyHelper::getValue($form, 'birthDate');
         if ($birthDay != $birthDayValue) {
             $exception = new UnprocessibleEntityException();
             $exception->add('birthDate', 'Birthday and IIN not equal');

@@ -2,16 +2,15 @@
 
 namespace ZnSandbox\Sandbox\Person2\Domain\Services;
 
-use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnDomain\Entity\Exceptions\NotFoundException;
-use ZnDomain\Service\Base\BaseService;
-use ZnDomain\Entity\Helpers\EntityHelper;
+use ZnCore\Code\Helpers\PropertyHelper;
 use ZnDomain\EntityManager\Interfaces\EntityManagerInterface;
 use ZnDomain\Query\Entities\Query;
+use ZnDomain\Service\Base\BaseService;
 use ZnSandbox\Sandbox\Person2\Domain\Entities\PersonEntity;
-use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\InheritanceRepositoryInterface;
+use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Repositories\PersonRepositoryInterface;
 use ZnSandbox\Sandbox\Person2\Domain\Interfaces\Services\MyPersonServiceInterface;
+use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 
 class MyPersonService extends BaseService implements MyPersonServiceInterface
 {
@@ -41,12 +40,12 @@ class MyPersonService extends BaseService implements MyPersonServiceInterface
 
     public function update(array $data): void
     {
-        if(isset($data['id'])) {
+        if (isset($data['id'])) {
             //unset($data['id']);
         }
         $personEntity = $this->findOne();
         //dump($personEntity);
-        EntityHelper::setAttributes($personEntity, $data);
+        PropertyHelper::setAttributes($personEntity, $data);
         $this->getEntityManager()->update($personEntity);
     }
 
