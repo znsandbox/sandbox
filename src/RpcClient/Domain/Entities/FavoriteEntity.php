@@ -9,7 +9,7 @@ use ZnLib\Components\Status\Enums\StatusEnum;
 use ZnLib\Components\ReadOnly\Helpers\ReadOnlyHelper;
 use ZnCore\Text\Helpers\StringHelper;
 use ZnDomain\Entity\Interfaces\EntityIdInterface;
-use ZnDomain\Сomponents\EnumRepository\Constraints\Enum;
+use ZnDomain\Сomponents\Constraints\Enum;
 use ZnDomain\Entity\Interfaces\UniqueInterface;
 use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
 

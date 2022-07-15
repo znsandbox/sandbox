@@ -8,7 +8,7 @@ use ZnBundle\Reference\Domain\Constraints\ReferenceItem;
 use ZnCore\Collection\Interfaces\Enumerable;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Contract\User\Interfaces\Entities\PersonEntityInterface;
-use ZnDomain\Сomponents\EnumRepository\Constraints\Enum;
+use ZnDomain\Сomponents\Constraints\Enum;
 use ZnCore\Text\Helpers\TextHelper;
 use ZnDomain\Entity\Interfaces\UniqueInterface;
 use ZnDomain\Validator\Interfaces\ValidationByMetadataInterface;
