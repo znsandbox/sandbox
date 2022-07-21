@@ -13,7 +13,10 @@ return [
             /** @var SynchronizeService $service */
             $service = $container->get(SynchronizeService::class);
             $configFile = DotEnv::get('SYNCHRONIZE_CONFIG_FILE');
+//            dd($configFile);
+
             $store = new StoreFile($configFile);
+
             $config = $store->load();
             $service->setConfig($config);
             return $service;
