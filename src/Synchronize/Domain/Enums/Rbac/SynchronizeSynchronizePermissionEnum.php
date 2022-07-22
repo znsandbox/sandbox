@@ -52,7 +52,4 @@ class SynchronizeSynchronizePermissionEnum implements GetLabelsInterface, GetRba
             ]
         ];
     }
-
-
 }
-
