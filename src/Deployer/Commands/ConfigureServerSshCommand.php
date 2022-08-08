@@ -5,9 +5,9 @@ namespace ZnSandbox\Sandbox\Deployer\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\IO;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerSshShell;
 
 class ConfigureServerSshCommand extends Command
 {
@@ -19,24 +19,15 @@ class ConfigureServerSshCommand extends Command
     {
         $this->io = new IO($input, $output);
 
-        $output->writeln(['<fg=white># Deployer</>']);
+        $output->writeln(['<fg=white># Deployer. Configure SSH </>']);
 
         $remoteShell = ShellFactory::create();
-        $configureServerShell = new ConfigureServerShell($remoteShell, $this->io);
+        $configureServerShell = new ConfigureServerSshShell($remoteShell, $this->io);
 
-        $sshDir = '/home/common/var/www/tool/vm-workspace/ssh';
+        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
 
-        $keys = [
-            $sshDir . '/my-github',
-            $sshDir . '/my-gitlab',
-        ];
-        $configureServerShell->copySshKeys($keys);
-
-        $files = [
-            $sshDir . '/config',
-            $sshDir . '/known_hosts',
-        ];
-        $configureServerShell->copySshFiles($files);
+        $configureServerShell->copySshKeys($config['ssh']['copyKeys']);
+        $configureServerShell->copySshFiles($config['ssh']['copyFiles']);
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
         

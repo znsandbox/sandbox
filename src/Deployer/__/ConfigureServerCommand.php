@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Code\Helpers\DeprecateHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\IO;
+use ZnLib\Console\Domain\Libs\IO;
 
 DeprecateHelper::hardThrow();
 

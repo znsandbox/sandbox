@@ -11,16 +11,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use ZnCore\FileSystem\Helpers\FindFileHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
+use ZnLib\Console\Domain\Libs\IO;
 use ZnLib\Console\Domain\ShellNew\FileSystemShell;
 use ZnLib\Console\Domain\ShellNew\SshShell;
 use ZnLib\Console\Symfony4\Helpers\InputHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
-use function Deployer\askHiddenResponse;
-use function Deployer\input;
-use function Deployer\isQuiet;
-use function Deployer\output;
 
-class ConfigureServerShell
+class _________ConfigureServerShell
 {
 
     private $localShell;

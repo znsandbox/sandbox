@@ -5,9 +5,9 @@ namespace ZnSandbox\Sandbox\Deployer\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\IO;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerAccessShell;
 
 class ConfigureServerAccessCommand extends Command
 {
@@ -19,14 +19,17 @@ class ConfigureServerAccessCommand extends Command
     {
         $this->io = new IO($input, $output);
 
-        $output->writeln(['<fg=white># Deployer</>']);
+        $output->writeln(['<fg=white># Deployer. Configure access</>']);
 
         $remoteShell = ShellFactory::create();
-        $configureServerShell = new ConfigureServerShell($remoteShell, $this->io);
+        $configureServerShell = new ConfigureServerAccessShell($remoteShell, $this->io);
 
-        $publicKeyFileName = '~/.ssh/ubuntu-server.pub';
-        $configureServerShell->setSudoPassword('111');
+        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+        $connection = $config['connections']['default'];
+
+        $publicKeyFileName = $config['access']['sshPublicKeyFile'];
         $configureServerShell->registerPublicKey($publicKeyFileName);
+        $configureServerShell->setSudoPassword($connection['password'] ?? null);
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
         
