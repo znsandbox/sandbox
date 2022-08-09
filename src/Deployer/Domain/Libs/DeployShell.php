@@ -22,12 +22,15 @@ class DeployShell extends BaseShell
     {
         $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
         $git = new GitShell($this->remoteShell);
+        $git->setDirectory($profileConfig['directory']);
 
         $fs = new FileSystemShell($this->remoteShell);
         if( ! $fs->isDirectoryExists($profileConfig['directory'])) {
             $git->clone($profileConfig['git']['repository'], $profileConfig['git']['branch'] ?? null, $profileConfig['directory']);
         } else {
             $this->io->warning('repository already exists!');
+            $this->io->writeln('git pull ...');
+            $git->pull();
         }
 
         /*try {

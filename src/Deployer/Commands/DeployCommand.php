@@ -8,12 +8,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnLib\Console\Symfony4\Question\ChoiceQuestion;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerAccessShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\DeployShell;
 
 class DeployCommand extends Command
 {
@@ -32,15 +29,16 @@ class DeployCommand extends Command
         $profiles = array_keys($deployProfiles);
         $selectedProfile = $this->io->choiceQuestion('Select profile', $profiles);
         $profileConfig = $deployProfiles[$selectedProfile];
-        $deployShell = $this->createShellInstance($profileConfig['class']);
+        $deployShell = $this->createShellInstance($profileConfig['handler']);
         $deployShell->run($selectedProfile);
 
         $this->io->success('Success!');
-        
+
         return Command::SUCCESS;
     }
 
-    private function createShellInstance($shellDefinition) {
+    private function createShellInstance($shellDefinition)
+    {
         $remoteShell = ShellFactory::create();
         //        $deployShell = new $shellDefinition($remoteShell, $this->io);
 //        $deployShell = new DeployShell($remoteShell, $this->io);
