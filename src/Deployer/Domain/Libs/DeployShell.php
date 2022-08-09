@@ -56,7 +56,7 @@ class DeployShell extends BaseShell
         if(isset($profileConfig['writable'])) {
             foreach ($profileConfig['writable'] as $path) {
                 $this->io->writeln("set writable $path ... ");
-                $fs->chmod($path, 'a+w', true);
+                $fs->sudo()->chmod($path, 'a+w', true);
             }
         }
     }
@@ -68,7 +68,8 @@ class DeployShell extends BaseShell
         $git->setDirectory($profileConfig['directory']);
 
         $fs = new FileSystemShell($this->remoteShell);
-        if( ! $fs->isDirectoryExists($profileConfig['directory'])) {
+        $fs->makeDirectory($profileConfig['directory']);
+        if( ! $fs->isDirectoryExists($profileConfig['directory'] . '/.git')) {
             $git->clone($profileConfig['git']['repository'], $profileConfig['git']['branch'] ?? null, $profileConfig['directory']);
         } else {
             $this->io->warning('repository already exists!');
