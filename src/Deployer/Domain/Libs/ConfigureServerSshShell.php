@@ -2,25 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use ZnLib\Console\Domain\Base\BaseShellNew;
-use ZnLib\Console\Domain\Libs\IO;
 use ZnLib\Console\Domain\ShellNew\FileSystemShell;
 use ZnLib\Console\Domain\ShellNew\SshShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 
-class ConfigureServerSshShell
+class ConfigureServerSshShell extends BaseShell
 {
-
-    private $localShell;
-    private $remoteShell;
-    private $io;
-
-    public function __construct(BaseShellNew $remoteShell, IO $io)
-    {
-        $this->localShell = new LocalShell();
-        $this->remoteShell = $remoteShell;
-        $this->io = $io;
-    }
 
     public function copySshKeys(array $list)
     {

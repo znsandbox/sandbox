@@ -1,0 +1,62 @@
+<?php
+
+namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
+
+use ZnLib\Console\Domain\ShellNew\FileSystemShell;
+use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
+use ZnLib\Console\Domain\ShellNew\Legacy\PackageShell;
+
+class ConfigureServerLampApacheShell extends BaseShell
+{
+
+    public function install()
+    {
+        $packageShell = new PackageShell($this->remoteShell);
+        $packageShell->install('apache2');
+
+        $apacheShell = new ApacheShell($this->remoteShell);
+        $apacheShell->start();
+
+//        dd($apacheShell->status());
+    }
+
+    public function config()
+    {
+        $apacheShell = new ApacheShell($this->remoteShell);
+
+        $apacheShell->enableRewrite();
+        $this->setPermission();
+        $this->linkSitesEnabled();
+        $this->updateConfig();
+        $apacheShell->enableAutorun();
+        $apacheShell->restart();
+    }
+
+    private function setPermission()
+    {
+        $fs = new FileSystemShell($this->remoteShell);
+        $user = $this->remoteShell->getHostEntity()->getUser();
+        $fs->sudo()->chmod('/etc/apache2', 'ugo+rwx', true);
+        $fs->sudo()->chown('/var/www', "$user:www-data");
+        $fs->sudo()->chmod('/var/www', 'g+s');
+    }
+
+    private function linkSitesEnabled()
+    {
+        $fs = new FileSystemShell($this->remoteShell);
+        if (!$fs->isFileExists('/etc/apache2/sites-enabled.bak')) {
+            $fs->move('/etc/apache2/sites-enabled', '/etc/apache2/sites-enabled.bak');
+            $fs->makeLink('/etc/apache2/sites-available', '/etc/apache2/sites-enabled', '-s');
+        }
+    }
+
+    private function updateConfig()
+    {
+        $fs = new FileSystemShell($this->remoteShell);
+        $sourceConfigFile = realpath(__DIR__ . '/../../../../../../zntool/deployer/src/resources/apache2.conf');
+        if (!$fs->isFileExists('/etc/apache2/apache2.conf.bak')) {
+            $fs->move('/etc/apache2/apache2.conf', '/etc/apache2/apache2.conf.bak');
+            $fs->uploadIfNotExist($sourceConfigFile, '/etc/apache2/apache2.conf');
+        }
+    }
+}

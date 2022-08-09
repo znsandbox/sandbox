@@ -4,15 +4,14 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnLib\Console\Domain\ShellNew\Legacy\PackageShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 
-class ConfigureServerLampShell
+abstract class BaseShell
 {
 
-    private $localShell;
-    private $remoteShell;
-    private $io;
+    protected $localShell;
+    protected $remoteShell;
+    protected $io;
 
     public function __construct(BaseShellNew $remoteShell, IO $io)
     {
@@ -20,11 +19,4 @@ class ConfigureServerLampShell
         $this->remoteShell = $remoteShell;
         $this->io = $io;
     }
-
-    public function installApache()
-    {
-        $packageShell = new PackageShell($this->remoteShell);
-        $packageShell->install('apache2');
-    }
-
 }

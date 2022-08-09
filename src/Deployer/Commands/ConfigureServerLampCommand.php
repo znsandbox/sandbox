@@ -7,8 +7,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerSshShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampPhpShell;
 
 class ConfigureServerLampCommand extends Command
 {
@@ -20,17 +20,22 @@ class ConfigureServerLampCommand extends Command
     {
         $this->io = new IO($input, $output);
 
-        $output->writeln(['<fg=white># Deployer. Configure SSH </>']);
-
-        $remoteShell = ShellFactory::create();
-        $configureServerShell = new ConfigureServerLampShell($remoteShell, $this->io);
+        $this->io->writeTitle('Deployer. Install LAMP');
 
         $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+        $remoteShell = ShellFactory::create();
 
-        $configureServerShell->installApache();
+        $serverLampApacheShell = new ConfigureServerLampApacheShell($remoteShell, $this->io);
+        $serverLampApacheShell->install();
+        $serverLampApacheShell->config();
+
+        $serverLampPhpShell = new ConfigureServerLampPhpShell($remoteShell, $this->io);
+        $serverLampPhpShell->install();
+        $serverLampPhpShell->config();
+
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
-        
+
         return Command::SUCCESS;
     }
 }
