@@ -9,6 +9,7 @@ use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\ComposerShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\GitShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\HostsShell;
+use ZnLib\Console\Domain\ShellNew\Legacy\ZnShell;
 use function Deployer\parse;
 
 class DeployShell extends BaseShell
@@ -30,6 +31,20 @@ class DeployShell extends BaseShell
 
         $this->io->writeln('apache2 restart ... ');
         $this->apacheRestart();
+
+        /*$zn = new ZnShell($this->remoteShell);
+
+        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+        $envName = $profileConfig['env'];
+
+        $this->io->writeln('zn init ... ');
+        $zn->init($envName);
+
+        $this->io->writeln('migrate up... ');
+        $zn->migrateUp($envName);
+
+        $this->io->writeln('fixture import ... ');
+        $zn->fixtureImport($envName);*/
     }
 
     protected function apacheRestart() {
