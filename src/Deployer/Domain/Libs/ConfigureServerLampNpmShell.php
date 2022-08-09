@@ -9,6 +9,8 @@ class ConfigureServerLampNpmShell extends BaseShell
 
     public function install()
     {
+        $this->io->writeln('install npm ... ');
+
         $packageShell = new PackageShell($this->remoteShell);
         $packageShell->install('npm');
 

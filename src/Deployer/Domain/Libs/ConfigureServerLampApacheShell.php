@@ -11,9 +11,12 @@ class ConfigureServerLampApacheShell extends BaseShell
 
     public function install()
     {
+        $this->io->writeln('install apache2 ... ');
+
         $packageShell = new PackageShell($this->remoteShell);
         $packageShell->install('apache2');
 
+        $this->io->writeln('start apache2 ... ');
         $apacheShell = new ApacheShell($this->remoteShell);
         $apacheShell->start();
 
@@ -24,11 +27,22 @@ class ConfigureServerLampApacheShell extends BaseShell
     {
         $apacheShell = new ApacheShell($this->remoteShell);
 
+        $this->io->writeln('apache2 enableRewrite ... ');
         $apacheShell->enableRewrite();
+
+        $this->io->writeln('set permissions ... ');
         $this->setPermission();
+
+        $this->io->writeln('link sites enabled ... ');
         $this->linkSitesEnabled();
+
+        $this->io->writeln('update apache2 config ... ');
         $this->updateConfig();
+
+        $this->io->writeln('enable apache2 autorun ... ');
         $apacheShell->enableAutorun();
+
+        $this->io->writeln('apache2 restart ... ');
         $apacheShell->restart();
     }
 

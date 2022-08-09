@@ -16,16 +16,23 @@ class ConfigureServerLampPhpShell extends BaseShell
     {
         $packageShell = new PackageShell($this->remoteShell);
 
+        $this->io->writeln('add package repository ... ');
         $packageShell->addRepository('ppa:ondrej/php');
+
+        $this->io->writeln('package update ... ');
         $packageShell->update();
 
         $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
 
+        $this->io->writeln('install base PHP packages ... ');
         $basePackages = $config['php']['basePackages'];
         $basePackages = array_map([VarProcessor::class, 'process'], $basePackages);
         $packageShell->installBatch($basePackages);
 
+        $this->io->writeln('package update ... ');
         $packageShell->update();
+
+        $this->io->writeln('install ext PHP packages ... ');
 
         $extPackages = $config['php']['extPackages'];
         $extPackages = array_map([VarProcessor::class, 'process'], $extPackages);
@@ -37,6 +44,7 @@ class ConfigureServerLampPhpShell extends BaseShell
         $fs = new FileSystemShell($this->remoteShell);
         $php = new PhpShell($this->remoteShell);
 
+        $this->io->writeln('PHP config ... ');
 
         $fs->sudo()->chmod('/etc/php', 'ugo+rwx', true);
 

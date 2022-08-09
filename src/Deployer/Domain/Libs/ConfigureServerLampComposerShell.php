@@ -9,6 +9,8 @@ class ConfigureServerLampComposerShell extends BaseShell
 
     public function install()
     {
+        $this->io->writeln('install composer ... ');
+
         $fs = new FileSystemShell($this->remoteShell);
 
         if (!$fs->isFileExists('/usr/bin/composer')) {
@@ -39,7 +41,7 @@ class ConfigureServerLampComposerShell extends BaseShell
 
             $fs->sudo()->move('~/composer.phar', '/usr/bin/composer');
         } else {
-            echo "Composer already installed\n";
+            $this->io->writeln('Composer already installed!');
         }
 
 //        $this->remoteShell->runCommand('sudo mv ~/composer.phar /usr/bin/composer');

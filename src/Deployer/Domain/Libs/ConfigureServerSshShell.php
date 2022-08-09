@@ -10,6 +10,8 @@ class ConfigureServerSshShell extends BaseShell
 
     public function copySshKeys(array $list)
     {
+        $this->io->writeln('copy SSH keys ... ');
+
         $fs = new FileSystemShell($this->remoteShell);
         foreach ($list as $sourceFilename) {
             $destFilename = "~/.ssh/" . basename($sourceFilename);
@@ -26,6 +28,8 @@ class ConfigureServerSshShell extends BaseShell
 
     public function copySshFiles(array $list)
     {
+        $this->io->writeln('copy SSH files ... ');
+
         $fs = new FileSystemShell($this->remoteShell);
         foreach ($list as $sourceFilename) {
             $destFilename = "~/.ssh/" . basename($sourceFilename);

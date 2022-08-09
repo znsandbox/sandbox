@@ -29,7 +29,11 @@ class ConfigureServerAccessCommand extends Command
         $connection = $config['connections']['default'];
 
         $publicKeyFileName = $config['access']['sshPublicKeyFile'];
+
+        $this->io->writeln('register SSH public key ... ');
         $configureServerShell->registerPublicKey($publicKeyFileName);
+
+        $this->io->writeln('set sudo password ... ');
         $configureServerShell->setSudoPassword($connection['password'] ?? null);
 
         $output->writeln(['', '<fg=green>Success!</>', '']);

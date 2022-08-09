@@ -15,7 +15,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerAccessShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\DeployShell;
 
-class ConfigureServerDeployCommand extends Command
+class DeployCommand extends Command
 {
 
     protected static $defaultName = 'deployer:server:deploy';
@@ -30,28 +30,24 @@ class ConfigureServerDeployCommand extends Command
 
         $deployProfiles = ConfigProcessor::get('deployProfiles');
         $profiles = array_keys($deployProfiles);
+        $selectedProfile = $this->io->choiceQuestion('Select profile', $profiles);
+        $profileConfig = $deployProfiles[$selectedProfile];
+        $deployShell = $this->createShellInstance($profileConfig['class']);
+        $deployShell->run($selectedProfile);
 
-        $output->writeln('');
-        $question = new ChoiceQuestion(
-            'Select profile',
-            $profiles
-        );
-        $selectedIndex = $this->getHelper('question')->ask($input, $output, $question);
+        $this->io->success('Success!');
+        
+        return Command::SUCCESS;
+    }
 
+    private function createShellInstance($shellDefinition) {
         $remoteShell = ShellFactory::create();
-
-        $profileConfig = ConfigProcessor::get('deployProfiles.' . $selectedIndex);
-        $shellDefinition = $profileConfig['class'];
-//        $deployShell = new $shellDefinition($remoteShell, $this->io);
+        //        $deployShell = new $shellDefinition($remoteShell, $this->io);
+//        $deployShell = new DeployShell($remoteShell, $this->io);
         $deployShell = InstanceHelper::create($shellDefinition, [
             BaseShellNew::class => $remoteShell,
             IO::class => $this->io,
         ]);
-//        $deployShell = new DeployShell($remoteShell, $this->io);
-        $deployShell->run($selectedIndex);
-
-        $output->writeln(['', '<fg=green>Success!</>', '']);
-        
-        return Command::SUCCESS;
+        return $deployShell;
     }
 }
