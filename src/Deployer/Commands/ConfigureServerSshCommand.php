@@ -17,6 +17,7 @@ class ConfigureServerSshCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        set_time_limit(0);
         $this->io = new IO($input, $output);
 
         $output->writeln(['<fg=white># Deployer. Configure SSH </>']);

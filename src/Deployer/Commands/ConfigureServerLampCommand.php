@@ -8,6 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampComposerShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampNpmShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampPhpShell;
 
 class ConfigureServerLampCommand extends Command
@@ -18,6 +20,7 @@ class ConfigureServerLampCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        set_time_limit(0);
         $this->io = new IO($input, $output);
 
         $this->io->writeTitle('Deployer. Install LAMP');
@@ -33,6 +36,13 @@ class ConfigureServerLampCommand extends Command
         $serverLampPhpShell->install();
         $serverLampPhpShell->config();
 
+        $serverLampComposerShell = new ConfigureServerLampComposerShell($remoteShell, $this->io);
+        $serverLampComposerShell->install();
+        $serverLampComposerShell->config();
+
+        $serverLampNpmShell = new ConfigureServerLampNpmShell($remoteShell, $this->io);
+        $serverLampNpmShell->install();
+        $serverLampNpmShell->config();
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
 

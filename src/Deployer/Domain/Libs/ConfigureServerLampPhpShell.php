@@ -25,7 +25,7 @@ class ConfigureServerLampPhpShell extends BaseShell
         $basePackages = array_map([VarProcessor::class, 'process'], $basePackages);
         $packageShell->installBatch($basePackages);
 
-
+        $packageShell->update();
 
         $extPackages = $config['php']['extPackages'];
         $extPackages = array_map([VarProcessor::class, 'process'], $extPackages);
