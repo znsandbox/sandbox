@@ -2,11 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Shell;
 
-use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Helpers\CommandLineHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
 
-class RemoteShell extends BaseShellNew
+class RemoteShell extends LocalShell
 {
 
     private $hostEntity;
@@ -29,7 +28,7 @@ class RemoteShell extends BaseShellNew
         return "ssh $host $command";
     }
 
-    public function runCommand($command, ?string $path = null): string 
+    public function runCommand($command, ?string $path = null): string
     {
         $ssh = $this->wrapCommand($command);
         $commandOutput = parent::runCommand($ssh);
