@@ -36,13 +36,13 @@ class ConfigureServerLampCommand extends Command
         $serverLampPhpShell->install();
         $serverLampPhpShell->config();
 
-        $serverLampComposerShell = new ConfigureServerLampComposerShell($remoteShell, $this->io);
+        /*$serverLampComposerShell = new ConfigureServerLampComposerShell($remoteShell, $this->io);
         $serverLampComposerShell->install();
-        $serverLampComposerShell->config();
+        $serverLampComposerShell->config();*/
 
-        $serverLampNpmShell = new ConfigureServerLampNpmShell($remoteShell, $this->io);
+        /*$serverLampNpmShell = new ConfigureServerLampNpmShell($remoteShell, $this->io);
         $serverLampNpmShell->install();
-        $serverLampNpmShell->config();
+        $serverLampNpmShell->config();*/
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
 

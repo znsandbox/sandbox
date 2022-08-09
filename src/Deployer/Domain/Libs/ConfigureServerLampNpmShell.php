@@ -11,6 +11,8 @@ class ConfigureServerLampNpmShell extends BaseShell
     {
         $packageShell = new PackageShell($this->remoteShell);
         $packageShell->install('npm');
+
+        echo ($this->remoteShell->runCommand('{{bin/npm}} --version')) . PHP_EOL;
     }
 
     public function config()
