@@ -2,9 +2,14 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
+use Deployer\ServerFs;
+use Deployer\ServerHosts;
 use ZnLib\Console\Domain\ShellNew\FileSystemShell;
+use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\ComposerShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\GitShell;
+use ZnLib\Console\Domain\ShellNew\Legacy\HostsShell;
+use function Deployer\parse;
 
 class DeployShell extends BaseShell
 {
@@ -16,6 +21,44 @@ class DeployShell extends BaseShell
 
         $this->io->writeln('composer install ... ');
         $this->installDependency($profileName);
+
+        $this->io->writeln('set permissions ... ');
+        $this->setPermissions($profileName);
+
+        $this->io->writeln('assign domains ... ');
+        $this->assignDomains($profileName);
+
+        $this->io->writeln('apache2 restart ... ');
+        $this->apacheRestart();
+    }
+
+    protected function apacheRestart() {
+        $apache = new ApacheShell($this->remoteShell);
+        $apache->restart();
+    }
+
+    protected function assignDomains(string $profileName) {
+        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+        $apache = new ApacheShell($this->remoteShell);
+        $hosts = new HostsShell($this->remoteShell);
+
+        foreach ($profileConfig['domains'] as $item) {
+            $hosts->add($item['domain']);
+            $apache->addConf($item['domain'], $item['directory']);
+        }
+    }
+
+    protected function setPermissions(string $profileName) {
+        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+
+        $fs = new FileSystemShell($this->remoteShell);
+
+        if(isset($profileConfig['writable'])) {
+            foreach ($profileConfig['writable'] as $path) {
+                $this->io->writeln("set writable $path ... ");
+                $fs->chmod($path, 'a+w', true);
+            }
+        }
     }
 
     protected function clone(string $profileName)
