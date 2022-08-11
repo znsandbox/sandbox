@@ -47,7 +47,6 @@ class VarProcessor
         if (self::$vars) {
             return;
         }
-
         $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
         self::$vars = $config['vars'];
         self::initVars();
