@@ -54,7 +54,7 @@ class DeployShell extends BaseShell
             $zn->migrateUp($envName);
         } catch (\Throwable $e) {
             $fs = new FileSystemShell($this->remoteShell);
-            $fs->sudo()->chmod('{{release_path}}/var', '777', true);
+            $fs->sudo()->chmod('{{release_path}}/var', 'a+w', true);
             $zn->migrateUp($envName);
         }
 
