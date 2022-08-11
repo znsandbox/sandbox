@@ -34,9 +34,11 @@ class ConfigureServerAccessShell extends BaseShell
         $host = "{$hostEntity->getUser()}@{$hostEntity->getHost()}";
         $dsn = "-p $port $host";
         $cmd = "ssh-copy-id -i {$publicKeyFileName} {$dsn}";
-        
+
         $out = $this->localShell->runCommand($cmd);
+
         if (trim($out) != null) {
+
             throw new \Exception('copyId error! ' . $out);
         }
         return $out;

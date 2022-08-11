@@ -49,6 +49,9 @@ class VarProcessor
         }
         $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
         self::$vars = $config['vars'];
+
+        self::$vars['homeUserDir'] = "/home/{$config['connections']['default']['user']}";
+
         self::initVars();
     }
 

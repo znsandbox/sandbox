@@ -39,7 +39,7 @@ class ConfigureServerLampComposerShell extends BaseShell
             $this->remoteShell->runCommand('{{bin/php}} composer-setup.php');
             $this->remoteShell->runCommand('{{bin/php}} -r "unlink(\'composer-setup.php\');"');
 
-            $fs->sudo()->move('~/composer.phar', '/usr/bin/composer');
+            $fs->sudo()->move('{{homeUserDir}}/composer.phar', '/usr/bin/composer');
         } else {
             $this->io->writeln('Composer already installed!');
         }

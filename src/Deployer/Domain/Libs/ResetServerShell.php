@@ -16,9 +16,9 @@ use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 class ResetServerShell extends BaseShell
 {
 
-    private $vmDirectory = '/home/vitaliy/VirtualBox VMs';
-    private $vmName = 'Server';
-    private $vmBackup = '/home/vitaliy/VirtualBox VMs/-backup/3_Server_upgraded_2022_08_11.zip';
+    private $vmDirectory;
+    private $vmName;
+    private $vmBackup;
 
     /*public function __construct(BaseShellNew $remoteShell, IO $io)
     {
@@ -31,12 +31,14 @@ class ResetServerShell extends BaseShell
         $this->localShell = new LocalShell();
         $this->remoteShell = new LocalShell();
         $this->io = $io;
+
+        $this->vmName = $_ENV['DEPLOYER_VIRTUAL_BOX_NAME'];
+        $this->vmDirectory = $_ENV['DEPLOYER_VIRTUAL_BOX_DIRECTORY'];
+        $this->vmBackup = $_ENV['DEPLOYER_VIRTUAL_BOX_BACKUP_FILE'];
     }
 
     public function run()
     {
-//        dd('ResetServerShell');
-
         $this->io->writeln('shutDown ... ');
         $this->shutDown();
 
@@ -48,14 +50,10 @@ class ResetServerShell extends BaseShell
 
         $this->io->writeln('startUp ... ');
         $this->startUp();
-
-        #cd "/home/vitaliy/VirtualBox VMs"
     }
 
     protected function shutDown()
     {
-        #VBoxManage controlvm "Server" acpipowerbutton
-        #sleep 5s
         $virtualBox = new VirtualBoxShell($this->localShell);
         $virtualBox->shutDown($this->vmName);
         $this->io->writeln('wait 10 seconds ... ');
@@ -64,25 +62,18 @@ class ResetServerShell extends BaseShell
 
     protected function removeFiles()
     {
-        #rm -rf Server
         $fs = new FileSystemShell($this->remoteShell);
-        $fs->sudo()->removeDir($this->vmDirectory);
-//        $this->localShell->sudo()->runCommand("cd \"{$this->vmDirectory}\" && rm -rf \"{$this->vmName}\"");
+        $fs->sudo()->removeDir($this->vmDirectory . '/' . $this->vmName);
     }
 
     protected function restoreFromBackup()
     {
-        #unzip "/home/vitaliy/VirtualBox VMs/-backup/3_Server_upgraded_2022_08_11.zip"
-
         $zip = new ZipShell($this->remoteShell);
         $zip->unZipAllToDir($this->vmBackup, $this->vmDirectory);
-        
-//        $this->localShell->runCommand("cd \"{$this->vmDirectory}\" && unzip \"{$this->vmBackup}\"");
     }
 
     protected function startUp()
     {
-        #VBoxManage startvm "Server" --type headless
         $virtualBox = new VirtualBoxShell($this->localShell);
         $virtualBox->startUp($this->vmName);
     }

@@ -2,8 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use ZnLib\Components\Time\Enums\TimeEnum;
+use ZnLib\Console\Domain\Helpers\CommandLineHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 use function Deployer\run;
 
@@ -20,11 +22,14 @@ class EnvProcessor
 
         $process = Process::fromShellCommandline("command -v $nameEscaped || which $nameEscaped || type -p $nameEscaped");
         $process->setTimeout(TimeEnum::SECOND_PER_YEAR);
-        $process->run();
+
+        /*$process->run();
         if (!$process->isSuccessful()) {
-//            dd($process->getOutput());
-            throw new \Exception($process->getErrorOutput());
-        }
+            throw new ProcessFailedException($process);
+        }*/
+
+        CommandLineHelper::run($process);
+
         $path = $process->getOutput();
 
 
