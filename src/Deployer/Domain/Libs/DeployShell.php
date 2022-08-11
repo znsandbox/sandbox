@@ -2,15 +2,13 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use Deployer\ServerFs;
-use Deployer\ServerHosts;
 use ZnLib\Console\Domain\ShellNew\FileSystemShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\ComposerShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\GitShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\HostsShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\ZnShell;
-use function Deployer\parse;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 
 class DeployShell extends BaseShell
 {
@@ -34,22 +32,16 @@ class DeployShell extends BaseShell
 
         $zn = new ZnShell($this->remoteShell);
 
-        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
-        foreach ($profileConfig['vars'] as $key => $value) {
-//            dump($key, $value);
-            VarProcessor::set($key, $value);
-        }
+        $profileConfig = ProfileRepository::findOneByName($profileName);
+        VarProcessor::setList($profileConfig['vars']);
 
-//        VarProcessor::initVars();
-        
-//        dd($profileConfig['vars']);
         $envName = $profileConfig['env'];
 
         $this->io->writeln('zn init ... ');
         $zn->init($envName);
-        
+
         $this->io->writeln('migrate up... ');
-        
+
         try {
             $zn->migrateUp($envName);
         } catch (\Throwable $e) {
@@ -62,13 +54,15 @@ class DeployShell extends BaseShell
         $zn->fixtureImport($envName);
     }
 
-    protected function apacheRestart() {
+    protected function apacheRestart()
+    {
         $apache = new ApacheShell($this->remoteShell);
         $apache->restart();
     }
 
-    protected function assignDomains(string $profileName) {
-        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+    protected function assignDomains(string $profileName)
+    {
+        $profileConfig = ProfileRepository::findOneByName($profileName);
         $apache = new ApacheShell($this->remoteShell);
         $hosts = new HostsShell($this->remoteShell);
 
@@ -78,12 +72,13 @@ class DeployShell extends BaseShell
         }
     }
 
-    protected function setPermissions(string $profileName) {
-        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+    protected function setPermissions(string $profileName)
+    {
+        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $fs = new FileSystemShell($this->remoteShell);
 
-        if(isset($profileConfig['writable'])) {
+        if (isset($profileConfig['writable'])) {
             foreach ($profileConfig['writable'] as $path) {
                 $this->io->writeln("set writable $path ... ");
                 $fs->sudo()->chmod($path, 'a+w', true);
@@ -93,13 +88,13 @@ class DeployShell extends BaseShell
 
     protected function clone(string $profileName)
     {
-        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+        $profileConfig = ProfileRepository::findOneByName($profileName);
         $git = new GitShell($this->remoteShell);
         $git->setDirectory($profileConfig['directory']);
 
         $fs = new FileSystemShell($this->remoteShell);
         $fs->makeDirectory($profileConfig['directory']);
-        if( ! $fs->isDirectoryExists($profileConfig['directory'] . '/.git')) {
+        if (!$fs->isDirectoryExists($profileConfig['directory'] . '/.git')) {
             $git->clone($profileConfig['git']['repository'], $profileConfig['git']['branch'] ?? null, $profileConfig['directory']);
         } else {
             $this->io->warning('repository already exists!');
@@ -116,7 +111,7 @@ class DeployShell extends BaseShell
 
     protected function installDependency(string $profileName)
     {
-        $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+        $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
         $composer->install($profileConfig['directory']);
     }

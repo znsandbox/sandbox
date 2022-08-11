@@ -12,23 +12,19 @@ use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 
 class DeployCommand extends Command
 {
 
     protected static $defaultName = 'deployer:server:deploy';
+    
+    /** @var IO */
     private $io;
 
     protected function configure()
     {
         $this->addArgument('projectName', InputArgument::OPTIONAL);
-        /*$this->addOption(
-            'wrapped',
-            null,
-            InputOption::VALUE_OPTIONAL,
-            '',
-            false
-        );*/
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -37,16 +33,14 @@ class DeployCommand extends Command
         $this->io = new IO($input, $output);
 
         $output->writeln(['<fg=white># Deployer. Deploy</>']);
-
-        $deployProfiles = ConfigProcessor::get('deployProfiles');
         
-        $projectName = $input->getArgument('projectName');
-        if(empty($projectName)) {
-            $profiles = array_keys($deployProfiles);
-            $projectName = $this->io->choiceQuestion('Select profile', $profiles);
-        }
+        $projectName = $this->getProfileName();
 
-        $profileConfig = $deployProfiles[$projectName];
+        $profileConfig = ProfileRepository::findOneByName($projectName);
+        
+//        $deployProfiles = ConfigProcessor::get('deployProfiles');
+//        $profileConfig = $deployProfiles[$projectName];
+        
         $deployShell = $this->createShellInstance($profileConfig['handler']);
         $deployShell->run($projectName);
 
@@ -57,7 +51,14 @@ class DeployCommand extends Command
 
     private function getProfileName(): string
     {
-        
+//        $deployProfiles = ConfigProcessor::get('deployProfiles');
+        $projectName = $this->io->getInput()->getArgument('projectName');
+        if(empty($projectName)) {
+            $deployProfiles = ProfileRepository::findAll();
+            $profiles = array_keys($deployProfiles);
+            $projectName = $this->io->choiceQuestion('Select profile', $profiles);
+        }
+        return $projectName;
     }
 
     private function createShellInstance($shellDefinition)

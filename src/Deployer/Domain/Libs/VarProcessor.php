@@ -23,6 +23,15 @@ class VarProcessor
         self::initVars();
     }
 
+    public static function setList(array $list): void
+    {
+        self::init();
+        foreach ($list as $key => $value) {
+            ArrayHelper::set(self::$vars, $key, $value);
+        }
+        self::initVars();
+    }
+
     public static function get(string $key, $default = null)
     {
         return ArrayHelper::getValue(self::$vars, $key, $default);
@@ -41,7 +50,6 @@ class VarProcessor
 
         $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
         self::$vars = $config['vars'];
-
         self::initVars();
     }
 
