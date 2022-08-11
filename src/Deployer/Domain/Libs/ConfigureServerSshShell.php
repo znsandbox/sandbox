@@ -13,8 +13,9 @@ class ConfigureServerSshShell extends BaseShell
         $this->io->writeln('copy SSH keys ... ');
 
         $fs = new FileSystemShell($this->remoteShell);
+        $userDir = ConfigProcessor::get('connections.default.user');
         foreach ($list as $sourceFilename) {
-            $destFilename = "~/.ssh/" . basename($sourceFilename);
+            $destFilename = "/home/{$userDir}/.ssh/" . basename($sourceFilename);
 
             $fs->uploadFile($sourceFilename . '.pub', $destFilename . '.pub');
             $fs->chmod($destFilename . '.pub', '=644');

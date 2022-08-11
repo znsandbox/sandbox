@@ -9,6 +9,7 @@ use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\ComposerShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\HostsShell;
 use ZnLib\Console\Domain\ShellNew\Legacy\VirtualBoxShell;
+use ZnLib\Console\Domain\ShellNew\Legacy\ZipShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 
@@ -57,18 +58,26 @@ class ResetServerShell extends BaseShell
         #sleep 5s
         $virtualBox = new VirtualBoxShell($this->localShell);
         $virtualBox->shutDown($this->vmName);
+        $this->io->writeln('wait 10 seconds ... ');
+        $this->localShell->runCommand("sleep 10s");
     }
 
     protected function removeFiles()
     {
         #rm -rf Server
-        $this->localShell->sudo()->runCommand("cd \"{$this->vmDirectory}\" && rm -rf \"{$this->vmName}\"");
+        $fs = new FileSystemShell($this->remoteShell);
+        $fs->sudo()->removeDir($this->vmDirectory);
+//        $this->localShell->sudo()->runCommand("cd \"{$this->vmDirectory}\" && rm -rf \"{$this->vmName}\"");
     }
 
     protected function restoreFromBackup()
     {
         #unzip "/home/vitaliy/VirtualBox VMs/-backup/3_Server_upgraded_2022_08_11.zip"
-        $this->localShell->runCommand("cd \"{$this->vmDirectory}\" && unzip \"{$this->vmBackup}\"");
+
+        $zip = new ZipShell($this->remoteShell);
+        $zip->unZipAllToDir($this->vmBackup, $this->vmDirectory);
+        
+//        $this->localShell->runCommand("cd \"{$this->vmDirectory}\" && unzip \"{$this->vmBackup}\"");
     }
 
     protected function startUp()
