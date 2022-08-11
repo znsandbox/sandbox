@@ -18,6 +18,7 @@ class VarProcessor
 
     public static function set(string $key, $value): void
     {
+        self::init();
         ArrayHelper::set(self::$vars, $key, $value);
         self::initVars();
     }
@@ -44,7 +45,7 @@ class VarProcessor
         self::initVars();
     }
 
-    private static function initVars()
+    public static function initVars()
     {
         self::$vars = self::processVars(self::$vars);
     }
@@ -56,7 +57,7 @@ class VarProcessor
             foreach ($vars as $index => $var) {
                 $vars[$index] = self::render($var, $vars);
             }
-        } while ($oldVars === $vars);
+        } while ($oldVars !== $vars);
         return $vars;
     }
 }

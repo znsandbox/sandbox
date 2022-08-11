@@ -32,19 +32,34 @@ class DeployShell extends BaseShell
         $this->io->writeln('apache2 restart ... ');
         $this->apacheRestart();
 
-        /*$zn = new ZnShell($this->remoteShell);
+        $zn = new ZnShell($this->remoteShell);
 
         $profileConfig = ConfigProcessor::get('deployProfiles.' . $profileName);
+        foreach ($profileConfig['vars'] as $key => $value) {
+//            dump($key, $value);
+            VarProcessor::set($key, $value);
+        }
+
+//        VarProcessor::initVars();
+        
+//        dd($profileConfig['vars']);
         $envName = $profileConfig['env'];
 
         $this->io->writeln('zn init ... ');
         $zn->init($envName);
-
+        
         $this->io->writeln('migrate up... ');
-        $zn->migrateUp($envName);
+        
+        try {
+            $zn->migrateUp($envName);
+        } catch (\Throwable $e) {
+            $fs = new FileSystemShell($this->remoteShell);
+            $fs->sudo()->chmod('{{release_path}}/var', '777', true);
+            $zn->migrateUp($envName);
+        }
 
         $this->io->writeln('fixture import ... ');
-        $zn->fixtureImport($envName);*/
+        $zn->fixtureImport($envName);
     }
 
     protected function apacheRestart() {
