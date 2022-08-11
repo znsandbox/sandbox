@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use ZnLib\Console\Domain\ShellNew\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
 
 class ConfigureServerAccessShell extends BaseShell
 {
@@ -25,8 +26,16 @@ class ConfigureServerAccessShell extends BaseShell
 
     private function copyId(string $publicKeyFileName)
     {
-        $dsn = $this->remoteShell->getHostEntity()->getDsn();
-        $out = $this->localShell->runCommand("ssh-copy-id -i {$publicKeyFileName} {$dsn}");
+        /** @var HostEntity $hostEntity */
+        $hostEntity = $this->remoteShell->getHostEntity();
+        $port = $hostEntity->getPort();
+//        $dsn = $hostEntity->getDsn();
+
+        $host = "{$hostEntity->getUser()}@{$hostEntity->getHost()}";
+        $dsn = "-p $port $host";
+        $cmd = "ssh-copy-id -i {$publicKeyFileName} {$dsn}";
+        
+        $out = $this->localShell->runCommand($cmd);
         if (trim($out) != null) {
             throw new \Exception('copyId error! ' . $out);
         }

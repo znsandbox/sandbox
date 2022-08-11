@@ -43,6 +43,9 @@ class HostEntity
 
     public function getDsn(): string
     {
+        /*$host = "{$this->getUser()}@{$this->getHost()}";
+        return $host;*/
+        
         $uri = new Uri();
         $uri = $uri
             ->withScheme('ssh')
@@ -52,5 +55,10 @@ class HostEntity
         ;
         return $uri->__toString();
 //        return $sshDsn = "{$this->getUser()}@{$this->getHost()}:{$this->getPort()}";
+    }
+
+    public function getSshOption(): string
+    {
+        
     }
 }

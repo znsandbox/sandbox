@@ -24,8 +24,18 @@ class RemoteShell extends LocalShell
     {
         $command = CommandLineHelper::argsToString($command, $this->lang);
         $command = escapeshellarg($command);
-        $host = $this->hostEntity->getDsn();
-        return "ssh $host $command";
+
+        /** @var HostEntity $hostEntity */
+        $hostEntity = $this->getHostEntity();
+        
+//        $host = $hostEntity->getDsn();
+        $port = $hostEntity->getPort();
+        $host = "{$hostEntity->getUser()}@{$hostEntity->getHost()}";
+        
+        $cmd = "ssh -p $port $host $command";
+        
+//        dd($cmd);
+        return $cmd;
     }
 
     public function runCommand($command, ?string $path = null): string
