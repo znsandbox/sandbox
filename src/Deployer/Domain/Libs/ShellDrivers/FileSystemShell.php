@@ -12,7 +12,7 @@ use ZnLib\Console\Domain\Libs\ShellParsers\ShellItemsParser;
 use function Deployer\download;
 use function Deployer\upload;
 
-class FileSystemShell extends BaseShellNew2
+class FileSystemShell extends BaseShellDriver
 {
 
     const A_W = 'a+w';

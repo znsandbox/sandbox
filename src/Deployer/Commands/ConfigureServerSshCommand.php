@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerSshShell;
 
 class ConfigureServerSshCommand extends Command
@@ -25,13 +26,15 @@ class ConfigureServerSshCommand extends Command
         $remoteShell = ShellFactory::create();
         $configureServerShell = new ConfigureServerSshShell($remoteShell, $this->io);
 
-        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+        $configureServerShell->copySshKeys(ConfigProcessor::get('ssh.copyKeys'));
+        $configureServerShell->copySshFiles(ConfigProcessor::get('ssh.copyFiles'));
 
-        $configureServerShell->copySshKeys($config['ssh']['copyKeys']);
-        $configureServerShell->copySshFiles($config['ssh']['copyFiles']);
+//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+//        $configureServerShell->copySshKeys($config['ssh']['copyKeys']);
+//        $configureServerShell->copySshFiles($config['ssh']['copyFiles']);
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
-        
+
         return Command::SUCCESS;
     }
 }

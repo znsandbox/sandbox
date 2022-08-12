@@ -2,10 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 use function Deployer\askHiddenResponse;
 
-class UserShell extends BaseShellNew2
+class UserShell extends BaseShellDriver
 {
 
     public function setSudoPassword(): void

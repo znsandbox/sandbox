@@ -25,7 +25,7 @@ class ConfigureServerLampCommand extends Command
 
         $this->io->writeTitle('Deployer. Install LAMP');
 
-        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
         $remoteShell = ShellFactory::create();
 
         $serverLampApacheShell = new ConfigureServerLampApacheShell($remoteShell, $this->io);

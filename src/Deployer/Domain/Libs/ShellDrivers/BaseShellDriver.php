@@ -3,8 +3,9 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
 
-class BaseShellNew2
+abstract class BaseShellDriver
 {
 
     protected $shell;
@@ -60,15 +61,17 @@ class BaseShellNew2
 
     protected static function getSudoCommandTemplate()
     {
-        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-        return $config['connections']['default']['sudo']['commandTemplate'] ?? 'sudo {command}';
+        return ConfigProcessor::get('connections.default.sudo.commandTemplate', 'sudo {command}');
+//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+//        return $config['connections']['default']['sudo']['commandTemplate'] ?? 'sudo {command}';
 //        return 'sudo -S {command} < ~/sudo-pass';
     }
 
     protected static function getSudoCommandName(): string
     {
-        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-        return ($config['connections']['default']['sudo']['command'] ?? 'sudo') . ' ';
+        return ConfigProcessor::get('connections.default.sudo.command', 'sudo') . ' ';
+//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+//        return ($config['connections']['default']['sudo']['command'] ?? 'sudo') . ' ';
     }
 
     protected function stripSudo(string $command): string

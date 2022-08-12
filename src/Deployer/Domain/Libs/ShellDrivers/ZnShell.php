@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
 use Deployer\Zn;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
-class ZnShell extends BaseShellNew2
+class ZnShell extends BaseShellDriver
 {
 
     public function init(string $env)

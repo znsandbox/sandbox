@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Factories;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\RemoteShell;
 
 class ShellFactory
@@ -12,8 +13,10 @@ class ShellFactory
     {
         $host = new HostEntity();
 
-        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-        $connection = $config['connections'][$connectionName];
+        $connection = ConfigProcessor::get("connections.$connectionName");
+
+//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+//        $connection = $config['connections'][$connectionName];
 
         $host->setHost($connection['host'] ?? null);
         $host->setPort($connection['port'] ?? 22);

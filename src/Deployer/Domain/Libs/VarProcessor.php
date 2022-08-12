@@ -3,10 +3,13 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use ZnCore\Arr\Helpers\ArrayHelper;
+use ZnCore\Pattern\Singleton\SingletonTrait;
 use ZnCore\Text\Helpers\TemplateHelper;
 
 class VarProcessor
 {
+
+    use SingletonTrait;
 
     private static $vars;
 
@@ -49,6 +52,8 @@ class VarProcessor
         }
         $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
         self::$vars = $config['vars'];
+
+//        self::$vars = ConfigProcessor::get('vars');
 
         self::$vars['homeUserDir'] = "/home/{$config['connections']['default']['user']}";
 

@@ -22,10 +22,11 @@ class ConfigureServerLampPhpShell extends BaseShell
         $this->io->writeln('package update ... ');
         $packageShell->update();
 
-        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
 
         $this->io->writeln('install base PHP packages ... ');
-        $basePackages = $config['php']['basePackages'];
+//        $basePackages = $config['php']['basePackages'];
+        $basePackages = ConfigProcessor::get('php.basePackages');
         $basePackages = array_map([VarProcessor::class, 'process'], $basePackages);
         $packageShell->installBatch($basePackages);
 
@@ -34,7 +35,8 @@ class ConfigureServerLampPhpShell extends BaseShell
 
         $this->io->writeln('install ext PHP packages ... ');
 
-        $extPackages = $config['php']['extPackages'];
+//        $extPackages = $config['php']['extPackages'];
+        $extPackages = ConfigProcessor::get('php.extPackages');
         $extPackages = array_map([VarProcessor::class, 'process'], $extPackages);
         $packageShell->installBatch($extPackages);
     }

@@ -3,10 +3,13 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use ZnCore\Arr\Helpers\ArrayHelper;
+use ZnCore\Pattern\Singleton\SingletonTrait;
 use ZnCore\Text\Helpers\TemplateHelper;
 
 class ConfigProcessor
 {
+
+    use SingletonTrait;
 
     private static $config;
 
@@ -19,6 +22,12 @@ class ConfigProcessor
     {
         self::init();
         return ArrayHelper::getValue(self::$config, $key, $default);
+    }
+
+    public static function all()
+    {
+        self::init();
+        return self::$config;
     }
 
     private static function init()

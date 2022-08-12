@@ -3,9 +3,9 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
 use Deployer\View;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
-class PackageShell extends BaseShellNew2
+class PackageShell extends BaseShellDriver
 {
 
     public function addRepository($package, $options = [])

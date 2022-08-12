@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
-class ZipShell extends BaseShellNew2
+class ZipShell extends BaseShellDriver
 {
 
     private $directory;

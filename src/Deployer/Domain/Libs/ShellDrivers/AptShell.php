@@ -5,9 +5,9 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 use Deployer\ServerApt;
 use Deployer\ServerPackage;
 use Deployer\View;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
-class AptShell extends BaseShellNew2
+class AptShell extends BaseShellDriver
 {
 
     /*public function addRepository($package, $options = [])

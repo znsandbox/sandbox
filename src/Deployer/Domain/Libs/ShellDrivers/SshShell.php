@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
 use Deployer\ServerFs;
 use Deployer\SshConfig;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
-class SshShell extends BaseShellNew2
+class SshShell extends BaseShellDriver
 {
 
     public function list()

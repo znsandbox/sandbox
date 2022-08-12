@@ -4,12 +4,12 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
 use Deployer\ServerApache;
 use ZnCore\Text\Helpers\TemplateHelper;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
 use ZnTool\Deployer\Entities\ApacheStatusEntity;
 use function Deployer\get;
 
-class ApacheShell extends BaseShellNew2
+class ApacheShell extends BaseShellDriver
 {
 
     public function enableAutorun() {

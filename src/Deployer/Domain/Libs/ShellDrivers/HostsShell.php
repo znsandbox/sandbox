@@ -2,10 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
 
-class HostsShell extends BaseShellNew2
+class HostsShell extends BaseShellDriver
 {
 
     public function add(string $domain, string $ip = '127.0.0.1')

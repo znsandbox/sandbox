@@ -2,15 +2,15 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use ZnCore\Pattern\Singleton\SingletonTrait;
 use ZnLib\Components\Time\Enums\TimeEnum;
 use ZnLib\Console\Domain\Helpers\CommandLineHelper;
-use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
-use function Deployer\run;
 
 class EnvProcessor
 {
+
+    use SingletonTrait;
 
     public static function locateBinaryPath($name)
     {
@@ -21,21 +21,10 @@ class EnvProcessor
         // Fallback to `type` command, if the rest fails
 
         $process = Process::fromShellCommandline("command -v $nameEscaped || which $nameEscaped || type -p $nameEscaped");
-        $process->setTimeout(TimeEnum::SECOND_PER_YEAR);
-
-        /*$process->run();
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }*/
-
+//        $process->setTimeout(TimeEnum::SECOND_PER_YEAR);
         CommandLineHelper::run($process);
-
         $path = $process->getOutput();
 
-
-//        $localShell = new LocalShell();
-//        $path = $localShell->runCommand("command -v $nameEscaped || which $nameEscaped || type -p $nameEscaped");
-//        $path = run("command -v $nameEscaped || which $nameEscaped || type -p $nameEscaped");
         if ($path) {
             // Deal with issue when `type -p` outputs something like `type -ap` in some implementations
             return trim(str_replace("$name is", "", $path));

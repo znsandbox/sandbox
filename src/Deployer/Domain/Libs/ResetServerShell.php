@@ -39,13 +39,13 @@ class ResetServerShell extends BaseShell
 
     public function run()
     {
-        $this->io->writeln('shutDown ... ');
+        $this->io->writeln('shutDown server  ... ');
         $this->shutDown();
 
-        $this->io->writeln('removeFiles ... ');
+        $this->io->writeln('remove VirtualBox image ... ');
         $this->removeFiles();
 
-        $this->io->writeln('restoreFromBackup ... ');
+        $this->io->writeln('restore VirtualBox image from backup ... ');
         $this->restoreFromBackup();
 
         $this->io->writeln('startUp ... ');
@@ -56,8 +56,9 @@ class ResetServerShell extends BaseShell
     {
         $virtualBox = new VirtualBoxShell($this->localShell);
         $virtualBox->shutDown($this->vmName);
-        $this->io->writeln('wait 10 seconds ... ');
-        $this->localShell->runCommand("sleep 10s");
+        $seconds = 5;
+        $this->io->writeln("wait $seconds seconds ... ");
+        $this->localShell->runCommand("sleep {$seconds}s");
     }
 
     protected function removeFiles()

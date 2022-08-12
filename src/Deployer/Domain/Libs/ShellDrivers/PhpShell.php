@@ -2,11 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellNew2;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
 use ZnTool\Deployer\Libs\PhpConfig2;
 
-class PhpShell extends BaseShellNew2
+class PhpShell extends BaseShellDriver
 {
 
     public function setConfig(string $configFile, array $config) {

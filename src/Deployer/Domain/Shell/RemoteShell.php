@@ -27,13 +27,13 @@ class RemoteShell extends LocalShell
 
         /** @var HostEntity $hostEntity */
         $hostEntity = $this->getHostEntity();
-        
+
 //        $host = $hostEntity->getDsn();
         $port = $hostEntity->getPort();
         $host = "{$hostEntity->getUser()}@{$hostEntity->getHost()}";
-        
+
         $cmd = "ssh -p $port $host $command";
-        
+
 //        dd($cmd);
         return $cmd;
     }
