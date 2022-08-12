@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use Deployer\View;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
 class PackageShell extends BaseShellDriver
@@ -16,12 +15,12 @@ class PackageShell extends BaseShellDriver
     public function install($package, $options = [])
     {
         if ($this->isInstalled($package)) {
-            echo "$package alredy exist\n";
+            echo "  $package alredy exist\n";
             return false;
         } else {
 //            $this->shell->sudo();
             $result = $this->runCommand("sudo apt-get install $package -y");
-            echo "$package installed\n";
+            echo "  $package installed\n";
             return $result ?: true;
         }
     }
@@ -37,13 +36,13 @@ class PackageShell extends BaseShellDriver
             }
         }
         foreach ($exists as $package) {
-            echo "$package alredy exist\n";
+            echo "  $package alredy exist\n";
         }
         $packagesString = implode(' ', $new);
         if (trim($packagesString) != '') {
             $this->install($packagesString);
             foreach ($new as $package) {
-                echo "$package installed\n";
+                echo "  $package installed\n";
             }
         }
     }

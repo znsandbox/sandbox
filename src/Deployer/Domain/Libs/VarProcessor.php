@@ -19,6 +19,13 @@ class VarProcessor
         return self::render($value, self::$vars);
     }
 
+    public static function processList(array $list): array
+    {
+        $callback = [static::class, 'process'];
+        $list = array_map($callback, $list);
+        return $list;
+    }
+
     public static function set(string $key, $value): void
     {
         self::init();

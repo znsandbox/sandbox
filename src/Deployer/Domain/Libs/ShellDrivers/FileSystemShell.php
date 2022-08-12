@@ -2,15 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use Deployer\ServerFs;
 use Symfony\Component\Process\Process;
 use ZnCore\Env\Helpers\TempHelper;
 use ZnCore\FileSystem\Helpers\FileHelper;
 use ZnCore\FileSystem\Helpers\FileStorageHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\ShellParsers\ShellItemsParser;
-use function Deployer\download;
-use function Deployer\upload;
 
 class FileSystemShell extends BaseShellDriver
 {
@@ -129,9 +126,6 @@ class FileSystemShell extends BaseShellDriver
         $this->runCommand("chown $owner \"$path\"");
     }
 
-
-
-
     public function list(string $path): array
     {
         $commandOutput = $this->runCommand("cd \"$path\" && ls -la", $path);
@@ -178,9 +172,8 @@ class FileSystemShell extends BaseShellDriver
     {
         $out = $this->runCommand("test -e \"$file\" && echo true || echo false");
         return trim($out) == 'true';
-//        dd();
         // "[ -f $file ]"
-        return $this->shell->test("test -e \"$file\" && echo true || echo false");
+//        return $this->shell->test("test -e \"$file\" && echo true || echo false");
     }
 
     public function filterItem(array $item): bool

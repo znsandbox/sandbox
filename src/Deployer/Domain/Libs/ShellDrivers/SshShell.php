@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use Deployer\ServerFs;
 use Deployer\SshConfig;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
@@ -25,8 +24,11 @@ class SshShell extends BaseShellDriver
     {
         $sshConfig = new SshConfig();
         $configData = [];
-        if (ServerFs::isFileExists('~/.ssh/config')) {
-            $config = ServerFs::downloadContent('~/.ssh/config');
+
+        $fs = new FileSystemShell($this->shell);
+
+        if ($fs->isFileExists('~/.ssh/config')) {
+            $config = $fs->downloadContent('~/.ssh/config');
             $configData = $sshConfig->parse($config);
         }
         return $sshConfig;
@@ -54,7 +56,7 @@ class SshShell extends BaseShellDriver
 
         $code = $sshConfig->generate();
 
-        ServerFs::uploadContent($code, '~/.ssh/config');
+        $fs->uploadContent($code, '~/.ssh/config');
     }
 
     public function add(string $destFilename)

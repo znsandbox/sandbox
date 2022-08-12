@@ -77,7 +77,7 @@ abstract class BaseShellDriver
     protected function stripSudo(string $command): string
     {
         $command = trim($command);
-        $command = preg_replace('/^('.static::getSudoCommandName().'\s+)/i', '', $command);
+        $command = preg_replace('/^(' . static::getSudoCommandName() . '\s+)/i', '', $command);
 //        dd($command);
 //        $command = substr($command, strlen(static::getSudoCommandName()));
         return $command;

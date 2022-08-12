@@ -2,18 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use Deployer\Deployer;
-use Deployer\ServerFs;
-use Deployer\Task\Context;
-use Symfony\Component\Console\Helper\QuestionHelper;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\Question;
-use ZnCore\FileSystem\Helpers\FindFileHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
-use ZnLib\Console\Symfony4\Helpers\InputHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\SshShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 
@@ -69,7 +60,7 @@ class _________ConfigureServerShell
 
     public function setSudoPassword(string $password = null)
     {
-        if($password == null) {
+        if ($password == null) {
             $password = askHiddenResponse('Input sudo password:');
         }
         $fs = new FileSystemShell($this->remoteShell);
@@ -103,26 +94,26 @@ class _________ConfigureServerShell
 //        dd($fs->directoryFiles('/home/user/.ssh'));
 //        dd($fs->directoryFiles('/home/user/.ssh/authorized_keys'));
 //        dd($this->remoteShell->runCommand('cd ~/.ssh && ls -l'));
-        
+
         $this->uploadPublicKey($publicKeyFileName);
         $this->copyId($publicKeyFileName);
     }
-    
+
     private function copyId(string $publicKeyFileName)
     {
         $dsn = $this->remoteShell->getHostEntity()->getDsn();
         $out = $this->localShell->runCommand("ssh-copy-id -i {$publicKeyFileName} {$dsn}");
-        if(trim($out) != null) {
+        if (trim($out) != null) {
             throw new \Exception('copyId error! ' . $out);
         }
         return $out;
     }
-    
+
     private function uploadPublicKey(string $publicKeyFileName)
     {
         $sshCommand = $this->remoteShell->wrapCommand("mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys");
         $out = $this->localShell->runCommand("cat {$publicKeyFileName} | {$sshCommand}");
-        if(trim($out) != null) {
+        if (trim($out) != null) {
             throw new \Exception('uploadPublicKey error! ' . $out);
         }
         return $out;

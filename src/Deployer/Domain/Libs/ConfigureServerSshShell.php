@@ -29,7 +29,7 @@ class ConfigureServerSshShell extends BaseShell
 
     public function copySshFiles(array $list)
     {
-        $this->io->writeln('copy SSH files ... ');
+        $this->io->writeln('copy SSH config ... ');
 
         $fs = new FileSystemShell($this->remoteShell);
         foreach ($list as $sourceFilename) {

@@ -2,7 +2,6 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use Deployer\ServerApache;
 use ZnCore\Text\Helpers\TemplateHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;

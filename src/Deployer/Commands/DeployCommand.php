@@ -10,7 +10,6 @@ use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 
@@ -18,7 +17,7 @@ class DeployCommand extends Command
 {
 
     protected static $defaultName = 'deployer:server:deploy';
-    
+
     /** @var IO */
     private $io;
 
@@ -33,14 +32,14 @@ class DeployCommand extends Command
         $this->io = new IO($input, $output);
 
         $output->writeln(['<fg=white># Deployer. Deploy</>']);
-        
+
         $projectName = $this->getProfileName();
 
         $profileConfig = ProfileRepository::findOneByName($projectName);
-        
+
 //        $deployProfiles = ConfigProcessor::get('deployProfiles');
 //        $profileConfig = $deployProfiles[$projectName];
-        
+
         $deployShell = $this->createShellInstance($profileConfig['handler']);
         $deployShell->run($projectName);
 
@@ -53,7 +52,7 @@ class DeployCommand extends Command
     {
 //        $deployProfiles = ConfigProcessor::get('deployProfiles');
         $projectName = $this->io->getInput()->getArgument('projectName');
-        if(empty($projectName)) {
+        if (empty($projectName)) {
             $deployProfiles = ProfileRepository::findAll();
             $profiles = array_keys($deployProfiles);
             $projectName = $this->io->choiceQuestion('Select profile', $profiles);

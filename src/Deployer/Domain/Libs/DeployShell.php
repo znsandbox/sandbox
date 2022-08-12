@@ -80,7 +80,7 @@ class DeployShell extends BaseShell
 
         if (isset($profileConfig['writable'])) {
             foreach ($profileConfig['writable'] as $path) {
-                $this->io->writeln("set writable $path ... ");
+                $this->io->writeln("  set writable $path ... ");
                 $fs->sudo()->chmod($path, 'a+w', true);
             }
         }

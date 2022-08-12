@@ -40,7 +40,7 @@ class ConfigureServerAccessCommand extends Command
         $configureServerShell->setSudoPassword($connection['password'] ?? null);
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
-        
+
         return Command::SUCCESS;
     }
 }

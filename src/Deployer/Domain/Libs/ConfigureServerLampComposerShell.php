@@ -41,11 +41,12 @@ class ConfigureServerLampComposerShell extends BaseShell
 
             $fs->sudo()->move('{{homeUserDir}}/composer.phar', '/usr/bin/composer');
         } else {
-            $this->io->writeln('Composer already installed!');
+            $this->io->writeln('  Composer already installed!');
         }
 
 //        $this->remoteShell->runCommand('sudo mv ~/composer.phar /usr/bin/composer');
-        echo ($this->remoteShell->runCommand('{{bin/composer}} --version')) . PHP_EOL;
+        $version = $this->remoteShell->runCommand('{{bin/composer}} --version');
+        echo $version . PHP_EOL;
     }
 
     public function config()
