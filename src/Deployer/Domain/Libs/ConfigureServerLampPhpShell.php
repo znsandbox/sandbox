@@ -3,10 +3,10 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use Deployer\ServerFs;
-use ZnLib\Console\Domain\ShellNew\FileSystemShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\PackageShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\PhpShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\PackageShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\PhpShell;
 use function Deployer\get;
 
 class ConfigureServerLampPhpShell extends BaseShell

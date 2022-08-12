@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use ZnLib\Console\Domain\ShellNew\Legacy\PackageShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\PackageShell;
 
 class ConfigureServerLampNpmShell extends BaseShell
 {

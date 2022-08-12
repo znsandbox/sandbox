@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ApacheShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;

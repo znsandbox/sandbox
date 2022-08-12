@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use ZnLib\Console\Domain\ShellNew\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
 
 class ConfigureServerAccessShell extends BaseShell

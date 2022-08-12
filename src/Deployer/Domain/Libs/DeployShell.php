@@ -2,12 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use ZnLib\Console\Domain\ShellNew\FileSystemShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ComposerShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\GitShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\HostsShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ZnShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ComposerShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\GitShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\HostsShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ZnShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 
 class DeployShell extends BaseShell

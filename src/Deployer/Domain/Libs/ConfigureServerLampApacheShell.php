@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use ZnLib\Console\Domain\ShellNew\FileSystemShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\PackageShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\PackageShell;
 
 class ConfigureServerLampApacheShell extends BaseShell
 {

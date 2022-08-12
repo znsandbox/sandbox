@@ -12,9 +12,9 @@ use Symfony\Component\Console\Question\Question;
 use ZnCore\FileSystem\Helpers\FindFileHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnLib\Console\Domain\ShellNew\FileSystemShell;
-use ZnLib\Console\Domain\ShellNew\SshShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
 use ZnLib\Console\Symfony4\Helpers\InputHelper;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\SshShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 
 class _________ConfigureServerShell

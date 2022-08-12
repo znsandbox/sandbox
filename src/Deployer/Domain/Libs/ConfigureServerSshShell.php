@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-use ZnLib\Console\Domain\ShellNew\FileSystemShell;
-use ZnLib\Console\Domain\ShellNew\SshShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\SshShell;
 
 class ConfigureServerSshShell extends BaseShell
 {

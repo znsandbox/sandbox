@@ -4,12 +4,12 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnLib\Console\Domain\ShellNew\FileSystemShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ApacheShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ComposerShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\HostsShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\VirtualBoxShell;
-use ZnLib\Console\Domain\ShellNew\Legacy\ZipShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ComposerShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\HostsShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\VirtualBoxShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ZipShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
 
