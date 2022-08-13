@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Factories;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Shell\RemoteShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\RemoteShell;
 
 class ShellFactory
 {

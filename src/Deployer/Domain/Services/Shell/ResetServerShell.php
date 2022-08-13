@@ -4,10 +4,10 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\VirtualBoxShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ZipShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\VirtualBoxShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZipShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\LocalShell;
 
 class ResetServerShell extends BaseShell
 {
@@ -74,7 +74,7 @@ class ResetServerShell extends BaseShell
         $virtualBox = new VirtualBoxShell($this->localShell);
         $virtualBox->startUp($this->vmName);
 
-        $seconds = 5;
+        $seconds = 10;
         $this->io->writeln("wait $seconds seconds ... ");
         $this->localShell->runCommand("sleep {$seconds}s");
     }

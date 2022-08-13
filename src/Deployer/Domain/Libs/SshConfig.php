@@ -14,7 +14,8 @@ class SshConfig
         $this->config = $config;
     }*/
 
-    public function getConfig(): array {
+    public function getConfig(): array
+    {
         return $this->config;
     }
 

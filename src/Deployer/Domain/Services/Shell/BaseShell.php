@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\LocalShell;
 
 abstract class BaseShell
 {

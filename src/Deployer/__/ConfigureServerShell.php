@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\SshShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Shell\LocalShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\LocalShell;
 
 class _________ConfigureServerShell
 {

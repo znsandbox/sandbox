@@ -1,9 +1,8 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\SshConfig;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
 class SshShell extends BaseShellDriver
 {

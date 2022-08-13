@@ -1,10 +1,10 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use ZnCore\Text\Helpers\TemplateHelper;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnTool\Deployer\Entities\ApacheStatusEntity;
 use function Deployer\get;
 

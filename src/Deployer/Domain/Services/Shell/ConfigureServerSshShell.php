@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\SshShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
 
 class ConfigureServerSshShell extends BaseShell
 {

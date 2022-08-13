@@ -2,7 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
-class PhpConfig2
+/**
+ * Class PhpConfig
+ * @package ZnSandbox\Sandbox\Deployer\Domain\Libs
+ * @todo Как отсюда забрать результат?
+ */
+class PhpConfig
 {
 
     private $config;
@@ -14,7 +19,13 @@ class PhpConfig2
 
     public function set(string $name, $value)
     {
-        $this->config = preg_replace($this->generateExp($name), "$1$2$3$4$value$6$7", $this->config);
+//        $this->config = preg_replace($this->generateExp($name), "$1$2$3$4$value$6$7", $this->config);
+        $this->modify($name, "$1$2$3$4$value$6$7");
+    }
+
+    protected function modify(string $name, $expReplacement)
+    {
+        $this->config = preg_replace($this->generateExp($name), $expReplacement, $this->config);
     }
 
     public function get(string $name)
@@ -34,8 +45,9 @@ class PhpConfig2
 
     public function disable(string $name): bool
     {
-        if(!self::isDisable($name)) {
-            $this->config = preg_replace($this->generateExp($name), ";$2$3$4$5$6$7", $this->config);
+        if (!self::isDisable($name)) {
+//            $this->config = preg_replace($this->generateExp($name), ";$2$3$4$5$6$7", $this->config);
+            $this->modify($name, ";$2$3$4$5$6$7");
             return true;
         }
         return false;
@@ -43,8 +55,9 @@ class PhpConfig2
 
     public function enable(string $name): bool
     {
-        if(!self::isDisable($name)) {
-            $this->config = preg_replace($this->generateExp($name), "$2$3$4$5$6$7", $this->config);
+        if (!self::isDisable($name)) {
+//            $this->config = preg_replace($this->generateExp($name), "$2$3$4$5$6$7", $this->config);
+            $this->modify($name, "$2$3$4$5$6$7");
             return true;
         }
         return false;

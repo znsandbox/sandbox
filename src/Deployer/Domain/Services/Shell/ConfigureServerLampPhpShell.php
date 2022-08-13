@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\PackageShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\PhpShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\PackageShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\PhpShell;
 
 class ConfigureServerLampPhpShell extends BaseShell
 {

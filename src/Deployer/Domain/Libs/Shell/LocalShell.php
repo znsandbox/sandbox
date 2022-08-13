@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Shell;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;

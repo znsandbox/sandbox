@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;

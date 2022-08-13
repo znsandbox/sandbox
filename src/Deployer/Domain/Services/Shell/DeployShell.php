@@ -3,12 +3,12 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ApacheShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ComposerShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\GitShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\HostsShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ZnShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ComposerShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\GitShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\HostsShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZnShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 
 class DeployShell extends BaseShell
@@ -115,5 +115,12 @@ class DeployShell extends BaseShell
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
         $composer->install($profileConfig['directory']);
+    }
+
+    protected function updateDependency(string $profileName)
+    {
+        $profileConfig = ProfileRepository::findOneByName($profileName);
+        $composer = new ComposerShell($this->remoteShell);
+        $composer->update($profileConfig['directory']);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use Symfony\Component\Process\Process;
 use ZnCore\Env\Helpers\TempHelper;
@@ -176,7 +176,7 @@ class FileSystemShell extends BaseShellDriver
 //        return $this->shell->test("test -e \"$file\" && echo true || echo false");
     }
 
-    public function filterItem(array $item): bool
+    /*public function filterItem(array $item): bool
     {
         return !in_array($item['fileName'], ['.', '..']);
     }
@@ -205,5 +205,5 @@ class FileSystemShell extends BaseShellDriver
             return $item;
         }
         return null;
-    }
+    }*/
 }

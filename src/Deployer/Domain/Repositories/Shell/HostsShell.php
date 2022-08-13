@@ -1,9 +1,9 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 
 class HostsShell extends BaseShellDriver
 {
