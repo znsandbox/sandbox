@@ -22,7 +22,10 @@ class ConfigProcessor
     {
         self::init();
         $value = ArrayHelper::getValue(self::$config, $key, $default);
-        return VarProcessor::process($value);
+        if(is_string($value)) {
+            $value =  VarProcessor::process($value);
+        }
+        return $value;
     }
 
     public static function all()
