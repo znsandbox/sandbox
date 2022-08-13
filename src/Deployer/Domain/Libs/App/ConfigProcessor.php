@@ -21,7 +21,8 @@ class ConfigProcessor
     public static function get(string $key, $default = null)
     {
         self::init();
-        return ArrayHelper::getValue(self::$config, $key, $default);
+        $value = ArrayHelper::getValue(self::$config, $key, $default);
+        return VarProcessor::process($value);
     }
 
     public static function all()

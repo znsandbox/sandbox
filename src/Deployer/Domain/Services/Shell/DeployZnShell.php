@@ -46,66 +46,6 @@ class DeployZnShell extends BaseShell
         $this->fixtureImport($envName);
     }
 
-    protected function init(string $envName)
-    {
-        $zn = new ZnShell($this->remoteShell);
-        $zn->init($envName);
-    }
-
-    protected function migrateUp(string $envName)
-    {
-        $zn = new ZnShell($this->remoteShell);
-        try {
-            $zn->migrateUp($envName);
-        } catch (\Throwable $e) {
-            $fs = new FileSystemShell($this->remoteShell);
-            $fs->sudo()->chmod('{{release_path}}/var', 'a+w', true);
-            $zn->migrateUp($envName);
-        }
-    }
-
-    protected function fixtureImport(string $envName)
-    {
-        $zn = new ZnShell($this->remoteShell);
-        $zn->fixtureImport($envName);
-    }
-
-
-
-
-
-    protected function apacheRestart()
-    {
-        $apache = new ApacheShell($this->remoteShell);
-        $apache->restart();
-    }
-
-    protected function assignDomains(string $profileName)
-    {
-        $profileConfig = ProfileRepository::findOneByName($profileName);
-        $apache = new ApacheShell($this->remoteShell);
-        $hosts = new HostsShell($this->remoteShell);
-
-        foreach ($profileConfig['domains'] as $item) {
-            $hosts->add($item['domain']);
-            $apache->addConf($item['domain'], $item['directory']);
-        }
-    }
-
-    protected function setPermissions(string $profileName)
-    {
-        $profileConfig = ProfileRepository::findOneByName($profileName);
-
-        $fs = new FileSystemShell($this->remoteShell);
-
-        if (isset($profileConfig['writable'])) {
-            foreach ($profileConfig['writable'] as $path) {
-                $this->io->writeln("  set writable $path ... ");
-                $fs->sudo()->chmod($path, 'a+w', true);
-            }
-        }
-    }
-
     protected function clone(string $profileName)
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
@@ -141,5 +81,63 @@ class DeployZnShell extends BaseShell
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
         $composer->update($profileConfig['directory']);
+    }
+
+    protected function setPermissions(string $profileName)
+    {
+        $profileConfig = ProfileRepository::findOneByName($profileName);
+
+        $fs = new FileSystemShell($this->remoteShell);
+
+        if (isset($profileConfig['writable'])) {
+            foreach ($profileConfig['writable'] as $path) {
+                $this->io->writeln("  set writable $path ... ");
+                $fs->sudo()->chmod($path, 'a+w', true);
+            }
+        }
+    }
+
+    protected function assignDomains(string $profileName)
+    {
+        $profileConfig = ProfileRepository::findOneByName($profileName);
+        $apache = new ApacheShell($this->remoteShell);
+        $hosts = new HostsShell($this->remoteShell);
+
+        foreach ($profileConfig['domains'] as $item) {
+            $domain = VarProcessor::process($item['domain']);
+            $directory = VarProcessor::process($item['directory']);
+            $hosts->add($domain);
+            $apache->addConf($domain, $directory);
+        }
+    }
+
+    protected function apacheRestart()
+    {
+        $apache = new ApacheShell($this->remoteShell);
+        $apache->restart();
+    }
+
+    protected function init(string $envName)
+    {
+        $zn = new ZnShell($this->remoteShell);
+        $zn->init($envName);
+    }
+
+    protected function migrateUp(string $envName)
+    {
+        $zn = new ZnShell($this->remoteShell);
+        try {
+            $zn->migrateUp($envName);
+        } catch (\Throwable $e) {
+            $fs = new FileSystemShell($this->remoteShell);
+            $fs->sudo()->chmod('{{release_path}}/var', 'a+w', true);
+            $zn->migrateUp($envName);
+        }
+    }
+
+    protected function fixtureImport(string $envName)
+    {
+        $zn = new ZnShell($this->remoteShell);
+        $zn->fixtureImport($envName);
     }
 }
