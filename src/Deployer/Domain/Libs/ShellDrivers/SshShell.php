@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
-use Deployer\SshConfig;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\SshConfig;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 
 class SshShell extends BaseShellDriver
