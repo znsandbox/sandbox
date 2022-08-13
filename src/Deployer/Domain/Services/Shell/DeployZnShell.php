@@ -11,11 +11,16 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\HostsShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZnShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 
-class DeployShell extends BaseShell
+class DeployZnShell extends BaseShell
 {
 
     public function run(string $profileName)
     {
+        $profileConfig = ProfileRepository::findOneByName($profileName);
+        VarProcessor::setList($profileConfig['vars']);
+
+        $envName = $profileConfig['env'];
+
         $this->io->writeln('git clone ... ');
         $this->clone($profileName);
 
@@ -31,18 +36,25 @@ class DeployShell extends BaseShell
         $this->io->writeln('apache2 restart ... ');
         $this->apacheRestart();
 
-        $zn = new ZnShell($this->remoteShell);
-
-        $profileConfig = ProfileRepository::findOneByName($profileName);
-        VarProcessor::setList($profileConfig['vars']);
-
-        $envName = $profileConfig['env'];
-
         $this->io->writeln('zn init ... ');
-        $zn->init($envName);
+        $this->init($envName);
 
         $this->io->writeln('migrate up... ');
+        $this->migrateUp($envName);
 
+        $this->io->writeln('fixture import ... ');
+        $this->fixtureImport($envName);
+    }
+
+    protected function init(string $envName)
+    {
+        $zn = new ZnShell($this->remoteShell);
+        $zn->init($envName);
+    }
+
+    protected function migrateUp(string $envName)
+    {
+        $zn = new ZnShell($this->remoteShell);
         try {
             $zn->migrateUp($envName);
         } catch (\Throwable $e) {
@@ -50,10 +62,17 @@ class DeployShell extends BaseShell
             $fs->sudo()->chmod('{{release_path}}/var', 'a+w', true);
             $zn->migrateUp($envName);
         }
+    }
 
-        $this->io->writeln('fixture import ... ');
+    protected function fixtureImport(string $envName)
+    {
+        $zn = new ZnShell($this->remoteShell);
         $zn->fixtureImport($envName);
     }
+
+
+
+
 
     protected function apacheRestart()
     {

@@ -74,7 +74,7 @@ class ResetServerShell extends BaseShell
         $virtualBox = new VirtualBoxShell($this->localShell);
         $virtualBox->startUp($this->vmName);
 
-        $seconds = 10;
+        $seconds = 20;
         $this->io->writeln("wait $seconds seconds ... ");
         $this->localShell->runCommand("sleep {$seconds}s");
     }
