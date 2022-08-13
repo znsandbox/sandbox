@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\PhpConfig2;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\BaseShellDriver;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
-use ZnTool\Deployer\Libs\PhpConfig2;
 
 class PhpShell extends BaseShellDriver
 {

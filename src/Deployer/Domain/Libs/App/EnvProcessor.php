@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\App;
 
 use Symfony\Component\Process\Process;
 use ZnCore\Pattern\Singleton\SingletonTrait;

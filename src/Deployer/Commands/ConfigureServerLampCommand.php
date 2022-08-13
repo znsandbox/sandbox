@@ -7,10 +7,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampApacheShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampComposerShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampNpmShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerLampPhpShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampApacheShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampComposerShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampNpmShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampPhpShell;
 
 class ConfigureServerLampCommand extends Command
 {
@@ -26,7 +26,7 @@ class ConfigureServerLampCommand extends Command
         $this->io->writeTitle('Deployer. Install LAMP');
 
 //        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-        $remoteShell = ShellFactory::create();
+        $remoteShell = ShellFactory::createRemoteShell();
 
         $serverLampApacheShell = new ConfigureServerLampApacheShell($remoteShell, $this->io);
         $serverLampApacheShell->install();

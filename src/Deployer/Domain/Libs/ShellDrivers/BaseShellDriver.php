@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
 
 abstract class BaseShellDriver
 {

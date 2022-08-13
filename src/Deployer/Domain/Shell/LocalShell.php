@@ -3,7 +3,7 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Shell;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\VarProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 
 class LocalShell extends BaseShellNew
 {

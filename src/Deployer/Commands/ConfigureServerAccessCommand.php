@@ -7,8 +7,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerAccessShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerAccessShell;
 
 class ConfigureServerAccessCommand extends Command
 {
@@ -23,7 +23,7 @@ class ConfigureServerAccessCommand extends Command
 
         $output->writeln(['<fg=white># Deployer. Configure access</>']);
 
-        $remoteShell = ShellFactory::create();
+        $remoteShell = ShellFactory::createRemoteShell();
         $configureServerShell = new ConfigureServerAccessShell($remoteShell, $this->io);
 
         $connection = ConfigProcessor::get('connections.default');

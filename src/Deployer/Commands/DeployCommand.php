@@ -62,7 +62,7 @@ class DeployCommand extends Command
 
     private function createShellInstance($shellDefinition)
     {
-        $remoteShell = ShellFactory::create();
+        $remoteShell = ShellFactory::createRemoteShell();
         //        $deployShell = new $shellDefinition($remoteShell, $this->io);
 //        $deployShell = new DeployShell($remoteShell, $this->io);
         $deployShell = InstanceHelper::create($shellDefinition, [

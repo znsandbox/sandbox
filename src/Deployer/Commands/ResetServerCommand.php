@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ResetServerShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ResetServerShell;
 
 class ResetServerCommand extends Command
 {
@@ -31,7 +31,7 @@ class ResetServerCommand extends Command
 
         $output->writeln(['<fg=white># Deployer. Reset server</>']);
 
-        $remoteShell = ShellFactory::create();
+        $remoteShell = ShellFactory::createRemoteShell();
 
         $resetServerShell = new ResetServerShell($remoteShell, $this->io);
         $resetServerShell->run();

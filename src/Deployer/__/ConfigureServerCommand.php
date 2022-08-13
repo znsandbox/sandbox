@@ -24,7 +24,7 @@ class ConfigureServerCommand extends Command
 
         $output->writeln(['<fg=white># Deployer</>']);
 
-        $remoteShell = ShellFactory::create();
+        $remoteShell = ShellFactory::createRemoteShell();
         $configureServerShell = new ConfigureServerShell($remoteShell, $this->io);
 //        dd($configureServerShell->sshList());
 //        dd($configureServerShell->fileList('~/.ssh'));

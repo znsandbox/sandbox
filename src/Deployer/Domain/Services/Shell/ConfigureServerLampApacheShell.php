@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ShellDrivers\ApacheShell;
@@ -67,7 +67,7 @@ class ConfigureServerLampApacheShell extends BaseShell
     private function updateConfig()
     {
         $fs = new FileSystemShell($this->remoteShell);
-        $sourceConfigFile = realpath(__DIR__ . '/../../../../../../zntool/deployer/src/resources/apache2.conf');
+        $sourceConfigFile = realpath(__DIR__ . '/../../../resources/apache2.conf');
         if (!$fs->isFileExists('/etc/apache2/apache2.conf.bak')) {
             $fs->move('/etc/apache2/apache2.conf', '/etc/apache2/apache2.conf.bak');
             $fs->uploadIfNotExist($sourceConfigFile, '/etc/apache2/apache2.conf');

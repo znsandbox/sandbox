@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
 
 class ProfileRepository
 {

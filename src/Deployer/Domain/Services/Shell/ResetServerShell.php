@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
@@ -73,5 +73,9 @@ class ResetServerShell extends BaseShell
     {
         $virtualBox = new VirtualBoxShell($this->localShell);
         $virtualBox->startUp($this->vmName);
+
+        $seconds = 5;
+        $this->io->writeln("wait $seconds seconds ... ");
+        $this->localShell->runCommand("sleep {$seconds}s");
     }
 }

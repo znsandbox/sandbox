@@ -3,13 +3,13 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Factories;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Shell\RemoteShell;
 
 class ShellFactory
 {
 
-    public static function create(string $connectionName = 'default'): RemoteShell
+    public static function createRemoteShell(string $connectionName = 'default'): RemoteShell
     {
         $host = new HostEntity();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Libs\App;
 
 use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnCore\Pattern\Singleton\SingletonTrait;

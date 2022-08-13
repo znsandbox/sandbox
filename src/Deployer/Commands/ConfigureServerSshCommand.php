@@ -7,8 +7,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerSshShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerSshShell;
 
 class ConfigureServerSshCommand extends Command
 {
@@ -23,7 +23,7 @@ class ConfigureServerSshCommand extends Command
 
         $output->writeln(['<fg=white># Deployer. Configure SSH </>']);
 
-        $remoteShell = ShellFactory::create();
+        $remoteShell = ShellFactory::createRemoteShell();
         $configureServerShell = new ConfigureServerSshShell($remoteShell, $this->io);
 
         $configureServerShell->copySshKeys(ConfigProcessor::get('ssh.copyKeys'));
