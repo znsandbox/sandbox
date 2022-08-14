@@ -27,6 +27,6 @@ class ZnShell extends BaseShellDriver
 //        $envCode = $env ? "--env=\"$env\"" : '';
 //        dd($envCode);
 //        $this->cd('{{release_path}}/vendor/bin');
-        return $this->runCommand("cd {{release_path}}/vendor/bin && {{bin/php}} zn $command");
+        return $this->runCommand("cd {$this->getDirectory()}/vendor/bin && {{bin/php}} zn $command");
     }
 }

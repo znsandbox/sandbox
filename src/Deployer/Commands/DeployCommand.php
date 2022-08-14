@@ -10,8 +10,18 @@ use ZnCore\Instance\Helpers\InstanceHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
+use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ComposerInstallTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ConfigureDomainTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\GitCloneTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\RestartApacheTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\SetPermissionTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ZnImportFixtureTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ZnInitTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ZnMigrateUpTask;
 
 class DeployCommand extends Command
 {
@@ -33,15 +43,25 @@ class DeployCommand extends Command
 
         $output->writeln(['<fg=white># Deployer. Deploy</>']);
 
-        $projectName = $this->getProfileName();
+        $profileName = $this->getProfileName();
+        $profileConfig = ProfileRepository::findOneByName($profileName);
 
-        $profileConfig = ProfileRepository::findOneByName($projectName);
+        VarProcessor::setList($profileConfig['vars']);
 
-//        $deployProfiles = ConfigProcessor::get('deployProfiles');
-//        $profileConfig = $deployProfiles[$projectName];
+//        $envName = $profileConfig['env'];
 
-        $deployShell = $this->createShellInstance($profileConfig['handler']);
-        $deployShell->run($projectName);
+        $tasks = $profileConfig['tasks'];
+
+        foreach ($tasks as $task) {
+            $taskInstance = $this->createShellInstance($task);
+            $taskInstance->run($profileName);
+//            dd(222);
+        }
+
+//        foreach ($profileConfig['handlers'] as $handler) {
+//            $deployShell = $this->createShellInstance($handler);
+//            $deployShell->run($projectName);
+//        }
 
         $this->io->success('Success!');
 
@@ -60,7 +80,7 @@ class DeployCommand extends Command
         return $projectName;
     }
 
-    private function createShellInstance($shellDefinition)
+    private function createShellInstance($shellDefinition): TaskInterface
     {
         $remoteShell = ShellFactory::createRemoteShell();
         //        $deployShell = new $shellDefinition($remoteShell, $this->io);

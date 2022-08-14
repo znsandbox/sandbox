@@ -10,10 +10,21 @@ abstract class BaseShellDriver
 
     protected $shell;
     private $sudo = false;
+    private $directory;
 
     public function __construct(BaseShellNew $shell)
     {
         $this->shell = $shell;
+    }
+
+    public function getDirectory(): string
+    {
+        return $this->directory;
+    }
+
+    public function setDirectory(string $directory)
+    {
+        $this->directory = $directory;
     }
 
     /*public function isSudo(): bool
