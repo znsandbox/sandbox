@@ -4,6 +4,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 
 abstract class BaseShellDriver
 {
@@ -17,7 +18,7 @@ abstract class BaseShellDriver
         $this->shell = $shell;
     }
 
-    public function getDirectory(): string
+    public function getDirectory(): ?string
     {
         return $this->directory;
     }
@@ -67,6 +68,10 @@ abstract class BaseShellDriver
     public function runCommand($command, ?string $path = null): string
     {
         $command = $this->prepareSudo($command);
+        if($this->getDirectory()) {
+            $dir = ($this->getDirectory());
+            $command = "cd {$dir} && $command";
+        }
         return $this->shell->runCommand($command, $path);
     }
 

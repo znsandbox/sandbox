@@ -10,7 +10,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class SetPermissionTask extends BaseShell implements TaskInterface
 {
 
-    public $writable;
+    public $config;
 
     public function run(string $profileName)
     {
@@ -24,10 +24,10 @@ class SetPermissionTask extends BaseShell implements TaskInterface
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $fs = new FileSystemShell($this->remoteShell);
-        if (isset($this->writable)) {
-            foreach ($this->writable as $path) {
-                $this->io->writeln("  set writable $path ... ");
-                $fs->sudo()->chmod($path, 'a+w', true);
+        if (isset($this->config)) {
+            foreach ($this->config as $item) {
+                $this->io->writeln("  set '{$item['permission']}' to '{$item['path']}' ... ");
+                $fs->sudo()->chmod($item['path'], $item['permission'], true);
             }
         }
     }
