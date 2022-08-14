@@ -7,16 +7,16 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
 class ComposerShell extends BaseShellDriver
 {
 
-    public function install()
+    public function install(string $options = null)
     {
-        $command = "{{bin/composer}} install";
+        $command = "{{bin/composer}} install {$options}";
         $this->runCommand($command);
 //        return $this->shell->runCommand($command, $this->getDirectory());
     }
 
-    public function update()
+    public function update(string $options = null)
     {
-        $command = "{{bin/composer}} update";
+        $command = "{{bin/composer}} update {$options}";
         $this->runCommand($command);
 //        return $this->shell->runCommand($command, $this->getDirectory());
     }
