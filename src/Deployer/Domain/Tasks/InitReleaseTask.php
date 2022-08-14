@@ -19,8 +19,8 @@ class InitReleaseTask extends BaseShell implements TaskInterface
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
-        $releasePath = VarProcessor::get('release_path');
-        $releasesDir = $releasePath . '/release';
+        $basePath = VarProcessor::get('basePath');
+        $releasesDir = $basePath . '/release';
         
         $version = 1;
 
@@ -35,21 +35,12 @@ class InitReleaseTask extends BaseShell implements TaskInterface
             sort($versionList);
             $lastVersion = ArrayHelper::last($versionList);
             $version = $lastVersion + 1;
-
-//            dd($version);
         }
 
         $this->io->writeln("  Current build version {$version}");
-        $fs->makeDirectory($releasesDir . '/' . $version);
-        VarProcessor::set('release_path', $releasesDir . '/' . $version);
+//        $fs->makeDirectory($releasesDir . '/' . $version);
+        VarProcessor::set('releasePath', $releasesDir . '/' . $version);
 
-//        dd($version);
-        
-        
-
-//        dd(VarProcessor::get('release_path'));
-        
         $this->io->writeln('init release ... ');
-        
     }
 }

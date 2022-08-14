@@ -20,9 +20,9 @@ class ZnInitTask extends BaseShell implements TaskInterface
 
         $this->io->writeln('zn init ... ');
 //        $this->init($profileConfig['env']);
-//dd(VarProcessor::get('release_path'));
+//dd(VarProcessor::get('releasePath'));
         $zn = new ZnShell($this->remoteShell);
-        $zn->setDirectory(VarProcessor::get('release_path'));
+        $zn->setDirectory(VarProcessor::get('releasePath'));
         $zn->init($this->profile);
     }
 

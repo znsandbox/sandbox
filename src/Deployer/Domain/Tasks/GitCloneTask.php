@@ -27,12 +27,12 @@ class GitCloneTask extends BaseShell implements TaskInterface
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $git = new GitShell($this->remoteShell);
-        $git->setDirectory(VarProcessor::get('release_path'));
+        $git->setDirectory(VarProcessor::get('releasePath'));
 
         $fs = new FileSystemShell($this->remoteShell);
-        $fs->makeDirectory(VarProcessor::get('release_path'));
-        if (!$fs->isDirectoryExists(VarProcessor::get('release_path') . '/.git')) {
-            $git->clone($this->repository, $this->branch ?? null, VarProcessor::get('release_path'));
+        $fs->makeDirectory(VarProcessor::get('releasePath'));
+        if (!$fs->isDirectoryExists(VarProcessor::get('releasePath') . '/.git')) {
+            $git->clone($this->repository, $this->branch ?? null, VarProcessor::get('releasePath'));
         } else {
             $this->io->warning('repository already exists!');
 

@@ -21,7 +21,7 @@ class ZnReloadWebSocketFixtureTask extends BaseShell implements TaskInterface
 //        $this->fixtureImport($profileConfig['env']);
 
         $zn = new ZnShell($this->remoteShell);
-        $zn->setDirectory(VarProcessor::get('release_path'));
+        $zn->setDirectory(VarProcessor::get('releasePath'));
 
         $this->io->writeln('zn stop webSocket ... ');
         $zn->stopWebSocket($this->env);

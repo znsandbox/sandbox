@@ -22,14 +22,14 @@ class ZnMigrateUpTask extends BaseShell implements TaskInterface
 //        $this->migrateUp($profileConfig['env']);
 
         $zn = new ZnShell($this->remoteShell);
-        $zn->setDirectory(VarProcessor::get('release_path'));
+        $zn->setDirectory(VarProcessor::get('releasePath'));
         $zn->migrateUp($this->env);
 
         /*try {
             $zn->migrateUp($envName);
         } catch (\Throwable $e) {
             $fs = new FileSystemShell($this->remoteShell);
-            $fs->sudo()->chmod($profileConfig['release_path']. '/var', 'a+w', true);
+            $fs->sudo()->chmod($profileConfig['releasePath']. '/var', 'a+w', true);
             $zn->migrateUp($envName);
         }*/
     }

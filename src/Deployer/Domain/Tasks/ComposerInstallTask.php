@@ -25,7 +25,7 @@ class ComposerInstallTask extends BaseShell implements TaskInterface
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
-        $composer->setDirectory(VarProcessor::get('release_path'));
+        $composer->setDirectory(VarProcessor::get('releasePath'));
 
         $options = '';
         if($this->noDev) {
