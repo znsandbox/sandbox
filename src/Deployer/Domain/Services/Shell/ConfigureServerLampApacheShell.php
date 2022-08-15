@@ -14,6 +14,7 @@ class ConfigureServerLampApacheShell extends BaseShell
         $this->io->writeln('install apache2 ... ');
 
         $packageShell = new PackageShell($this->remoteShell);
+        $packageShell->update();
         $packageShell->install('apache2');
 
         $this->io->writeln('start apache2 ... ');

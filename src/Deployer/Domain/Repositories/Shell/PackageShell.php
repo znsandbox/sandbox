@@ -2,6 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
+use ZnCore\Arr\Helpers\ArrayHelper;
+use ZnCore\Text\Helpers\StringHelper;
+use ZnCore\Text\Helpers\TextHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
 
 class PackageShell extends BaseShellDriver
@@ -55,7 +58,21 @@ class PackageShell extends BaseShellDriver
     public function isInstalled(string $package): bool
     {
         $list = $this->find($package);
-        return !empty($list);
+        $arr = [];
+        foreach ($list as $line) {
+            $line = TextHelper::removeDoubleSpace($line);
+            $data = explode(' ', $line);
+            $item = [
+                'name' => $data[1],
+                'version' => $data[2],
+                'platform' => $data[3],
+                'description' => $data[4],
+            ];
+            if($item['name'] == $package) {
+                $arr[] = $item;
+            }
+        }
+        return !empty($arr);
     }
 
     protected function find(string $package)

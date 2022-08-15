@@ -9,6 +9,7 @@ use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampApacheShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampComposerShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampGitShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampNpmShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerLampPhpShell;
 
@@ -28,6 +29,9 @@ class ConfigureServerLampCommand extends Command
 //        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
         $remoteShell = ShellFactory::createRemoteShell();
 
+        $serverLampGitShell = new ConfigureServerLampGitShell($remoteShell, $this->io);
+        $serverLampGitShell->install();
+
         $serverLampApacheShell = new ConfigureServerLampApacheShell($remoteShell, $this->io);
         $serverLampApacheShell->install();
         $serverLampApacheShell->config();
@@ -40,9 +44,9 @@ class ConfigureServerLampCommand extends Command
         $serverLampComposerShell->install();
         $serverLampComposerShell->config();
 
-        $serverLampNpmShell = new ConfigureServerLampNpmShell($remoteShell, $this->io);
+        /*$serverLampNpmShell = new ConfigureServerLampNpmShell($remoteShell, $this->io);
         $serverLampNpmShell->install();
-        $serverLampNpmShell->config();
+        $serverLampNpmShell->config();*/
 
         $output->writeln(['', '<fg=green>Success!</>', '']);
 
