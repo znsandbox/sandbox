@@ -47,6 +47,7 @@ class DeployCommand extends Command
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
         VarProcessor::setList($profileConfig['vars']);
+        VarProcessor::set('currentProfile', $profileName);
 
 //        $envName = $profileConfig['env'];
 
@@ -54,8 +55,7 @@ class DeployCommand extends Command
 
         foreach ($tasks as $task) {
             $taskInstance = $this->createShellInstance($task);
-            $taskInstance->run($profileName);
-//            dd(222);
+            $taskInstance->run();
         }
 
 //        foreach ($profileConfig['handlers'] as $handler) {

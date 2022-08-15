@@ -13,8 +13,9 @@ class ZnInitTask extends BaseShell implements TaskInterface
 
     public $profile;
 
-    public function run(string $profileName)
+    public function run()
     {
+        $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $envName = $profileConfig['env'] ?? null;
 

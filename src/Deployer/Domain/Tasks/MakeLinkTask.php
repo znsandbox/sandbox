@@ -15,8 +15,9 @@ class MakeLinkTask extends BaseShell implements TaskInterface
     public $historySize;
     public $branch;
 
-    public function run(string $profileName)
+    public function run()
     {
+        $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $currentPath = VarProcessor::get('currentPath');

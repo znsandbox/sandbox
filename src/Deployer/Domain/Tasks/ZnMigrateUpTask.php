@@ -14,8 +14,9 @@ class ZnMigrateUpTask extends BaseShell implements TaskInterface
 
     public $env = null;
 
-    public function run(string $profileName)
+    public function run()
     {
+        $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $this->io->writeln('zn migrate up ... ');

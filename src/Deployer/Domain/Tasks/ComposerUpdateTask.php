@@ -11,8 +11,9 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class ComposerUpdateTask extends BaseShell implements TaskInterface
 {
 
-    public function run(string $profileName)
+    public function run()
     {
+        $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $this->io->writeln('composer update ... ');

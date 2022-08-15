@@ -15,8 +15,9 @@ class GitCloneTask extends BaseShell implements TaskInterface
     public $repository;
     public $branch;
 
-    public function run(string $profileName)
+    public function run()
     {
+        $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $this->io->writeln('git clone ... ');

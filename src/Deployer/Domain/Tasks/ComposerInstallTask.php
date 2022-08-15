@@ -13,8 +13,9 @@ class ComposerInstallTask extends BaseShell implements TaskInterface
 
     public $noDev;
 
-    public function run(string $profileName)
+    public function run()
     {
+        $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $this->io->writeln('composer install ... ');
