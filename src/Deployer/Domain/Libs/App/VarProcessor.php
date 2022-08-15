@@ -62,7 +62,10 @@ class VarProcessor
 
 //        self::$vars = ConfigProcessor::get('vars');
 
-        self::$vars['homeUserDir'] = "/home/{$config['connections']['default']['user']}";
+        $userName = $config['connections']['default']['user'];
+
+        self::$vars['homeUserDir'] = "/home/{$userName}";
+        self::$vars['userName'] = $userName;
 
         self::initVars();
     }

@@ -15,21 +15,30 @@ class SetPermissionTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = VarProcessor::get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileName = VarProcessor::get('currentProfile');
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $this->io->writeln('set permission ... ');
-        $this->setPermissions($profileName);
+        $this->setPermissions();
     }
 
-    protected function setPermissions(string $profileName)
+    protected function setPermissions()
     {
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
         $fs = new FileSystemShell($this->remoteShell);
         if (isset($this->config)) {
             foreach ($this->config as $item) {
-                $this->io->writeln("  set '{$item['permission']}' to '{$item['path']}' ... ");
-                $fs->sudo()->chmod($item['path'], $item['permission'], true);
+
+                if(isset($item['permission'])) {
+                    $this->io->writeln("  chmod '{$item['permission']}' to '{$item['path']}' ... ");
+                    $fs->sudo()->chmod($item['path'], $item['permission'], true);
+                }
+
+                if(isset($item['owner'])) {
+                    $this->io->writeln("  chown '{$item['owner']}' to '{$item['path']}' ... ");
+                    $fs->sudo()->chown($item['path'], $item['owner'], true);
+                }
+
             }
         }
     }
