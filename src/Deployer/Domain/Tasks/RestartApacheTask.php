@@ -11,12 +11,12 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class RestartApacheTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'Restart apache';
+
     public function run()
     {
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
-
-        $this->io->writeln('restart apache ... ');
         $this->apacheRestart();
     }
 

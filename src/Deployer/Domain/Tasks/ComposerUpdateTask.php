@@ -11,12 +11,12 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class ComposerUpdateTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'Composer update';
+
     public function run()
     {
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
-
-        $this->io->writeln('composer update ... ');
         $this->updateDependency($profileName);
     }
 

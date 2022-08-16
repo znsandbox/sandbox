@@ -12,6 +12,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class InitReleaseTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'Init release';
     public $historySize;
     public $branch;
 
@@ -19,8 +20,6 @@ class InitReleaseTask extends BaseShell implements TaskInterface
     {
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
-
-        $this->io->writeln('init release ... ');
 
         $basePath = VarProcessor::get('basePath');
         VarProcessor::set('currentPath', $basePath . '/current');

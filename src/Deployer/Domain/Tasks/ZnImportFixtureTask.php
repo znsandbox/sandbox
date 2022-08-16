@@ -11,6 +11,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class ZnImportFixtureTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'ZN import fixture';
     public $env = null;
 
     public function run()
@@ -18,16 +19,8 @@ class ZnImportFixtureTask extends BaseShell implements TaskInterface
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
-        $this->io->writeln('zn import fixture ... ');
-//        $this->fixtureImport($profileConfig['env']);
-
         $zn = new ZnShell($this->remoteShell);
         $zn->setDirectory(VarProcessor::get('releasePath'));
         $zn->fixtureImport($this->env);
-    }
-
-    protected function fixtureImport(string $envName)
-    {
-
     }
 }

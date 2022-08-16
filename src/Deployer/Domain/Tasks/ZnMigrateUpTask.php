@@ -12,15 +12,13 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class ZnMigrateUpTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'ZN migrate up';
     public $env = null;
 
     public function run()
     {
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
-
-        $this->io->writeln('zn migrate up ... ');
-//        $this->migrateUp($profileConfig['env']);
 
         $zn = new ZnShell($this->remoteShell);
         $zn->setDirectory(VarProcessor::get('releasePath'));

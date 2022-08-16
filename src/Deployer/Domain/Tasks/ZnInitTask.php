@@ -11,6 +11,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class ZnInitTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'ZN init';
     public $profile;
 
     public function run()
@@ -19,16 +20,8 @@ class ZnInitTask extends BaseShell implements TaskInterface
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $envName = $profileConfig['env'] ?? null;
 
-        $this->io->writeln('zn init ... ');
-//        $this->init($profileConfig['env']);
-//dd(VarProcessor::get('releasePath'));
         $zn = new ZnShell($this->remoteShell);
         $zn->setDirectory(VarProcessor::get('releasePath'));
         $zn->init($this->profile);
-    }
-
-    protected function init(string $envName)
-    {
-
     }
 }

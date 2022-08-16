@@ -11,12 +11,12 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class RegisterSshKeysTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'Register SSH';
     public $password = null;
 
     public function run()
     {
-//        $profileConfig = ProfileRepository::findOneByName($profileName);
-        $this->io->writeln('RegisterSshKeys ... ');
+        $this->io->writeln('  Register Ssh Keys ... ');
 
         $this->copySshKeys(ConfigProcessor::get('ssh.copyKeys'));
         $this->copySshFiles(ConfigProcessor::get('ssh.copyFiles'));
@@ -25,7 +25,7 @@ class RegisterSshKeysTask extends BaseShell implements TaskInterface
 
     public function copySshKeys(array $list)
     {
-        $this->io->writeln('copy SSH keys ... ');
+        $this->io->writeln('  copy SSH keys ... ');
 
         $fs = new FileSystemShell($this->remoteShell);
         $userDir = ConfigProcessor::get('connections.default.user');
@@ -44,7 +44,7 @@ class RegisterSshKeysTask extends BaseShell implements TaskInterface
 
     public function copySshFiles(array $list)
     {
-        $this->io->writeln('copy SSH config ... ');
+        $this->io->writeln('  copy SSH config ... ');
 
         $fs = new FileSystemShell($this->remoteShell);
         foreach ($list as $sourceFilename) {

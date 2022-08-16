@@ -12,6 +12,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class GitCloneTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'git clone from "{{repository}}", branch "{{branch}}"';
     public $repository;
     public $branch;
 
@@ -19,8 +20,6 @@ class GitCloneTask extends BaseShell implements TaskInterface
     {
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
-
-        $this->io->writeln('git clone ... ');
         $this->clone($profileName);
     }
 
@@ -35,12 +34,12 @@ class GitCloneTask extends BaseShell implements TaskInterface
         if (!$fs->isDirectoryExists(VarProcessor::get('releasePath') . '/.git')) {
             $git->clone($this->repository, $this->branch ?? null, VarProcessor::get('releasePath'));
         } else {
-            $this->io->warning('repository already exists!');
+            $this->io->warning('  repository already exists!');
 
-            $this->io->writeln("checkout to '{$this->branch}' branch ...");
+            $this->io->writeln("  checkout to '{$this->branch}' branch ...");
             $git->checkout($this->branch);
 
-            $this->io->writeln('git pull ...');
+            $this->io->writeln('  git pull ...');
             $git->pull();
         }
     }

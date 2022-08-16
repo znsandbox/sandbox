@@ -9,10 +9,10 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class InstallComposerTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'Install composer';
+
     public function run()
     {
-        $this->io->writeln('install composer ... ');
-
         $fs = new FileSystemShell($this->remoteShell);
 
         if (!$fs->isFileExists('/usr/bin/composer')) {

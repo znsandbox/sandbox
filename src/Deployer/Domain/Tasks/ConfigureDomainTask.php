@@ -12,14 +12,13 @@ use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
 class ConfigureDomainTask extends BaseShell implements TaskInterface
 {
 
+    protected $title = 'Configure host';
     public $domains;
 
     public function run()
     {
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
-
-        $this->io->writeln('configure domain ... ');
         $this->assignDomains($profileName);
     }
 

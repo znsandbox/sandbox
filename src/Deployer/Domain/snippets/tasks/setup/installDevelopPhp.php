@@ -1,7 +1,7 @@
 <?php
 
 return [
-    [
+    /*[
         'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup\AddPackageRepositoryTask::class,
         'repository' => 'ppa:ondrej/php',
 //        'title' => '',
@@ -38,7 +38,7 @@ return [
     [
         'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup\ConfigPhpTask::class,
 //            'title' => '',
-    ],
+    ],*/
     [
         'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup\InstallComposerTask::class,
 //            'title' => '',

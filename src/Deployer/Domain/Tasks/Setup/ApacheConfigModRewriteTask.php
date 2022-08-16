@@ -14,8 +14,6 @@ class ApacheConfigModRewriteTask extends BaseShell implements TaskInterface
     
     public function run()
     {
-//        $this->io->writeln('Apache2 enable mod rewrite ... ');
-
         $apacheShell = new ApacheShell($this->remoteShell);
         if($this->status) {
             $apacheShell->enableRewrite();

@@ -2,13 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
-use Symfony\Component\Process\Process;
 use ZnCore\Env\Helpers\TempHelper;
 use ZnCore\FileSystem\Helpers\FileHelper;
 use ZnCore\FileSystem\Helpers\FileStorageHelper;
-use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\ShellParsers\ShellItemsParser;
-use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 
 class FileSystemShell extends BaseShellDriver
 {
@@ -35,8 +32,6 @@ class FileSystemShell extends BaseShellDriver
     }
 
 
-
-
     public function uploadContent(string $content, string $destination)
     {
         $dir = TempHelper::getTmpDirectory('deployer_upload');
@@ -54,8 +49,6 @@ class FileSystemShell extends BaseShellDriver
         $this->downloadFile($source, $fileName);
         return FileStorageHelper::load($fileName);
     }
-
-
 
 
     public function modifyFileWithCallback(string $file, callable $callback): void
@@ -149,6 +142,15 @@ class FileSystemShell extends BaseShellDriver
             return false;
         }
         $this->runCommand("rm -rf \"$path\"");
+    }
+
+    public function removeAny(string $path)
+    {
+        if ($this->isDirectoryExists($path)) {
+            $this->removeDir($path);
+        } elseif ($this->isFileExists($path)) {
+            $this->removeFile($path);
+        }
     }
 
     public function makeDirectory(string $directory)
