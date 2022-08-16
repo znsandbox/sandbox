@@ -46,17 +46,16 @@ class DeployCommand extends Command
 
         $output->writeln(['<fg=white># Deployer. Deploy</>']);
 
-        $profileName = $this->getProfileName();
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+        $profileNames = $this->getProfileNames();
 
-        VarProcessor::setList($profileConfig['vars'] ?? []);
-        VarProcessor::set('currentProfile', $profileName);
-
-//        $envName = $profileConfig['env'];
-
-        $tasks = $profileConfig['tasks'];
-
-        TaskProcessor::runTaskList($tasks, $this->io);
+        foreach ($profileNames as $profileName) {
+            $output->writeln(['', "<fg=blue>## Action $profileName</>", '']);
+            $profileConfig = ProfileRepository::findOneByName($profileName);
+            VarProcessor::setList($profileConfig['vars'] ?? []);
+            VarProcessor::set('currentProfile', $profileName);
+            $tasks = $profileConfig['tasks'];
+            TaskProcessor::runTaskList($tasks, $this->io);
+        }
 
         /*foreach ($tasks as $task) {
 //            $taskInstance = $this->createShellInstance($task);
@@ -79,16 +78,18 @@ class DeployCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function getProfileName(): string
+    private function getProfileNames(): array
     {
 //        $deployProfiles = ConfigProcessor::get('deployProfiles');
         $projectName = $this->io->getInput()->getArgument('projectName');
         if (empty($projectName)) {
             $deployProfiles = ProfileRepository::findAll();
             $profiles = array_keys($deployProfiles);
-            $projectName = $this->io->choiceQuestion('Select profile', $profiles);
+            $projectNames = $this->io->multiChoiceQuestion('Select profiles', $profiles);
+        } else {
+            $projectNames = [$projectName];
         }
-        return $projectName;
+        return $projectNames;
     }
 
     /*private function createShellInstance($shellDefinition): TaskInterface

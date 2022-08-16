@@ -1,7 +1,7 @@
 <?php
 
 return [
-    /*[
+    [
         'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup\InstallLinuxPackageTask::class,
         'package' => 'git',
         'withUpdate' => true,
@@ -39,7 +39,7 @@ return [
         'sourceFilePath' => '/etc/apache2/sites-available',
         'linkFilePath' => '/etc/apache2/sites-enabled',
         'title' => 'Make Soft Link "sites-enabled" -> "sites-available"',
-    ],*/
+    ],
     [
         'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup\CopyToRemoteTask::class,
         'sourceFilePath' => realpath(__DIR__ . '/../../../../resources/apache2.conf'),

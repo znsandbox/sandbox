@@ -12,10 +12,13 @@ abstract class BaseShell
     protected $localShell;
     protected $remoteShell;
     protected $io;
-    protected $title = self::class;
-    
+    protected $title;
+
     public function getTitle(): ?string
     {
+        if ($this->title == null) {
+            return static::class;
+        }
         return $this->title;
     }
 
@@ -23,7 +26,7 @@ abstract class BaseShell
     {
         $this->title = $title;
     }
-    
+
     public function __construct(BaseShellNew $remoteShell, IO $io)
     {
         $this->localShell = new LocalShell();

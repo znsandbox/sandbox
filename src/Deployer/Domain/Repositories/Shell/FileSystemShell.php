@@ -8,6 +8,7 @@ use ZnCore\FileSystem\Helpers\FileHelper;
 use ZnCore\FileSystem\Helpers\FileStorageHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\ShellParsers\ShellItemsParser;
+use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 
 class FileSystemShell extends BaseShellDriver
 {
@@ -152,6 +153,9 @@ class FileSystemShell extends BaseShellDriver
 
     public function makeDirectory(string $directory)
     {
+        if ($this->isDirectoryExists($directory)) {
+            return false;
+        }
         $this->runCommand("mkdir -p \"$directory\"");
     }
 
