@@ -2,12 +2,25 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Factories;
 
+use ZnCore\Instance\Helpers\InstanceHelper;
+use ZnLib\Console\Domain\Base\BaseShellNew;
+use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
+use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\RemoteShell;
 
 class ShellFactory
 {
+
+    public static function createTask($definition, IO $io): TaskInterface
+    {
+        $remoteShell = ShellFactory::createRemoteShell();
+        return InstanceHelper::create($definition, [
+            BaseShellNew::class => $remoteShell,
+            IO::class => $io,
+        ]);
+    }
 
     public static function createRemoteShell(string $connectionName = 'default'): RemoteShell
     {

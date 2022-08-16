@@ -6,11 +6,14 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnCore\Instance\Helpers\InstanceHelper;
+use ZnCore\Text\Helpers\TemplateHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\TaskProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
@@ -46,17 +49,25 @@ class DeployCommand extends Command
         $profileName = $this->getProfileName();
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
-        VarProcessor::setList($profileConfig['vars']);
+        VarProcessor::setList($profileConfig['vars'] ?? []);
         VarProcessor::set('currentProfile', $profileName);
 
 //        $envName = $profileConfig['env'];
 
         $tasks = $profileConfig['tasks'];
 
-        foreach ($tasks as $task) {
-            $taskInstance = $this->createShellInstance($task);
+        TaskProcessor::runTaskList($tasks, $this->io);
+
+        /*foreach ($tasks as $task) {
+//            $taskInstance = $this->createShellInstance($task);
+            $taskInstance = ShellFactory::createTask($task, $this->io);
+            $title = $taskInstance->getTitle();
+            if($title) {
+                $title = TemplateHelper::render($title, $task, '{{', '}}');
+                $this->io->writeln($title);
+            }
             $taskInstance->run();
-        }
+        }*/
 
 //        foreach ($profileConfig['handlers'] as $handler) {
 //            $deployShell = $this->createShellInstance($handler);
@@ -80,7 +91,7 @@ class DeployCommand extends Command
         return $projectName;
     }
 
-    private function createShellInstance($shellDefinition): TaskInterface
+    /*private function createShellInstance($shellDefinition): TaskInterface
     {
         $remoteShell = ShellFactory::createRemoteShell();
         //        $deployShell = new $shellDefinition($remoteShell, $this->io);
@@ -90,5 +101,5 @@ class DeployCommand extends Command
             IO::class => $this->io,
         ]);
         return $deployShell;
-    }
+    }*/
 }

@@ -6,4 +6,6 @@ interface TaskInterface
 {
 
     public function run();
+
+    public function getTitle(): ?string;
 }

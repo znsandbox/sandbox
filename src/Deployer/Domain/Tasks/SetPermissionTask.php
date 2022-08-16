@@ -12,13 +12,14 @@ class SetPermissionTask extends BaseShell implements TaskInterface
 {
 
     public $config;
+    protected $title = 'Set permissions';
 
     public function run()
     {
 //        $profileName = VarProcessor::get('currentProfile');
 //        $profileConfig = ProfileRepository::findOneByName($profileName);
 
-        $this->io->writeln('set permission ... ');
+//        $this->io->writeln(' ... ');
         $this->setPermissions();
     }
 

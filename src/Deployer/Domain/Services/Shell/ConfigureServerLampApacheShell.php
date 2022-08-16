@@ -36,7 +36,7 @@ class ConfigureServerLampApacheShell extends BaseShell
 
         $this->io->writeln('link sites enabled ... ');
         $this->linkSitesEnabled();
-
+        
         $this->io->writeln('update apache2 config ... ');
         $this->updateConfig();
 

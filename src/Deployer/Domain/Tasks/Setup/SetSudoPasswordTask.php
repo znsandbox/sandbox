@@ -11,11 +11,10 @@ class SetSudoPasswordTask extends BaseShell implements TaskInterface
 {
 
     public $password = null;
+    protected $title = 'Set sudo password';
 
     public function run()
     {
-//        $profileConfig = ProfileRepository::findOneByName($profileName);
-        $this->io->writeln('SetSudoPassword ... ');
         $connection = ConfigProcessor::get('connections.default');
         $this->setSudoPassword($connection['password'] ?? null);
     }

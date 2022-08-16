@@ -12,18 +12,11 @@ class RegisterPublicKeyTask extends BaseShell implements TaskInterface
 {
 
     public $password = null;
+    protected $title = 'Register public key';
 
     public function run()
     {
-//        $profileConfig = ProfileRepository::findOneByName($profileName);
-        $this->io->writeln('RegisterPublicKey ... ');
         $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');
-        $this->registerPublicKey($publicKeyFileName);
-    }
-
-
-    private function registerPublicKey(string $publicKeyFileName)
-    {
         $fs = new FileSystemShell($this->remoteShell);
         $this->uploadPublicKey($publicKeyFileName);
         $this->copyId($publicKeyFileName);

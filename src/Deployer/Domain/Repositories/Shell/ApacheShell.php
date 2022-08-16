@@ -15,8 +15,16 @@ class ApacheShell extends BaseShellDriver
         $this->runCommand('sudo systemctl enable apache2');
     }
 
+    public function disableAutorun() {
+        $this->runCommand('sudo systemctl disable apache2');
+    }
+
     public function enableRewrite() {
         $this->runCommand('sudo a2enmod rewrite');
+    }
+
+    public function disableRewrite() {
+        $this->runCommand('sudo a2dismod rewrite');
     }
 
     public function restart()
