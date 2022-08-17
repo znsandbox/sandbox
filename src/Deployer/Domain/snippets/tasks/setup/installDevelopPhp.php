@@ -39,7 +39,15 @@ return [
         ],
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup\ConfigPhpTask::class,
-//            'title' => '',
+            'apacheIniConfig' => [
+                'short_open_tag' => 'On',
+            ],
+            'cliIniConfig' => [
+                'short_open_tag' => 'On',
+                'memory_limit' => '512M',
+                'max_input_time' => '600',
+                'max_execution_time' => '120',
+            ],
         ],
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Composer\InstallComposerToSystemTask::class,

@@ -12,21 +12,24 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\GitShell;
 class GitCloneTask extends BaseShell implements TaskInterface
 {
 
-    protected $title = 'git clone from "{{repository}}", branch "{{branch}}"';
-    public $repository;
+    protected $title = 'git clone from "{{repositoryLink}}", branch "{{branch}}"';
+    public $directory;
+    public $repositoryLink;
     public $branch;
 
     public function run()
     {
+        $releasePath = VarProcessor::process($this->directory);
+
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $git = new GitShell($this->remoteShell);
-        $git->setDirectory(VarProcessor::get('releasePath'));
+        $git->setDirectory($releasePath);
 
         $fs = new FileSystemShell($this->remoteShell);
-        $fs->makeDirectory(VarProcessor::get('releasePath'));
-        if (!$fs->isDirectoryExists(VarProcessor::get('releasePath') . '/.git')) {
-            $git->clone($this->repository, $this->branch ?? null, VarProcessor::get('releasePath'));
+        $fs->makeDirectory($releasePath);
+        if (!$fs->isDirectoryExists($releasePath . '/.git')) {
+            $git->clone($this->repositoryLink, $this->branch ?? null, $releasePath);
         } else {
             $this->io->warning('  repository already exists!');
 

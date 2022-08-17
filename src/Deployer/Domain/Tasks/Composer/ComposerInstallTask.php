@@ -12,6 +12,7 @@ class ComposerInstallTask extends BaseShell implements TaskInterface
 {
 
     public $noDev;
+    public $directory;
     protected $title = 'Composer install';
 
     public function run()
@@ -25,7 +26,7 @@ class ComposerInstallTask extends BaseShell implements TaskInterface
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
-        $composer->setDirectory(VarProcessor::get('releasePath'));
+        $composer->setDirectory($this->directory);
         $options = '';
         if ($this->noDev) {
             $options .= ' --no-dev ';

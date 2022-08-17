@@ -12,6 +12,7 @@ class ComposerUpdateTask extends BaseShell implements TaskInterface
 {
 
     protected $title = 'Composer update';
+    public $directory;
 
     public function run()
     {
@@ -24,7 +25,7 @@ class ComposerUpdateTask extends BaseShell implements TaskInterface
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
-        $composer->setDirectory(VarProcessor::get('releasePath'));
+        $composer->setDirectory($this->directory);
 
         $options = '';
         if($this->noDev) {

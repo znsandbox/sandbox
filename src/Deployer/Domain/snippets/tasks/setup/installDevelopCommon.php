@@ -34,7 +34,7 @@ return [
                 ],
             ],
         ],
-        
+
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\MakeSoftLinkTask::class,
             'sourceFilePath' => '/etc/apache2/sites-available',
@@ -53,7 +53,7 @@ return [
 //        'title' => '',
         ],
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\RestartApacheTask::class,
+            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Apache\ApacheRestartTask::class,
 //        'title' => '',
         ],
     ],
