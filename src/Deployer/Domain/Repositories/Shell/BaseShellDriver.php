@@ -78,16 +78,11 @@ abstract class BaseShellDriver
     protected static function getSudoCommandTemplate()
     {
         return ConfigProcessor::get('connections.default.sudo.commandTemplate', 'sudo {command}');
-//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-//        return $config['connections']['default']['sudo']['commandTemplate'] ?? 'sudo {command}';
-//        return 'sudo -S {command} < ~/sudo-pass';
     }
 
     protected static function getSudoCommandName(): string
     {
         return ConfigProcessor::get('connections.default.sudo.command', 'sudo') . ' ';
-//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-//        return ($config['connections']['default']['sudo']['command'] ?? 'sudo') . ' ';
     }
 
     protected function stripSudo(string $command): string

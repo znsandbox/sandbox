@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
 class RegisterPublicKeyTask extends BaseShell implements TaskInterface
 {

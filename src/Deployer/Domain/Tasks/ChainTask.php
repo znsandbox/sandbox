@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\TaskProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
 class ChainTask extends BaseShell implements TaskInterface
 {

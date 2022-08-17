@@ -7,7 +7,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ApacheShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\HostsShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
 class ConfigureDomainTask extends BaseShell implements TaskInterface
 {

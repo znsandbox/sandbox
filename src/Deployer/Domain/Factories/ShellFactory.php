@@ -7,7 +7,7 @@ use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\RemoteShell;
 
 class ShellFactory
@@ -22,18 +22,14 @@ class ShellFactory
         ]);
     }
 
-    public static function createRemoteShell(string $connectionName = 'default'): RemoteShell
+    public static function createRemoteShell(?string $connectionName = null): RemoteShell
     {
-        $host = new HostEntity();
-
-        $connection = ConfigProcessor::get("connections.$connectionName");
-
-//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-//        $connection = $config['connections'][$connectionName];
-
-        $host->setHost($connection['host'] ?? null);
-        $host->setPort($connection['port'] ?? 22);
-        $host->setUser($connection['user'] ?? null);
+        $connection = ConnectionProcessor::get($connectionName);
+//        $host = new HostEntity();
+//        $host->setHost($connection['host'] ?? null);
+//        $host->setPort($connection['port'] ?? 22);
+//        $host->setUser($connection['user'] ?? null);
+        $host = ConnectionProcessor::createEntity($connection);
         $remoteShell = new RemoteShell($host);
         return $remoteShell;
     }

@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
 class RegisterSshKeysTask extends BaseShell implements TaskInterface
 {

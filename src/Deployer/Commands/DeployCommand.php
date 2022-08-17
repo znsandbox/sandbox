@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\TaskProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
@@ -53,8 +54,26 @@ class DeployCommand extends Command
         $projectName = $this->io->getInput()->getArgument('projectName');
         if (empty($projectName)) {
             $deployProfiles = ProfileRepository::findAll();
-            $profiles = array_keys($deployProfiles);
+//            $profiles = array_keys($deployProfiles);
+            $profiles = ArrayHelper::getColumn($deployProfiles, 'title');
+//            dd($profiles);
+
+
+
+//            $profilesIndexed = array_keys($profiles);
+//            $titleIndexed = array_values($profiles);
             $projectNames = $this->io->multiChoiceQuestion('Select profiles', $profiles);
+
+//            dd($projectNames);
+
+            /*$new = [];
+            foreach ($titleIndexed as $index => $title) {
+                if(in_array($title, $selected)) {
+                    $new[] = $profilesIndexed[$index];
+                }
+            }
+
+            dd($new);*/
         } else {
             $projectNames = [
                 $projectName

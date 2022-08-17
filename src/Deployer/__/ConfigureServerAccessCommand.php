@@ -29,10 +29,6 @@ class ConfigureServerAccessCommand extends Command
         $connection = ConfigProcessor::get('connections.default');
         $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');
 
-//        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-//        $connection = $config['connections']['default'];
-//        $publicKeyFileName = $config['access']['sshPublicKeyFile'];
-
         $this->io->writeln('register SSH public key ... ');
         $configureServerShell->registerPublicKey($publicKeyFileName);
 

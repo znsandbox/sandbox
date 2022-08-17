@@ -6,7 +6,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ComposerShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\BaseShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
 class ComposerInstallTask extends BaseShell implements TaskInterface
 {
