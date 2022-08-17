@@ -34,16 +34,14 @@ class DeployCommand extends Command
         $output->writeln(['<fg=white># Deployer. Deploy</>']);
 
         $profileNames = $this->getProfileNames();
-
         foreach ($profileNames as $profileName) {
-            $output->writeln(['', "<fg=blue>## Action $profileName</>", '']);
             $profileConfig = ProfileRepository::findOneByName($profileName);
+            $output->writeln(['', "<fg=blue>## {$profileConfig['title']}</>", '']);
             VarProcessor::setList($profileConfig['vars'] ?? []);
             VarProcessor::set('currentProfile', $profileName);
             $tasks = $profileConfig['tasks'];
             TaskProcessor::runTaskList($tasks, $this->io);
         }
-
         $this->io->success('Success!');
 
         return Command::SUCCESS;
@@ -54,26 +52,8 @@ class DeployCommand extends Command
         $projectName = $this->io->getInput()->getArgument('projectName');
         if (empty($projectName)) {
             $deployProfiles = ProfileRepository::findAll();
-//            $profiles = array_keys($deployProfiles);
             $profiles = ArrayHelper::getColumn($deployProfiles, 'title');
-//            dd($profiles);
-
-
-
-//            $profilesIndexed = array_keys($profiles);
-//            $titleIndexed = array_values($profiles);
             $projectNames = $this->io->multiChoiceQuestion('Select profiles', $profiles);
-
-//            dd($projectNames);
-
-            /*$new = [];
-            foreach ($titleIndexed as $index => $title) {
-                if(in_array($title, $selected)) {
-                    $new[] = $profilesIndexed[$index];
-                }
-            }
-
-            dd($new);*/
         } else {
             $projectNames = [
                 $projectName

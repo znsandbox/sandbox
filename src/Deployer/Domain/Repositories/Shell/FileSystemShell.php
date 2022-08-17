@@ -122,7 +122,10 @@ class FileSystemShell extends BaseShellDriver
 
     public function list(string $path): array
     {
-        $commandOutput = $this->runCommand("cd \"$path\" && ls -la", $path);
+        if($path) {
+            $this->setDirectory($path);
+        }
+        $commandOutput = $this->runCommand("ls -la", $path);
         $parser = new ShellItemsParser([$this, 'parseLine'], [$this, 'filterItem']);
         $items = $parser->parse($commandOutput);
         return $items;

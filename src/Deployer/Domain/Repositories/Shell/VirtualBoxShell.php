@@ -2,6 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
 
 class VirtualBoxShell extends BaseShellDriver
@@ -26,6 +28,33 @@ class VirtualBoxShell extends BaseShellDriver
     public function startUp(string $vmName)
     {
         $this->runCmd("VBoxManage startvm \"$vmName\" --type headless");
+    }
+
+    public function isStarted(): bool
+    {
+//        $fs = new FileSystemShell($this->shell);
+        try {
+//            $fs->list('');
+            $hostEntity = ShellFactory::createRemoteShell()->getHostEntity();
+
+            $port = $hostEntity->getPort();
+            $host = "{$hostEntity->getUser()}@{$hostEntity->getHost()}";
+
+            $cmd = "ssh -p $port $host ";
+            $this->runCommand($cmd);
+            
+            return true;
+        } catch (ProcessFailedException $e) {
+            $isContains = 
+                mb_strpos($e->getProcess()->getErrorOutput(), 'Connection refused') !== false
+            ||
+                mb_strpos($e->getProcess()->getErrorOutput(), 'Connection closed') !== false
+            ;
+            if (!$isContains) {
+                throw $e;
+            }
+            return false;
+        }
     }
 
     protected function runCmd(string $cmd)
