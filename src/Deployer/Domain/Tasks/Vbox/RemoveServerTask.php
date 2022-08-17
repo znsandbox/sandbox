@@ -12,9 +12,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 class RemoveServerTask extends BaseShell implements TaskInterface
 {
 
-    public $password = null;
     protected $title = 'VirtualBox. Remove server';
-
     public $directory;
     public $name;
 

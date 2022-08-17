@@ -12,9 +12,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZipShell;
 class RestoreServerTask extends BaseShell implements TaskInterface
 {
 
-    public $password = null;
     protected $title = 'VirtualBox. Restore server';
-
     public $directory;
     public $backup;
 

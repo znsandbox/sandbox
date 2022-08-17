@@ -12,10 +12,8 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\VirtualBoxShell;
 class ShutdownServerTask extends BaseShell implements TaskInterface
 {
 
-    public $password = null;
     protected $title = 'VirtualBox. Shutdown server';
-
-    private $name;
+    public $name;
 
     public function __construct(BaseShellNew $remoteShell, IO $io)
     {

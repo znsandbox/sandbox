@@ -12,9 +12,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\VirtualBoxShell;
 class StartServerTask extends BaseShell implements TaskInterface
 {
 
-    public $password = null;
     protected $title = 'VirtualBox. Start server';
-
     public $name;
 
     public function __construct(BaseShellNew $remoteShell, IO $io)
