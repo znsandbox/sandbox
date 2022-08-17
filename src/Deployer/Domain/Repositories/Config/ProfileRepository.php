@@ -18,14 +18,17 @@ class ProfileRepository
     public static function findAll()
     {
         $deployProfiles = ConfigProcessor::get('deployProfiles');
+        $new = [];
         foreach ($deployProfiles as $projectName => $profileConfig) {
-            $deployProfiles[$projectName] = self::prepareItem($profileConfig, $projectName);
+            $hash = hash('sha256', $projectName);
+//            $profileConfig = self::prepareItem($profileConfig, $hash);
+            $new[$hash] = $profileConfig;
         }
-        return $deployProfiles;
+        return $new;
     }
     
-    protected static function prepareItem($profileConfig, $projectName) {
+    /*protected static function prepareItem($profileConfig, $projectName) {
         $profileConfig['title'] = $profileConfig['title'] ?? $projectName;
         return $profileConfig;
-    }
+    }*/
 }

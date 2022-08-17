@@ -4,10 +4,10 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Vbox;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
+use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\LocalShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZipShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
 class RestoreServerTask extends BaseShell implements TaskInterface
 {
@@ -15,22 +15,19 @@ class RestoreServerTask extends BaseShell implements TaskInterface
     public $password = null;
     protected $title = 'VirtualBox. Restore server';
 
-    public $vmDirectory;
-    public $vmBackup;
+    public $directory;
+    public $backup;
 
     public function __construct(BaseShellNew $remoteShell, IO $io)
     {
         $this->localShell = new LocalShell();
         $this->remoteShell = new LocalShell();
         $this->io = $io;
-
-//        $this->vmDirectory = $_ENV['DEPLOYER_VIRTUAL_BOX_DIRECTORY'];
-//        $this->vmBackup = $_ENV['DEPLOYER_VIRTUAL_BOX_BACKUP_FILE'];
     }
 
     public function run()
     {
         $zip = new ZipShell($this->remoteShell);
-        $zip->unZipAllToDir($this->vmBackup, $this->vmDirectory);
+        $zip->unZipAllToDir($this->backup, $this->directory);
     }
 }

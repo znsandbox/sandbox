@@ -19,7 +19,6 @@ class WaitServerTask extends BaseShell implements TaskInterface
             $this->io->write('.');
             sleep(2);
         }
-//        $this->io->writeln('');
     }
 
     protected function check(): bool
