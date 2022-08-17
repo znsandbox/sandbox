@@ -1,11 +1,10 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
+use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 
 class MakeSoftLinkTask extends BaseShell implements TaskInterface
 {
@@ -18,11 +17,6 @@ class MakeSoftLinkTask extends BaseShell implements TaskInterface
     {
         $fs = new FileSystemShell($this->remoteShell);
         $fs->sudo()->removeAny($this->linkFilePath);
-        /*if ($fs->isDirectoryExists($this->linkFilePath)) {
-            $fs->sudo()->removeDir($this->linkFilePath);
-        } elseif ($fs->isFileExists($this->linkFilePath)) {
-            $fs->sudo()->removeFile($this->linkFilePath);
-        }*/
         $fs->sudo()->makeLink($this->sourceFilePath, $this->linkFilePath, '-s');
     }
 }

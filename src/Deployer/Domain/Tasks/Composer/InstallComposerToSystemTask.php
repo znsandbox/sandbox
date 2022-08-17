@@ -1,12 +1,12 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Composer;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
-class InstallComposerTask extends BaseShell implements TaskInterface
+class InstallComposerToSystemTask extends BaseShell implements TaskInterface
 {
 
     protected $title = 'Install composer';

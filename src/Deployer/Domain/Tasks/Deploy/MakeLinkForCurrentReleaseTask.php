@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
@@ -8,7 +8,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
-class MakeLinkTask extends BaseShell implements TaskInterface
+class MakeLinkForCurrentReleaseTask extends BaseShell implements TaskInterface
 {
 
     protected $title = 'Make link';

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Apache;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ApacheShell;

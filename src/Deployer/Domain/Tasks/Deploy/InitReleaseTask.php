@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy;
 
 use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;

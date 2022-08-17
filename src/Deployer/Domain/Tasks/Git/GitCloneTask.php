@@ -1,13 +1,13 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Git;
 
+use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\GitShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
 class GitCloneTask extends BaseShell implements TaskInterface
 {
@@ -19,12 +19,6 @@ class GitCloneTask extends BaseShell implements TaskInterface
     public function run()
     {
         $profileName = VarProcessor::get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
-        $this->clone($profileName);
-    }
-
-    protected function clone(string $profileName)
-    {
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $git = new GitShell($this->remoteShell);
         $git->setDirectory(VarProcessor::get('releasePath'));

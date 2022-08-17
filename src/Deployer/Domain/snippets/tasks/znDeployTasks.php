@@ -1,16 +1,16 @@
 <?php
 
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ComposerInstallTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ConfigureDomainTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\GitCloneTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\InitReleaseTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\MakeLinkTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\RestartApacheTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\SetPermissionTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ZnImportFixtureTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ZnInitTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ZnMigrateUpTask;
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\ZnReloadWebSocketFixtureTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Composer\ComposerInstallTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy\ConfigureDomainTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Git\GitCloneTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy\InitReleaseTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy\MakeLinkForCurrentReleaseTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\RestartApacheTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\SetPermissionTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Zn\ZnImportFixtureTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Zn\ZnInitTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Zn\ZnMigrateUpTask;
+use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Zn\ZnReloadWebSocketFixtureTask;
 
 return [
     [
@@ -54,7 +54,7 @@ return [
     ],*/
 
     [
-        'class' => MakeLinkTask::class,
+        'class' => MakeLinkForCurrentReleaseTask::class,
     ],
     [
         'class' => ConfigureDomainTask::class,

@@ -1,17 +1,18 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Zn;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZnShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
-class ZnReloadWebSocketFixtureTask extends BaseShell implements TaskInterface
+class ZnMigrateUpTask extends BaseShell implements TaskInterface
 {
 
-    protected $title = 'ZN reload webSocket';
+    protected $title = 'Zn. Migrate up';
     public $env = null;
 
     public function run()
@@ -19,16 +20,21 @@ class ZnReloadWebSocketFixtureTask extends BaseShell implements TaskInterface
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
 
-        $this->io->writeln('  zn reload webSocket ... ');
-//        $this->fixtureImport($profileConfig['env']);
-
         $zn = new ZnShell($this->remoteShell);
         $zn->setDirectory(VarProcessor::get('releasePath'));
+        $zn->migrateUp($this->env);
 
-        $this->io->writeln('  zn stop webSocket ... ');
-        $zn->stopWebSocket($this->env);
+        /*try {
+            $zn->migrateUp($envName);
+        } catch (\Throwable $e) {
+            $fs = new FileSystemShell($this->remoteShell);
+            $fs->sudo()->chmod($profileConfig['releasePath']. '/var', 'a+w', true);
+            $zn->migrateUp($envName);
+        }*/
+    }
 
-        $this->io->writeln('  zn start webSocket ... ');
-        $zn->startWebSocket($this->env);
+    protected function migrateUp(string $envName)
+    {
+
     }
 }

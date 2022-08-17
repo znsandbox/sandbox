@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\PackageShell;
@@ -14,7 +14,6 @@ class RunCommandTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-//        $this->io->writeln("run \"{$this->command}\" ... ");
         $this->remoteShell->runCommand($this->command);
     }
 }

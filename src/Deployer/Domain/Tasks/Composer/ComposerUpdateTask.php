@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks;
+namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Composer;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
@@ -8,28 +8,29 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ComposerShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
-class ComposerInstallTask extends BaseShell implements TaskInterface
+class ComposerUpdateTask extends BaseShell implements TaskInterface
 {
 
-    public $noDev;
-    protected $title = 'Composer install';
+    protected $title = 'Composer update';
 
     public function run()
     {
         $profileName = VarProcessor::get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
-        $this->installDependency($profileName);
+        $this->updateDependency($profileName);
     }
 
-    protected function installDependency(string $profileName)
+    protected function updateDependency(string $profileName)
     {
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
         $composer->setDirectory(VarProcessor::get('releasePath'));
+
         $options = '';
         if($this->noDev) {
             $options .= ' --no-dev ';
         }
-        $composer->install($options);
+
+        $composer->update($options);
     }
 }
