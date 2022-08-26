@@ -33,6 +33,7 @@ class ConfigureDomainTask extends BaseShell implements TaskInterface
             $directory = VarProcessor::process($item['directory']);
             $hosts->add($domain);
             $apache->addConf($domain, $directory);
+            $this->io->writeln("http://{$domain}:8080/");
         }
     }
 }
