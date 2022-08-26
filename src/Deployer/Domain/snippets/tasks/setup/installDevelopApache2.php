@@ -1,27 +1,18 @@
 <?php
 
 return [
-    'title' => 'Install development. Common',
+    'title' => 'Development setup. Apache2',
     'tasks' => [
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
-            'package' => 'git',
-            'withUpdate' => true,
-//        'title' => '',
-        ],
-        [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
             'package' => 'apache2',
-//        'title' => '',
         ],
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Apache\ApacheConfigModRewriteTask::class,
             'status' => true,
-//        'title' => '',
         ],
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\SetPermissionTask::class,
-//        'title' => '',
             'config' => [
                 [
                     'path' => '/etc/apache2',
@@ -50,11 +41,9 @@ return [
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Apache\ApacheConfigAutorunTask::class,
             'status' => true,
-//        'title' => '',
         ],
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Apache\ApacheRestartTask::class,
-//        'title' => '',
         ],
     ],
 ];

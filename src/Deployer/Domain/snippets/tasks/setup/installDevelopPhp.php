@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Install development. PHP',
+    'title' => 'Development setup. PHP',
     'tasks' => [
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\AddPackageRepositoryTask::class,

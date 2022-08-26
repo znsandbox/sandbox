@@ -5,7 +5,7 @@ $virtualBoxDirectory = $_ENV['DEPLOYER_VIRTUAL_BOX_DIRECTORY'];
 $backupZipFile = $_ENV['DEPLOYER_VIRTUAL_BOX_BACKUP_FILE'];
 
 return [
-    'title' => 'Hard reset server',
+    'title' => 'Server. Hard reset',
     'tasks' => [
 
         [

@@ -11,7 +11,7 @@ use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 class RegisterSshKeysTask extends BaseShell implements TaskInterface
 {
 
-    protected $title = 'Register SSH';
+    protected $title = 'Setup SSH access';
     public $password = null;
 
     public function run()

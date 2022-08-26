@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Config access',
+    'title' => 'Server. Config access',
     'tasks' => [
         [
             'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup\RegisterPublicKeyTask::class,
