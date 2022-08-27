@@ -9,31 +9,23 @@ class ProfileRepository
 
     public static function findOneByName(string $projectName)
     {
-//        $deployProfiles = ConfigProcessor::get('deployProfiles');
-        $deployProfiles = self::findAll();
-//        dd($deployProfiles);
-        $profileConfig = $deployProfiles[$projectName];
+        $profiles = self::findAll();
+        $profileConfig = $profiles[$projectName];
         return $profileConfig;
     }
 
     public static function findAll()
     {
-        $deployProfiles = ConfigProcessor::get('deployProfiles');
+        $profiles = ConfigProcessor::get('profiles');
         $new = [];
-        foreach ($deployProfiles as $projectName => $profileConfig) {
-            if(is_string($projectName)) {
-
-            } else {
-                $hash = hash('sha256', $projectName);
+        foreach ($profiles as $profileName => $profileConfig) {
+            if(!is_string($profileName)) {
+                $hash = hash('sha256', $profileName);
 //            $profileConfig = self::prepareItem($profileConfig, $hash);
-
-                $projectName = $profileConfig['name'] ?? $hash;
+                $profileName = $profileConfig['name'] ?? $hash;
             }
-
-
-            $profileConfig['name'] = $projectName;
-
-            $new[$projectName] = $profileConfig;
+            $profileConfig['name'] = $profileName;
+            $new[$profileName] = $profileConfig;
         }
         return $new;
     }
