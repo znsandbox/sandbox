@@ -11,6 +11,7 @@ class ProfileRepository
     {
 //        $deployProfiles = ConfigProcessor::get('deployProfiles');
         $deployProfiles = self::findAll();
+//        dd($deployProfiles);
         $profileConfig = $deployProfiles[$projectName];
         return $profileConfig;
     }
@@ -20,9 +21,19 @@ class ProfileRepository
         $deployProfiles = ConfigProcessor::get('deployProfiles');
         $new = [];
         foreach ($deployProfiles as $projectName => $profileConfig) {
-            $hash = hash('sha256', $projectName);
+            if(is_string($projectName)) {
+
+            } else {
+                $hash = hash('sha256', $projectName);
 //            $profileConfig = self::prepareItem($profileConfig, $hash);
-            $new[$hash] = $profileConfig;
+
+                $projectName = $profileConfig['name'] ?? $hash;
+            }
+
+
+            $profileConfig['name'] = $projectName;
+
+            $new[$projectName] = $profileConfig;
         }
         return $new;
     }

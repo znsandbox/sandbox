@@ -44,6 +44,7 @@ return [
     ],
     [
         'class' => ZnMigrateUpTask::class,
+        'env' => \ZnCore\Env\Enums\EnvEnum::TEST,
     ],
 
     [

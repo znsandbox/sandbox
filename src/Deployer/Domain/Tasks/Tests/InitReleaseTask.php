@@ -17,7 +17,7 @@ class InitReleaseTask extends BaseShell implements TaskInterface
     {
         $profileName = VarProcessor::get('currentProfile');
         $basePath = VarProcessor::get('basePath');
-        $currentPath = $basePath . '/tests';
+        $currentPath = $basePath . '/current';
         VarProcessor::set('currentPath', $currentPath);
         VarProcessor::set('releasePath', $currentPath);
     }

@@ -18,20 +18,23 @@ class RunPhpUnitTestTask extends BaseShell implements TaskInterface
         $phpUnitShell = new PhpUnitShell($this->remoteShell);
         $phpUnitShell->setDirectory(VarProcessor::get('releasePath'));
         $out = $phpUnitShell->run();
-        if(preg_match('/OK \((\d+) tests, (\d+) assertions\)/', $out, $matches)) {
+        $isMatch1 = preg_match('/OK \((\d+) tests, (\d+) assertions\)/', $out, $matches1);
+        $isMatch2 = preg_match('/Time: (.+), Memory: (.+ \w+)/', $out, $matches2);
+        if($isMatch1 && $isMatch2) {
             $res = [];
-            $res['testCount'] = $matches[1];
-            $res['assertCount'] = $matches[2];
+            $res['testCount'] = $matches1[1];
+            $res['assertCount'] = $matches1[2];
 
-            preg_match('/Time: (.+), Memory: (.+ \w+)/', $out, $matches);
-            $res['time'] = $matches[1];
-            $res['memory'] = $matches[2];
+            $res['time'] = $matches2[1];
+            $res['memory'] = $matches2[2];
 
-            $this->io->writelnListItem("testCount: {$res['testCount']}");
-            $this->io->writelnListItem("assertCount: {$res['assertCount']}");
-            $this->io->writelnListItem("time: {$res['time']}");
-            $this->io->writelnListItem("memory: {$res['memory']}");
-            $this->io->success('OK');
+            $this->io->success($matches1[0] . PHP_EOL . $matches2[0]);
+
+//            $this->io->writelnListItem("testCount: {$res['testCount']}");
+//            $this->io->writelnListItem("assertCount: {$res['assertCount']}");
+//            $this->io->writelnListItem("time: {$res['time']}");
+//            $this->io->writelnListItem("memory: {$res['memory']}");
+//            $this->io->success('OK');
         } else {
             $this->io->error('Fail');
         }

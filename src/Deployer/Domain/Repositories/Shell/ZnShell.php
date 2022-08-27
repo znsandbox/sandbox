@@ -15,7 +15,7 @@ class ZnShell extends BaseShellDriver
 
     public function init(string $env)
     {
-        return $this->runZn("init --env=\"$env\" --overwrite=All", $env);
+        return $this->runZn("init --overwrite=All", $env);
     }
 
     public function migrateUp(string $env = null)
@@ -43,11 +43,11 @@ class ZnShell extends BaseShellDriver
         return $this->runZn("socket:worker status", $env);
     }
 
-    public function runZn($command, ?string $path = null): string
+    public function runZn($command, ?string $env = null): string
     {
-//        $envCode = $env ? "--env=\"$env\"" : '';
+        $envCode = $env ? "--env=$env" : '';
 //        dd($envCode);
 //        $this->cd('{{releasePath}}/vendor/bin');
-        return $this->runCommand("{{bin/php}} zn $command");
+        return $this->runCommand("{{bin/php}} zn $command $envCode");
     }
 }
