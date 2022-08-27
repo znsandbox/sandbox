@@ -46,7 +46,10 @@ return [
         'class' => ZnMigrateUpTask::class,
         'env' => \ZnCore\Env\Enums\EnvEnum::TEST,
     ],
-
+    [
+        'class' => ZnMigrateUpTask::class,
+//        'env' => \ZnCore\Env\Enums\EnvEnum::TEST,
+    ],
     [
         'class' => ConfigureDomainTask::class,
         'domains' => [

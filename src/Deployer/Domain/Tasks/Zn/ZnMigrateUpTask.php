@@ -17,8 +17,8 @@ class ZnMigrateUpTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = VarProcessor::get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileName = VarProcessor::get('currentProfile');
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $zn = new ZnShell($this->remoteShell);
         $zn->setDirectory(VarProcessor::get('releasePath'));
