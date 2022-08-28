@@ -2,8 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
+use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
 
 abstract class BaseShellDriver
@@ -68,7 +70,7 @@ abstract class BaseShellDriver
     public function runCommand($command, ?string $path = null): string
     {
         $command = $this->prepareSudo($command);
-        if($this->getDirectory()) {
+        if ($this->getDirectory()) {
             $dir = ($this->getDirectory());
             $command = "cd {$dir} && $command";
         }
@@ -77,12 +79,18 @@ abstract class BaseShellDriver
 
     protected static function getSudoCommandTemplate()
     {
-        return ConfigProcessor::get('connections.default.sudo.commandTemplate', 'sudo {command}');
+        $connection = ConnectionProcessor::getCurrent();
+        return ArrayHelper::getValue($connection, 'sudo.commandTemplate', 'sudo {command}');
+
+//        return ConfigProcessor::get('connections.default.sudo.commandTemplate', 'sudo {command}');
     }
 
     protected static function getSudoCommandName(): string
     {
-        return ConfigProcessor::get('connections.default.sudo.command', 'sudo') . ' ';
+        $connection = ConnectionProcessor::getCurrent();
+        return ArrayHelper::getValue($connection, 'sudo.command', 'sudo');
+
+//        return ConfigProcessor::get('connections.default.sudo.command', 'sudo') . ' ';
     }
 
     protected function stripSudo(string $command): string

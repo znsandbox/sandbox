@@ -5,6 +5,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
 
@@ -16,7 +17,11 @@ class RegisterPublicKeyTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');
+        $connection = ConnectionProcessor::getCurrent();
+        $publicKeyFileName = $connection['sshPublicKeyFile'];
+
+//        $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');
+
         $fs = new FileSystemShell($this->remoteShell);
         $this->uploadPublicKey($publicKeyFileName);
         $this->copyId($publicKeyFileName);

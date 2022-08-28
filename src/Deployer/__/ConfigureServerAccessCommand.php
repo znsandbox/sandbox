@@ -8,6 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerAccessShell;
 
 class ConfigureServerAccessCommand extends Command
@@ -26,8 +27,11 @@ class ConfigureServerAccessCommand extends Command
         $remoteShell = ShellFactory::createRemoteShell();
         $configureServerShell = new ConfigureServerAccessShell($remoteShell, $this->io);
 
-        $connection = ConfigProcessor::get('connections.default');
-        $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');
+//        $connection = ConfigProcessor::get('connections.default');
+//        $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');
+
+        $connection = ConnectionProcessor::getCurrent();
+        $publicKeyFileName = $connection['sshPublicKeyFile'];
 
         $this->io->writeln('register SSH public key ... ');
         $configureServerShell->registerPublicKey($publicKeyFileName);

@@ -2,8 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 
+use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
@@ -28,7 +30,11 @@ class RegisterSshKeysTask extends BaseShell implements TaskInterface
         $this->io->writeln('  copy SSH keys ... ');
 
         $fs = new FileSystemShell($this->remoteShell);
-        $userDir = ConfigProcessor::get('connections.default.user');
+
+        $connection = ConnectionProcessor::getCurrent();
+        $userDir = $connection['user'];
+
+//        $userDir = ConfigProcessor::get('connections.default.user');
         foreach ($list as $sourceFilename) {
             $destFilename = "/home/{$userDir}/.ssh/" . basename($sourceFilename);
 

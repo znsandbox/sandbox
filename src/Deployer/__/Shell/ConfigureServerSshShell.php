@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
 
@@ -14,7 +15,12 @@ class ConfigureServerSshShell extends BaseShell
         $this->io->writeln('copy SSH keys ... ');
 
         $fs = new FileSystemShell($this->remoteShell);
-        $userDir = ConfigProcessor::get('connections.default.user');
+
+        $connection = ConnectionProcessor::getCurrent();
+        $userDir = $connection['user'];
+
+//        $userDir = ConfigProcessor::get('connections.default.user');
+
         foreach ($list as $sourceFilename) {
             $destFilename = "/home/{$userDir}/.ssh/" . basename($sourceFilename);
 
