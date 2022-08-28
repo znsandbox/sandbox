@@ -2,6 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\PhpConfig;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
 

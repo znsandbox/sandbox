@@ -4,12 +4,12 @@ return [
     'title' => 'Development setup. PHP',
     'tasks' => [
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\AddPackageRepositoryTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\LinuxPackage\AddPackageRepositoryTask::class,
             'repository' => 'ppa:ondrej/php',
 //        'title' => '',
         ],
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
             'package' => [
                 '{{phpv}}',
                 '{{phpv}}-cli',
@@ -19,7 +19,7 @@ return [
             'title' => '## Install base PHP packages',
         ],
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
             'package' => [
                 '{{phpv}}-gmp',
                 '{{phpv}}-curl',

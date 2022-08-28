@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
 
 class ConfigureServerSshShell extends BaseShell

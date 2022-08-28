@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\PhpShell;
 
 class ConfigPhpTask extends BaseShell implements TaskInterface

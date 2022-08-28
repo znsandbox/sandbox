@@ -6,7 +6,7 @@ use ZnLib\Components\ShellRobot\Domain\Entities\HostEntity;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class RegisterPublicKeyTask extends BaseShell implements TaskInterface

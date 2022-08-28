@@ -4,7 +4,7 @@ return [
     'title' => 'Development setup. Git',
     'tasks' => [
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
             'package' => 'git',
             'withUpdate' => true,
         ],

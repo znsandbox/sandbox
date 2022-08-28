@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Zn;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZnShell;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 

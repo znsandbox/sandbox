@@ -6,7 +6,7 @@ use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class SetSudoPasswordTask extends BaseShell implements TaskInterface

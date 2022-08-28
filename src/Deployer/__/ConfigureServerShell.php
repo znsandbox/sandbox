@@ -4,7 +4,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Libs;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
 use ZnLib\Components\ShellRobot\Domain\Libs\Shell\LocalShell;
 

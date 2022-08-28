@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\PackageShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\PackageShell;
 
 class ConfigureServerLampGitShell extends BaseShell
 {

@@ -2,13 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 
-use ZnCore\Arr\Helpers\ArrayHelper;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
-use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class RegisterSshKeysTask extends BaseShell implements TaskInterface
 {
@@ -23,7 +22,6 @@ class RegisterSshKeysTask extends BaseShell implements TaskInterface
         $this->copySshKeys(ConfigProcessor::get('ssh.copyKeys'));
         $this->copySshFiles(ConfigProcessor::get('ssh.copyFiles'));
     }
-
 
     public function copySshKeys(array $list)
     {

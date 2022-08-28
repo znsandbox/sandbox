@@ -20,9 +20,9 @@ return [
         ],*/
 
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\WaitTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\Common\WaitTask::class,
             'second' => 5,
-            'title' => '  Wait for the server to shutdown',
+            'title' => '  Wait for the server to shutdown ...',
         ],
 
         [
@@ -42,9 +42,9 @@ return [
         ],
 
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\WaitTask::class,
-            'second' => 10,
-            'title' => '  Wait for the server to start',
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\Common\WaitTask::class,
+            'second' => 20,
+            'title' => '  Wait for the server to start ...',
         ],
 
         /*[

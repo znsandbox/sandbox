@@ -1,6 +1,6 @@
 <?php
 
-use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\SetPermissionTask;
+use ZnLib\Components\ShellRobot\Domain\Tasks\FileSystem\SetPermissionTask;
 use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Composer\ComposerInstallTask;
 use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy\ConfigureDomainTask;
 use ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy\InitReleaseTask;

@@ -4,7 +4,7 @@ return [
     'title' => 'Development setup. Apache2',
     'tasks' => [
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\LinuxPackage\InstallLinuxPackageTask::class,
             'package' => 'apache2',
         ],
         [
@@ -12,7 +12,7 @@ return [
             'status' => true,
         ],
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\SetPermissionTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\FileSystem\SetPermissionTask::class,
             'config' => [
                 [
                     'path' => '/etc/apache2',
@@ -27,13 +27,13 @@ return [
         ],
 
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\MakeSoftLinkTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\FileSystem\MakeSoftLinkTask::class,
             'sourceFilePath' => '/etc/apache2/sites-available',
             'linkFilePath' => '/etc/apache2/sites-enabled',
             'title' => 'Make Soft Link "sites-enabled" -> "sites-available"',
         ],
         [
-            'class' => \ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common\CopyToRemoteTask::class,
+            'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\FileSystem\CopyToRemoteTask::class,
             'sourceFilePath' => realpath(__DIR__ . '/../../../../resources/apache2.conf'),
             'destFilePath' => '/etc/apache2/apache2.conf',
             'title' => 'Copy Apahe2 config to server',
