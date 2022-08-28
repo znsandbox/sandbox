@@ -12,6 +12,7 @@ class ComposerUpdateTask extends BaseShell implements TaskInterface
 {
 
     protected $title = 'Composer update';
+    public $noDev;
     public $directory;
 
     public function run()
