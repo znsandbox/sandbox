@@ -2,12 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ApacheShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\HostsShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class ConfigureDomainTask extends BaseShell implements TaskInterface
 {

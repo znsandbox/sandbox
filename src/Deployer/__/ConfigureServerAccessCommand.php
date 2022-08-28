@@ -6,9 +6,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerAccessShell;
 
 class ConfigureServerAccessCommand extends Command

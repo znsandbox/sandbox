@@ -2,6 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
+
 class PhpUnitShell extends BaseShellDriver
 {
 

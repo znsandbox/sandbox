@@ -2,7 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
 
 class GitShell extends BaseShellDriver
 {

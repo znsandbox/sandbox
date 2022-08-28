@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
 
 class ZnShell extends BaseShellDriver
 {

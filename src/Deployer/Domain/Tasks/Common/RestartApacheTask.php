@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common;
 
 use ZnCore\Code\Helpers\DeprecateHelper;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ApacheShell;
 
 DeprecateHelper::hardThrow();

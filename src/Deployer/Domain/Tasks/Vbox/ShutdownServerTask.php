@@ -4,9 +4,9 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Vbox;
 
 use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\LocalShell;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Libs\Shell\LocalShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\VirtualBoxShell;
 
 class ShutdownServerTask extends BaseShell implements TaskInterface

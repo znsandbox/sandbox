@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Composer;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class InstallComposerToSystemTask extends BaseShell implements TaskInterface
 {

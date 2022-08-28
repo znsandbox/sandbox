@@ -2,10 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class CopyToRemoteTask extends BaseShell implements TaskInterface
 {

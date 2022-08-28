@@ -3,12 +3,12 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 
 use ZnCore\Arr\Helpers\ArrayHelper;
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class RegisterSshKeysTask extends BaseShell implements TaskInterface
 {

@@ -2,12 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConfigProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\ConnectionProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class SetSudoPasswordTask extends BaseShell implements TaskInterface
 {

@@ -3,6 +3,7 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\SshConfig;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
 
 class SshShell extends BaseShellDriver
 {

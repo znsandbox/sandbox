@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Shell;
 //use ZnCore\Code\Helpers\DeprecateHelper;
 //use ZnLib\Console\Domain\Base\BaseShellNew;
 //use ZnLib\Console\Domain\Helpers\CommandLineHelper;
-//use ZnSandbox\Sandbox\Deployer\Domain\Entities\HostEntity;
+//use ZnLib\Components\ShellRobot\Domain\Entities\HostEntity;
 //
 //DeprecateHelper::hardThrow();
 //

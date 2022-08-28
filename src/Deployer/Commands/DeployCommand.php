@@ -8,10 +8,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnLib\Console\Domain\Libs\IO;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\TaskProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\TaskProcessor;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Config\ProfileRepository;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
 
 class DeployCommand extends Command
 {

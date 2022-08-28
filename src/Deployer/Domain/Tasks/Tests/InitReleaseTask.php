@@ -2,9 +2,9 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Tests;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\App\VarProcessor;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 
 class InitReleaseTask extends BaseShell implements TaskInterface
 {

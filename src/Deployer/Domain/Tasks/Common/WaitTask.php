@@ -2,8 +2,8 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Common;
 
-use ZnSandbox\Sandbox\Deployer\Domain\Interfaces\TaskInterface;
-use ZnSandbox\Sandbox\Deployer\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class WaitTask extends BaseShell implements TaskInterface
 {

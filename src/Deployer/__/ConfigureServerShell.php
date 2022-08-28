@@ -6,7 +6,7 @@ use ZnLib\Console\Domain\Base\BaseShellNew;
 use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\LocalShell;
+use ZnLib\Components\ShellRobot\Domain\Libs\Shell\LocalShell;
 
 class _________ConfigureServerShell
 {

@@ -7,7 +7,7 @@ use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\VirtualBoxShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZipShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\Shell\LocalShell;
+use ZnLib\Components\ShellRobot\Domain\Libs\Shell\LocalShell;
 
 class ResetServerShell extends BaseShell
 {

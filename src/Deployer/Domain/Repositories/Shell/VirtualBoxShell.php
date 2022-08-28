@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
-use ZnSandbox\Sandbox\Deployer\Domain\Factories\ShellFactory;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
 
 class VirtualBoxShell extends BaseShellDriver
 {

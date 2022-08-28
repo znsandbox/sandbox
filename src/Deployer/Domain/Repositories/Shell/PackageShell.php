@@ -5,7 +5,7 @@ namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnCore\Text\Helpers\StringHelper;
 use ZnCore\Text\Helpers\TextHelper;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\BaseShellDriver;
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
 
 class PackageShell extends BaseShellDriver
 {
