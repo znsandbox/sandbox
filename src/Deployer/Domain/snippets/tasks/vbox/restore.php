@@ -21,7 +21,7 @@ return [
 
         [
             'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\Common\WaitTask::class,
-            'second' => 5,
+            'seconds' => 5,
             'title' => '  Wait for the server to shutdown ...',
         ],
 
@@ -43,7 +43,7 @@ return [
 
         [
             'class' => \ZnLib\Components\ShellRobot\Domain\Tasks\Common\WaitTask::class,
-            'second' => 20,
+            'seconds' => 20,
             'title' => '  Wait for the server to start ...',
         ],
 
