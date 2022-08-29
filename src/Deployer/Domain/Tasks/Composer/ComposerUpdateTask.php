@@ -2,11 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Composer;
 
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ComposerShell;
-use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class ComposerUpdateTask extends BaseShell implements TaskInterface
 {
@@ -17,7 +17,7 @@ class ComposerUpdateTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = VarProcessor::get('currentProfile');
+        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $this->updateDependency($profileName);
     }
@@ -29,7 +29,7 @@ class ComposerUpdateTask extends BaseShell implements TaskInterface
         $composer->setDirectory($this->directory);
 
         $options = '';
-        if($this->noDev) {
+        if ($this->noDev) {
             $options .= ' --no-dev ';
         }
 

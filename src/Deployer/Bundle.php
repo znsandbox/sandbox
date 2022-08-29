@@ -7,6 +7,13 @@ use ZnCore\Bundle\Base\BaseBundle;
 class Bundle extends BaseBundle
 {
 
+    public function deps(): array
+    {
+        return [
+            \ZnLib\Components\ShellRobot\Bundle::class,
+        ];
+    }
+
     public function console(): array
     {
         return [

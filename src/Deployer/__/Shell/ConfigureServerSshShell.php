@@ -2,8 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\SshShell;
 
@@ -16,7 +15,7 @@ class ConfigureServerSshShell extends BaseShell
 
         $fs = new FileSystemShell($this->remoteShell);
 
-        $connection = ConnectionProcessor::getCurrent();
+        $connection = ShellFactory::getConnectionProcessor()->getCurrent();
         $userDir = $connection['user'];
 
 //        $userDir = ConfigProcessor::get('connections.default.user');

@@ -5,9 +5,8 @@ namespace ZnSandbox\Sandbox\Deployer\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use ZnLib\Console\Domain\Libs\IO;
 use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
+use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerSshShell;
 
 class ConfigureServerSshCommand extends Command
@@ -26,8 +25,8 @@ class ConfigureServerSshCommand extends Command
         $remoteShell = ShellFactory::createRemoteShell();
         $configureServerShell = new ConfigureServerSshShell($remoteShell, $this->io);
 
-        $configureServerShell->copySshKeys(ConfigProcessor::get('ssh.copyKeys'));
-        $configureServerShell->copySshFiles(ConfigProcessor::get('ssh.copyFiles'));
+        $configureServerShell->copySshKeys(ShellFactory::getConfigProcessor()->get('ssh.copyKeys'));
+        $configureServerShell->copySshFiles(ShellFactory::getConfigProcessor()->get('ssh.copyFiles'));
 
 //        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
 //        $configureServerShell->copySshKeys($config['ssh']['copyKeys']);

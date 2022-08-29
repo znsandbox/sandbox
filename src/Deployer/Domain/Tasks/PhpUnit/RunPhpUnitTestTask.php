@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\PhpUnit;
 
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\PhpUnitShell;
 
 class RunPhpUnitTestTask extends BaseShell implements TaskInterface
@@ -16,11 +16,11 @@ class RunPhpUnitTestTask extends BaseShell implements TaskInterface
     public function run()
     {
         $phpUnitShell = new PhpUnitShell($this->remoteShell);
-        $phpUnitShell->setDirectory(VarProcessor::get('releasePath'));
+        $phpUnitShell->setDirectory(ShellFactory::getVarProcessor()->get('releasePath'));
         $out = $phpUnitShell->run();
         $isMatch1 = preg_match('/OK \((\d+) tests, (\d+) assertions\)/', $out, $matches1);
         $isMatch2 = preg_match('/Time: (.+), Memory: (.+ \w+)/', $out, $matches2);
-        if($isMatch1 && $isMatch2) {
+        if ($isMatch1 && $isMatch2) {
             $res = [];
             $res['testCount'] = $matches1[1];
             $res['assertCount'] = $matches1[2];

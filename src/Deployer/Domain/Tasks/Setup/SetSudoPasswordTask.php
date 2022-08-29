@@ -2,12 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 
-use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
-use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 
 class SetSudoPasswordTask extends BaseShell implements TaskInterface
 {
@@ -20,10 +18,10 @@ class SetSudoPasswordTask extends BaseShell implements TaskInterface
 //        $connectionName = VarProcessor::get('currentConnection', 'default');
 //        $connection = ConfigProcessor::get('connections.' . $connectionName);
 
-        $connection = ConnectionProcessor::getCurrent();
+        $connection = ShellFactory::getConnectionProcessor()->getCurrent();
         $this->setSudoPassword($connection['password'] ?? null);
     }
-    
+
     public function setSudoPassword(string $password = null)
     {
         if ($password == null) {

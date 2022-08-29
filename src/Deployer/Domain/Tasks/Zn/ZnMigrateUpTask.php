@@ -2,12 +2,10 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Zn;
 
-use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
-use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
-use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
-use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZnShell;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZnShell;
 
 class ZnMigrateUpTask extends BaseShell implements TaskInterface
 {
@@ -21,7 +19,7 @@ class ZnMigrateUpTask extends BaseShell implements TaskInterface
 //        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $zn = new ZnShell($this->remoteShell);
-        $zn->setDirectory(VarProcessor::get('releasePath'));
+        $zn->setDirectory(ShellFactory::getVarProcessor()->get('releasePath'));
         $zn->migrateUp($this->env);
 
         /*try {

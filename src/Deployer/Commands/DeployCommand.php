@@ -7,11 +7,12 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Arr\Helpers\ArrayHelper;
-use ZnLib\Console\Domain\Libs\IO;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
+use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\TaskProcessor;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
-use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
+use ZnLib\Console\Domain\Libs\IO;
+use ZnSandbox\Sandbox\Deployer\Domain\Libs\ConfigureServerDeployShell;
 
 class DeployCommand extends Command
 {
@@ -26,10 +27,22 @@ class DeployCommand extends Command
         $this->addArgument('projectName', InputArgument::OPTIONAL);
     }
 
+    /*private function initApp()
+    {
+        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
+        $vars = $config['vars'];
+        $vars['userName'] = $config['connections']['default']['user'];
+        $vars['homeUserDir'] = "/home/{$vars['userName']}";
+//        ConfigProcessor::getInstance()->setConfig($config);
+//        ShellFactory::getVarProcessor()->setVars($vars);
+    }*/
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         set_time_limit(0);
         $this->io = new IO($input, $output);
+
+//        $this->initApp();
 
         $output->writeln(['<fg=white># Deployer. Deploy</>']);
 
@@ -37,8 +50,8 @@ class DeployCommand extends Command
         foreach ($profileNames as $profileName) {
             $profileConfig = ProfileRepository::findOneByName($profileName);
             $output->writeln(['', "<fg=blue>## {$profileConfig['title']}</>", '']);
-            VarProcessor::setList($profileConfig['vars'] ?? []);
-            VarProcessor::set('currentProfile', $profileName);
+            ShellFactory::getVarProcessor()->setList($profileConfig['vars'] ?? []);
+            ShellFactory::getVarProcessor()->set('currentProfile', $profileName);
             $tasks = $profileConfig['tasks'];
             TaskProcessor::runTaskList($tasks, $this->io);
         }

@@ -5,10 +5,8 @@ namespace ZnSandbox\Sandbox\Deployer\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use ZnLib\Console\Domain\Libs\IO;
 use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
+use ZnLib\Console\Domain\Libs\IO;
 use ZnSandbox\Sandbox\Deployer\Domain\Services\Shell\ConfigureServerAccessShell;
 
 class ConfigureServerAccessCommand extends Command
@@ -30,7 +28,7 @@ class ConfigureServerAccessCommand extends Command
 //        $connection = ConfigProcessor::get('connections.default');
 //        $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');
 
-        $connection = ConnectionProcessor::getCurrent();
+        $connection = ShellFactory::getConnectionProcessor()->getCurrent();
         $publicKeyFileName = $connection['sshPublicKeyFile'];
 
         $this->io->writeln('register SSH public key ... ');

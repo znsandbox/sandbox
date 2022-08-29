@@ -2,8 +2,7 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Services\Shell;
 
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\PackageShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\PhpShell;
@@ -25,8 +24,8 @@ class ConfigureServerLampPhpShell extends BaseShell
 
         $this->io->writeln('install base PHP packages ... ');
 //        $basePackages = $config['php']['basePackages'];
-        $basePackages = ConfigProcessor::get('php.basePackages');
-        $basePackages = VarProcessor::processList($basePackages);
+        $basePackages = ShellFactory::getConfigProcessor()->get('php.basePackages');
+        $basePackages = ShellFactory::getVarProcessor()->processList($basePackages);
 
 
 //        $basePackages = array_map([VarProcessor::class, 'process'], $basePackages);
@@ -38,8 +37,8 @@ class ConfigureServerLampPhpShell extends BaseShell
         $this->io->writeln('install ext PHP packages ... ');
 
 //        $extPackages = $config['php']['extPackages'];
-        $extPackages = ConfigProcessor::get('php.extPackages');
-        $extPackages = VarProcessor::processList($extPackages);
+        $extPackages = ShellFactory::getConfigProcessor()->get('php.extPackages');
+        $extPackages = ShellFactory::getVarProcessor()->processList($extPackages);
 //        $extPackages = array_map([VarProcessor::class, 'process'], $extPackages);
         $packageShell->installBatch($extPackages);
     }

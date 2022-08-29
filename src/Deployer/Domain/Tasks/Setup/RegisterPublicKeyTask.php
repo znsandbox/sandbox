@@ -2,12 +2,11 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Setup;
 
-use ZnLib\Components\ShellRobot\Domain\Entities\HostEntity;
-use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConnectionProcessor;
-use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Entities\HostEntity;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
+use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
+use ZnLib\Components\ShellRobot\Domain\Repositories\Shell\FileSystemShell;
 
 class RegisterPublicKeyTask extends BaseShell implements TaskInterface
 {
@@ -17,7 +16,7 @@ class RegisterPublicKeyTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $connection = ConnectionProcessor::getCurrent();
+        $connection = ShellFactory::getConnectionProcessor()->getCurrent();
         $publicKeyFileName = $connection['sshPublicKeyFile'];
 
 //        $publicKeyFileName = ConfigProcessor::get('access.sshPublicKeyFile');

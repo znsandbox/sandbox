@@ -2,12 +2,12 @@
 
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Deploy;
 
+use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ApacheShell;
 use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\HostsShell;
-use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
 
 class ConfigureDomainTask extends BaseShell implements TaskInterface
 {
@@ -17,7 +17,7 @@ class ConfigureDomainTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = VarProcessor::get('currentProfile');
+        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
         $profileConfig = ProfileRepository::findOneByName($profileName);
         $this->assignDomains($profileName);
     }
@@ -29,8 +29,8 @@ class ConfigureDomainTask extends BaseShell implements TaskInterface
         $hosts = new HostsShell($this->remoteShell);
 
         foreach ($this->domains as $item) {
-            $domain = VarProcessor::process($item['domain']);
-            $directory = VarProcessor::process($item['directory']);
+            $domain = ShellFactory::getVarProcessor()->process($item['domain']);
+            $directory = ShellFactory::getVarProcessor()->process($item['directory']);
             $hosts->add($domain);
             $apache->addConf($domain, $directory);
             $this->io->writeln("http://{$domain}:8080/");

@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Tasks\Tests;
 
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShell;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 use ZnLib\Components\ShellRobot\Domain\Interfaces\TaskInterface;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\VarProcessor;
 
 class InitReleaseTask extends BaseShell implements TaskInterface
 {
@@ -15,10 +15,10 @@ class InitReleaseTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = VarProcessor::get('currentProfile');
-        $basePath = VarProcessor::get('basePath');
+        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
+        $basePath = ShellFactory::getVarProcessor()->get('basePath');
         $currentPath = $basePath . '/current';
-        VarProcessor::set('currentPath', $currentPath);
-        VarProcessor::set('releasePath', $currentPath);
+        ShellFactory::getVarProcessor()->set('currentPath', $currentPath);
+        ShellFactory::getVarProcessor()->set('releasePath', $currentPath);
     }
 }
