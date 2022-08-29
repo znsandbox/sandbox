@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnCore\Arr\Helpers\ArrayHelper;
 use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
-use ZnLib\Components\ShellRobot\Domain\Libs\App\ConfigProcessor;
 use ZnLib\Components\ShellRobot\Domain\Libs\App\TaskProcessor;
 use ZnLib\Components\ShellRobot\Domain\Repositories\Config\ProfileRepository;
 use ZnLib\Console\Domain\Libs\IO;
@@ -27,22 +26,10 @@ class DeployCommand extends Command
         $this->addArgument('projectName', InputArgument::OPTIONAL);
     }
 
-    /*private function initApp()
-    {
-        $config = include($_ENV['DEPLOYER_CONFIG_FILE']);
-        $vars = $config['vars'];
-        $vars['userName'] = $config['connections']['default']['user'];
-        $vars['homeUserDir'] = "/home/{$vars['userName']}";
-//        ConfigProcessor::getInstance()->setConfig($config);
-//        ShellFactory::getVarProcessor()->setVars($vars);
-    }*/
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         set_time_limit(0);
         $this->io = new IO($input, $output);
-
-//        $this->initApp();
 
         $output->writeln(['<fg=white># Deployer. Deploy</>']);
 
