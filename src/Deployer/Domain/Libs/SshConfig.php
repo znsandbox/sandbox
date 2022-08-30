@@ -9,11 +9,6 @@ class SshConfig
 
     private $config = [];
 
-    /*public function __construct(string $config)
-    {
-        $this->config = $config;
-    }*/
-
     public function getConfig(): array
     {
         return $this->config;

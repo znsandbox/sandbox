@@ -3,8 +3,8 @@
 namespace ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
-use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 use ZnLib\Components\ShellRobot\Domain\Base\BaseShellDriver;
+use ZnLib\Components\ShellRobot\Domain\Factories\ShellFactory;
 
 class VirtualBoxShell extends BaseShellDriver
 {
@@ -21,7 +21,7 @@ class VirtualBoxShell extends BaseShellDriver
         try {
             $this->runCmd("VBoxManage controlvm \"$vmName\" acpipowerbutton");
         } catch (\Throwable $e) {
-            
+
         }
     }
 
@@ -42,14 +42,13 @@ class VirtualBoxShell extends BaseShellDriver
 
             $cmd = "ssh -p $port $host ";
             $this->runCommand($cmd);
-            
+
             return true;
         } catch (ProcessFailedException $e) {
-            $isContains = 
+            $isContains =
                 mb_strpos($e->getProcess()->getErrorOutput(), 'Connection refused') !== false
-            ||
-                mb_strpos($e->getProcess()->getErrorOutput(), 'Connection closed') !== false
-            ;
+                ||
+                mb_strpos($e->getProcess()->getErrorOutput(), 'Connection closed') !== false;
             if (!$isContains) {
                 throw $e;
             }
