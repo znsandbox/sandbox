@@ -21,8 +21,8 @@ class GitCloneTask extends BaseShell implements TaskInterface
     {
         $releasePath = ShellFactory::getVarProcessor()->process($this->directory);
 
-        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
         $git = new GitShell($this->remoteShell);
         $git->setDirectory($releasePath);
 

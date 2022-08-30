@@ -18,8 +18,8 @@ class InitReleaseTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $basePath = ShellFactory::getVarProcessor()->get('basePath');
         ShellFactory::getVarProcessor()->set('currentPath', $basePath . '/current');

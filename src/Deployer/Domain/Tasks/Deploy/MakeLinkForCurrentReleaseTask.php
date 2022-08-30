@@ -15,8 +15,8 @@ class MakeLinkForCurrentReleaseTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $currentPath = ShellFactory::getVarProcessor()->get('currentPath');
         $releasePath = ShellFactory::getVarProcessor()->get('releasePath');

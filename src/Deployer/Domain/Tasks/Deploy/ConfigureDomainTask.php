@@ -18,13 +18,13 @@ class ConfigureDomainTask extends BaseShell implements TaskInterface
     public function run()
     {
         $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
         $this->assignDomains($profileName);
     }
 
     protected function assignDomains(string $profileName)
     {
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
         $apache = new ApacheShell($this->remoteShell);
         $hosts = new HostsShell($this->remoteShell);
 

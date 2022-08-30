@@ -18,13 +18,13 @@ class ComposerUpdateTask extends BaseShell implements TaskInterface
     public function run()
     {
         $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
         $this->updateDependency($profileName);
     }
 
     protected function updateDependency(string $profileName)
     {
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
         $composer = new ComposerShell($this->remoteShell);
         $composer->setDirectory($this->directory);
 

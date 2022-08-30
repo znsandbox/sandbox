@@ -17,7 +17,7 @@ class ZnReloadWebSocketFixtureTask extends BaseShell implements TaskInterface
     public function run()
     {
         $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $this->io->writeln('  zn reload webSocket ... ');
 //        $this->fixtureImport($profileConfig['env']);

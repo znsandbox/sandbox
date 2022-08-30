@@ -16,8 +16,8 @@ class ZnImportFixtureTask extends BaseShell implements TaskInterface
 
     public function run()
     {
-        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
-        $profileConfig = ProfileRepository::findOneByName($profileName);
+//        $profileName = ShellFactory::getVarProcessor()->get('currentProfile');
+//        $profileConfig = ProfileRepository::findOneByName($profileName);
 
         $zn = new ZnShell($this->remoteShell);
         $zn->setDirectory(ShellFactory::getVarProcessor()->get('releasePath'));
