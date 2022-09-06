@@ -10,9 +10,17 @@ use ZnSandbox\Sandbox\Deployer\Domain\Repositories\Shell\ZnShell;
 class ZnMigrateUpTask extends BaseShell implements TaskInterface
 {
 
-    protected $title = 'Zn. Migrate up';
     public $env = null;
 
+    public function getTitle(): ?string
+    {
+        if ($this->env) {
+            return 'Zn. Migrate up for "{{env}}" environment';
+        } else {
+            return 'Zn. Migrate up for default environment';
+        }
+    }
+    
     public function run()
     {
 //        $profileName = VarProcessor::get('currentProfile');
