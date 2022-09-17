@@ -99,7 +99,7 @@ class FavoriteEntity implements ValidationByMetadataInterface, UniqueInterface, 
 
     public function setUid($value): void
     {
-        ReadOnlyHelper::checkAttribute($this->uid, $value);
+        ReadOnlyHelper::checkAttribute($this->uid, $value, $this, 'uid');
         $this->uid = $value;
     }
 
